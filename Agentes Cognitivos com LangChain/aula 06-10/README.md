@@ -1,13 +1,14 @@
 # Aula 06-10 - Assistente de Oficina
 
-Exercicio simples em Python para estudar o fluxo basico do LangChain:
+Exercicio simples em Python para estudar um assistente interativo com
+LangChain:
 
 ```text
 contexto + pergunta -> prompt -> modelo -> resposta
 ```
 
-O assistente responde duvidas de uma oficina mecanica usando apenas o contexto
-informado no codigo.
+O assistente responde duvidas de uma oficina mecanica pelo terminal, usando
+apenas o contexto informado no codigo.
 
 ## Objetivo do exercicio
 
@@ -20,6 +21,7 @@ Praticar:
 - LCEL com `prompt | modelo`
 - `invoke`
 - `.content`
+- `input()`
 
 ## Contexto usado
 
@@ -106,4 +108,10 @@ Antes de executar, coloque a chave no `.env`:
 
 ```env
 OPENAI_API_KEY=sua_chave_aqui
+```
+
+Durante a execucao, digite as perguntas no terminal. Para encerrar:
+
+```text
+sair
 ```
