@@ -4,7 +4,9 @@ Estudos e exercicios da disciplina sobre agentes cognitivos usando LangChain.
 
 ## Aulas
 
-- [Aula 06-10 - Assistente de oficina](./aula%2006-10/)
+- [Aula 06-10](./aula%2006-10/)
+  - [Assistente de oficina](./aula%2006-10/assistente%20oficina/)
+  - [Organizar solicitacoes de suporte em lote](./aula%2006-10/organizar%20solicitacoes%20suporte%20em%20lote/)
 
 ## Padrao de organizacao
 

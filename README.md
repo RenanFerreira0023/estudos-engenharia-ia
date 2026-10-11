@@ -13,7 +13,9 @@ Machine Learning e Deep Learning.
 
 ### Agentes Cognitivos com LangChain
 
-- [Aula 06-10 - Assistente de oficina](./Agentes%20Cognitivos%20com%20LangChain/aula%2006-10/)
+- [Aula 06-10](./Agentes%20Cognitivos%20com%20LangChain/aula%2006-10/)
+  - [Assistente de oficina](./Agentes%20Cognitivos%20com%20LangChain/aula%2006-10/assistente%20oficina/)
+  - [Organizar solicitacoes de suporte em lote](./Agentes%20Cognitivos%20com%20LangChain/aula%2006-10/organizar%20solicitacoes%20suporte%20em%20lote/)
 
 ## Observacoes
 
