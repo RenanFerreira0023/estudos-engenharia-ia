@@ -57,7 +57,9 @@ Evite transformar o README da aula em apostila longa. O objetivo e servir como n
 Para exercicios em Python:
 
 - mantenha tudo simples e em poucos arquivos;
-- comente as partes essenciais para estudo;
+- prefira uma versao interativa com `input()` quando isso deixar o estudo mais dinamico;
+- comente somente os conceitos estudados, evitando comentarios operacionais obvios;
+- use comentarios para marcar conceitos como contexto, prompt, `system`, `human`, variaveis do template, modelo, LCEL, chain, `input()`, `invoke` e `.content`;
 - use nomes claros;
 - leia chaves de API por variavel de ambiente ou `.env`;
 - nao coloque chaves diretamente no codigo;
