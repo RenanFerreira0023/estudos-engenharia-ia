@@ -82,6 +82,19 @@ def criar_chain():
     return prompt | modelo
 
 
+def exibir_conceitos_estudados():
+    """Mostra no terminal o fluxo do exercicio em linguagem de estudo."""
+    print("Como este exercicio funciona:")
+    print("1. O CONTEXTO guarda o que a oficina sabe responder.")
+    print("2. O PROMPT separa as regras em system e a pergunta em human.")
+    print("3. O MODELO usado e o ChatOpenAI.")
+    print("4. A CHAIN liga prompt e modelo com LCEL: prompt | modelo.")
+    print("5. O input() pega sua pergunta no terminal.")
+    print("6. O invoke() envia contexto + pergunta para a chain.")
+    print("7. O .content pega apenas o texto da resposta do modelo.")
+    print()
+
+
 def main():
     # CHAIN:
     # A chain junta prompt e modelo. Depois podemos reutiliza-la para varias
@@ -91,6 +104,7 @@ def main():
     print("Assistente da oficina")
     print("Digite sua pergunta ou escreva 'sair' para encerrar.")
     print()
+    exibir_conceitos_estudados()
 
     while True:
         # INPUT:
@@ -108,6 +122,7 @@ def main():
 
         # INVOKE:
         # Executa a chain uma vez, preenchendo as variaveis do template.
+        print("[estudo] Agora o invoke() vai executar a chain com sua pergunta.")
         resposta = chain.invoke(
             {
                 "contexto": CONTEXTO_OFICINA,

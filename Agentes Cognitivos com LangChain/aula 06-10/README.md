@@ -37,6 +37,9 @@ dizer que a informacao nao consta no contexto.
 
 ## Conceitos
 
+Durante a execucao, o programa tambem imprime no terminal alguns logs de estudo
+com os conceitos principais usados no codigo.
+
 ### ChatOpenAI
 
 Classe do LangChain usada para chamar um modelo de chat da OpenAI.
@@ -93,6 +96,32 @@ O retorno do modelo e um objeto de mensagem. O texto fica em:
 
 ```python
 resposta.content
+```
+
+### input()
+
+`input()` deixa o exercicio interativo. O usuario digita uma pergunta no
+terminal, e essa pergunta e enviada para a chain.
+
+```python
+pergunta = input("Voce: ").strip()
+```
+
+### Logs de estudo no terminal
+
+O script usa `print()` para explicar o fluxo enquanto roda. Em Python, isso
+cumpre o mesmo papel didatico que um `console.log` em JavaScript.
+
+Exemplo:
+
+```python
+print("[estudo] Agora o invoke() vai executar a chain com sua pergunta.")
+```
+
+Ao iniciar, o programa mostra o caminho completo do exercicio:
+
+```text
+contexto -> prompt -> modelo -> chain -> input() -> invoke() -> .content
 ```
 
 ## Como executar
