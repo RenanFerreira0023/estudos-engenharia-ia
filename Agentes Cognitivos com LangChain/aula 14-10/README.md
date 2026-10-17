@@ -1,7 +1,8 @@
 # Aula 14-10
 
 Exercício de encadeamento de prompts com LCEL, parsers, lambdas e processamento
-em lote com `batch`.
+em lote com `batch`. Todos os feedbacks da oficina são analisados para gerar
+um relatório geral de melhorias e pontos positivos a manter.
 
 - [Transformar reclamações de uma oficina em ações](./Transformar%20reclama%C3%A7%C3%B5es%20de%20uma%20oficina%20em%20a%C3%A7%C3%B5es/)
 
