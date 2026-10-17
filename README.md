@@ -20,6 +20,8 @@ Machine Learning e Deep Learning.
 - [Aula 14-10](./Agentes%20Cognitivos%20com%20LangChain/aula%2014-10/)
   - [Transformar reclamações de uma oficina em ações](./Agentes%20Cognitivos%20com%20LangChain/aula%2014-10/Transformar%20reclama%C3%A7%C3%B5es%20de%20uma%20oficina%20em%20a%C3%A7%C3%B5es/)
 
+  - [Encaminhar pedidos para o atendimento certo](./Agentes%20Cognitivos%20com%20LangChain/aula%2014-10/Encaminhar%20pedidos%20para%20o%20atendimento%20certo/)
+
 ## Observacoes
 
 Este repositorio deve crescer com anotacoes, exemplos de codigo e pequenos

@@ -1,0 +1,252 @@
+[
+  {
+    "id": "1",
+    "nome completo": "João da Silva",
+    "mensagem": "Vocês têm pastilha de freio dianteira para Onix 1.0 2020?"
+  },
+  {
+    "id": "2",
+    "nome completo": "Mariana Costa",
+    "mensagem": "Boa tarde! Estou procurando um kit de embreagem para um Gol 1.6 2014, câmbio manual. No site aparecem duas opções e não consegui entender a diferença. Vocês conseguem confirmar qual serve e o que vem dentro da caixa?"
+  },
+  {
+    "id": "3",
+    "nome completo": "Carlos Almeida",
+    "mensagem": "Recebi o filtro de óleo hoje, mas a rosca é diferente da peça que está no meu carro. No anúncio informei que era um Palio 1.0 2010. Ainda não instalei e guardei a embalagem. Como faço para trocar pelo modelo correto?"
+  },
+  {
+    "id": "4",
+    "nome completo": "Patrícia Mendes",
+    "mensagem": "A bateria chegou com a carcaça rachada. Não instalei. Preciso de orientação para resolver."
+  },
+  {
+    "id": "5",
+    "nome completo": "Rafael Rocha",
+    "mensagem": "Quero comprar quatro velas para um Celta 1.0 2012. O carro usa gasolina e etanol. Essa referência anunciada é compatível ou preciso de outra? Prefiro confirmar antes de fechar porque não entendo muito dessas diferenças."
+  },
+  {
+    "id": "6",
+    "nome completo": "Fernanda Lima",
+    "mensagem": "Meu pedido veio com três velas, mas comprei quatro. A embalagem estava fechada e a nota mostra quatro unidades. Conseguem enviar a que faltou sem eu precisar devolver tudo? Tenho horário na oficina no fim da semana."
+  },
+  {
+    "id": "7",
+    "nome completo": "Bruno Pereira",
+    "mensagem": "Tem desconto no Pix para comprar dois amortecedores traseiros?"
+  },
+  {
+    "id": "8",
+    "nome completo": "Luciana Ribeiro",
+    "mensagem": "Comprei um par de amortecedores e recebi apenas uma unidade. Já conferi a caixa inteira e não existe outra embalagem indicada no comprovante de entrega. Gostaria de saber se o segundo foi enviado separado ou se houve erro na separação."
+  },
+  {
+    "id": "9",
+    "nome completo": "André Santos",
+    "mensagem": "Boa noite. Preciso de um radiador para um Civic 1.8 2009 automático. Vi que há versões para câmbio manual e fiquei com medo de comprar errado. Vocês têm o correto em estoque? Também queria saber a marca e o prazo para Curitiba."
+  },
+  {
+    "id": "10",
+    "nome completo": "Camila Oliveira",
+    "mensagem": "O radiador chegou amassado na lateral e o mecânico não quis instalar sem eu falar com vocês. Tirei fotos assim que abrimos a caixa. Preciso saber como funciona a substituição e quem fica responsável pela coleta."
+  },
+  {
+    "id": "11",
+    "nome completo": "Diego Martins",
+    "mensagem": "Essa correia dentada é vendida sozinha ou acompanha tensor?"
+  },
+  {
+    "id": "12",
+    "nome completo": "Juliana Ferreira",
+    "mensagem": "Recebi o kit de correia, mas o tensor veio com uma referência diferente da que aparece no anúncio. Antes de levar para montar, quero confirmar se a peça enviada faz parte do kit correto. Posso encaminhar fotos das etiquetas para conferência."
+  },
+  {
+    "id": "13",
+    "nome completo": "Marcelo Gomes",
+    "mensagem": "Estou montando o orçamento da revisão do meu carro e queria comprar filtros de óleo, ar e combustível juntos. É um Sandero 1.6 2016. Vocês conseguem montar o conjunto e informar o valor total com frete?"
+  },
+  {
+    "id": "14",
+    "nome completo": "Aline Barbosa",
+    "mensagem": "O filtro de ar que recebi não encaixa na caixa original. Comparei com o antigo e ele é mais comprido. A embalagem está aberta porque só percebemos ao tentar posicionar, mas a peça não foi usada. Consigo fazer a troca?"
+  },
+  {
+    "id": "15",
+    "nome completo": "Gustavo Nunes",
+    "mensagem": "Vocês entregam hoje em Curitiba? Preciso de uma bobina para retirar o carro da oficina."
+  },
+  {
+    "id": "16",
+    "nome completo": "Beatriz Carvalho",
+    "mensagem": "A bobina que comprei foi instalada ontem e o carro continuou falhando. O mecânico testou outra e disse que a enviada pode estar com defeito. Quero entender o procedimento de análise e quais documentos preciso apresentar para acionar a garantia."
+  },
+  {
+    "id": "17",
+    "nome completo": "Rodrigo Teixeira",
+    "mensagem": "Qual é a garantia desse alternador? Ele é novo ou recondicionado? No título aparece novo, mas na descrição fiquei em dúvida. Preciso dessa informação antes de comprar porque uso o carro todos os dias para trabalhar."
+  },
+  {
+    "id": "18",
+    "nome completo": "Vanessa Cardoso",
+    "mensagem": "Recebi o alternador com marcas de uso, apesar de ter comprado como novo. A embalagem também estava sem lacre. Não autorizei a instalação e gostaria de uma explicação ou substituição por uma unidade conforme o anúncio."
+  },
+  {
+    "id": "19",
+    "nome completo": "Felipe Araújo",
+    "mensagem": "Tem lâmpada H7 em estoque? Qual o valor do par?"
+  },
+  {
+    "id": "20",
+    "nome completo": "Renata Castro",
+    "mensagem": "Uma das lâmpadas do par chegou quebrada. Só abri a caixa e percebi os pedaços dentro da embalagem. Posso enviar uma foto para vocês verificarem? Quero saber se precisam receber o par inteiro ou apenas a unidade danificada."
+  },
+  {
+    "id": "21",
+    "nome completo": "Paulo Souza",
+    "mensagem": "Esse óleo atende à especificação indicada no manual do meu carro? É um HB20 1.0 2021 e o manual pede 5W-30 com requisitos específicos. Posso mandar uma foto da página para vocês compararem com o rótulo antes de eu pagar."
+  },
+  {
+    "id": "22",
+    "nome completo": "Tatiane Lopes",
+    "mensagem": "Pedi quatro litros de óleo 5W-30 e recebi 10W-40. Os frascos estão lacrados. Preciso trocar antes da revisão de sexta-feira e queria saber se dá para resolver na loja física em vez de esperar outra entrega."
+  },
+  {
+    "id": "23",
+    "nome completo": "Leonardo Dias",
+    "mensagem": "O jogo de juntas vem com retentores ou preciso comprar separado?"
+  },
+  {
+    "id": "24",
+    "nome completo": "Débora Monteiro",
+    "mensagem": "Abri o jogo de juntas na oficina e faltam duas peças que aparecem na foto do anúncio. O mecânico separou tudo para conferir e ainda não iniciou a montagem. Vocês conseguem confirmar o conteúdo correto e enviar o que estiver faltando?"
+  },
+  {
+    "id": "25",
+    "nome completo": "Thiago Correia",
+    "mensagem": "Tenho um Fusca 1600 com capela deslocada e preciso de um radiador de óleo. Vi mais de um modelo no catálogo e não quero escolher só pela foto. Quais dados ou fotos vocês precisam para confirmar a aplicação antes da compra?"
+  },
+  {
+    "id": "26",
+    "nome completo": "Sabrina Vieira",
+    "mensagem": "O radiador de óleo recebido está com uma rosca danificada. Notei antes da instalação e não forcei nenhum parafuso. Gostaria de trocar a peça e saber se vocês conseguem conferir a próxima unidade antes de enviar."
+  },
+  {
+    "id": "27",
+    "nome completo": "Alexandre Batista",
+    "mensagem": "Posso comprar pelo site e retirar pessoalmente?"
+  },
+  {
+    "id": "28",
+    "nome completo": "Priscila Duarte",
+    "mensagem": "Recebi os discos de freio e um deles tem uma lasca na borda. Não sei se aconteceu no transporte, mas não vou instalar assim. A caixa estava bem amassada e tenho fotos da entrega. Como seguimos com a troca do par?"
+  },
+  {
+    "id": "29",
+    "nome completo": "Vinícius Moraes",
+    "mensagem": "Estou pesquisando um motor de partida para um Prisma 1.4 2015. Vocês têm opções de marcas diferentes? Gostaria de comparar preço, garantia e disponibilidade. Se houver alguma exigência de devolver a peça antiga, preciso saber antes de fechar."
+  },
+  {
+    "id": "30",
+    "nome completo": "Cristiane Fernandes",
+    "mensagem": "O motor de partida chegou, mas o conector é diferente do original. A oficina parou o serviço e eu preciso de ajuda para conferir o código. Tenho a nota, a etiqueta da peça antiga e fotos dos dois conectores."
+  },
+  {
+    "id": "31",
+    "nome completo": "Eduardo Farias",
+    "mensagem": "Esse preço é de uma bucha ou do kit completo?"
+  },
+  {
+    "id": "32",
+    "nome completo": "Larissa Pinto",
+    "mensagem": "Comprei um kit de buchas e a quantidade recebida é menor que a descrita no anúncio. Pedi ajuda pelo chat ontem e ainda não tive retorno. Quero uma solução porque o carro já está desmontado e a oficina está esperando as peças."
+  },
+  {
+    "id": "33",
+    "nome completo": "Henrique Melo",
+    "mensagem": "Preciso de um retrovisor esquerdo com regulagem elétrica para um Corolla 2017. Essa opção inclui o pisca e vem pintada ou só com acabamento para pintura? Também queria confirmar se o encaixe do conector é compatível."
+  },
+  {
+    "id": "34",
+    "nome completo": "Amanda Reis",
+    "mensagem": "O retrovisor veio do lado direito, mas meu pedido é do lado esquerdo. Está sem uso e com todos os acessórios. Vocês podem verificar a separação e orientar a devolução? Não tenho como aproveitar essa peça no carro."
+  },
+  {
+    "id": "35",
+    "nome completo": "Fábio Cunha",
+    "mensagem": "Vocês emitem nota fiscal para CNPJ? Quero comprar peças para os carros da empresa e preciso que os dados saiam corretos. Se houver cadastro ou alguma informação adicional, me avisem antes de eu concluir o pedido."
+  },
+  {
+    "id": "36",
+    "nome completo": "Isabela Ramos",
+    "mensagem": "As peças chegaram certas, mas a nota fiscal saiu com o CPF errado. Os dados do cadastro estavam atualizados quando comprei. Preciso regularizar esse documento para apresentar o gasto à empresa. Qual é o procedimento?"
+  },
+  {
+    "id": "37",
+    "nome completo": "Ricardo Freitas",
+    "mensagem": "A bomba de combustível anunciada serve para carro flex?"
+  },
+  {
+    "id": "38",
+    "nome completo": "Daniela Azevedo",
+    "mensagem": "A bomba de combustível que recebi foi instalada por uma oficina e parou de funcionar depois de poucos dias. Tenho a nota da peça e o comprovante do serviço. Gostaria de abrir uma solicitação de garantia e entender como a avaliação é feita."
+  },
+  {
+    "id": "39",
+    "nome completo": "Márcio Moreira",
+    "mensagem": "Estou comprando um par de pneus e queria confirmar a data de fabricação antes de pagar. Vocês conseguem informar o DOT do lote disponível? Também preciso saber se o valor inclui instalação ou se é somente a venda dos pneus."
+  },
+  {
+    "id": "40",
+    "nome completo": "Carolina Tavares",
+    "mensagem": "Recebi dois pneus com medidas diferentes. Um está conforme o pedido, mas o outro não. Ainda não levei para montar. Vocês conseguem recolher o incorreto e enviar o certo? Preciso dos dois iguais para instalar no mesmo eixo."
+  },
+  {
+    "id": "41",
+    "nome completo": "Pedro Xavier",
+    "mensagem": "Dá para parcelar esse kit de suspensão em seis vezes? Tem juros?"
+  },
+  {
+    "id": "42",
+    "nome completo": "Natália Duarte",
+    "mensagem": "O kit de suspensão veio completo, mas uma das bandejas apresenta um empeno visível quando comparada com a outra. O mecânico recomendou não montar. Posso enviar fotos e a referência para vocês verificarem a substituição?"
+  },
+  {
+    "id": "43",
+    "nome completo": "Renato Barros",
+    "mensagem": "Quero instalar uma câmera de ré no meu carro, mas o rádio é original. Esse modelo anunciado conecta diretamente ou precisa de adaptador? Prefiro comprar tudo junto para evitar ficar com o serviço parado pela falta de um cabo."
+  },
+  {
+    "id": "44",
+    "nome completo": "Letícia Campos",
+    "mensagem": "A câmera de ré chegou e não dá imagem. O instalador conferiu a alimentação e testou outra câmera no mesmo sistema, que funcionou. Gostaria de saber como enviar para análise e se preciso devolver também os cabos que vieram no kit."
+  },
+  {
+    "id": "45",
+    "nome completo": "Sérgio Machado",
+    "mensagem": "Vocês têm uma opção de pastilha com menos ruído para uso urbano? Quero comparar as marcas compatíveis com meu carro, mas sem escolher só pela mais cara. Posso informar o modelo e enviar o código da peça atual se ajudar."
+  },
+  {
+    "id": "46",
+    "nome completo": "Mônica Neves",
+    "mensagem": "Recebi a encomenda de outra pessoa. A etiqueta externa tem meu nome, mas dentro vieram peças e uma nota que não correspondem ao meu pedido. Não vou usar nada. Preciso que confiram o que aconteceu e orientem a coleta correta."
+  },
+  {
+    "id": "47",
+    "nome completo": "Caio Borges",
+    "mensagem": "Esse reservatório acompanha tampa e sensor de nível? Não ficou claro na descrição. Se forem vendidos separados, queria os links das peças compatíveis para fazer uma compra só e calcular o frete completo."
+  },
+  {
+    "id": "48",
+    "nome completo": "Flávia Antunes",
+    "mensagem": "O reservatório chegou sem a tampa, embora na descrição estivesse escrito que acompanhava. A peça principal está correta e prefiro receber só o item faltante, se for possível. Vocês conseguem conferir meu pedido e me dizer como resolver?"
+  },
+  {
+    "id": "49",
+    "nome completo": "Daniel Queiroz",
+    "mensagem": "Preciso de um rolamento de roda, mas não sei se meu carro usa versão com sensor de ABS integrado. Quais informações devo passar para vocês verificarem a aplicação? Tenho o documento do veículo e consigo pedir o código da peça ao mecânico."
+  },
+  {
+    "id": "50",
+    "nome completo": "Simone Matos",
+    "mensagem": "O rolamento recebido tem uma referência diferente da comprada. Ainda está na embalagem e não foi instalado. Queria confirmar se é uma substituição equivalente do fabricante ou se houve erro no envio, porque não quero descobrir isso depois de desmontar o carro."
+  }
+]

@@ -11,6 +11,8 @@ Estudos e exercicios da disciplina sobre agentes cognitivos usando LangChain.
 - [Aula 14-10](./aula%2014-10/)
   - [Transformar reclamações de uma oficina em ações](./aula%2014-10/Transformar%20reclama%C3%A7%C3%B5es%20de%20uma%20oficina%20em%20a%C3%A7%C3%B5es/)
 
+  - [Encaminhar pedidos para o atendimento certo](./aula%2014-10/Encaminhar%20pedidos%20para%20o%20atendimento%20certo/)
+
 ## Padrao de organizacao
 
 Cada aula deve ficar em uma pasta propria, com:
