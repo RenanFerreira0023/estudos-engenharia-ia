@@ -1,0 +1,702 @@
+[
+  {
+    "id": "1",
+    "cliente_anonimo": false,
+    "nome completo": "João Silva",
+    "servico": "Alinhamento e balanceamento",
+    "feedback": "A vibração diminuiu bastante, mas o volante ficou um pouco torto. Voltaram a ajustar sem cobrar, o que achei correto. O problema foi perder mais uma manhã para resolver algo que deveria ter saído certo."
+  },
+  {
+    "id": "2",
+    "cliente_anonimo": false,
+    "nome completo": "Mariana Silva",
+    "servico": "Diagnóstico eletrônico",
+    "feedback": "Passaram o scanner e explicaram o código encontrado, mas o diagnóstico levou muito mais tempo que o informado. Acabei não fazendo o conserto porque precisava do carro. Foram educados, só faltou uma previsão realista."
+  },
+  {
+    "id": "3",
+    "cliente_anonimo": false,
+    "nome completo": "Carlos Silva",
+    "servico": "Troca de correia dentada",
+    "feedback": "Combinaram uma marca de kit, cobraram aquele valor e depois descobri na nota que usaram outra. Quando perguntei, disseram que era equivalente. A questão é que eu não autorizei a mudança e não recebi uma explicação satisfatória."
+  },
+  {
+    "id": "4",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Manutenção do ar-condicionado",
+    "feedback": "Está gelando muito bem depois do reparo. A recepção poderia ser mais organizada, porque demoraram para encontrar meu cadastro na retirada. Sobre a parte mecânica, não tenho reclamação."
+  },
+  {
+    "id": "5",
+    "cliente_anonimo": false,
+    "nome completo": "Rafael Silva",
+    "servico": "Alinhamento e balanceamento",
+    "feedback": "Volante reto e vibração resolvida. Serviço bem feito."
+  },
+  {
+    "id": "6",
+    "cliente_anonimo": false,
+    "nome completo": "Fernanda Silva",
+    "servico": "Instalação de alarme",
+    "feedback": "Depois da instalação começaram falhas elétricas que não existiam antes. Levei de volta e ficaram empurrando uma nova visita sem realmente verificar. Precisei procurar outro profissional e ter mais gasto para revisar a instalação."
+  },
+  {
+    "id": "7",
+    "cliente_anonimo": false,
+    "nome completo": "Bruno Silva",
+    "servico": "Troca de lâmpadas",
+    "feedback": "Resolveram na hora e ainda regularam o farol. Gostei muito."
+  },
+  {
+    "id": "8",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Manutenção de carro antigo",
+    "feedback": "Tenho um carro antigo e nem toda oficina quer mexer. Aqui tiveram paciência para procurar a causa da falha, conversaram comigo sobre as peças e acertaram a regulagem. Agora pega bem frio e não fica morrendo no semáforo. Pretendo continuar levando."
+  },
+  {
+    "id": "9",
+    "cliente_anonimo": false,
+    "nome completo": "André Silva",
+    "servico": "Manutenção do ar-condicionado",
+    "feedback": "O ar melhorou, mas ainda não gela como antes. Explicaram que pode haver outro problema e passaram uma segunda avaliação. Eu gostaria de ter entendido essa possibilidade antes de pagar pelo primeiro serviço."
+  },
+  {
+    "id": "10",
+    "cliente_anonimo": false,
+    "nome completo": "Camila Silva",
+    "servico": "Reparo no motor",
+    "feedback": "O carro ficou semanas na oficina e o prazo mudava sempre que eu perguntava. Depois da entrega a falha reapareceu e agora dizem que precisam desmontar novamente. Gastei muito e continuo sem uma solução clara."
+  },
+  {
+    "id": "11",
+    "cliente_anonimo": false,
+    "nome completo": "Diego Silva",
+    "servico": "Troca de velas",
+    "feedback": "Fui esperando uma conta grande por causa das falhas do motor. Conferiram o básico primeiro e resolveram com a troca das velas. Não tentaram vender limpeza de tudo que existe. Carro funcionando liso de novo e consumo voltou ao normal."
+  },
+  {
+    "id": "12",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Troca de pneus",
+    "feedback": "Tinham confirmado a medida por mensagem e, quando cheguei, os pneus separados eram de outra. Tive que esperar a entrega dos corretos e perdi a tarde. Pelo menos mantiveram o preço, mas a organização foi bem ruim."
+  },
+  {
+    "id": "13",
+    "cliente_anonimo": false,
+    "nome completo": "Marcelo Silva",
+    "servico": "Troca de velas",
+    "feedback": "Melhorou a partida, mas o consumo continua alto. Atendimento normal, sem muita explicação."
+  },
+  {
+    "id": "14",
+    "cliente_anonimo": false,
+    "nome completo": "Aline Silva",
+    "servico": "Troca de bomba de combustível",
+    "feedback": "Fiquei com receio porque precisava de uma peça que não tinham no estoque. Confirmaram a disponibilidade antes de desmontar e me mantiveram informado. O carro foi entregue no dia seguinte, sem cheiro de combustível e funcionando normalmente. Boa experiência."
+  },
+  {
+    "id": "15",
+    "cliente_anonimo": false,
+    "nome completo": "Gustavo Silva",
+    "servico": "Manutenção do ar-condicionado",
+    "feedback": "O ar não gelava e eu achei que seria um conserto enorme. Encontraram o vazamento, mandaram foto da peça e explicaram o valor antes de mexer. Ficou ótimo, inclusive no trânsito da tarde. Já indiquei para meu irmão."
+  },
+  {
+    "id": "16",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Reparo na suspensão",
+    "feedback": "Trocaram várias peças e a batida continuou exatamente igual. Fui buscar uma segunda avaliação e encontraram uma fixação com folga que não tinha sido corrigida. Eu queria um diagnóstico, não uma sequência de tentativas pagas."
+  },
+  {
+    "id": "17",
+    "cliente_anonimo": false,
+    "nome completo": "Rodrigo Silva",
+    "servico": "Revisão preventiva",
+    "feedback": "Deixei o carro com uma lista simples de pedidos e retiraram vários itens sem me consultar. A conta ficou muito acima do meu limite e ninguém explicou direito por que não pediram autorização. Saí de lá mais preocupado com a cobrança do que quando entrei com o carro."
+  },
+  {
+    "id": "18",
+    "cliente_anonimo": false,
+    "nome completo": "Vanessa Silva",
+    "servico": "Diagnóstico de ruído",
+    "feedback": "O barulho parecia vir da suspensão, mas era uma proteção solta. Resolveram uma coisa simples e cobraram só pelo ajuste. Poderiam ter me vendido várias peças porque eu não saberia questionar. Ganharam um cliente pela transparência."
+  },
+  {
+    "id": "19",
+    "cliente_anonimo": false,
+    "nome completo": "Felipe Silva",
+    "servico": "Reparo no ar-condicionado",
+    "feedback": "Três retornos e continua sem gelar. Cansei de perder dia de trabalho."
+  },
+  {
+    "id": "20",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Reparo na suspensão",
+    "feedback": "Eu estava preocupado com uma batida na frente. O mecânico deu uma volta comigo para ouvir o barulho e depois mostrou a folga no elevador. Trocaram só o necessário e o carro ficou silencioso. Gostei de participar da avaliação e entender o serviço."
+  },
+  {
+    "id": "21",
+    "cliente_anonimo": false,
+    "nome completo": "João Costa",
+    "servico": "Troca de embreagem",
+    "feedback": "A embreagem ficou ótima, porém o prazo passou de dois para quatro dias. Só soube do atraso porque liguei e precisei gastar com transporte. Dou uma nota mediana pelo serviço bom acompanhado de uma comunicação bem fraca."
+  },
+  {
+    "id": "22",
+    "cliente_anonimo": false,
+    "nome completo": "Mariana Costa",
+    "servico": "Instalação de câmera de ré",
+    "feedback": "A imagem funciona, mas o acabamento ficou mal encaixado e deixaram um fio aparente. Falaram que poderiam melhorar depois. Não acho correto entregar desse jeito e depender da reclamação do cliente para finalizar."
+  },
+  {
+    "id": "23",
+    "cliente_anonimo": false,
+    "nome completo": "Carlos Costa",
+    "servico": "Reparo de vazamento de óleo",
+    "feedback": "A mancha no chão ficou menor, mas o vazamento não acabou. Explicaram que pode haver mais de um ponto, só que antes tinham afirmado que aquela troca resolveria. Saí frustrado com a diferença entre a promessa e o resultado."
+  },
+  {
+    "id": "24",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Troca de bateria",
+    "feedback": "Preço final diferente do informado no telefone. Acabei comprando por necessidade, mas não gostei."
+  },
+  {
+    "id": "25",
+    "cliente_anonimo": false,
+    "nome completo": "Rafael Costa",
+    "servico": "Troca de amortecedores",
+    "feedback": "O carro melhorou muito e acabaram as pancadas na traseira. A peça atrasou um dia e isso bagunçou minha rotina, mas me avisaram e não aumentaram o preço. No geral saí satisfeito."
+  },
+  {
+    "id": "26",
+    "cliente_anonimo": false,
+    "nome completo": "Fernanda Costa",
+    "servico": "Troca de correia dentada",
+    "feedback": "Cumpriram o combinado e responderam minhas dúvidas sem pressa. Meu único incômodo foi não avisarem que o carro precisaria ficar até o fim da tarde. Eu tinha entendido que sairia depois do almoço."
+  },
+  {
+    "id": "27",
+    "cliente_anonimo": false,
+    "nome completo": "Bruno Costa",
+    "servico": "Revisão geral",
+    "feedback": "Fui com um pouco de receio pelas avaliações e tive uma experiência boa. O mecânico foi atencioso e o carro ficou pronto no dia. Apenas a entrega poderia ser mais calma, porque estavam fechando e explicaram a conta meio correndo."
+  },
+  {
+    "id": "28",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Revisão periódica",
+    "feedback": "Sou cliente há algum tempo e nesta última visita foi tudo certo de novo. Marquei horário, fui atendido sem demora e recebi o carro limpo. Gosto de saber previamente quanto vou gastar e eles têm sido corretos comigo nesse ponto."
+  },
+  {
+    "id": "29",
+    "cliente_anonimo": false,
+    "nome completo": "André Costa",
+    "servico": "Troca de óleo",
+    "feedback": "O carro voltou pingando óleo e tive que parar de usar até conferirem. Na volta disseram que precisavam revisar a vedação do filtro. Era um serviço básico e virou um transtorno enorme. Não pretendo retornar."
+  },
+  {
+    "id": "30",
+    "cliente_anonimo": false,
+    "nome completo": "Camila Costa",
+    "servico": "Reparo de freios",
+    "feedback": "O pedal ficou diferente depois do serviço e eu não me senti seguro para continuar dirigindo. Pedi uma verificação imediata, mas me ofereceram horário só para vários dias depois. Precisei procurar outro lugar para avaliar."
+  },
+  {
+    "id": "31",
+    "cliente_anonimo": false,
+    "nome completo": "Diego Costa",
+    "servico": "Troca de pastilhas",
+    "feedback": "Freio ficou bom, atendimento foi bem mais ou menos."
+  },
+  {
+    "id": "32",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Alinhamento e balanceamento",
+    "feedback": "Continua puxando para o lado. Refizeram e não resolveu."
+  },
+  {
+    "id": "33",
+    "cliente_anonimo": false,
+    "nome completo": "Marcelo Costa",
+    "servico": "Troca de embreagem",
+    "feedback": "Fiquei mais de uma semana sem o carro, bem além do prazo combinado. Ninguém dava uma previsão consistente e eu precisava cobrar todas as notícias. Quando entregaram, ainda havia dificuldade para engatar. Estou tentando resolver o retorno."
+  },
+  {
+    "id": "34",
+    "cliente_anonimo": false,
+    "nome completo": "Aline Costa",
+    "servico": "Revisão de freios",
+    "feedback": "Na retirada encontrei itens cobrados que o próprio atendente depois confirmou não terem sido feitos. Só corrigiram porque conferi a conta com atenção. Mesmo com o estorno, perdi completamente a confiança no estabelecimento."
+  },
+  {
+    "id": "35",
+    "cliente_anonimo": false,
+    "nome completo": "Gustavo Costa",
+    "servico": "Revisão de câmbio",
+    "feedback": "O orçamento inicial parecia incluir tudo, mas depois vieram mais cobranças que não estavam claras. Autorizei uma parte por precisar do carro, porém a explicação foi confusa do começo ao fim. Faltou transparência."
+  },
+  {
+    "id": "36",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Reparo no sistema de arrefecimento",
+    "feedback": "Retirei o carro depois do conserto e a temperatura subiu antes de chegar em casa. Parei e precisei chamar o guincho. A oficina recebeu de volta, mas fiquei sem previsão e sem carro para trabalhar. Uma experiência muito ruim."
+  },
+  {
+    "id": "37",
+    "cliente_anonimo": false,
+    "nome completo": "Rodrigo Costa",
+    "servico": "Troca de radiador",
+    "feedback": "O reparo resolveu o aquecimento e fizeram a conferência comigo na retirada. A mangueira encomendada demorou além do previsto, mas não me cobraram nada a mais. Minha avaliação é positiva apesar do atraso."
+  },
+  {
+    "id": "38",
+    "cliente_anonimo": false,
+    "nome completo": "Vanessa Costa",
+    "servico": "Troca de pneus",
+    "feedback": "Pesquisei em alguns lugares e aqui consegui um valor bom no conjunto. Confirmaram a marca e a medida antes de encomendar, e não apareceu cobrança surpresa na retirada. Atendimento tranquilo e serviço concluído no horário previsto."
+  },
+  {
+    "id": "39",
+    "cliente_anonimo": false,
+    "nome completo": "Felipe Costa",
+    "servico": "Reparo na suspensão",
+    "feedback": "A batida desapareceu e achei correto mostrarem o problema antes de trocar a peça. O local é apertado e foi difícil parar para entregar o carro. Mesmo assim, voltaria pelo serviço que fizeram."
+  },
+  {
+    "id": "40",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Reparo na trava elétrica",
+    "feedback": "A trava está funcionando e o preço ficou na média dos outros lugares. Demoraram um dia além do combinado e não me avisaram espontaneamente. Eu voltaria em uma emergência, mas não seria minha primeira opção."
+  },
+  {
+    "id": "41",
+    "cliente_anonimo": false,
+    "nome completo": "João Almeida",
+    "servico": "Reparo de vazamento",
+    "feedback": "O vazamento continuou e prometeram retorno para resolver em garantia. Quando tento marcar, nunca têm disponibilidade. Faz semanas que escuto que vão me ligar e não ligam. O atendimento mudou muito depois que o pagamento foi feito."
+  },
+  {
+    "id": "42",
+    "cliente_anonimo": false,
+    "nome completo": "Mariana Almeida",
+    "servico": "Revisão de freios",
+    "feedback": "O freio ficou bom e devolveram as peças antigas. Precisei pedir a nota fiscal duas vezes, mas enviaram no mesmo dia. Acho que falta só um pouco mais de atenção nessa parte administrativa."
+  },
+  {
+    "id": "43",
+    "cliente_anonimo": false,
+    "nome completo": "Carlos Almeida",
+    "servico": "Revisão de freios",
+    "feedback": "Gostei de mostrarem as peças desgastadas e não tive problema com a frenagem depois. O que pesa é a dificuldade para falar com alguém quando o carro está lá. Parece que só existe atendimento quando você aparece pessoalmente."
+  },
+  {
+    "id": "44",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Troca de pastilhas",
+    "feedback": "Mostraram o desgaste das pastilhas e explicaram por que os discos ainda podiam continuar. O carro ficou freando bem, sem aquele chiado que me incomodava. Atendimento simples, mas cuidadoso, e recebi a nota e a garantia sem precisar pedir."
+  },
+  {
+    "id": "45",
+    "cliente_anonimo": false,
+    "nome completo": "Rafael Almeida",
+    "servico": "Troca de óleo",
+    "feedback": "Trocaram o óleo corretamente, mas fiquei quase duas horas esperando mesmo com horário marcado. O preço é razoável e não tentaram incluir nada extra. Para quem não tem pressa pode funcionar, mas para mim atrapalhou bastante."
+  },
+  {
+    "id": "46",
+    "cliente_anonimo": false,
+    "nome completo": "Fernanda Almeida",
+    "servico": "Revisão de carro usado",
+    "feedback": "A revisão identificou alguns problemas e gostei da explicação do mecânico. Na hora de pagar, o orçamento estava confuso e precisei conferir item por item. Corrigiram a conta, mas saí com aquela sensação de precisar ficar em cima."
+  },
+  {
+    "id": "47",
+    "cliente_anonimo": false,
+    "nome completo": "Bruno Almeida",
+    "servico": "Reparo no vidro elétrico",
+    "feedback": "Arrumaram o mecanismo, mas a porta voltou com presilhas faltando e acabamento solto. Marquei para corrigir e, quando cheguei, a peça ainda não estava lá. Duas viagens para um serviço que deveria ser simples."
+  },
+  {
+    "id": "48",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Troca de pneus",
+    "feedback": "Preço bom, espera longa e banheiro precisando de atenção. Foi uma experiência bem mediana."
+  },
+  {
+    "id": "49",
+    "cliente_anonimo": false,
+    "nome completo": "André Almeida",
+    "servico": "Diagnóstico eletrônico",
+    "feedback": "Paguei, trocaram peças e o defeito continua igual. Não recomendo."
+  },
+  {
+    "id": "50",
+    "cliente_anonimo": false,
+    "nome completo": "Camila Almeida",
+    "servico": "Alinhamento e balanceamento",
+    "feedback": "Resolveu a vibração. Só faltou cumprir o horário agendado."
+  },
+  {
+    "id": "51",
+    "cliente_anonimo": false,
+    "nome completo": "Diego Almeida",
+    "servico": "Reparo no escapamento",
+    "feedback": "O vazamento foi resolvido, mas o escapamento ficou um pouco mais barulhento do que eu esperava. Não chega a incomodar sempre, porém eu tinha pedido algo próximo do original. Poderiam ter alinhado melhor essa expectativa."
+  },
+  {
+    "id": "52",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Troca de óleo",
+    "feedback": "Tudo certo com a troca e mostraram o produto utilizado. A espera foi um pouco maior que a prevista, mas avisaram enquanto eu estava lá. O preço é bom e os funcionários foram educados."
+  },
+  {
+    "id": "53",
+    "cliente_anonimo": false,
+    "nome completo": "Marcelo Almeida",
+    "servico": "Reparo na suspensão",
+    "feedback": "O barulho principal sumiu, porém ficou um rangido que não existia antes. Pedi uma nova avaliação e conseguiram horário para a semana seguinte. Não considero péssimo, só esperava sair com tudo resolvido na primeira visita."
+  },
+  {
+    "id": "54",
+    "cliente_anonimo": false,
+    "nome completo": "Aline Almeida",
+    "servico": "Troca de filtro de cabine",
+    "feedback": "Rápidos e educados. O fluxo de ar melhorou bastante depois da troca."
+  },
+  {
+    "id": "55",
+    "cliente_anonimo": false,
+    "nome completo": "Gustavo Almeida",
+    "servico": "Avaliação antes da compra",
+    "feedback": "Paguei uma avaliação de um carro que estava querendo comprar. Encontraram sinais de manutenção atrasada e explicaram os custos prováveis com bastante clareza. Não fecharam negócio por mim, mas me ajudaram a decidir com informação. Achei o dinheiro muito bem gasto."
+  },
+  {
+    "id": "56",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Troca de amortecedores",
+    "feedback": "O serviço em si parece ter ficado bom. O problema foi encontrar um acabamento quebrado e ouvir que já estava assim, sem terem registrado nada na entrada. Ficou uma discussão desagradável e ninguém apresentou solução."
+  },
+  {
+    "id": "57",
+    "cliente_anonimo": false,
+    "nome completo": "Rodrigo Almeida",
+    "servico": "Revisão geral",
+    "feedback": "Autorizei um orçamento e a conta final veio cheia de serviços que não aprovei. Pedi os registros da autorização e não apresentaram. Passei uma tarde discutindo para entender a cobrança. Foi a pior parte de toda a experiência."
+  },
+  {
+    "id": "58",
+    "cliente_anonimo": false,
+    "nome completo": "Vanessa Almeida",
+    "servico": "Reparo em mangueira de arrefecimento",
+    "feedback": "Entrei sem agendamento porque uma mangueira tinha vazado perto dali. Explicaram que estavam cheios, mas conseguiram encaixar o reparo e fizeram a conferência antes de liberar. Fiquei grato pela atenção, principalmente por estar longe de casa."
+  },
+  {
+    "id": "59",
+    "cliente_anonimo": false,
+    "nome completo": "Felipe Almeida",
+    "servico": "Troca de embreagem",
+    "feedback": "Gostei do resultado e da explicação sobre as peças. O orçamento veio detalhado, o que me ajudou a decidir. Não dou nota máxima porque entregaram com o tapete sujo, mas limparam quando mostrei."
+  },
+  {
+    "id": "60",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Serviço de revisão",
+    "feedback": "Meu carro foi entregue com um risco na porta que eu não tinha visto na entrada. Não fizeram vistoria de recebimento e simplesmente negaram qualquer possibilidade de ter ocorrido lá. Nem tentaram ajudar a esclarecer o que aconteceu."
+  },
+  {
+    "id": "61",
+    "cliente_anonimo": false,
+    "nome completo": "João Mendes",
+    "servico": "Reparo no vidro elétrico",
+    "feedback": "O vidro voltou a funcionar e isso resolveu minha urgência. A porta ficou com um ruído pequeno e disseram para retornar quando eu pudesse. Não foi um desastre, mas também não saiu redondo."
+  },
+  {
+    "id": "62",
+    "cliente_anonimo": false,
+    "nome completo": "Mariana Mendes",
+    "servico": "Reparo na bomba de combustível",
+    "feedback": "O carro voltou a funcionar, mas senti cheiro de combustível na retirada. Pedi para conferirem e trataram minha preocupação como exagero. Não aceitei sair dirigindo assim e a conversa virou uma discussão desnecessária."
+  },
+  {
+    "id": "63",
+    "cliente_anonimo": false,
+    "nome completo": "Carlos Mendes",
+    "servico": "Reparo no escapamento",
+    "feedback": "Entregaram o escapamento batendo embaixo do carro. Voltei no mesmo dia, fizeram um ajuste e no dia seguinte soltou novamente. Precisei parar o carro e procurar ajuda. Não dá para considerar o serviço concluído desse jeito."
+  },
+  {
+    "id": "64",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Diagnóstico eletrônico",
+    "feedback": "Eu já tinha passado por duas oficinas querendo trocar um monte de peça. Aqui identificaram um conector com mau contato e resolveram sem inventar serviço. Pagaria bem mais se tivesse aceitado o primeiro orçamento que recebi em outro lugar. Gostei da honestidade."
+  },
+  {
+    "id": "65",
+    "cliente_anonimo": false,
+    "nome completo": "Rafael Mendes",
+    "servico": "Troca de amortecedores",
+    "feedback": "O carro melhorou nas lombadas, mas entregaram com marcas de graxa no banco. A recepção providenciou a limpeza depois que reclamei. Resolveram, só que um pouco mais de cuidado evitaria esse desgaste."
+  },
+  {
+    "id": "66",
+    "cliente_anonimo": false,
+    "nome completo": "Fernanda Mendes",
+    "servico": "Revisão de freios",
+    "feedback": "Levei o carro da minha mãe e tiveram cuidado para explicar o serviço para ela também. Mostraram as peças, detalharam o orçamento e fizeram o teste antes da entrega. Ela saiu segura e sem aquela sensação de que estavam enrolando por não entender mecânica."
+  },
+  {
+    "id": "67",
+    "cliente_anonimo": false,
+    "nome completo": "Bruno Mendes",
+    "servico": "Revisão de carro usado",
+    "feedback": "Comprei meu primeiro usado e pedi uma revisão geral. Me mostraram pequenos vazamentos, itens de segurança e manutenção que poderia fazer depois. Saí com um planejamento de gastos em vez de um susto. Achei o atendimento muito respeitoso."
+  },
+  {
+    "id": "68",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Reparo no alternador",
+    "feedback": "O alternador foi reparado, porém demoraram muito para me enviar a nota e as condições de garantia. Cada pessoa dizia uma coisa sobre o prazo. Para um serviço caro, o atendimento depois do pagamento deixou bastante a desejar."
+  },
+  {
+    "id": "69",
+    "cliente_anonimo": false,
+    "nome completo": "André Mendes",
+    "servico": "Troca de pneus",
+    "feedback": "Riscaram uma roda e ninguém quis avaliar comigo. Péssimo atendimento na reclamação."
+  },
+  {
+    "id": "70",
+    "cliente_anonimo": false,
+    "nome completo": "Camila Mendes",
+    "servico": "Reparo no vidro elétrico",
+    "feedback": "Arrumaram o vidro no mesmo dia e montaram o acabamento certinho. Nenhum barulho na porta depois."
+  },
+  {
+    "id": "71",
+    "cliente_anonimo": false,
+    "nome completo": "Diego Mendes",
+    "servico": "Agendamento de manutenção",
+    "feedback": "Fui no horário confirmado e a oficina estava fechada. Ninguém respondeu às mensagens."
+  },
+  {
+    "id": "72",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Reparo no sistema de arrefecimento",
+    "feedback": "Meu carro estava baixando água e eles tiveram paciência para achar um vazamento pequeno que aparecia quando esquentava. Não saíram trocando tudo de uma vez. Estou acompanhando o nível há um mês e não baixou mais. Fiquei bem satisfeito."
+  },
+  {
+    "id": "73",
+    "cliente_anonimo": false,
+    "nome completo": "Marcelo Mendes",
+    "servico": "Troca de bateria",
+    "feedback": "Instalação correta, mas demoraram para localizar a garantia. Nada extraordinário."
+  },
+  {
+    "id": "74",
+    "cliente_anonimo": false,
+    "nome completo": "Aline Mendes",
+    "servico": "Revisão antes de viagem",
+    "feedback": "Pedi atenção especial aos pneus e aos fluidos. Na retirada percebi que nem a calibragem estava uniforme e precisei questionar o que realmente foi conferido. O carro não apresentou falha depois, mas perdi confiança na revisão."
+  },
+  {
+    "id": "75",
+    "cliente_anonimo": false,
+    "nome completo": "Gustavo Mendes",
+    "servico": "Reparo no alternador",
+    "feedback": "Fizeram o diagnóstico e resolveram no prazo. O valor não foi o menor que encontrei, porém explicaram a garantia e me passaram confiança. Estou usando há três semanas e não tive mais dificuldade para ligar."
+  },
+  {
+    "id": "76",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Troca de coxim do motor",
+    "feedback": "O carro vibrava demais parado e eu já estava achando que era problema no motor inteiro. Identificaram o coxim, mostraram a diferença para a peça nova e resolveram. A melhora foi enorme. O mecânico explicou tudo de um jeito fácil de entender."
+  },
+  {
+    "id": "77",
+    "cliente_anonimo": false,
+    "nome completo": "Rodrigo Mendes",
+    "servico": "Reparo no arrefecimento",
+    "feedback": "O vazamento parou, mas a conta terminou mais alta por causa de uma mangueira adicional. A peça parecia realmente necessária, só que me avisaram depois de instalar. Serviço útil, processo de autorização ruim."
+  },
+  {
+    "id": "78",
+    "cliente_anonimo": false,
+    "nome completo": "Vanessa Mendes",
+    "servico": "Troca de embreagem",
+    "feedback": "Meu carro estava patinando e eu precisava dele para trabalhar. Explicaram as opções de kit, passaram o orçamento por mensagem e só começaram depois que autorizei. Entregaram no prazo e o pedal ficou bem mais leve. Já rodei duas semanas e está tudo certo."
+  },
+  {
+    "id": "79",
+    "cliente_anonimo": false,
+    "nome completo": "Felipe Mendes",
+    "servico": "Troca de pastilhas",
+    "feedback": "Depois da troca apareceu um chiado que antes não tinha. Voltei, fizeram um ajuste e melhorou por pouco tempo. Quero acreditar que vão resolver, mas já está ficando cansativo precisar insistir."
+  },
+  {
+    "id": "80",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Troca de amortecedores",
+    "feedback": "Gostei porque avisaram sobre o prazo da peça antes de eu deixar o carro. Quando chegou, agendaram e concluíram tudo no dia combinado. Ficou mais firme nas curvas e não bate mais nas lombadas. O orçamento também foi respeitado."
+  },
+  {
+    "id": "81",
+    "cliente_anonimo": false,
+    "nome completo": "João Rocha",
+    "servico": "Manutenção do ar-condicionado",
+    "feedback": "Paguei pelo serviço e o ar voltou a perder rendimento na mesma semana. Agora dizem que precisam investigar um vazamento. Eu esperava essa investigação antes de pagar pela carga de gás."
+  },
+  {
+    "id": "82",
+    "cliente_anonimo": false,
+    "nome completo": "Mariana Rocha",
+    "servico": "Troca de óleo",
+    "feedback": "Fui pela primeira vez e gostei bastante. Conferiram no manual a especificação do óleo, mostraram os frascos lacrados e me entregaram o filtro antigo. O valor foi exatamente o combinado e ainda verificaram a pressão dos pneus. Voltarei na próxima troca."
+  },
+  {
+    "id": "83",
+    "cliente_anonimo": false,
+    "nome completo": "Carlos Rocha",
+    "servico": "Troca de correia dentada",
+    "feedback": "Atrasaram dois dias e só avisaram quando eu cobrei. O motor está funcionando, mas a experiência foi ruim."
+  },
+  {
+    "id": "84",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Revisão preventiva",
+    "feedback": "Atendimento simpático na chegada e muita demora para responder depois. O carro está bom, mas precisei ligar várias vezes para saber se poderia buscar. A impressão é de que os mecânicos trabalham melhor do que a recepção se organiza."
+  },
+  {
+    "id": "85",
+    "cliente_anonimo": false,
+    "nome completo": "Rafael Rocha",
+    "servico": "Troca de correia dentada",
+    "feedback": "Fizeram o serviço dentro do prazo e o motor está normal. A diferença é que a marca da peça precisou mudar e só me avisaram quando fui retirar. Mesmo sendo de valor parecido, acho que eu deveria ter aprovado antes."
+  },
+  {
+    "id": "86",
+    "cliente_anonimo": false,
+    "nome completo": "Fernanda Rocha",
+    "servico": "Revisão preventiva",
+    "feedback": "Fiquei três dias sem o carro para uma revisão que seria de um dia. O serviço básico foi feito, mas esqueceram o limpador que eu tinha pedido para verificar. Não foi dinheiro totalmente perdido, só ficou muito abaixo do esperado."
+  },
+  {
+    "id": "87",
+    "cliente_anonimo": false,
+    "nome completo": "Bruno Rocha",
+    "servico": "Troca de bateria",
+    "feedback": "Bom preço, instalação rápida e testaram o alternador antes de condenar a bateria. Recomendo."
+  },
+  {
+    "id": "88",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Troca de bateria",
+    "feedback": "Atendimento rápido e bateria com preço bom. Só parcelam em poucas vezes."
+  },
+  {
+    "id": "89",
+    "cliente_anonimo": false,
+    "nome completo": "André Rocha",
+    "servico": "Diagnóstico de falha no motor",
+    "feedback": "Trocaram as velas dizendo que resolveria, mas o carro continuou falhando. Na volta sugeriram outra peça e um novo custo. Foram educados, porém faltou um diagnóstico mais firme antes de eu começar a gastar."
+  },
+  {
+    "id": "90",
+    "cliente_anonimo": false,
+    "nome completo": "Camila Rocha",
+    "servico": "Diagnóstico de injeção",
+    "feedback": "Identificaram a falha e não empurraram serviço extra. Poderiam ter dado notícias com mais frequência, pois fiquei quase o dia inteiro sem saber o andamento. Depois que responderam, explicaram tudo direitinho."
+  },
+  {
+    "id": "91",
+    "cliente_anonimo": false,
+    "nome completo": "Diego Rocha",
+    "servico": "Reparo no alternador",
+    "feedback": "O carro me deixou na mão e a oficina ajudou a organizar o recebimento pelo guincho. Fizeram o diagnóstico e me passaram os custos no mesmo dia. A entrega aconteceu na manhã seguinte e explicaram a garantia com calma. Salvou minha semana."
+  },
+  {
+    "id": "92",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Revisão preventiva",
+    "feedback": "Levei o carro antes de uma viagem com a família e recebi uma relação do que era urgente e do que podia esperar. Não ficaram empurrando troca de peça boa. Fiz a viagem inteira sem nenhum problema e achei o preço justo pelo trabalho."
+  },
+  {
+    "id": "93",
+    "cliente_anonimo": false,
+    "nome completo": "Marcelo Rocha",
+    "servico": "Reparo de pneu",
+    "feedback": "Me atenderam perto do horário de fechar e resolveram o pneu furado rapidinho. Muito obrigado!"
+  },
+  {
+    "id": "94",
+    "cliente_anonimo": false,
+    "nome completo": "Aline Rocha",
+    "servico": "Revisão periódica",
+    "feedback": "Já tive uma visita muito boa e outra bem bagunçada aqui. Desta vez o carro ficou pronto, mas esqueceram de verificar um item que pedi no começo. Acho que depende bastante de quem recebe e acompanha o serviço."
+  },
+  {
+    "id": "95",
+    "cliente_anonimo": false,
+    "nome completo": "Gustavo Rocha",
+    "servico": "Revisão preventiva",
+    "feedback": "O serviço foi bom e respeitaram o orçamento. Só demoraram para confirmar pelo WhatsApp que o carro estava pronto, então fui buscar quase no fim do expediente. Tirando essa comunicação, gostei do atendimento e pretendo voltar."
+  },
+  {
+    "id": "96",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Troca de radiador",
+    "feedback": "Deixaram o carro além do prazo e entregaram ainda com vazamento. Liguei assim que percebi, mas demoraram dois dias para responder. O problema mecânico e a falta de retorno juntos tornaram tudo muito desgastante."
+  },
+  {
+    "id": "97",
+    "cliente_anonimo": false,
+    "nome completo": "Rodrigo Rocha",
+    "servico": "Troca de pneus",
+    "feedback": "Preço justo e atendimento bom. A sala de espera é bem quente."
+  },
+  {
+    "id": "98",
+    "cliente_anonimo": false,
+    "nome completo": "Vanessa Rocha",
+    "servico": "Reparo no motor de partida",
+    "feedback": "Atendimento excelente desde a primeira mensagem. Mandaram um vídeo mostrando a falha, explicaram o reparo e cumpriram o prazo. Estou usando o carro diariamente e ele pega de primeira. A oficina é simples, mas minha experiência foi muito boa."
+  },
+  {
+    "id": "99",
+    "cliente_anonimo": false,
+    "nome completo": "Felipe Rocha",
+    "servico": "Reparo no escapamento",
+    "feedback": "Acabou o barulho de lata e não tentaram me vender o escapamento inteiro. Aprovado."
+  },
+  {
+    "id": "100",
+    "cliente_anonimo": true,
+    "nome completo": "",
+    "servico": "Troca de correia dentada",
+    "feedback": "Agendei com antecedência e cumpriram tudo o que combinaram. Explicaram a troca do conjunto, mostraram as peças retiradas e registraram data e quilometragem. Para quem não entende muito de carro como eu, essa clareza faz bastante diferença."
+  }
+]

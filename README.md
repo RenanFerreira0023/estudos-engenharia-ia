@@ -17,6 +17,9 @@ Machine Learning e Deep Learning.
   - [Assistente de oficina](./Agentes%20Cognitivos%20com%20LangChain/aula%2006-10/assistente%20oficina/)
   - [Organizar solicitacoes de suporte em lote](./Agentes%20Cognitivos%20com%20LangChain/aula%2006-10/organizar%20solicitacoes%20suporte%20em%20lote/)
 
+- [Aula 14-10](./Agentes%20Cognitivos%20com%20LangChain/aula%2014-10/)
+  - [Transformar reclamações de uma oficina em ações](./Agentes%20Cognitivos%20com%20LangChain/aula%2014-10/Transformar%20reclama%C3%A7%C3%B5es%20de%20uma%20oficina%20em%20a%C3%A7%C3%B5es/)
+
 ## Observacoes
 
 Este repositorio deve crescer com anotacoes, exemplos de codigo e pequenos
