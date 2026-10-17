@@ -162,23 +162,30 @@ def main():
     mostrar_todos = input("Exibir a conferência de todos os relatos? [s/N]: ").strip().lower() == "s"
     etapa_resumo, etapa_analise, etapa_geral = criar_fluxos()
 
-    # BATCH: aqui começa o processamento de TODOS os registros pelo modelo.
+    # FLUXO: 100 feedbacks -> 100 resumos -> 100 análises -> 1 relatório geral.
     # Só o feedback segue para os prompts individuais, sem nomes dos clientes.
     entradas = [{"feedback": registro["feedback"]} for registro in registros]
     configuracao = {"max_concurrency": 5}
+    # PASSO 1 — BATCH: recebe todos os feedbacks e devolve um resumo por feedback.
+    # São 100 chamadas ao modelo, com até 5 em paralelo; não é uma chamada só.
     print(f"\n[estudo] Resumindo os {len(entradas)} feedbacks com batch().")
     resumos = etapa_resumo.batch(entradas, config=configuracao)
+    # Se algum resumo for inválido, invoke() refaz somente aquele item.
     validar_resumos(registros, resumos, etapa_resumo)
 
+    # PASSO 2 — BATCH: recebe os 100 resumos e devolve 100 análises individuais.
+    # A lambda da etapa_analise coloca cada resumo na chave {resumo} do prompt.
     print("[estudo] Separando reclamações e elogios de cada resumo com batch().")
     analises = etapa_analise.batch(resumos, config=configuracao)
     exibir_verificacao(registros, resumos, analises, mostrar_todos)
 
-    # Os IDs preservam a origem de cada evidência na consolidação geral.
+    # PASSO 3 — REUNIR: identifica cada análise com seu ID, sem chamar o modelo.
+    # A lambda da etapa_geral juntará essa lista em um único texto {analises}.
     analises_com_ids = [
         f"ID {registro['id']}:\n{analise}"
         for registro, analise in zip(registros, analises, strict=True)
     ]
+    # PASSO 4 — INVOKE: uma chamada recebe todas as análises e gera UM relatório.
     print("\n[estudo] Reunindo TODOS os IDs em um relatório geral com invoke().")
     relatorio = etapa_geral.invoke(analises_com_ids)
     print(f"\n{relatorio}")
