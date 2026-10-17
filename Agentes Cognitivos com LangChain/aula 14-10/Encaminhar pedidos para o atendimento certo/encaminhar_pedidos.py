@@ -71,6 +71,10 @@ def criar_fluxo():
 
     # PASSO 4 — PASSTHROUGH: preserva o texto original enquanto a outra chave
     # recebe o rótulo da classificadora. A entrada deste fluxo é uma string.
+    # Quando o fluxo executar, a mesma mensagem entra nos dois caminhos:
+    # "mensagem" guarda o texto; "classificacao" chama o modelo para obter o rótulo.
+    # Exemplo de saída: {"mensagem": "Minha bateria chegou quebrada",
+    #                    "classificacao": "pos_venda"}.
     preparar_entrada = {
         "mensagem": RunnablePassthrough(),
         "classificacao": classificadora,
@@ -78,6 +82,9 @@ def criar_fluxo():
 
     # PASSO 5 — ROTEAMENTO: strip/lower normalizam espaços e maiúsculas.
     # Só rótulos exatos após essa normalização podem executar uma das chains.
+    # dados recebe o dicionário produzido por preparar_entrada.
+    # A classificadora já escolheu a categoria; rotear usa essa escolha para
+    # chamar a chain correspondente e devolver a resposta de atendimento.
     def rotear(dados):
         rotulo_original = dados["classificacao"]
         classificacao = rotulo_original.strip().lower()
@@ -92,6 +99,10 @@ def criar_fluxo():
         return "Não consegui definir o atendimento"
 
     # LCEL + RUNNABLELAMBDA: transforma a função em uma etapa do fluxo.
+    # Esta linha apenas monta a sequência, sem consultas ao modelo:
+    # 1. preparar_entrada preserva a mensagem e executa a classificadora.
+    # 2. RunnableLambda entrega o dicionário resultante para rotear(dados).
+    # 3. rotear executa vendas OU pós-venda e devolve a resposta ao cliente.
     fluxo = preparar_entrada | RunnableLambda(rotear)
     return fluxo, rotear
 
@@ -129,6 +140,7 @@ def main():
     carregar_env_local()
     if not os.getenv("OPENAI_API_KEY"):
         raise RuntimeError("Defina OPENAI_API_KEY no ambiente ou no .env da aula/exercício.")
+    # Monta os prompts e o fluxo uma vez; ainda não consulta o modelo.
     fluxo, rotear = criar_fluxo()
 
     # TESTE ISOLADO: não chama a classificadora nem as chains de atendimento.
@@ -145,6 +157,9 @@ def main():
 
     # PASSO 6 — INVOKE: só aqui a mensagem sorteada entra no fluxo completo.
     # São duas chamadas ao modelo: classificação + resposta da rota selecionada.
+    # Não volta a criar_fluxo(): executa a sequência que já está guardada em fluxo.
+    # mensagem -> preparar_entrada -> dicionário -> rotear -> chain escolhida
+    #          -> resposta de atendimento, guardada na variável resposta abaixo.
     print("\n[estudo] Classificando e encaminhando a mensagem original.")
     resposta = fluxo.invoke(mensagem)
     print(f"\nAtendimento:\n{resposta}")
