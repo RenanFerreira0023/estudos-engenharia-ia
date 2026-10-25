@@ -1,0 +1,14 @@
+[
+  {
+    "texto": "A retirada de pedidos ocorre de segunda a sexta, das 09h às 17h.",
+    "categoria": "retirada"
+  },
+  {
+    "texto": "Para solicitar análise de uma peça avariada, informe o número do pedido.",
+    "categoria": "pos_venda"
+  },
+  {
+    "texto": "O orçamento deve ser aprovado antes da confirmação do serviço.",
+    "categoria": "orcamento"
+  }
+]

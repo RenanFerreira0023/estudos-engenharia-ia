@@ -10,5 +10,5 @@ saida estruturada.
 
 ## Observacao sobre `.env`
 
-A pasta da aula pode ter um `.env` local com a `OPENAI_API_KEY`. Esse arquivo e
-usado apenas localmente e nao deve expor chaves no README ou no GitHub.
+Todos os exercicios carregam o `.env` da raiz do repositorio, ao lado do
+README principal. Defina `OPENAI_API_KEY` nele ou no ambiente. Nao versione chaves.

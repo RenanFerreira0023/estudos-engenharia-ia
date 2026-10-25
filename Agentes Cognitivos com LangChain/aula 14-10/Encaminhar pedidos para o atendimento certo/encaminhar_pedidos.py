@@ -9,17 +9,20 @@ from langchain_core.runnables import RunnableLambda, RunnablePassthrough
 from langchain_openai import ChatOpenAI
 
 
-def carregar_env_local():
-    pasta = Path(__file__).resolve().parent
-    for caminho in (pasta / ".env", pasta.parent / ".env"):
-        if not caminho.is_file():
+def carregar_env_raiz():
+    """Carrega o .env da raiz do repositorio, preservando o ambiente existente."""
+    # CONFIGURACAO COMPARTILHADA: partimos deste script e subimos de exercicio
+    # para aula, disciplina e raiz. O caminho independe da pasta do terminal.
+    caminho_env = Path(__file__).resolve().parents[3] / ".env"
+    if not caminho_env.is_file():
+        return
+    for linha in caminho_env.read_text(encoding="utf-8-sig").splitlines():
+        linha = linha.strip()
+        if not linha or linha.startswith("#") or "=" not in linha:
             continue
-        for linha in caminho.read_text(encoding="utf-8").splitlines():
-            linha = linha.strip()
-            if not linha or linha.startswith("#") or "=" not in linha:
-                continue
-            chave, valor = linha.split("=", 1)
-            os.environ.setdefault(chave.strip(), valor.strip().strip("\"'"))
+        chave, valor = linha.split("=", 1)
+        # SETDEFAULT preserva variaveis ja definidas no sistema ou no terminal.
+        os.environ.setdefault(chave.strip(), valor.strip().strip("\"'"))
 
 
 def criar_fluxo():
@@ -137,9 +140,9 @@ def exibir_conceitos_estudados():
 def main():
     exibir_conceitos_estudados()
     registros = carregar_mensagens()
-    carregar_env_local()
+    carregar_env_raiz()
     if not os.getenv("OPENAI_API_KEY"):
-        raise RuntimeError("Defina OPENAI_API_KEY no ambiente ou no .env da aula/exercício.")
+        raise RuntimeError("Defina OPENAI_API_KEY no ambiente ou no .env da raiz do repositorio.")
     # Monta os prompts e o fluxo uma vez; ainda não consulta o modelo.
     fluxo, rotear = criar_fluxo()
 

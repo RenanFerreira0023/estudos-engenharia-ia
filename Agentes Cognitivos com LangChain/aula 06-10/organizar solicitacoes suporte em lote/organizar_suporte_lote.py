@@ -34,36 +34,29 @@ MENSAGENS_EXEMPLO = [
 ]
 
 
-def carregar_env_local():
-    """Carrega a OPENAI_API_KEY do .env local ou do .env da pasta da aula."""
-    pasta_atual = Path(__file__).parent
-    caminhos_env = [
-        pasta_atual / ".env",
-        pasta_atual.parent / ".env",
-    ]
-
-    for caminho_env in caminhos_env:
-        if not caminho_env.exists():
+def carregar_env_raiz():
+    """Carrega o .env da raiz do repositorio, preservando o ambiente existente."""
+    # CONFIGURACAO COMPARTILHADA: partimos deste script e subimos de exercicio
+    # para aula, disciplina e raiz. O caminho independe da pasta do terminal.
+    caminho_env = Path(__file__).resolve().parents[3] / ".env"
+    if not caminho_env.is_file():
+        return
+    for linha in caminho_env.read_text(encoding="utf-8-sig").splitlines():
+        linha = linha.strip()
+        if not linha or linha.startswith("#") or "=" not in linha:
             continue
-
-        for linha in caminho_env.read_text(encoding="utf-8").splitlines():
-            if not linha or linha.startswith("#") or "=" not in linha:
-                continue
-
-            chave, valor = linha.split("=", 1)
-            chave = chave.strip()
-            valor = valor.strip().strip('"').strip("'")
-
-            os.environ.setdefault(chave, valor)
+        chave, valor = linha.split("=", 1)
+        # SETDEFAULT preserva variaveis ja definidas no sistema ou no terminal.
+        os.environ.setdefault(chave.strip(), valor.strip().strip("\"'"))
 
 
 def criar_chain():
     """Cria a chain para transformar mensagens livres em fichas estruturadas."""
-    carregar_env_local()
+    carregar_env_raiz()
 
     if not os.getenv("OPENAI_API_KEY"):
         raise RuntimeError(
-            "Defina OPENAI_API_KEY no arquivo .env ou como variavel de ambiente."
+            "Defina OPENAI_API_KEY no .env da raiz do repositorio ou como variavel de ambiente."
         )
 
     # PROMPT TEMPLATE:

@@ -46,8 +46,8 @@ python -m pip install langchain-openai
 python encaminhar_pedidos.py
 ```
 
-Defina `OPENAI_API_KEY` no ambiente ou no `.env` local desta pasta ou da pasta
-`aula 14-10`. Não versione chaves. O modelo usado é `gpt-4o-mini`.
+Defina `OPENAI_API_KEY` no ambiente ou no `.env` da raiz do repositório.
+Não versione chaves. O modelo usado é `gpt-4o-mini`.
 
 Pressione Enter para sortear e enviar uma mensagem. O terminal exibe o ID,
 o texto original, a rota escolhida e a resposta. Execute novamente para outro

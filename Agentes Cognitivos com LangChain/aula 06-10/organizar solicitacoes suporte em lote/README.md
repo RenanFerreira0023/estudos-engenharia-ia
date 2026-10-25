@@ -82,8 +82,7 @@ python -m pip install langchain-openai
 python "Agentes Cognitivos com LangChain\aula 06-10\organizar solicitacoes suporte em lote\organizar_suporte_lote.py"
 ```
 
-Antes de executar, coloque a chave no `.env` da pasta do exercicio ou no `.env`
-compartilhado da pasta `aula 06-10`:
+Antes de executar, coloque a chave no `.env` da raiz do repositorio:
 
 ```env
 OPENAI_API_KEY=sua_chave_aqui

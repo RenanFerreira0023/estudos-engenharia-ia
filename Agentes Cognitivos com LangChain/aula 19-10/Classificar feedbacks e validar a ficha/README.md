@@ -46,7 +46,7 @@ cd "Agentes Cognitivos com LangChain/aula 19-10/Classificar feedbacks e validar 
 python classificar_feedbacks.py
 ```
 
-Defina `OPENAI_API_KEY` no ambiente ou no `.env` da aula/exercício. Não versione
+Defina `OPENAI_API_KEY` no ambiente ou no `.env` da raiz do repositório. Não versione
 a chave. O modelo segue o padrão do projeto: `gpt-4o-mini`, `temperature=0`.
 
 O script processa os três feedbacks e imprime as fichas como uma lista JSON.

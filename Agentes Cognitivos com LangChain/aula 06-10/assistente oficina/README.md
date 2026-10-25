@@ -133,7 +133,7 @@ python -m pip install langchain-openai
 python assistente_oficina.py
 ```
 
-Antes de executar, coloque a chave no `.env`:
+Antes de executar, coloque a chave no `.env` da raiz do repositorio:
 
 ```env
 OPENAI_API_KEY=sua_chave_aqui

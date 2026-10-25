@@ -11,7 +11,7 @@ Todos os feedbacks → batch de resumos → batch de análises → relatório ge
 ## Conceitos praticados
 
 - `ChatPromptTemplate`: monta os prompts; nessa montagem nenhum ID é processado.
-- `ChatOpenAI`: gera respostas com a chave do ambiente ou `.env` local.
+- `ChatOpenAI`: gera respostas com a chave do ambiente ou `.env` da raiz.
 - `StrOutputParser`: transforma cada resposta em texto.
 - LCEL (`|`): conecta prompt, modelo, parser e adaptação da entrada.
 - Lambda: coloca o texto na chave `resumo` esperada pelo prompt de análise.
@@ -37,8 +37,8 @@ Entre na pasta deste exercício e execute:
 python transformar_reclamacoes.py
 ```
 
-Defina `OPENAI_API_KEY` no ambiente ou no `.env` da pasta deste exercício ou da
-aula. Não versione a chave. O script usa `gpt-4o-mini`, com `temperature=0`.
+Defina `OPENAI_API_KEY` no ambiente ou no `.env` da raiz do repositório.
+Não versione a chave. O script usa `gpt-4o-mini`, com `temperature=0`.
 
 Enter mostra os dois primeiros exemplos de resumo/análise; `s` mostra todos.
 **Ambas as opções processam todos os registros.** São duas chamadas por feedback
