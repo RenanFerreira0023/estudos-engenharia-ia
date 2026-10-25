@@ -22,6 +22,9 @@ Machine Learning e Deep Learning.
 
   - [Encaminhar pedidos para o atendimento certo](./Agentes%20Cognitivos%20com%20LangChain/aula%2014-10/Encaminhar%20pedidos%20para%20o%20atendimento%20certo/)
 
+- [Aula 19-10](./Agentes%20Cognitivos%20com%20LangChain/aula%2019-10/)
+  - [Classificar feedbacks e validar a ficha](./Agentes%20Cognitivos%20com%20LangChain/aula%2019-10/Classificar%20feedbacks%20e%20validar%20a%20ficha/)
+
 ## Observacoes
 
 Este repositorio deve crescer com anotacoes, exemplos de codigo e pequenos

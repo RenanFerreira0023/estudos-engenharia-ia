@@ -1,0 +1,14 @@
+[
+  {
+    "feedback": "Atendimento rápido e orçamento explicado antes do serviço.",
+    "sentimento_esperado": "positivo"
+  },
+  {
+    "feedback": "Que pontualidade maravilhosa: esperei três horas sem aviso.",
+    "sentimento_esperado": "negativo"
+  },
+  {
+    "feedback": "O serviço resolveu o problema e fui muito bem atendido.",
+    "sentimento_esperado": "positivo"
+  }
+]

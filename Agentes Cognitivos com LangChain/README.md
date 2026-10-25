@@ -13,6 +13,9 @@ Estudos e exercicios da disciplina sobre agentes cognitivos usando LangChain.
 
   - [Encaminhar pedidos para o atendimento certo](./aula%2014-10/Encaminhar%20pedidos%20para%20o%20atendimento%20certo/)
 
+- [Aula 19-10](./aula%2019-10/)
+  - [Classificar feedbacks e validar a ficha](./aula%2019-10/Classificar%20feedbacks%20e%20validar%20a%20ficha/)
+
 ## Padrao de organizacao
 
 Cada aula deve ficar em uma pasta propria, com:
