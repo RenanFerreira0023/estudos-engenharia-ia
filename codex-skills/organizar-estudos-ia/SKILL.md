@@ -74,6 +74,20 @@ Para exercicios em Python:
 
 ## Comentarios de estudo
 
+Em todo exercicio didatico criado ou alterado, coloque um comentario de estudo
+imediatamente acima de cada bloco que introduz ou aplica um conceito da aula.
+Nomeie o conceito e explique em uma ou duas frases o que ele faz naquele ponto
+e por que participa do fluxo. Docstrings, README e prints de estudo complementam
+esses comentarios; nao os substituem.
+
+Antes de concluir, revise os conceitos efetivamente usados no arquivo e confira
+se cada um tem seu comentario acima do bloco correspondente. Em agentes com
+memoria, confira especialmente STORE, NAMESPACE/CHAVE, UPSERT, CONSULTA, EXCLUSAO,
+DATE/LOGS, @TOOL, identidade do usuario, CHATOPENAI, CREATE_AGENT, SYSTEM_PROMPT,
+MEMORYSAVER, THREAD_ID, INVOKE, mensagens HUMAN/AI/TOOL, CONTENT e INPUT.
+Comente apenas os conceitos presentes no exercicio, sem repetir explicacoes
+em cada ocorrencia nem comentar linhas operacionais obvias.
+
 O padrao de comentarios deve ajudar Renan a abrir o arquivo depois e lembrar o raciocinio da aula. Use este tipo de comentario quando estiver criando ou ajustando exercicios didaticos:
 
 - nomeie o conceito em caixa alta quando isso facilitar a leitura, como `PROMPT TEMPLATE`, `LCEL`, `INVOKE` ou `CONTENT`;

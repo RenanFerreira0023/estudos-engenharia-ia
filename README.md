@@ -26,6 +26,9 @@ Machine Learning e Deep Learning.
   - [Classificar feedbacks e validar a ficha](./Agentes%20Cognitivos%20com%20LangChain/aula%2019-10/Classificar%20feedbacks%20e%20validar%20a%20ficha/)
   - [Consultar regras de uma loja e registrar a busca](./Agentes%20Cognitivos%20com%20LangChain/aula%2019-10/Consultar%20regras%20de%20uma%20loja%20e%20registrar%20a%20busca/)
 
+- [Aula 21-10](./Agentes%20Cognitivos%20com%20LangChain/aula%2021-10/)
+  - [Preferências da oficina entre conversas](./Agentes%20Cognitivos%20com%20LangChain/aula%2021-10/Preferencias%20da%20oficina%20entre%20conversas/)
+
 ## Observacoes
 
 Todos os exercicios compartilham o arquivo `.env` na raiz deste repositorio,
