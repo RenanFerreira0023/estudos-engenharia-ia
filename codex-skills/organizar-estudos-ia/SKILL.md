@@ -33,11 +33,27 @@ estudos-engenharia-ia/
 Quando criar ou organizar uma aula:
 
 - Coloque cada aula em uma pasta propria, como `aula 06-10`.
-- Mantenha o README da aula focado somente naquele exercicio.
+- Mantenha o README da aula focado nos exercicios e conceitos daquela aula.
 - Use o README da disciplina como indice das aulas.
 - Use o README raiz como indice geral do repositorio.
 - Proteja segredos: `.env` pode existir localmente, mas nunca exponha chaves no chat ou em README.
 - Prefira explicacoes curtas, didaticas e ligadas aos conceitos estudados.
+
+## Guia de conceitos nos READMEs
+
+Ao criar ou alterar um exercicio, mantenha o README principal como guia de estudo:
+inclua o link do exercicio na aula correspondente, seu objetivo, os conceitos
+efetivamente usados com uma explicacao curta da aplicacao de cada um e o fluxo
+de execucao. Confira o codigo antes de descrever os conceitos; diferencie LLM,
+chain, agente com ferramentas e formas de memoria conforme a implementacao.
+
+Mantenha tambem o mapa de conceitos no README da disciplina e um resumo por
+exercicio no README da aula. Preserve os detalhes de execucao e verificacao no
+README do proprio exercicio. Atualize o glossario do README principal somente
+quando houver um conceito novo relevante, evitando repetir definicoes.
+
+Antes de concluir, confira que todos os exercicios afetados aparecem nesses
+indices, que os conceitos correspondem ao codigo e que os links locais existem.
 
 ## README da aula
 
