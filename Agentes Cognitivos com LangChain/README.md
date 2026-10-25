@@ -1,6 +1,21 @@
 # Agentes Cognitivos com LangChain
 
-Estudos e exercicios da disciplina sobre agentes cognitivos usando LangChain.
+Estudos e exercícios da disciplina, desde chamadas a LLMs e chains até agentes
+com ferramentas e memória. O [guia principal](../README.md#guia-de-estudo-por-exercício)
+explica os conceitos e o fluxo de cada projeto.
+
+## Mapa dos conceitos
+
+| Aula | Exercício | O que estamos estudando |
+| --- | --- | --- |
+| 06-10 | Assistente de oficina | LLM com ChatOpenAI, contexto fixo, prompt com system/human, variáveis, chain em LCEL, invoke e .content. |
+| 06-10 | Suporte em lote | Extração estruturada com BaseModel/Field e with_structured_output; batch e leitura de objetos. |
+| 14-10 | Reclamações em ações | Chains de resumo, análise e consolidação; StrOutputParser, lambdas, batch, validação de resumos e IDs de apoio. |
+| 14-10 | Encaminhar pedidos | Classificação por LLM, RunnablePassthrough, RunnableLambda e roteamento validado entre chains. |
+| 19-10 | Classificar feedbacks | Few-shot, esquema Pydantic, parsers, validação, tratamento de erro e uma tentativa de reparo. |
+| 19-10 | Consultar regras | Embeddings, FAISS, busca por similaridade, metadados, agente com @tool, RAG e callbacks. |
+| 21-10 | Preferências entre conversas | Agente com ferramentas, MemorySaver/thread_id, store por usuário, namespace, upsert, exclusão e auditoria. |
+| 21-10 | Avaliação simulada | Intenções com Literal, extração estruturada, estado por sessão em Python, correções e campos faltantes. |
 
 ## Aulas
 
