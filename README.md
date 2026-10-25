@@ -28,6 +28,7 @@ Machine Learning e Deep Learning.
 
 - [Aula 21-10](./Agentes%20Cognitivos%20com%20LangChain/aula%2021-10/)
   - [Preferências da oficina entre conversas](./Agentes%20Cognitivos%20com%20LangChain/aula%2021-10/Preferencias%20da%20oficina%20entre%20conversas/)
+  - [Agendar uma avaliação sem perder o contexto](./Agentes%20Cognitivos%20com%20LangChain/aula%2021-10/Agendar%20uma%20avaliacao%20sem%20perder%20o%20contexto/)
 
 ## Observacoes
 
