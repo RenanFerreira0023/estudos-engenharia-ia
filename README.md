@@ -142,6 +142,24 @@ Coletar veículo, dia, horário e nome por turnos e preparar uma solicitação s
 
 **Fluxo:** estado + mensagem → extração → atualização em Python → pergunta ou solicitação simulada pronta.
 
+### [Aula 26-10 — SQL e cálculo com ferramentas](./Agentes%20Cognitivos%20com%20LangChain/aula%2026-10/)
+
+#### [Conferir estoque e calcular um orçamento](./Agentes%20Cognitivos%20com%20LangChain/aula%2026-10/Conferir%20estoque%20e%20calcular%20um%20orcamento/)
+
+Consultar produto e estoque em um catálogo fictício antes de calcular um orçamento.
+
+- **SQLite e SQL gerado pela LLM:** `sqlite3` guarda o catálogo; o esquema no
+  prompt descreve as colunas para o agente gerar a consulta SELECT.
+- **Agente com ferramentas separadas:** `create_agent` e `@tool` expõem consulta
+  e cálculo; o preço usado no orçamento deve vir da leitura do mesmo SKU.
+- **Função determinística:** Python valida quantidade e multiplica inteiros em
+  centavos. Produto sem estoque ou SKU inexistente não gera orçamento.
+- **Barreiras e auditoria:** filtro didático, `query_only` e authorizer restringem
+  operações no banco isolado. JSONL registra SQL, linhas, tool calls, argumentos,
+  resultados e comparações de esperado/observado, incluindo tentativas de escrita.
+
+**Fluxo:** pedido → agente → SELECT → conferência de estoque → cálculo Python → resposta e auditoria.
+
 ## Conceitos para revisar
 
 | Conceito | Significado neste repositório | Onde começar |
@@ -155,6 +173,8 @@ Coletar veículo, dia, horário e nome por turnos e preparar uma solicitação s
 | Agente e ferramenta | Ciclo em que o modelo solicita funções disponíveis e usa seus retornos. | Consulta de regras e preferências. |
 | RAG | Recuperação de trechos de uma base para fundamentar a resposta do modelo. | Consultar regras, aula 19-10. |
 | Memória e estado | Dados mantidos pela aplicação e reutilizados nas interações seguintes. | Os dois exercícios da aula 21-10. |
+| Consulta SQL com LLM | Modelo escreve uma consulta a partir de um esquema; o código controla sua execução no banco fictício. | Estoque e orçamento, aula 26-10. |
+| Cálculo determinístico | Função Python produz o total em centavos a partir do preço consultado e da quantidade válida. | Estoque e orçamento, aula 26-10. |
 
 A pasta [Arquiteturas Multiagentes com LangGraph](./Arquiteturas%20Multiagentes%20com%20LangGraph/)
 ainda não contém exercícios. Os conceitos acima correspondem aos projetos já

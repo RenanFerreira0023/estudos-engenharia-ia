@@ -16,6 +16,7 @@ explica os conceitos e o fluxo de cada projeto.
 | 19-10 | Consultar regras | Embeddings, FAISS, busca por similaridade, metadados, agente com @tool, RAG e callbacks. |
 | 21-10 | Preferências entre conversas | Agente com ferramentas, MemorySaver/thread_id, store por usuário, namespace, upsert, exclusão e auditoria. |
 | 21-10 | Avaliação simulada | Intenções com Literal, extração estruturada, estado por sessão em Python, correções e campos faltantes. |
+| 26-10 | Estoque e orçamento | SQLite, esquema SQL no prompt, agente com ferramentas de consulta e cálculo, centavos inteiros e auditoria da origem do preço. |
 
 ## Aulas
 
@@ -35,6 +36,9 @@ explica os conceitos e o fluxo de cada projeto.
 - [Aula 21-10](./aula%2021-10/)
   - [Preferências da oficina entre conversas](./aula%2021-10/Preferencias%20da%20oficina%20entre%20conversas/)
   - [Agendar uma avaliação sem perder o contexto](./aula%2021-10/Agendar%20uma%20avaliacao%20sem%20perder%20o%20contexto/)
+
+- [Aula 26-10](./aula%2026-10/)
+  - [Conferir estoque e calcular um orçamento](./aula%2026-10/Conferir%20estoque%20e%20calcular%20um%20orcamento/)
 
 ## Padrao de organizacao
 
