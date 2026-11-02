@@ -176,7 +176,7 @@ Interpretar dúvidas coloquiais e recuperar políticas sem inventar benefícios 
 
 **Fluxo:** pergunta → reescrita → busca com metadados e scores → conferência de evidência → resposta com fonte ou ausência de informação.
 
-### [Aula 28-10 — Duas fontes e memória de conversa](./Agentes%20Cognitivos%20com%20LangChain/aula%2028-10/)
+### [Aula 28-10 — Duas fontes, memória e auditoria de respostas](./Agentes%20Cognitivos%20com%20LangChain/aula%2028-10/)
 
 #### [Atendimento com duas fontes e memória](./Agentes%20Cognitivos%20com%20LangChain/aula%2028-10/Atendimento%20com%20duas%20fontes%20e%20memoria/)
 
@@ -195,6 +195,23 @@ identificado entre perguntas da mesma sessão.
 
 **Fluxo:** mensagem + histórico da sessão → agente → fonte SQL e/ou documental → resposta e trajetória do turno atual.
 
+#### [Auditor de frete para um orçamento](./Agentes%20Cognitivos%20com%20LangChain/aula%2028-10/Auditor%20de%20frete%20para%20um%20orcamento/)
+
+Conferir números e conclusões de uma resposta usando regra e referência independentes.
+
+- **Extração de afirmações:** `BaseModel`, `Field`, `Literal` e
+  `with_structured_output` registram trechos, chaves canônicas, valores e unidades,
+  incluindo conclusões e métricas sem mapeamento, sem fixar quantidade de afirmações.
+- **Comparação em Python:** `Decimal` aplica diferença absoluta e tolerância
+  somente a métricas equivalentes. Subtotal e total com frete não são intercambiáveis.
+- **Avaliação lógica por LLM:** outra chain julga APOIA/REFUTA/NEUTRA com a regra
+  completa; números certos não autorizam concluir frete grátis e prazo sem fonte
+  permanece não verificado.
+- **Relatórios separados:** auditoria numérica e lógica registram observações,
+  justificativas e divergências. O gabarito fica fora dos prompts e falhas são preservadas.
+
+**Fluxo:** resposta → extração estruturada → comparação numérica Python → avaliação lógica com fontes → relatórios e conferência.
+
 ## Conceitos para revisar
 
 | Conceito | Significado neste repositório | Onde começar |
@@ -212,6 +229,7 @@ identificado entre perguntas da mesma sessão.
 | Consulta SQL com LLM | Modelo escreve uma consulta a partir de um esquema; o código controla sua execução no banco fictício. | Estoque e orçamento, aula 26-10. |
 | Cálculo determinístico | Função Python produz o total em centavos a partir do preço consultado e da quantidade válida. | Estoque e orçamento, aula 26-10. |
 | Duas fontes com memória | Ferramentas distintas fornecem produtos e políticas; a conversa identifica o produto, e uma nova leitura atualiza seu saldo. | Atendimento, aula 28-10. |
+| Auditoria numérica e lógica | Valores são comparados com tolerância em Python; conclusões e cobertura são avaliadas separadamente contra fontes independentes. | Auditor de frete, aula 28-10. |
 
 A pasta [Arquiteturas Multiagentes com LangGraph](./Arquiteturas%20Multiagentes%20com%20LangGraph/)
 ainda não contém exercícios. Os conceitos acima correspondem aos projetos já

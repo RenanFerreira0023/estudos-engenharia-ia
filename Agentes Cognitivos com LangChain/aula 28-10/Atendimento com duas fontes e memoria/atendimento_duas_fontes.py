@@ -13,8 +13,7 @@ from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 from langchain_core.prompts import PromptTemplate
 from langchain_core.tools import create_retriever_tool
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langgraph.checkpoint.memory import MemorySaver
-from sqlalchemy import create_engine, event, text
+from langgraph.checkpoint.memory import MemorySavers
 from sqlalchemy.pool import StaticPool
 
 

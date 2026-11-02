@@ -19,6 +19,7 @@ explica os conceitos e o fluxo de cada projeto.
 | 26-10 | Estoque e orçamento | SQLite, esquema SQL no prompt, agente com ferramentas de consulta e cálculo, centavos inteiros e auditoria da origem do preço. |
 | 26-10 | Busca de políticas | Document/metadados, embeddings e FAISS, reescrita pelo agente, similarity_search_with_score, filtro opcional e comparação de queries sem limiar universal. |
 | 28-10 | Atendimento com duas fontes e memória | SQLDatabaseToolkit, retriever documental, create_agent, MemorySaver/thread_id e recorte da trajetória após a última HumanMessage. |
+| 28-10 | Auditor de frete | Extração estruturada de afirmações, comparação Python com Decimal/tolerância, avaliação lógica fundamentada e relatórios separados. |
 
 ## Aulas
 
@@ -45,6 +46,7 @@ explica os conceitos e o fluxo de cada projeto.
 
 - [Aula 28-10](./aula%2028-10/)
   - [Atendimento com duas fontes e memória](./aula%2028-10/Atendimento%20com%20duas%20fontes%20e%20memoria/)
+  - [Auditor de frete para um orçamento](./aula%2028-10/Auditor%20de%20frete%20para%20um%20orcamento/)
 
 ## Padrao de organizacao
 
