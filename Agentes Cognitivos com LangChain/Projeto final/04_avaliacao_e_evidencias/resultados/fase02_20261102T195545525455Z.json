@@ -1,0 +1,11 @@
+{
+  "fase": 2,
+  "modelo": "OpenAI/gpt-4o-mini",
+  "origem_cep": "viacep_real",
+  "mensagem": "Quero 2 unidades do P003 para retirada. Consulte preço e estoque e calcule o orçamento.",
+  "status": "erro_execucao",
+  "resposta": null,
+  "trajetoria": [],
+  "eventos_ferramentas": [],
+  "erro": "Execução interrompida (OpenAIConnectionError); operações já realizadas estão no rastro."
+}

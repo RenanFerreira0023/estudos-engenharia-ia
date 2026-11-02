@@ -1,14 +1,15 @@
 # Auto Super Parts CWB — Projeto de disciplina
 
-Renan · Agentes Cognitivos com LangChain · Fase 1: chain inicial · 02/11/2026
+Renan · Agentes Cognitivos com LangChain · Fases 1 e 2 · 02/11/2026
 
 ## Comece aqui
 1. Leia 01_documentacao/definicao_projeto.html para entender o problema e as regras.
 2. Leia INSTRUCOES_PARA_IA_PROGRAMADORA.md antes de gerar código.
 3. Use o catálogo e contratos de 02_codigo/dados e os casos de 04_avaliacao_e_evidencias/casos.
 
-O pacote inicial de planejamento e dados agora tem **somente a fase 1 implementada**:
-extração de uma mensagem em JSON validado. As fases 2–5 continuam pendentes.
+O projeto tem a **fase 1 (chain inicial)** e a **fase 2 (agente com ferramentas)**:
+extração em JSON validado; consultas ao catálogo, orçamento determinístico e ViaCEP.
+As fases 3–5 continuam pendentes. Cada mensagem da fase 2 é independente.
 Os documentos HTML são a arquitetura inicial e foram preservados como referência;
 as decisões desta implementação estão identificadas como propostas no CSV.
 
@@ -16,9 +17,9 @@ as decisões desta implementação estão identificadas como propostas no CSV.
 | Pasta | Conteúdo |
 |---|---|
 | 01_documentacao | Definição do problema, decisões, matriz de requisitos e futuro PDF técnico. |
-| 02_codigo | Dados preservados; módulos da chain inicial em src/auto_super_parts e testes locais em tests. |
-| 03_notebooks | fase_01_chain_inicial.ipynb importa os .py; placeholders das fases seguintes permanecem vazios. |
-| 04_avaliacao_e_evidencias | Casos esperados e resultados separados de testes locais, dummy e chamadas reais da fase 1. LangSmith permanece pendente. |
+| 02_codigo | Módulos das fases 1 e 2 em src/auto_super_parts; testes da fase 1 em tests e verificação da fase 2 em verificar_fase02.py. |
+| 03_notebooks | Notebooks das fases 1 e 2 importam os .py; fases 3–5 permanecem vazias. |
+| 04_avaliacao_e_evidencias | Expectativas separadas de testes locais, simulações e chamadas reais. Falhas históricas preservadas. LangSmith permanece pendente. |
 | 05_demonstracao | Orientações para o futuro vídeo e seu link. |
 
 Cinco fases de construção não são cinco entregas. As quatro entregas finais são: (1) código/notebooks reprodutíveis, (2) relatório técnico PDF, (3) registro de avaliação LangSmith, (4) vídeo de demonstração.
@@ -154,10 +155,60 @@ inventar valores. CEP aceita oito dígitos ou o formato com hífen; outras forma
 inválidas geram erro. Quantidade zero, negativa ou fracionária não vira 1.
 O exemplo do Gol mantém `motor="1.0"` e combustível desconhecido se não informado.
 
-Não há consultas ao catálogo, cálculo de preço/frete, ViaCEP, ferramentas, memória,
-RAG, auditor integrado, LangSmith, PDF técnico ou vídeo implementados nesta entrega.
+Na fase 1 não há consultas ao catálogo, cálculo de preço/frete ou ferramentas.
+Memória, RAG, auditor integrado, LangSmith, PDF técnico e vídeo continuam pendentes.
 
-## Testes e evidências
+## Fase 2: agente com ferramentas
+
+O agente escolhe entre `listar_veiculos`, `consultar_catalogo`, `consultar_cep` e
+`calcular_orcamento`. SQLite preserva o catálogo fictício e seus metadados;
+consultas são parametrizadas, sem SQL livre gerado pela LLM. A função Python
+reconsulta preços/estoque e calcula centavos com Decimal. ViaCEP identifica
+município/UF; distância e regra de frete vêm dos arquivos simulados do projeto.
+
+**Conceitos:** `create_agent` executa o ciclo modelo → ferramenta → modelo;
+`@tool` descreve argumentos; `BaseModel` valida localmente; middleware configura
+`bind_tools(strict=True)` e chamadas sequenciais. Callbacks guardam o esquema
+enviado, e mensagens AI/Tool mostram argumentos e retornos. O modo estrito não
+substitui validação local nem comprova veracidade. O prompt explicita PTCF e
+exemplos de estratégia que não são apresentados como execuções observadas.
+
+Na pasta deste projeto:
+
+```powershell
+.\.venv\Scripts\python.exe -B .\02_codigo\src\auto_super_parts\agente_fase02.py
+.\.venv\Scripts\python.exe -B .\02_codigo\verificar_fase02.py
+.\.venv\Scripts\python.exe -B .\02_codigo\executar_notebook.py --fase 2 --modo real
+```
+
+O kernel registrado acima serve aos dois notebooks. No VS Code selecione o Python
+da `.venv` local também para `fase_02_agente_ferramentas.ipynb`. O modo simulado
+usa `--fase 2 --modo simulado --saida CAMINHO.ipynb`, sem chamar OpenAI/ViaCEP.
+O notebook principal da fase 2 registra execução real; a simulação fica separada.
+`executar_testes.py` continua executando somente os testes da fase 1/configuração;
+`verificar_fase02.py` registra separadamente a fase 2.
+
+Perguntas independentes para testar:
+
+- `Quero 2 unidades do P003 para retirada. Consulte preço e estoque e calcule o orçamento.`
+- `Consulte o CEP 84010000 no ViaCEP e calcule 2 unidades do P003 para entrega nesse endereço.`
+- `Consulte o CEP 01001000 no ViaCEP e calcule 2 unidades do P003 para entrega nesse endereço.`
+- `Quero 1 unidade do P023 para retirada. Tem estoque?`
+- `Tenho um Gol 2010 1.0 e quero duas velas.`
+
+Espera-se R$ 37,00 na retirada e R$ 42,31 para Ponta Grossa, usando 120 km
+**fictícios**. São Paulo não tem distância cadastrada: frete, prazo e total com
+entrega permanecem desconhecidos. P023 existe com estoque zero. Configuração
+incompleta exige esclarecimento; não há reserva nem compra. `/sair` encerra.
+
+Veja [resultados, correção e reprodução](./04_avaliacao_e_evidencias/resultados/RESULTADOS_FASE_02.md)
+e a [matriz de requisitos e equivalências](./01_documentacao/MATRIZ_FASE_02.md).
+Para repetir a instalação limpa, `python -B 02_codigo/reproduzir_fase02.py` cria
+uma cópia temporária sem `.env`, instala requirements em uma `.venv` nova,
+executa as duas suítes e o notebook da fase 2 no modo simulado. A cópia fica
+preservada para inspeção; a demonstração real da API é registrada separadamente.
+
+## Testes e evidências da fase 1 (histórico)
 
 Revisão de portabilidade: veja a [reprodução em cópia isolada](./04_avaliacao_e_evidencias/resultados/REPRODUCAO_FASE_01.md).
 Foram executados 23 testes locais e o notebook **simulado** em uma `.venv` criada

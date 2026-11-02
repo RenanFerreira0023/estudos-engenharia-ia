@@ -212,7 +212,7 @@ Conferir números e conclusões de uma resposta usando regra e referência indep
 
 **Fluxo:** resposta → extração estruturada → comparação numérica Python → avaliação lógica com fontes → relatórios e conferência.
 
-### [Projeto final — Auto Super Parts CWB: fase 1](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final/)
+### [Projeto final — Auto Super Parts CWB: fases 1 e 2](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final/)
 
 Extrair intenção, veículo, peça, quantidade e CEP de uma mensagem, mantendo dados
 ausentes desconhecidos e produzindo JSON validado com as pendências necessárias.
@@ -227,7 +227,14 @@ ausentes desconhecidos e produzindo JSON validado com as pendências necessária
   locais e saídas simuladas são identificados separadamente das chamadas reais.
 
 **Fluxo:** mensagem → template → LLM → parser/BaseModel → JSON ou erro tratado.
-As fases posteriores continuam pendentes.
+A fase 2 acrescenta **agente e ferramentas**: `create_agent` escolhe consultas
+`@tool` ao SQLite e ViaCEP; Python calcula orçamento/frete em centavos com Decimal.
+`BaseModel` valida argumentos e o modo estrito restringe o esquema enviado ao modelo.
+Callbacks e mensagens AI/Tool registram esquema, argumentos e retornos; o notebook
+distingue APIs reais de simulações. Destino sem distância mantém frete/prazo pendentes.
+**Fluxo da fase 2:** mensagem → agente → consulta de catálogo/endereço → cálculo
+determinístico → resposta com evidências e limites. As fases 3–5 continuam pendentes;
+memória entre mensagens e RAG ainda não foram implementados.
 
 ## Conceitos para revisar
 

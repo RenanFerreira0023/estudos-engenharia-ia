@@ -1,0 +1,123 @@
+{
+  "fase": 2,
+  "modelo": "ModeloRoteirizadoFase02",
+  "origem_cep": "transporte_injetado_teste",
+  "mensagem": "Consulte o CEP 84010000 no ViaCEP e calcule 2 unidades do P003 para entrega nesse endereço.",
+  "status": "ok",
+  "resposta": "Demonstração roteirizada: consulte os retornos reais das funções acima. Não houve geração por LLM nem chamada HTTP real.",
+  "trajetoria": [
+    {
+      "tipo": "human",
+      "conteudo": "Consulte o CEP 84010000 no ViaCEP e calcule 2 unidades do P003 para entrega nesse endereço."
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_catalogo",
+          "args": {
+            "produto_id": "P003"
+          },
+          "id": "simulado_0",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"nome\": \"Vela de ignição — Gol (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1850, \"estoque\": 16, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A003\", \"produto_id\": \"P003\", \"veiculo_id\": \"V001\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P003\", \"P003\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P003\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}",
+      "ferramenta": "consultar_catalogo",
+      "tool_call_id": "simulado_0"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_cep",
+          "args": {
+            "cep": "84010000"
+          },
+          "id": "simulado_1",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"origem\": \"transporte_injetado_teste\", \"cep\": \"84010000\", \"endereco\": {\"cep\": \"84010-000\", \"logradouro\": \"Rua ficticia para teste\", \"complemento\": null, \"bairro\": null, \"localidade\": \"Ponta Grossa\", \"uf\": \"PR\", \"ibge\": null}, \"tentativa_http_real\": false, \"url\": \"https://viacep.com.br/ws/84010000/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}",
+      "ferramenta": "consultar_cep",
+      "tool_call_id": "simulado_1"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "calcular_orcamento",
+          "args": {
+            "itens": [
+              {
+                "produto_id": "P003",
+                "quantidade": 2
+              }
+            ],
+            "modalidade": "entrega",
+            "municipio": "Ponta Grossa",
+            "uf": "PR"
+          },
+          "id": "simulado_2",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"itens\": [{\"produto_id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"quantidade\": 2, \"preco_unitario_centavos\": 1850, \"estoque_consultado\": 16}], \"subtotal_centavos\": 3700, \"frete_centavos\": 531, \"total_centavos\": 4231, \"prazo_dias_uteis\": 4, \"distancia_km_simulada\": 120, \"pendencias\": [\"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"parcial\"}",
+      "ferramenta": "calcular_orcamento",
+      "tool_call_id": "simulado_2"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "Demonstração roteirizada: consulte os retornos reais das funções acima. Não houve geração por LLM nem chamada HTTP real.",
+      "tool_calls": []
+    }
+  ],
+  "eventos_ferramentas": [
+    {
+      "evento": "inicio",
+      "run_id": "01a19e36-cd06-7191-beaa-a5192a0d0490",
+      "ferramenta": "consultar_catalogo",
+      "entrada": "{'produto_id': 'P003'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a19e36-cd06-7191-beaa-a5192a0d0490",
+      "observado": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"nome\": \"Vela de ignição — Gol (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1850, \"estoque\": 16, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A003\", \"produto_id\": \"P003\", \"veiculo_id\": \"V001\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P003\", \"P003\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P003\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a19e36-cd09-7f71-b92a-9fe5f2595233",
+      "ferramenta": "consultar_cep",
+      "entrada": "{'cep': '84010000'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a19e36-cd09-7f71-b92a-9fe5f2595233",
+      "observado": "{\"origem\": \"transporte_injetado_teste\", \"cep\": \"84010000\", \"endereco\": {\"cep\": \"84010-000\", \"logradouro\": \"Rua ficticia para teste\", \"complemento\": null, \"bairro\": null, \"localidade\": \"Ponta Grossa\", \"uf\": \"PR\", \"ibge\": null}, \"tentativa_http_real\": false, \"url\": \"https://viacep.com.br/ws/84010000/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a19e36-cd0c-7db1-8baa-12585b726e01",
+      "ferramenta": "calcular_orcamento",
+      "entrada": "{'itens': [{'produto_id': 'P003', 'quantidade': 2}], 'modalidade': 'entrega', 'municipio': 'Ponta Grossa', 'uf': 'PR'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a19e36-cd0c-7db1-8baa-12585b726e01",
+      "observado": "{\"itens\": [{\"produto_id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"quantidade\": 2, \"preco_unitario_centavos\": 1850, \"estoque_consultado\": 16}], \"subtotal_centavos\": 3700, \"frete_centavos\": 531, \"total_centavos\": 4231, \"prazo_dias_uteis\": 4, \"distancia_km_simulada\": 120, \"pendencias\": [\"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"parcial\"}"
+    }
+  ],
+  "esquemas_modelo": []
+}

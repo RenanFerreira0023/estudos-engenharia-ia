@@ -1,0 +1,284 @@
+{
+  "fase": 2,
+  "protegidos": {
+    "04_avaliacao_e_evidencias/resultados/fase01_cli_assistida_20261102T190918839535Z.json": "73c57642dd73ea69d6cee8d0f22edb9054444f845da8848277cfa9ab6a19d0c6",
+    "04_avaliacao_e_evidencias/resultados/fase01_limpeza_caches_20261102.json": "1e2457ae9815b47b7a53fcb1fa5a7878dc29e91496598c5edeb3c9aa38eead19",
+    "04_avaliacao_e_evidencias/resultados/fase01_notebook_antes_portabilidade_20261102T192139249104Z.ipynb": "a755c79008bf09fa58f50b2e0ac175f7e11b4b2864c5b1cdc2c7f4ecd5c9b29e",
+    "04_avaliacao_e_evidencias/resultados/fase01_notebook_falha_20261102T182925372708Z.ipynb": "b65d3182daf11edf94fc626d82b79c5dcc8ecf598ec3b490cdba4a90e464e772",
+    "04_avaliacao_e_evidencias/resultados/fase01_notebook_falha_20261102T183028145138Z.ipynb": "ad36ecd80be7b21ebb97ee15f062dfa5d4d51ebf8f0c3ca4b2eceb7f93d45709",
+    "04_avaliacao_e_evidencias/resultados/fase01_notebook_falha_20261102T183140960427Z.ipynb": "2e608693059e3ad26aecd029008902e71294dab1fc94a0a4ae3f195fec4ab75b",
+    "04_avaliacao_e_evidencias/resultados/fase01_notebook_falha_20261102T183232257633Z.ipynb": "eaf83e40e8d00e8d80ecd1dcdcdb34851f3ed65e1e71103788fb102ddcf45d80",
+    "04_avaliacao_e_evidencias/resultados/fase01_notebook_reproducao_simulada.ipynb": "486cf5d41b911f4002fdddddf511b1669cd60b63686c4ce9c42dfa106ca21dc9",
+    "04_avaliacao_e_evidencias/resultados/fase01_notebook_simulado.ipynb": "d7c4a66055caa4c9fef464d75a0934011c80c56bc896f7f4dd3012d83623cc75",
+    "04_avaliacao_e_evidencias/resultados/fase01_portabilidade_baseline_20261102T192139249104Z.json": "3522ce714a08bd6224e7b5f68b5f06307d10a2cba3f338701cb40f80839de63a",
+    "04_avaliacao_e_evidencias/resultados/fase01_real_20261102T183027241397Z.json": "b22f34d3128389c487735387b2dab9fdb15c55048129e7dc6c4acd0de8109f4d",
+    "04_avaliacao_e_evidencias/resultados/fase01_real_20261102T183140100401Z.json": "9eb5e562fb63cbe4d1cfa11ab16cc916408ec13f7c5eaa2acbba10d00ebc659a",
+    "04_avaliacao_e_evidencias/resultados/fase01_real_20261102T183231362697Z.json": "7e5c207d8ce2c0c52f1dc5a78e796b001ae5b7754836061cc6f075b0a437192d",
+    "04_avaliacao_e_evidencias/resultados/fase01_real_20261102T183637172353Z.json": "bcaacf658825b9fcae3b030349111940c8fc363ac94e302aef9c0ee1647ae6ca",
+    "04_avaliacao_e_evidencias/resultados/fase01_reproducao_preparacao_20261102.json": "3f8c72951bbf3bd0a3733f994df1399ce4aba2851c123e688fe1d89a5fd35da7",
+    "04_avaliacao_e_evidencias/resultados/fase01_reproducao_preparacao_20261102T192943505182Z.json": "9d5133cd6fca758820db64c2bc2cf18813500935a1cb4b2bc0a8ee4ac93afb08",
+    "04_avaliacao_e_evidencias/resultados/fase01_reproducao_verificacoes_20261102T193213355049Z.json": "a1987267600d9ff743364992c9f67d27d96f3176cfd0f05755960912717183b8",
+    "04_avaliacao_e_evidencias/resultados/fase01_simulado_20261102T182951808434Z.json": "2e3117feae809c0f9609303f4b4a33f92672f9458589f3b7c4324bd6ea8ae2a8",
+    "04_avaliacao_e_evidencias/resultados/fase01_simulado_20261102T193212765856Z.json": "0a5642a9ffaff82a98ceedd2edf606761574b963e5c66b00c357970ac82611a7",
+    "04_avaliacao_e_evidencias/resultados/fase01_unittest_20261102T182923883162Z.json": "7379c6b29e5ebfb9d58b8758cedc11184b1e80427b1b6e6ccb069a10228aa899",
+    "04_avaliacao_e_evidencias/resultados/fase01_unittest_20261102T183133912830Z.json": "8b8fd26a8144f906dc40808512116675dc324c41074b11d88f04bd84b8fb82e1",
+    "04_avaliacao_e_evidencias/resultados/fase01_unittest_20261102T183654122935Z.json": "0fd43126a113ad5e175feea0f7ccf7eb9d210bc3fb612ff3f1e988a14110b495",
+    "04_avaliacao_e_evidencias/resultados/fase01_unittest_20261102T184221907393Z.json": "a374af5fc56721360f4a59bbc2303596603f76ba6967eaa68b7008e1d6a2482a",
+    "04_avaliacao_e_evidencias/resultados/fase01_unittest_20261102T184419294226Z.json": "d477b22e752ce0f50b5cc80689ea6b16b12fbf249ccc7d9cfafad80500a9049a",
+    "04_avaliacao_e_evidencias/resultados/fase01_unittest_20261102T192222601648Z.json": "b87912ce6456ebbc7bd7d6154c3d14cdcc433d847113d75e1dab216ee69e6515",
+    "04_avaliacao_e_evidencias/resultados/fase01_unittest_20261102T193154319783Z.json": "39cfd47034c43452030683f1457803ce32083a7b1573fcfe1fad3b039930cb99",
+    "04_avaliacao_e_evidencias/resultados/fase01_unittest_20261102T195527160634Z.json": "9b5c25567fc694925ecfdc9ca29a74c7c100525c2dbcf9570e2d1b46fb54ce52",
+    "04_avaliacao_e_evidencias/resultados/fase01_verificacao_entrega_20261102.json": "a90a6ead058a6cdbd4bfc7d5542ab681b8621d8da4e1b29106dde72b2b3301f5",
+    "04_avaliacao_e_evidencias/resultados/fase02_20261102T195545525455Z.json": "f35a480e01f9569f9839b646ca39666e5cbfaf5fc1cdea1bb3df8521df68995e",
+    "04_avaliacao_e_evidencias/resultados/fase02_20261102T195600917176Z.json": "288d3f92005413b570de688ba0d4b9de475f95cf71f8e1f260815e4fc33f8391",
+    "04_avaliacao_e_evidencias/resultados/fase02_20261102T195701244602Z.json": "fb77a2b88e5f43421853971c072a51cecf16e7dfcaa5c2c34612f62f53770011",
+    "04_avaliacao_e_evidencias/resultados/fase02_20261102T195710884100Z.json": "b47826d51155e321b8ec9879a326af09db173ac202b8abc74495bb0c38f7ff71",
+    "04_avaliacao_e_evidencias/resultados/fase02_auditoria_20261102T195745465290Z.json": "224b07195b4fec312a2bd6ea94605fce15432440d5f3eb885e80404fb1d16b05",
+    "04_avaliacao_e_evidencias/resultados/fase02_baseline_20261102T194601191095Z.json": "f5e3c6fa01d8ebf771028a9332c896838a350dda2f8dd1bc991329192e7b9897",
+    "04_avaliacao_e_evidencias/resultados/fase02_revisao_20261102.md": "1b1722132b798cf77b567227a936609da142480fa322981e95ffa60c583eed28",
+    "04_avaliacao_e_evidencias/resultados/fase02_verificacoes_locais_20261102T195646603397Z.json": "a82e192e3ad5174423d607486b23db8c48cde6f9bf65065c9ae4643e64472d01",
+    "04_avaliacao_e_evidencias/resultados/ORIENTACAO.md": "c26b8e27d45d563633f894bd77efd56b558ab5f74d0c39ce708eace19ccaf916",
+    "04_avaliacao_e_evidencias/resultados/REPRODUCAO_FASE_01.md": "f232cb41f8170d5dbcf810411d217351d927b1f38b057f6eb61a9c23d11d148c",
+    "04_avaliacao_e_evidencias/resultados/RESULTADOS_FASE_01.md": "6a3b035d1031de137f666738a83dd014a2edf60fcf69863929ed88c3c6db464c",
+    "04_avaliacao_e_evidencias/resultados/TESTES_MANUAIS_FASE_01.md": "f6dc6a68d3ea7a28f1490dd78f330affcee1def4d7ca213bec0092d84b22bd46",
+    "03_notebooks/fase_01_chain_inicial.ipynb": "2fccaca789b075f21f986682aed9d2106812175bcf0e6f28ef8a4ac1e34dbb24",
+    "02_codigo/dados/aplicacoes.json": "c0e6765682412e335bfefba4c2ab43a95b837f6acb11e16bab2ef134e7b849aa",
+    "02_codigo/dados/catalogo_auto_super_parts_cwb.json": "489f3030572fc6f467abfdb9e0b2669b5c800445961919ee066cc50f50972123",
+    "02_codigo/dados/conhecimento_tecnico.json": "245c60afa0bf1a66d76ab265939cf8a8f7e1960a6676948f07109b1f5a3db6d8",
+    "02_codigo/dados/contratos.json": "48954ddbc243a268380e4c98f67078c3a9d3b3b5a7b0d8c1db3e51cf1d16429a",
+    "02_codigo/dados/distancias_simuladas.json": "ccc6e3ca8556cc7f769ca52d016cb21dd6cd18e86cf43f66014387fcbec76d9e",
+    "02_codigo/dados/fontes.json": "2a0f2ef0099fe5ae0227d528b01fea57dfd7ff06db30570a5bd01b243e8f6fac",
+    "02_codigo/dados/loja_regras.json": "3ecfb9d2945f12bf31c908b619cb9a1b98c597dc564b577df6c3993a8f517687",
+    "02_codigo/dados/produtos.json": "22d076d23951794982603f6d65cebc7bf38f0bbeb4ca0d9f75d10c6f6a39eb90",
+    "02_codigo/dados/veiculos.json": "7f16e4511524df5ba245df4fb7d6db10513a6fa1886e8320d753dc65484ea2d7",
+    "02_codigo/src/auto_super_parts/chain_inicial.py": "43a33ea3f1d22301e7c7eadfd26869fff6315e1edfc283b74c9cbaba0cd85099",
+    "02_codigo/src/auto_super_parts/schemas.py": "5e62a4a9ca19ac7340c3e52a2123c4d4cee86e5dd95ada9073a7dde75517e5c3",
+    "02_codigo/src/auto_super_parts/prompts.py": "03c86593f49f71ee7ef4b82503729b1ec01917e775f631f24da48a8f9b645480",
+    "02_codigo/src/auto_super_parts/configuracao.py": "b65419ce87c1ac41d5bf5e65a95ef084f13316ea020a6c415e477bf4a5e9cd97",
+    "02_codigo/src/auto_super_parts/demonstracao_fase01.py": "1c6cf32971241993056068a0721be0f2b07b6209d611ebd9ec08b4a7c13595ad",
+    "03_notebooks/fase_03_memoria.ipynb": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "03_notebooks/fase_04_consultas_rag.ipynb": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "03_notebooks/fase_05_integracao_avaliacao.ipynb": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "pydantic": {
+    "$defs": {
+      "ItemOrcamento": {
+        "additionalProperties": false,
+        "properties": {
+          "produto_id": {
+            "description": "ID ou SKU retornado pela consulta do catálogo.",
+            "minLength": 1,
+            "title": "Produto Id",
+            "type": "string"
+          },
+          "quantidade": {
+            "description": "Unidades inteiras positivas explicitamente solicitadas.",
+            "exclusiveMinimum": 0,
+            "title": "Quantidade",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "produto_id",
+          "quantidade"
+        ],
+        "title": "ItemOrcamento",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "itens": {
+        "items": {
+          "$ref": "#/$defs/ItemOrcamento"
+        },
+        "minItems": 1,
+        "title": "Itens",
+        "type": "array"
+      },
+      "modalidade": {
+        "enum": [
+          "retirada",
+          "entrega"
+        ],
+        "title": "Modalidade",
+        "type": "string"
+      },
+      "municipio": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Municipio"
+      },
+      "uf": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Uf"
+      }
+    },
+    "required": [
+      "itens",
+      "modalidade"
+    ],
+    "title": "EntradaOrcamento",
+    "type": "object"
+  },
+  "openai_antes": [
+    {
+      "type": "function",
+      "function": {
+        "name": "listar_veiculos",
+        "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+        "parameters": {
+          "properties": {},
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "consultar_catalogo",
+        "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+        "parameters": {
+          "properties": {
+            "produto_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "veiculo_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "categoria": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "consultar_cep",
+        "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+        "parameters": {
+          "properties": {
+            "cep": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "cep"
+          ],
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calcular_orcamento",
+        "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+        "parameters": {
+          "properties": {
+            "itens": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "produto_id": {
+                    "description": "ID ou SKU retornado pela consulta do catálogo.",
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "quantidade": {
+                    "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                    "exclusiveMinimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "produto_id",
+                  "quantidade"
+                ],
+                "type": "object"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "modalidade": {
+              "enum": [
+                "retirada",
+                "entrega"
+              ],
+              "type": "string"
+            },
+            "municipio": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "uf": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "itens",
+            "modalidade"
+          ],
+          "type": "object"
+        }
+      }
+    }
+  ]
+}

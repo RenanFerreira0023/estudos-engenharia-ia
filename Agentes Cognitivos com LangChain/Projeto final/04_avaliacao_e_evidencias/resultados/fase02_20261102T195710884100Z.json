@@ -1,0 +1,52 @@
+{
+  "fase": 2,
+  "modelo": "OpenAI/gpt-4o-mini",
+  "origem_cep": "viacep_real",
+  "mensagem": "Quero 1 unidade do P023 para retirada. Tem estoque?",
+  "status": "ok",
+  "resposta": "O produto \"Correia em V do alternador/dínamo — Fusca\" (SKU: CWB-SIM-P023) está com estoque zero no momento. Isso significa que, embora o produto exista, não há unidades disponíveis para retirada.\n\nSe precisar de mais informações ou de outro produto, estou à disposição!",
+  "trajetoria": [
+    {
+      "tipo": "human",
+      "conteudo": "Quero 1 unidade do P023 para retirada. Tem estoque?"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_catalogo",
+          "args": {
+            "produto_id": "P023"
+          },
+          "id": "call_ERx8i63vE8xyRTKGl6SJKTHc",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P023\", \"sku\": \"CWB-SIM-P023\", \"nome\": \"Correia em V do alternador/dínamo — Fusca (simulação)\", \"categoria\": \"correia_acessorios\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 2990, \"estoque\": 0, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A023\", \"produto_id\": \"P023\", \"veiculo_id\": \"V004\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P023\", \"P023\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P023\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}",
+      "ferramenta": "consultar_catalogo",
+      "tool_call_id": "call_ERx8i63vE8xyRTKGl6SJKTHc"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "O produto \"Correia em V do alternador/dínamo — Fusca\" (SKU: CWB-SIM-P023) está com estoque zero no momento. Isso significa que, embora o produto exista, não há unidades disponíveis para retirada.\n\nSe precisar de mais informações ou de outro produto, estou à disposição!",
+      "tool_calls": []
+    }
+  ],
+  "eventos_ferramentas": [
+    {
+      "evento": "inicio",
+      "run_id": "01a19dd6-4b09-7562-b01f-3ee6a5e74db4",
+      "ferramenta": "consultar_catalogo",
+      "entrada": "{'produto_id': 'P023'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a19dd6-4b09-7562-b01f-3ee6a5e74db4",
+      "observado": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P023\", \"sku\": \"CWB-SIM-P023\", \"nome\": \"Correia em V do alternador/dínamo — Fusca (simulação)\", \"categoria\": \"correia_acessorios\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 2990, \"estoque\": 0, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A023\", \"produto_id\": \"P023\", \"veiculo_id\": \"V004\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P023\", \"P023\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P023\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}"
+    }
+  ]
+}

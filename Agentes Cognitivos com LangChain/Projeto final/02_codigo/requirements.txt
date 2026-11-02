@@ -1,7 +1,10 @@
 langchain-core==1.7.0
+langchain==1.4.7
+langgraph==1.2.17
 langchain-openai==1.7.0
 pydantic==2.14.0
 python-dotenv==1.2.4
+httpx==0.28.1
 nbformat==5.11.1
 nbclient==0.11.0
 ipykernel==7.4.0

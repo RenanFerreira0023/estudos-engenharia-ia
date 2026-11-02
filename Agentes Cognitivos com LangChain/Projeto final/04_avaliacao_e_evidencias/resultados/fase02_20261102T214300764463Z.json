@@ -1,0 +1,286 @@
+{
+  "fase": 2,
+  "modelo": "OpenAI/gpt-4o-mini",
+  "origem_cep": "viacep_real",
+  "mensagem": "Consulte o CEP 01001000 no ViaCEP e calcule 2 unidades do P003 para entrega nesse endereço. Se faltar distância cadastrada, informe a pendência.",
+  "status": "ok",
+  "resposta": "O CEP 01001000 corresponde ao seguinte endereço:\n\n- **Logradouro:** Praça da Sé\n- **Bairro:** Sé\n- **Localidade:** São Paulo\n- **UF:** SP\n\nConsultei o produto com o código P003, que é uma **Vela de ignição — Gol (simulação)**, com as seguintes informações:\n\n- **Preço unitário:** R$ 18,50\n- **Estoque disponível:** 16 unidades\n\nPara o orçamento de 2 unidades desse produto, o subtotal é de R$ 37,00. No entanto, não foi possível calcular o frete e o total, pois a cidade/UF não possui distância cadastrada para entrega.\n\nSe precisar de mais informações ou quiser consultar outro produto, estou à disposição!",
+  "trajetoria": [
+    {
+      "tipo": "human",
+      "conteudo": "Consulte o CEP 01001000 no ViaCEP e calcule 2 unidades do P003 para entrega nesse endereço. Se faltar distância cadastrada, informe a pendência."
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_cep",
+          "args": {
+            "cep": "01001000"
+          },
+          "id": "call_TmITz09evqVYecgpJj7vk2VI",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"origem\": \"viacep_real\", \"cep\": \"01001000\", \"endereco\": {\"cep\": \"01001-000\", \"logradouro\": \"Praça da Sé\", \"complemento\": \"lado ímpar\", \"bairro\": \"Sé\", \"localidade\": \"São Paulo\", \"uf\": \"SP\", \"ibge\": \"3550308\"}, \"tentativa_http_real\": true, \"url\": \"https://viacep.com.br/ws/01001000/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}",
+      "ferramenta": "consultar_cep",
+      "tool_call_id": "call_TmITz09evqVYecgpJj7vk2VI"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_catalogo",
+          "args": {
+            "produto_id": "P003",
+            "veiculo_id": null,
+            "categoria": null
+          },
+          "id": "call_qxW1dZopebk6KZ94Ck6mmXpN",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"nome\": \"Vela de ignição — Gol (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1850, \"estoque\": 16, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A003\", \"produto_id\": \"P003\", \"veiculo_id\": \"V001\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P003\", \"P003\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P003\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}",
+      "ferramenta": "consultar_catalogo",
+      "tool_call_id": "call_qxW1dZopebk6KZ94Ck6mmXpN"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "calcular_orcamento",
+          "args": {
+            "itens": [
+              {
+                "produto_id": "P003",
+                "quantidade": 2
+              }
+            ],
+            "modalidade": "entrega",
+            "municipio": "São Paulo",
+            "uf": "SP"
+          },
+          "id": "call_xQsZCjc3J5I6F4yO6LKwXC6X",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"itens\": [{\"produto_id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"quantidade\": 2, \"preco_unitario_centavos\": 1850, \"estoque_consultado\": 16}], \"subtotal_centavos\": 3700, \"frete_centavos\": null, \"total_centavos\": null, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [\"Cidade/UF sem distância simulada cadastrada; sem cotação automática de frete/total com entrega.\"], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"cotacao_entrega_pendente\"}",
+      "ferramenta": "calcular_orcamento",
+      "tool_call_id": "call_xQsZCjc3J5I6F4yO6LKwXC6X"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "O CEP 01001000 corresponde ao seguinte endereço:\n\n- **Logradouro:** Praça da Sé\n- **Bairro:** Sé\n- **Localidade:** São Paulo\n- **UF:** SP\n\nConsultei o produto com o código P003, que é uma **Vela de ignição — Gol (simulação)**, com as seguintes informações:\n\n- **Preço unitário:** R$ 18,50\n- **Estoque disponível:** 16 unidades\n\nPara o orçamento de 2 unidades desse produto, o subtotal é de R$ 37,00. No entanto, não foi possível calcular o frete e o total, pois a cidade/UF não possui distância cadastrada para entrega.\n\nSe precisar de mais informações ou quiser consultar outro produto, estou à disposição!",
+      "tool_calls": []
+    }
+  ],
+  "eventos_ferramentas": [
+    {
+      "evento": "inicio",
+      "run_id": "01a19e37-2045-7753-a1d9-da37b6c06343",
+      "ferramenta": "consultar_cep",
+      "entrada": "{'cep': '01001000'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a19e37-2045-7753-a1d9-da37b6c06343",
+      "observado": "{\"origem\": \"viacep_real\", \"cep\": \"01001000\", \"endereco\": {\"cep\": \"01001-000\", \"logradouro\": \"Praça da Sé\", \"complemento\": \"lado ímpar\", \"bairro\": \"Sé\", \"localidade\": \"São Paulo\", \"uf\": \"SP\", \"ibge\": \"3550308\"}, \"tentativa_http_real\": true, \"url\": \"https://viacep.com.br/ws/01001000/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a19e37-24e1-7312-89b7-c0bfb76cb8b3",
+      "ferramenta": "consultar_catalogo",
+      "entrada": "{'produto_id': 'P003', 'veiculo_id': None, 'categoria': None}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a19e37-24e1-7312-89b7-c0bfb76cb8b3",
+      "observado": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"nome\": \"Vela de ignição — Gol (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1850, \"estoque\": 16, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A003\", \"produto_id\": \"P003\", \"veiculo_id\": \"V001\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P003\", \"P003\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P003\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a19e37-28e5-7be1-9a57-efd8379f736d",
+      "ferramenta": "calcular_orcamento",
+      "entrada": "{'itens': [{'produto_id': 'P003', 'quantidade': 2}], 'modalidade': 'entrega', 'municipio': 'São Paulo', 'uf': 'SP'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a19e37-28e5-7be1-9a57-efd8379f736d",
+      "observado": "{\"itens\": [{\"produto_id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"quantidade\": 2, \"preco_unitario_centavos\": 1850, \"estoque_consultado\": 16}], \"subtotal_centavos\": 3700, \"frete_centavos\": null, \"total_centavos\": null, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [\"Cidade/UF sem distância simulada cadastrada; sem cotação automática de frete/total com entrega.\"], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"cotacao_entrega_pendente\"}"
+    }
+  ],
+  "esquemas_modelo": [
+    [
+      {
+        "type": "function",
+        "function": {
+          "name": "listar_veiculos",
+          "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+          "parameters": {
+            "properties": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo",
+          "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+          "parameters": {
+            "properties": {
+              "produto_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "veiculo_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "categoria": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object",
+            "required": [
+              "produto_id",
+              "veiculo_id",
+              "categoria"
+            ],
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_cep",
+          "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+          "parameters": {
+            "properties": {
+              "cep": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cep"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "calcular_orcamento",
+          "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+          "parameters": {
+            "properties": {
+              "itens": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "produto_id": {
+                      "description": "ID ou SKU retornado pela consulta do catálogo.",
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "quantidade": {
+                      "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                      "exclusiveMinimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "produto_id",
+                    "quantidade"
+                  ],
+                  "type": "object"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "modalidade": {
+                "enum": [
+                  "retirada",
+                  "entrega"
+                ],
+                "type": "string"
+              },
+              "municipio": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "uf": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "itens",
+              "modalidade",
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      }
+    ]
+  ]
+}

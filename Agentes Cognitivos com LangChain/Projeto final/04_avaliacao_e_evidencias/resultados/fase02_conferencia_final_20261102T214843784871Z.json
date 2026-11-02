@@ -1,0 +1,39 @@
+{
+  "fase": 2,
+  "operacao": "conferencia final de preservacao e entrega",
+  "arquivos_protegidos": 58,
+  "protegidos_alterados": [],
+  "py_compile_arquivos": 18,
+  "links_locais_inexistentes": [],
+  "chave_detectada_em_arquivo_entregavel": false,
+  "caches_no_projeto": [],
+  "notebooks": {
+    "fase_02_agente_ferramentas.ipynb": {
+      "celulas_codigo": 7,
+      "contagens": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "erros": 0
+    }
+  },
+  "fases_3_a_5": [
+    {
+      "arquivo": "fase_03_memoria.ipynb",
+      "bytes": 0
+    },
+    {
+      "arquivo": "fase_04_consultas_rag.ipynb",
+      "bytes": 0
+    },
+    {
+      "arquivo": "fase_05_integracao_avaliacao.ipynb",
+      "bytes": 0
+    }
+  ]
+}

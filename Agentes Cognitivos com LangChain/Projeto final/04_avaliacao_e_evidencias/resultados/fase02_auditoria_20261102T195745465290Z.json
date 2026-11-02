@@ -1,0 +1,14 @@
+{
+  "fase": 2,
+  "verificacao": "preservacao, sintaxe e abertura CLI interativa",
+  "arquivos_protegidos": 46,
+  "arquivos_protegidos_alterados": [],
+  "arquivos_python_compilados": 11,
+  "cli_interativa": {
+    "entrada": "/sair",
+    "exit_code": 0,
+    "stdout": "[estudo] create_agent escolhe ferramentas @tool; SQLite fornece dados simulados e Python calcula centavos.\n[estudo] consultar_cep usa HTTPS real; retorno não contém distância/frete. Cada mensagem é independente nesta fase.\n\nMensagem (Enter ou /sair encerra): ",
+    "stderr": ""
+  },
+  "notebook_fase02_bytes": 0
+}

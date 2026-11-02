@@ -1,0 +1,89 @@
+{
+  "fase": 2,
+  "modelo": "OpenAI/gpt-4o-mini",
+  "origem_cep": "viacep_real",
+  "mensagem": "Quero 2 unidades do P003 para retirada. Consulte preço e estoque e calcule o orçamento.",
+  "status": "ok",
+  "resposta": "O orçamento para 2 unidades da **Vela de ignição — Gol (simulação)** (SKU: CWB-SIM-P003) é o seguinte:\n\n- **Preço unitário:** R$ 18,50\n- **Subtotal:** R$ 37,00\n- **Frete:** R$ 0,00 (retirada)\n- **Total:** R$ 37,00\n\nO estoque disponível é de 16 unidades. Este orçamento é uma simulação acadêmica e não envolve reserva ou pagamento. Se precisar de mais alguma informação, estou à disposição!",
+  "trajetoria": [
+    {
+      "tipo": "human",
+      "conteudo": "Quero 2 unidades do P003 para retirada. Consulte preço e estoque e calcule o orçamento."
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_catalogo",
+          "args": {
+            "produto_id": "P003"
+          },
+          "id": "call_5c1eK7c71CmvKPQTpQjJyYot",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"nome\": \"Vela de ignição — Gol (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1850, \"estoque\": 16, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A003\", \"produto_id\": \"P003\", \"veiculo_id\": \"V001\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P003\", \"P003\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P003\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}",
+      "ferramenta": "consultar_catalogo",
+      "tool_call_id": "call_5c1eK7c71CmvKPQTpQjJyYot"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "calcular_orcamento",
+          "args": {
+            "itens": [
+              {
+                "produto_id": "P003",
+                "quantidade": 2
+              }
+            ],
+            "modalidade": "retirada"
+          },
+          "id": "call_hQgr4fzwtwcpGvFBKwifmyUN",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"itens\": [{\"produto_id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"quantidade\": 2, \"preco_unitario_centavos\": 1850, \"estoque_consultado\": 16}], \"subtotal_centavos\": 3700, \"frete_centavos\": 0, \"total_centavos\": 3700, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"ok\"}",
+      "ferramenta": "calcular_orcamento",
+      "tool_call_id": "call_hQgr4fzwtwcpGvFBKwifmyUN"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "O orçamento para 2 unidades da **Vela de ignição — Gol (simulação)** (SKU: CWB-SIM-P003) é o seguinte:\n\n- **Preço unitário:** R$ 18,50\n- **Subtotal:** R$ 37,00\n- **Frete:** R$ 0,00 (retirada)\n- **Total:** R$ 37,00\n\nO estoque disponível é de 16 unidades. Este orçamento é uma simulação acadêmica e não envolve reserva ou pagamento. Se precisar de mais alguma informação, estou à disposição!",
+      "tool_calls": []
+    }
+  ],
+  "eventos_ferramentas": [
+    {
+      "evento": "inicio",
+      "run_id": "01a19dd5-3377-7020-8b81-469fff5eef68",
+      "ferramenta": "consultar_catalogo",
+      "entrada": "{'produto_id': 'P003'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a19dd5-3377-7020-8b81-469fff5eef68",
+      "observado": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"nome\": \"Vela de ignição — Gol (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1850, \"estoque\": 16, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A003\", \"produto_id\": \"P003\", \"veiculo_id\": \"V001\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P003\", \"P003\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P003\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a19dd5-38ed-7d21-953d-ea08d9a00f78",
+      "ferramenta": "calcular_orcamento",
+      "entrada": "{'itens': [{'produto_id': 'P003', 'quantidade': 2}], 'modalidade': 'retirada'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a19dd5-38ed-7d21-953d-ea08d9a00f78",
+      "observado": "{\"itens\": [{\"produto_id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"quantidade\": 2, \"preco_unitario_centavos\": 1850, \"estoque_consultado\": 16}], \"subtotal_centavos\": 3700, \"frete_centavos\": 0, \"total_centavos\": 3700, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"ok\"}"
+    }
+  ]
+}

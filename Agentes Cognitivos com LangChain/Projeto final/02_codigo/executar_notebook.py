@@ -12,22 +12,24 @@ from jupyter_client.kernelspec import KernelSpecManager
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Executa apenas o notebook da fase 1, em kernel novo.")
+    parser = argparse.ArgumentParser(description="Executa o notebook da fase selecionada em kernel novo.")
+    parser.add_argument("--fase", choices=("1", "2"), default="1")
     parser.add_argument("--modo", choices=("real", "simulado"), default="real")
-    parser.add_argument("--saida", type=Path, help="Destino opcional; por padrão atualiza o notebook da fase 1.")
+    parser.add_argument("--saida", type=Path, help="Destino opcional; por padrão atualiza o notebook da fase selecionada.")
     parser.add_argument("--kernel", default="auto-super-parts-fase01", help="Nome registrado do kernel (padrão: auto-super-parts-fase01).")
     args = parser.parse_args()
     projeto = Path(__file__).resolve().parent.parent
-    origem = projeto / "03_notebooks/fase_01_chain_inicial.ipynb"
+    nome_notebook = "fase_01_chain_inicial.ipynb" if args.fase == "1" else "fase_02_agente_ferramentas.ipynb"
+    origem = projeto / "03_notebooks" / nome_notebook
     notebook = nbformat.read(origem, as_version=4)
     # KERNEL NOVO e limpeza de saídas evitam aproveitar variáveis ou resultados de execução anterior.
     for celula in notebook.cells:
         if celula.cell_type == "code":
             celula.outputs = []
             celula.execution_count = None
-    ambiente = {**os.environ, "FASE01_MODO": args.modo}
+    ambiente = {**os.environ, f"FASE0{args.fase}_MODO": args.modo, "PYTHONDONTWRITEBYTECODE": "1"}
     try:
-        with tempfile.TemporaryDirectory(prefix="fase01_jupyter_") as temporario:
+        with tempfile.TemporaryDirectory(prefix=f"fase0{args.fase}_jupyter_") as temporario:
             ambiente["JUPYTER_RUNTIME_DIR"] = temporario
             ambiente["IPYTHONDIR"] = temporario
             # KERNEL da .venv atual tem preferência sobre registros globais com o mesmo nome.
@@ -40,7 +42,7 @@ def main():
             cliente.execute(env=ambiente, cleanup_kc=True)
     except Exception as erro:
         # Notebook parcial de falha fica separado; nunca substitui evidência anterior de sucesso.
-        nome = f"fase01_notebook_falha_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')}.ipynb"
+        nome = f"fase0{args.fase}_notebook_falha_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')}.ipynb"
         destino = projeto / "04_avaliacao_e_evidencias/resultados" / nome
         nbformat.write(notebook, destino)
         print(f"Falha ({type(erro).__name__}); execução parcial preservada em {destino.name}.")

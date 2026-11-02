@@ -1,0 +1,29 @@
+{
+  "entrada_invalida": {
+    "origem": "transporte_injetado_teste",
+    "cep": "123",
+    "endereco": null,
+    "tentativa_http_real": false,
+    "status": "cep_invalido",
+    "pendencias": [
+      "Informe CEP com oito dígitos."
+    ]
+  },
+  "nao_encontrado_simulado": {
+    "origem": "transporte_injetado_teste",
+    "cep": "99999999",
+    "endereco": null,
+    "tentativa_http_real": false,
+    "url": "https://viacep.com.br/ws/99999999/json/",
+    "codigo_http": 200,
+    "status": "cep_nao_encontrado"
+  },
+  "timeout_simulado": {
+    "origem": "transporte_injetado_teste",
+    "cep": "01001000",
+    "endereco": null,
+    "tentativa_http_real": false,
+    "url": "https://viacep.com.br/ws/01001000/json/",
+    "status": "timeout"
+  }
+}

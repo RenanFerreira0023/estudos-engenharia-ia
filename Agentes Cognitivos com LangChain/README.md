@@ -21,6 +21,7 @@ explica os conceitos e o fluxo de cada projeto.
 | 28-10 | Atendimento com duas fontes e memória | SQLDatabaseToolkit, retriever documental, create_agent, MemorySaver/thread_id e recorte da trajetória após a última HumanMessage. |
 | 28-10 | Auditor de frete | Extração estruturada de afirmações, comparação Python com Decimal/tolerância, avaliação lógica fundamentada e relatórios separados. |
 | Projeto final — fase 1 | Auto Super Parts CWB | PromptTemplate/ChatPromptTemplate, BaseModel, PydanticOutputParser, composições @chain/LCEL, invoke/batch e notebook importando módulos .py. |
+| Projeto final — fase 2 | Auto Super Parts CWB | create_agent/@tool, SQLite parametrizado, ViaCEP real, cálculo em centavos/Decimal, argumentos validados, modo estrito e auditoria de chamadas/retornos. |
 
 ## Aulas
 
@@ -51,8 +52,10 @@ explica os conceitos e o fluxo de cada projeto.
 
 ## Projeto final
 
-- [Auto Super Parts CWB — fase 1: chain inicial](./Projeto%20final/)
-  - [Notebook demonstrativo](./Projeto%20final/03_notebooks/fase_01_chain_inicial.ipynb)
+- [Auto Super Parts CWB — fases 1 e 2](./Projeto%20final/)
+  - [Fase 1: chain inicial](./Projeto%20final/03_notebooks/fase_01_chain_inicial.ipynb)
+  - [Fase 2: agente, ferramentas e ViaCEP](./Projeto%20final/03_notebooks/fase_02_agente_ferramentas.ipynb)
+  - Na fase 2 o agente escolhe fontes; Python calcula valores e logs mostram a trajetória. Cada mensagem é independente; memória e RAG ficam para fases seguintes.
 
 ## Padrao de organizacao
 
