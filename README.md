@@ -176,6 +176,25 @@ Interpretar dúvidas coloquiais e recuperar políticas sem inventar benefícios 
 
 **Fluxo:** pergunta → reescrita → busca com metadados e scores → conferência de evidência → resposta com fonte ou ausência de informação.
 
+### [Aula 28-10 — Duas fontes e memória de conversa](./Agentes%20Cognitivos%20com%20LangChain/aula%2028-10/)
+
+#### [Atendimento com duas fontes e memória](./Agentes%20Cognitivos%20com%20LangChain/aula%2028-10/Atendimento%20com%20duas%20fontes%20e%20memoria/)
+
+Responder sobre produtos e retirada usando fontes distintas e manter o produto
+identificado entre perguntas da mesma sessão.
+
+- **SQLDatabaseToolkit e SQLite:** ferramentas SQL consultam preço e estoque;
+  o schema pode incluir amostras com dados, que também pertencem à fonte SQL.
+- **Retriever documental:** `Document`, `OpenAIEmbeddings` e FAISS indexam a
+  política; `create_retriever_tool` expõe a busca com sua fonte ao agente.
+- **Agente com memória:** `create_agent`, `MemorySaver` e `thread_id` preservam
+  a conversa para resolver “desse produto”. O saldo atual exige nova consulta.
+- **Trajetória por turno:** `HumanMessage` delimita o recorte; `AIMessage/tool_calls`
+  e `ToolMessage` mostram só chamadas e retornos novos, preservando todo o histórico
+  dentro da sessão. SQL executado e conferências ficam no JSONL.
+
+**Fluxo:** mensagem + histórico da sessão → agente → fonte SQL e/ou documental → resposta e trajetória do turno atual.
+
 ## Conceitos para revisar
 
 | Conceito | Significado neste repositório | Onde começar |
@@ -192,6 +211,7 @@ Interpretar dúvidas coloquiais e recuperar políticas sem inventar benefícios 
 | Memória e estado | Dados mantidos pela aplicação e reutilizados nas interações seguintes. | Os dois exercícios da aula 21-10. |
 | Consulta SQL com LLM | Modelo escreve uma consulta a partir de um esquema; o código controla sua execução no banco fictício. | Estoque e orçamento, aula 26-10. |
 | Cálculo determinístico | Função Python produz o total em centavos a partir do preço consultado e da quantidade válida. | Estoque e orçamento, aula 26-10. |
+| Duas fontes com memória | Ferramentas distintas fornecem produtos e políticas; a conversa identifica o produto, e uma nova leitura atualiza seu saldo. | Atendimento, aula 28-10. |
 
 A pasta [Arquiteturas Multiagentes com LangGraph](./Arquiteturas%20Multiagentes%20com%20LangGraph/)
 ainda não contém exercícios. Os conceitos acima correspondem aos projetos já

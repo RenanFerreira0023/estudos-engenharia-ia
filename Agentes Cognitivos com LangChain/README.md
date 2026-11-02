@@ -18,6 +18,7 @@ explica os conceitos e o fluxo de cada projeto.
 | 21-10 | Avaliação simulada | Intenções com Literal, extração estruturada, estado por sessão em Python, correções e campos faltantes. |
 | 26-10 | Estoque e orçamento | SQLite, esquema SQL no prompt, agente com ferramentas de consulta e cálculo, centavos inteiros e auditoria da origem do preço. |
 | 26-10 | Busca de políticas | Document/metadados, embeddings e FAISS, reescrita pelo agente, similarity_search_with_score, filtro opcional e comparação de queries sem limiar universal. |
+| 28-10 | Atendimento com duas fontes e memória | SQLDatabaseToolkit, retriever documental, create_agent, MemorySaver/thread_id e recorte da trajetória após a última HumanMessage. |
 
 ## Aulas
 
@@ -41,6 +42,9 @@ explica os conceitos e o fluxo de cada projeto.
 - [Aula 26-10](./aula%2026-10/)
   - [Conferir estoque e calcular um orçamento](./aula%2026-10/Conferir%20estoque%20e%20calcular%20um%20orcamento/)
   - [Buscar uma regra sem inventar um benefício](./aula%2026-10/Buscar%20uma%20regra%20sem%20inventar%20um%20beneficio/)
+
+- [Aula 28-10](./aula%2028-10/)
+  - [Atendimento com duas fontes e memória](./aula%2028-10/Atendimento%20com%20duas%20fontes%20e%20memoria/)
 
 ## Padrao de organizacao
 
