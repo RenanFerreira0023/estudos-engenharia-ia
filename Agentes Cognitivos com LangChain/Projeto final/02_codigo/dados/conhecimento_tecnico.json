@@ -1,0 +1,47 @@
+[
+  {
+    "id": "T001",
+    "veiculo_id": "V004",
+    "assunto": "arquitetura",
+    "conteudo": "Fusca clássico a ar; distinguir do New Beetle e Fusca moderno.",
+    "fontes": [
+      "SRC01"
+    ]
+  },
+  {
+    "id": "T002",
+    "veiculo_id": "V004",
+    "assunto": "sincronismo",
+    "conteudo": "No motor clássico Type 1 o sincronismo do comando é por engrenagens; não cadastrar correia dentada de sincronismo para essa configuração.",
+    "fontes": [
+      "SRC02"
+    ],
+    "nota": "Referência consultada é de fabricante aftermarket; confirmar manual original para documentação técnica final."
+  },
+  {
+    "id": "T003",
+    "veiculo_id": "V004",
+    "assunto": "correia_externa",
+    "conteudo": "Correia externa em V, distinta do sincronismo. Confirmar dínamo/alternador e configuração antes de selecionar dimensões.",
+    "fontes": [
+      "SRC03"
+    ],
+    "status": "referencia_parcial_sem_codigo_homologado"
+  },
+  {
+    "id": "T004",
+    "veiculo_id": "V004",
+    "assunto": "oleo",
+    "conteudo": "Viscosidade, norma e capacidade não definidas. Não recomendar óleo apenas por ser Fusca ou por idade do veículo.",
+    "fontes": [],
+    "status": "pendente"
+  },
+  {
+    "id": "T005",
+    "veiculo_id": null,
+    "assunto": "distincao_correias",
+    "conteudo": "Correia de acessórios e correia de sincronismo têm funções distintas; não são alternativas universais uma da outra.",
+    "fontes": [],
+    "status": "regra_de_modelagem"
+  }
+]

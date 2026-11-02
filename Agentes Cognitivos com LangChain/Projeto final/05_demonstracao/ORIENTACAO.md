@@ -1,0 +1,1 @@
+Após implementar, gravar interação real mostrando escolha e uso de ferramentas, chamada externa ViaCEP e memória entre turnos. Explicar decisões e limitações. Registrar o link acessível do vídeo conforme as orientações da disciplina. Não há vídeo neste pacote.

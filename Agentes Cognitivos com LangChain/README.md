@@ -20,6 +20,7 @@ explica os conceitos e o fluxo de cada projeto.
 | 26-10 | Busca de políticas | Document/metadados, embeddings e FAISS, reescrita pelo agente, similarity_search_with_score, filtro opcional e comparação de queries sem limiar universal. |
 | 28-10 | Atendimento com duas fontes e memória | SQLDatabaseToolkit, retriever documental, create_agent, MemorySaver/thread_id e recorte da trajetória após a última HumanMessage. |
 | 28-10 | Auditor de frete | Extração estruturada de afirmações, comparação Python com Decimal/tolerância, avaliação lógica fundamentada e relatórios separados. |
+| Projeto final — fase 1 | Auto Super Parts CWB | PromptTemplate/ChatPromptTemplate, BaseModel, PydanticOutputParser, composições @chain/LCEL, invoke/batch e notebook importando módulos .py. |
 
 ## Aulas
 
@@ -47,6 +48,11 @@ explica os conceitos e o fluxo de cada projeto.
 - [Aula 28-10](./aula%2028-10/)
   - [Atendimento com duas fontes e memória](./aula%2028-10/Atendimento%20com%20duas%20fontes%20e%20memoria/)
   - [Auditor de frete para um orçamento](./aula%2028-10/Auditor%20de%20frete%20para%20um%20orcamento/)
+
+## Projeto final
+
+- [Auto Super Parts CWB — fase 1: chain inicial](./Projeto%20final/)
+  - [Notebook demonstrativo](./Projeto%20final/03_notebooks/fase_01_chain_inicial.ipynb)
 
 ## Padrao de organizacao
 

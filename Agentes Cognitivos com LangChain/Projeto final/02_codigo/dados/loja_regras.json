@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "moeda": "BRL",
+  "natureza": "simulacao_academica",
+  "loja": {
+    "nome": "Auto Super Parts CWB — Autopeças",
+    "localizacao_ficticia": "Museu Oscar Niemeyer",
+    "municipio": "Curitiba",
+    "uf": "PR",
+    "endereco_postal": null,
+    "vinculo_com_museu": false
+  },
+  "frete": {
+    "curitiba_pr_centavos": 0,
+    "externo": {
+      "valor_base_centavos": 885,
+      "distancia_base_km": 200,
+      "modo": "proporcional",
+      "arredondamento": "decimal_HALF_UP_para_centavo",
+      "formula": "Decimal(distancia_km) * 885 / 200; arredondar para centavos inteiros"
+    },
+    "cidade_sem_distancia": "nao_cotar_encaminhar_atendimento",
+    "retirada_centavos": 0
+  },
+  "prazo": {
+    "externo": {
+      "faixa_km": 100,
+      "dias_uteis_por_faixa": 2,
+      "arredondamento_faixas": "para_cima"
+    },
+    "curitiba_dias_uteis": null,
+    "inicio_contagem": null,
+    "calendario_feriados": null,
+    "status": "estimativa_em_dias_uteis_sem_data_calendario"
+  },
+  "pagamento": {
+    "site": [
+      "pix"
+    ],
+    "balcao": [
+      "pix",
+      "dinheiro"
+    ],
+    "na_retirada": [
+      "pix",
+      "dinheiro"
+    ],
+    "entrega": "antecipado_pelo_site",
+    "pagamento_ao_entregador": false,
+    "cartao": false,
+    "parcelamento": false
+  },
+  "politicas_pendentes": {
+    "troca": null,
+    "garantia": null,
+    "reserva_estoque": null
+  },
+  "limites": [
+    "Não processar pagamentos nem concluir pedidos.",
+    "Não diagnosticar defeitos por sintomas.",
+    "Não criar site de vendas ou WhatsApp.",
+    "Não inventar compatibilidade, óleo, política ou distância."
+  ]
+}

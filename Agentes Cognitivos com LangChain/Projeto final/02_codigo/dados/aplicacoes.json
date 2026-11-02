@@ -1,0 +1,218 @@
+[
+  {
+    "id": "A001",
+    "produto_id": "P001",
+    "veiculo_id": "V001",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A002",
+    "produto_id": "P002",
+    "veiculo_id": "V001",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A003",
+    "produto_id": "P003",
+    "veiculo_id": "V001",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A004",
+    "produto_id": "P004",
+    "veiculo_id": "V001",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A005",
+    "produto_id": "P005",
+    "veiculo_id": "V001",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A006",
+    "produto_id": "P006",
+    "veiculo_id": "V001",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A007",
+    "produto_id": "P007",
+    "veiculo_id": "V002",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A008",
+    "produto_id": "P008",
+    "veiculo_id": "V002",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A009",
+    "produto_id": "P009",
+    "veiculo_id": "V002",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A010",
+    "produto_id": "P010",
+    "veiculo_id": "V002",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A011",
+    "produto_id": "P011",
+    "veiculo_id": "V002",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A012",
+    "produto_id": "P012",
+    "veiculo_id": "V002",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A013",
+    "produto_id": "P013",
+    "veiculo_id": "V003",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A014",
+    "produto_id": "P014",
+    "veiculo_id": "V003",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A015",
+    "produto_id": "P015",
+    "veiculo_id": "V003",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A016",
+    "produto_id": "P016",
+    "veiculo_id": "V003",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A017",
+    "produto_id": "P017",
+    "veiculo_id": "V003",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A018",
+    "produto_id": "P018",
+    "veiculo_id": "V003",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A019",
+    "produto_id": "P019",
+    "veiculo_id": "V004",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A020",
+    "produto_id": "P020",
+    "veiculo_id": "V004",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A021",
+    "produto_id": "P021",
+    "veiculo_id": "V004",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A022",
+    "produto_id": "P022",
+    "veiculo_id": "V004",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A023",
+    "produto_id": "P023",
+    "veiculo_id": "V004",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  },
+  {
+    "id": "A024",
+    "produto_id": "P024",
+    "veiculo_id": "V004",
+    "status": "simulada_na_base_academica",
+    "validada_para_uso_real": false,
+    "fonte_aplicacao_real": null,
+    "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+  }
+]

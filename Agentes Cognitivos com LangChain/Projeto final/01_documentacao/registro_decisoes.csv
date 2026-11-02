@@ -1,0 +1,14 @@
+id,decisao,motivo,status,evidencia
+D01,Python modular com notebook demonstrativo,Preferência do aluno e facilidade de correção,planejada,Conversa de planejamento
+D02,ViaCEP como ferramenta externa,Consultar endereço para orçamento de entrega,confirmada_sem_implementacao,Conversa de planejamento
+D03,Frete proporcional e prazo por faixas,Regras fictícias explícitas,confirmada_sem_implementacao,loja_regras.json
+D04,Aplicações simuladas com limites declarados,Evitar apresentar compatibilidade não verificada como real,dados_preparados,aplicacoes.json
+D05,Vocabulário de sete intenções na fase 1,Proposta de consulta_peca/orcamento/orcamento_entrega/entrega/pagamento/politica/desconhecida,proposta_implementada_fase01,02_codigo/src/auto_super_parts/schemas.py
+D06,Recalcular pendências por intenção no Python,Proposta de veículo e tipo de peça para consulta por nome; quantidade para orçamento; CEP somente para entrega; código explícito dispensa configuração para simples consulta,proposta_implementada_fase01,02_codigo/src/auto_super_parts/schemas.py
+D07,ChatPromptTemplate e LCEL como composição principal,Proposta que separa system/human e torna o fluxo fixo legível; PromptTemplate e @chain demonstram o mesmo contrato,proposta_implementada_fase01,02_codigo/src/auto_super_parts/chain_inicial.py
+D08,Erros separados de dados validados e sem repetição automática,Proposta de envelope status/dados/erros; quantidade inválida e CEP malformado não são corrigidos silenciosamente,proposta_implementada_fase01,02_codigo/tests/test_fase01.py
+D09,Testes offline separados da execução real,FakeListChatModel é roteiro de teste e não interpretação real; gabarito não entra no prompt; evidências preservam divergências,proposta_implementada_fase01,04_avaliacao_e_evidencias/casos/casos_fase_01.json
+D10,Escopo de mensagem única e sem stream de JSON parcial,Contrato inicial tem uma peça e intenção principal; invoke/batch entregam objeto completo antes da serialização,proposta_implementada_fase01,03_notebooks/fase_01_chain_inicial.ipynb
+D11,Normalizar veículo null para objeto com campos null,Primeiro batch real rejeitou quatro ausências de veículo; normalização mantém ausência sem inferir fatos e prompt explicita formato,proposta_implementada_apos_teste,04_avaliacao_e_evidencias/resultados/fase01_real_20261102T183027241397Z.json
+D12,Reforçar preservação de combustível explícito,Execução real omitiu flex na mensagem de orçamento; revisar descrição do campo e prompt sem preencher combustível por catálogo,proposta_implementada_apos_teste,04_avaliacao_e_evidencias/resultados/fase01_real_20261102T183231362697Z.json
+D13,Suportar execução direta da CLI sem PYTHONPATH,Usuário relatou ImportError de pacote pai; bootstrap restrito ao modo direto e teste de regressão; conferência assistida com saída real preservada,implementada_e_conferida_fase01,04_avaliacao_e_evidencias/resultados/TESTES_MANUAIS_FASE_01.md

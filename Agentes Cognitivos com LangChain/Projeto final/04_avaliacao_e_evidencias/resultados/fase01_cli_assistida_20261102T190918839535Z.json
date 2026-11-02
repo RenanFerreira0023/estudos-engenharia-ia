@@ -1,0 +1,90 @@
+{
+  "fase": 1,
+  "data_registro_utc": "2026-11-02T19:09:18.839535+00:00",
+  "modelo_da_CLI": "OpenAI / gpt-4o-mini",
+  "nota": "CLI01 e CLI02 nao chamam a API; CLI03 envia uma mensagem real ao modelo. Stdout e stderr sao observados, sem substituir pelo esperado.",
+  "resultados": [
+    {
+      "id": "CLI01",
+      "executor": "assistente",
+      "modo": "CLI assistida com entrada roteirizada; nao e relato de execucao do usuario",
+      "inicio_utc": "2026-11-02T19:09:05.832954+00:00",
+      "comando": [
+        "C:\\Users\\Renan\\Documents\\GIT_PROJETOS\\estudos-engenharia-ia\\.venv\\Scripts\\python.exe",
+        "C:\\Users\\Renan\\Documents\\GIT_PROJETOS\\estudos-engenharia-ia\\Agentes Cognitivos com LangChain\\Projeto final\\02_codigo\\src\\auto_super_parts\\chain_inicial.py",
+        "--help"
+      ],
+      "cwd": "C:\\Users\\Renan\\AppData\\Local\\Temp",
+      "pythonpath_removido": true,
+      "stdin": null,
+      "esperado": "Ajuda carrega sem PYTHONPATH e sem erro de importacao.",
+      "observado": {
+        "returncode": 0,
+        "stdout": "usage: chain_inicial.py [-h] [--mensagem MENSAGEM]\n\nSomente fase 1: chain inicial da Auto Super Parts CWB.\n\noptions:\n  -h, --help           show this help message and exit\n  --mensagem MENSAGEM  Processa uma mensagem e encerra, sem abrir o modo\n                       interativo.\n",
+        "stderr": "",
+        "json_extraido_sem_alteracao": null
+      },
+      "passou": true
+    },
+    {
+      "id": "CLI02",
+      "executor": "assistente",
+      "modo": "CLI assistida com entrada roteirizada; nao e relato de execucao do usuario",
+      "inicio_utc": "2026-11-02T19:09:09.252762+00:00",
+      "comando": [
+        "C:\\Users\\Renan\\Documents\\GIT_PROJETOS\\estudos-engenharia-ia\\.venv\\Scripts\\python.exe",
+        "C:\\Users\\Renan\\Documents\\GIT_PROJETOS\\estudos-engenharia-ia\\Agentes Cognitivos com LangChain\\Projeto final\\02_codigo\\src\\auto_super_parts\\chain_inicial.py"
+      ],
+      "cwd": "C:\\Users\\Renan\\AppData\\Local\\Temp",
+      "pythonpath_removido": true,
+      "stdin": "\n",
+      "esperado": "Modo interativo apresenta Mensagem e encerra com Enter vazio.",
+      "observado": {
+        "returncode": 0,
+        "stdout": "[estudo] PromptTemplate e ChatPromptTemplate organizam a mesma tarefa.\n[estudo] LCEL e @chain compõem prompt, modelo e PydanticOutputParser.\n[estudo] BaseModel valida tipos; Python recalcula os campos necessários à intenção.\n[estudo] invoke() processa uma entrada; batch() processa uma lista no notebook.\n[estudo] input() recebe novas mensagens independentes; não há memória nesta fase.\n\nMensagem (Enter ou /sair encerra): ",
+        "stderr": "",
+        "json_extraido_sem_alteracao": null
+      },
+      "passou": true
+    },
+    {
+      "id": "CLI03",
+      "executor": "assistente",
+      "modo": "CLI assistida com entrada roteirizada; nao e relato de execucao do usuario",
+      "inicio_utc": "2026-11-02T19:09:12.718594+00:00",
+      "comando": [
+        "C:\\Users\\Renan\\Documents\\GIT_PROJETOS\\estudos-engenharia-ia\\.venv\\Scripts\\python.exe",
+        "C:\\Users\\Renan\\Documents\\GIT_PROJETOS\\estudos-engenharia-ia\\Agentes Cognitivos com LangChain\\Projeto final\\02_codigo\\src\\auto_super_parts\\chain_inicial.py"
+      ],
+      "cwd": "C:\\Users\\Renan\\AppData\\Local\\Temp",
+      "pythonpath_removido": true,
+      "stdin": "Tenho um Gol 2010 1.0 e quero duas velas\n/sair\n",
+      "esperado": "Mensagem digitada retorna JSON validado e /sair encerra.",
+      "observado": {
+        "returncode": 0,
+        "stdout": "[estudo] PromptTemplate e ChatPromptTemplate organizam a mesma tarefa.\n[estudo] LCEL e @chain compõem prompt, modelo e PydanticOutputParser.\n[estudo] BaseModel valida tipos; Python recalcula os campos necessários à intenção.\n[estudo] invoke() processa uma entrada; batch() processa uma lista no notebook.\n[estudo] input() recebe novas mensagens independentes; não há memória nesta fase.\n\nMensagem (Enter ou /sair encerra): {\n  \"status\": \"ok\",\n  \"dados\": {\n    \"intencao\": \"consulta_peca\",\n    \"veiculo\": {\n      \"modelo\": \"Gol\",\n      \"ano_modelo\": 2010,\n      \"motor\": \"1.0\",\n      \"combustivel\": null\n    },\n    \"peca\": \"vela\",\n    \"quantidade\": 2,\n    \"cep\": null,\n    \"campos_faltantes\": [\n      \"veiculo.combustivel\"\n    ]\n  },\n  \"erros\": []\n}\n\nMensagem (Enter ou /sair encerra): ",
+        "stderr": "",
+        "json_extraido_sem_alteracao": {
+          "status": "ok",
+          "dados": {
+            "intencao": "consulta_peca",
+            "veiculo": {
+              "modelo": "Gol",
+              "ano_modelo": 2010,
+              "motor": "1.0",
+              "combustivel": null
+            },
+            "peca": "vela",
+            "quantidade": 2,
+            "cep": null,
+            "campos_faltantes": [
+              "veiculo.combustivel"
+            ]
+          },
+          "erros": []
+        }
+      },
+      "passou": true
+    }
+  ]
+}

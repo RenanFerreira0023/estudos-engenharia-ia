@@ -1,0 +1,10 @@
+{
+  "fase": 1,
+  "modo": "testes locais com modelos simulados, sem API",
+  "data_utc": "2026-11-02T18:36:54.122935+00:00",
+  "python": "3.12.6",
+  "executados": 15,
+  "falhas": 0,
+  "erros": 0,
+  "log": "test_batch_simulado_nove_casos (test_fase01.ComposicaoTest.test_batch_simulado_nove_casos) ... ok\ntest_entrada_vazia_nao_chama_modelo (test_fase01.ComposicaoTest.test_entrada_vazia_nao_chama_modelo) ... ok\ntest_falha_modelo_nao_vira_dado (test_fase01.ComposicaoTest.test_falha_modelo_nao_vira_dado) ... ok\ntest_formato_e_instrucoes_no_prompt (test_fase01.ComposicaoTest.test_formato_e_instrucoes_no_prompt) ... ok\ntest_json_invalido_e_falha_sem_repeticao (test_fase01.ComposicaoTest.test_json_invalido_e_falha_sem_repeticao) ... ok\ntest_parser_rejeita_zero (test_fase01.ComposicaoTest.test_parser_rejeita_zero) ... ok\ntest_templates_e_composicoes_mesmo_contrato (test_fase01.ComposicaoTest.test_templates_e_composicoes_mesmo_contrato) ... ok\ntest_cep_preserva_zero_e_normaliza_hifen (test_fase01.ContratoTest.test_cep_preserva_zero_e_normaliza_hifen) ... ok\ntest_nao_inventa_veiculo_ou_unidade (test_fase01.ContratoTest.test_nao_inventa_veiculo_ou_unidade) ... ok\ntest_pendencias_dependem_da_intencao (test_fase01.ContratoTest.test_pendencias_dependem_da_intencao) ... ok\ntest_quantidade_obrigatoria_so_no_orcamento (test_fase01.ContratoTest.test_quantidade_obrigatoria_so_no_orcamento) ... ok\ntest_quantidades_invalidas_nao_sao_convertidas (test_fase01.ContratoTest.test_quantidades_invalidas_nao_sao_convertidas) ... ok\ntest_recalcula_lista_alegada_pelo_modelo (test_fase01.ContratoTest.test_recalcula_lista_alegada_pelo_modelo) ... ok\ntest_rejeita_preco_e_compativel_adicionados (test_fase01.ContratoTest.test_rejeita_preco_e_compativel_adicionados) ... ok\ntest_veiculo_null_normaliza_sem_inventar (test_fase01.ContratoTest.test_veiculo_null_normaliza_sem_inventar) ... ok\n\n----------------------------------------------------------------------\nRan 15 tests in 0.040s\n\nOK\n"
+}

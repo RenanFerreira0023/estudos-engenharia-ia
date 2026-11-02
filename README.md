@@ -212,6 +212,23 @@ Conferir números e conclusões de uma resposta usando regra e referência indep
 
 **Fluxo:** resposta → extração estruturada → comparação numérica Python → avaliação lógica com fontes → relatórios e conferência.
 
+### [Projeto final — Auto Super Parts CWB: fase 1](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final/)
+
+Extrair intenção, veículo, peça, quantidade e CEP de uma mensagem, mantendo dados
+ausentes desconhecidos e produzindo JSON validado com as pendências necessárias.
+
+- **Templates e PTCF:** `PromptTemplate` e `ChatPromptTemplate` apresentam a mesma
+  tarefa; a composição principal separa regras `system` do conteúdo `human`.
+- **Schema e output parser:** `BaseModel`, `Field` e `PydanticOutputParser` validam
+  a extração; Python normaliza formatos conhecidos e recalcula pendências por intenção.
+- **@chain e LCEL:** duas composições da mesma transformação, demonstradas com
+  `invoke` e `batch`, sem ferramentas nem memória nesta fase.
+- **Código e evidências:** módulos `.py` são importados pelo notebook; testes
+  locais e saídas simuladas são identificados separadamente das chamadas reais.
+
+**Fluxo:** mensagem → template → LLM → parser/BaseModel → JSON ou erro tratado.
+As fases posteriores continuam pendentes.
+
 ## Conceitos para revisar
 
 | Conceito | Significado neste repositório | Onde começar |

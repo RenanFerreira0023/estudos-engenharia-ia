@@ -1,0 +1,42 @@
+[
+  {
+    "id": "V001",
+    "marca": "Volkswagen",
+    "modelo": "Gol",
+    "ano_modelo": 2010,
+    "motor": "1.0 8V",
+    "combustivel": "flex",
+    "status_configuracao": "recorte_academico_proposto",
+    "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+  },
+  {
+    "id": "V002",
+    "marca": "Fiat",
+    "modelo": "Palio",
+    "ano_modelo": 2010,
+    "motor": "1.0 Fire 8V",
+    "combustivel": "flex",
+    "status_configuracao": "recorte_academico_proposto",
+    "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+  },
+  {
+    "id": "V003",
+    "marca": "Chevrolet",
+    "modelo": "Celta",
+    "ano_modelo": 2012,
+    "motor": "1.0 8V",
+    "combustivel": "flex",
+    "status_configuracao": "recorte_academico_proposto",
+    "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+  },
+  {
+    "id": "V004",
+    "marca": "Volkswagen",
+    "modelo": "Fusca",
+    "ano_modelo": 1982,
+    "motor": "1600 a ar",
+    "combustivel": "gasolina",
+    "status_configuracao": "recorte_academico_proposto",
+    "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+  }
+]

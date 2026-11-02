@@ -1,0 +1,80 @@
+{
+  "convencoes": {
+    "chaves": "snake_case",
+    "ids": "strings_estaveis",
+    "valores_monetarios": "inteiros_em_centavos",
+    "ausente": "null; nao inventar valor",
+    "quantidade": "inteiro_positivo",
+    "estoque": "inteiro_nao_negativo",
+    "cep": "string_de_8_digitos_preservar_zero_inicial"
+  },
+  "ferramentas_propostas": [
+    {
+      "nome": "consultar_catalogo",
+      "entrada": [
+        "pergunta",
+        "veiculo_id_opcional"
+      ],
+      "saida": [
+        "produtos",
+        "aplicacoes",
+        "sql_executado",
+        "status"
+      ],
+      "observacao": "Text-to-SQL precisa gerar e executar SELECT real, com conexão somente leitura e restrições; consulta fixa parametrizada não demonstra por si só text-to-query."
+    },
+    {
+      "nome": "consultar_cep",
+      "entrada": [
+        "cep"
+      ],
+      "saida": [
+        "status",
+        "endereco",
+        "origem_real_ou_dummy"
+      ],
+      "observacao": "HTTPS, timeout, validação de oito dígitos e tratamento de HTTP/JSON/erro=true; preservar mensagem de indisponibilidade."
+    },
+    {
+      "nome": "calcular_orcamento",
+      "entrada": [
+        "itens_produto_id_quantidade",
+        "cidade_uf_opcional"
+      ],
+      "saida": [
+        "subtotal_centavos",
+        "frete_centavos_ou_null",
+        "total_centavos_ou_null",
+        "prazo_dias_uteis_ou_null",
+        "pendencias"
+      ],
+      "observacao": "Preços e estoque obtidos do banco; sem aceitar preço ditado pelo cliente. Frete desconhecido torna total com entrega desconhecido, não zero."
+    },
+    {
+      "nome": "consultar_politicas",
+      "entrada": [
+        "pergunta"
+      ],
+      "saida": [
+        "trechos",
+        "fontes",
+        "status"
+      ],
+      "observacao": "RAG sobre índice FAISS previamente preparado; não reconstruir por mensagem. Políticas pendentes devem continuar pendentes."
+    }
+  ],
+  "chain_inicial_saida": {
+    "intencao": "consulta_peca",
+    "veiculo": {
+      "modelo": null,
+      "ano_modelo": null,
+      "motor": null,
+      "combustivel": null
+    },
+    "peca": null,
+    "quantidade": null,
+    "cep": null,
+    "campos_faltantes": []
+  },
+  "nota": "Contratos de direção para implementação; nenhuma função já foi implementada."
+}

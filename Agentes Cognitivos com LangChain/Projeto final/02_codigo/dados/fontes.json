@@ -1,0 +1,35 @@
+{
+  "consultado_em": "2026-11-02",
+  "fontes": [
+    {
+      "id": "SRC01",
+      "url": "https://www.volkswagen-newsroom.com/en/the-volkswagen-beetle-a-success-story-2341/vw-beetle-through-the-years-2361",
+      "suporta": "Arquitetura do Fusca clássico: boxer traseiro refrigerado a ar.",
+      "limite": "Não confirma aplicação de peças nem óleo de uma versão brasileira específica."
+    },
+    {
+      "id": "SRC02",
+      "url": "https://scatvw.com/product/cam-kit-with-c20-cam-single-springs/",
+      "suporta": "Conjunto de comando e engrenagem para VW Type 1.",
+      "limite": "Produto de preparação; não é recomendação de instalação nem catálogo de aplicação original."
+    },
+    {
+      "id": "SRC03",
+      "url": "https://www.gatesbrasil.com.br/upload/catalogos/catalogo_automotivo_gates_2015_web.pdf",
+      "suporta": "Resultado indexado do catálogo relaciona Fusca a ar a correia em V.",
+      "limite": "URL atualmente redireciona; não usar como validação de código/dimensão de peça."
+    },
+    {
+      "id": "SRC04",
+      "url": "https://viacep.com.br/",
+      "suporta": "Consulta de CEP, formato de oito dígitos, retorno de endereço, erro de CEP inexistente.",
+      "limite": "Não fornece distância, frete nem prazo."
+    },
+    {
+      "id": "SRC05",
+      "url": "https://www.chevrolet.com.br/servicos/manuais-veiculos/anos-anteriores",
+      "suporta": "Portal oficial para localizar manuais Chevrolet.",
+      "limite": "Especificações do Celta ainda precisam ser verificadas no manual da versão."
+    }
+  ]
+}

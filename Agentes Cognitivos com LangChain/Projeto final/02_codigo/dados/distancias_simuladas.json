@@ -1,0 +1,32 @@
+{
+  "natureza": "valores_inventados_para_testes_nao_distancias_rodoviarias_aferidas",
+  "origem": "Localização fictícia da loja no Museu Oscar Niemeyer",
+  "cidades": [
+    {
+      "municipio": "Curitiba",
+      "uf": "PR",
+      "distancia_km": 0
+    },
+    {
+      "municipio": "São José dos Pinhais",
+      "uf": "PR",
+      "distancia_km": 25
+    },
+    {
+      "municipio": "Ponta Grossa",
+      "uf": "PR",
+      "distancia_km": 120
+    },
+    {
+      "municipio": "Guarapuava",
+      "uf": "PR",
+      "distancia_km": 250
+    },
+    {
+      "municipio": "Londrina",
+      "uf": "PR",
+      "distancia_km": 400
+    }
+  ],
+  "regra": "Localizar por município E UF, normalizando acentos e caixa. Município ausente não significa entrega impossível; cotação automática indisponível."
+}

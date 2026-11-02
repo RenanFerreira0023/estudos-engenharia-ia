@@ -1,0 +1,340 @@
+{
+  "fase": 1,
+  "modo": "real",
+  "data_utc": "2026-11-02T18:32:31.362697+00:00",
+  "versoes": {
+    "langchain-core": "1.7.0",
+    "langchain-openai": "1.7.0",
+    "pydantic": "2.14.0",
+    "python-dotenv": "1.2.4"
+  },
+  "modelo": "gpt-4o-mini",
+  "resultados": [
+    {
+      "id": "F01",
+      "mensagem": "Tenho um Gol 2010 1.0 e quero duas velas",
+      "modo": "real",
+      "saida_modelo_nao_validada": "{\n  \"intencao\": \"consulta_peca\",\n  \"veiculo\": {\n    \"modelo\": \"Gol\",\n    \"ano_modelo\": 2010,\n    \"motor\": \"1.0\",\n    \"combustivel\": null\n  },\n  \"peca\": \"vela\",\n  \"quantidade\": 2,\n  \"cep\": null,\n  \"campos_faltantes\": []\n}",
+      "esperado": {
+        "status": "ok",
+        "dados": {
+          "intencao": "consulta_peca",
+          "veiculo": {
+            "modelo": "Gol",
+            "ano_modelo": 2010,
+            "motor": "1.0",
+            "combustivel": null
+          },
+          "peca": "vela",
+          "quantidade": 2,
+          "cep": null,
+          "campos_faltantes": [
+            "veiculo.combustivel"
+          ]
+        }
+      },
+      "observado": {
+        "status": "ok",
+        "dados": {
+          "intencao": "consulta_peca",
+          "veiculo": {
+            "modelo": "Gol",
+            "ano_modelo": 2010,
+            "motor": "1.0",
+            "combustivel": null
+          },
+          "peca": "vela",
+          "quantidade": 2,
+          "cep": null,
+          "campos_faltantes": [
+            "veiculo.combustivel"
+          ]
+        },
+        "erros": []
+      },
+      "passou": true,
+      "divergencias": []
+    },
+    {
+      "id": "F02",
+      "mensagem": "Tenho um Gol 2010 1.0 flex e quero duas velas.",
+      "modo": "real",
+      "saida_modelo_nao_validada": "{\n  \"intencao\": \"consulta_peca\",\n  \"veiculo\": {\n    \"modelo\": \"Gol\",\n    \"ano_modelo\": 2010,\n    \"motor\": \"1.0\",\n    \"combustivel\": \"flex\"\n  },\n  \"peca\": \"vela\",\n  \"quantidade\": 2,\n  \"cep\": null,\n  \"campos_faltantes\": []\n}",
+      "esperado": {
+        "status": "ok",
+        "dados": {
+          "intencao": "consulta_peca",
+          "veiculo": {
+            "modelo": "Gol",
+            "ano_modelo": 2010,
+            "motor": "1.0",
+            "combustivel": "flex"
+          },
+          "peca": "vela",
+          "quantidade": 2,
+          "campos_faltantes": []
+        }
+      },
+      "observado": {
+        "status": "ok",
+        "dados": {
+          "intencao": "consulta_peca",
+          "veiculo": {
+            "modelo": "Gol",
+            "ano_modelo": 2010,
+            "motor": "1.0",
+            "combustivel": "flex"
+          },
+          "peca": "vela",
+          "quantidade": 2,
+          "cep": null,
+          "campos_faltantes": []
+        },
+        "erros": []
+      },
+      "passou": true,
+      "divergencias": []
+    },
+    {
+      "id": "F03",
+      "mensagem": "Quero filtro para meu carro.",
+      "modo": "real",
+      "saida_modelo_nao_validada": "{\n  \"intencao\": \"consulta_peca\",\n  \"veiculo\": {\n    \"modelo\": null,\n    \"ano_modelo\": null,\n    \"motor\": null,\n    \"combustivel\": null\n  },\n  \"peca\": \"filtro\",\n  \"quantidade\": null,\n  \"cep\": null,\n  \"campos_faltantes\": [\n    \"veiculo.modelo\",\n    \"veiculo.ano_modelo\",\n    \"veiculo.motor\",\n    \"veiculo.combustivel\"\n  ]\n}",
+      "esperado": {
+        "status": "ok",
+        "dados": {
+          "intencao": "consulta_peca",
+          "veiculo": {
+            "modelo": null,
+            "ano_modelo": null,
+            "motor": null,
+            "combustivel": null
+          },
+          "peca": "filtro",
+          "quantidade": null,
+          "campos_faltantes": [
+            "veiculo.modelo",
+            "veiculo.ano_modelo",
+            "veiculo.motor",
+            "veiculo.combustivel",
+            "peca.tipo"
+          ]
+        }
+      },
+      "observado": {
+        "status": "ok",
+        "dados": {
+          "intencao": "consulta_peca",
+          "veiculo": {
+            "modelo": null,
+            "ano_modelo": null,
+            "motor": null,
+            "combustivel": null
+          },
+          "peca": "filtro",
+          "quantidade": null,
+          "cep": null,
+          "campos_faltantes": [
+            "veiculo.modelo",
+            "veiculo.ano_modelo",
+            "veiculo.motor",
+            "veiculo.combustivel",
+            "peca.tipo"
+          ]
+        },
+        "erros": []
+      },
+      "passou": true,
+      "divergencias": []
+    },
+    {
+      "id": "F04",
+      "mensagem": "Quero zero velas.",
+      "modo": "real",
+      "saida_modelo_nao_validada": "{\n  \"intencao\": \"consulta_peca\",\n  \"veiculo\": {\n    \"modelo\": null,\n    \"ano_modelo\": null,\n    \"motor\": null,\n    \"combustivel\": null\n  },\n  \"peca\": \"vela\",\n  \"quantidade\": 0,\n  \"cep\": null,\n  \"campos_faltantes\": []\n}",
+      "esperado": {
+        "status": "erro_validacao",
+        "dados": null
+      },
+      "observado": {
+        "status": "erro_validacao",
+        "dados": null,
+        "erros": [
+          "quantidade: Input should be greater than 0"
+        ]
+      },
+      "passou": true,
+      "divergencias": []
+    },
+    {
+      "id": "F05",
+      "mensagem": "Posso pagar ao entregador?",
+      "modo": "real",
+      "saida_modelo_nao_validada": "{\n  \"intencao\": \"pagamento\",\n  \"veiculo\": {\n    \"modelo\": null,\n    \"ano_modelo\": null,\n    \"motor\": null,\n    \"combustivel\": null\n  },\n  \"peca\": null,\n  \"quantidade\": null,\n  \"cep\": null,\n  \"campos_faltantes\": []\n}",
+      "esperado": {
+        "status": "ok",
+        "dados": {
+          "intencao": "pagamento",
+          "veiculo": {
+            "modelo": null,
+            "ano_modelo": null,
+            "motor": null,
+            "combustivel": null
+          },
+          "quantidade": null,
+          "campos_faltantes": []
+        }
+      },
+      "observado": {
+        "status": "ok",
+        "dados": {
+          "intencao": "pagamento",
+          "veiculo": {
+            "modelo": null,
+            "ano_modelo": null,
+            "motor": null,
+            "combustivel": null
+          },
+          "peca": null,
+          "quantidade": null,
+          "cep": null,
+          "campos_faltantes": []
+        },
+        "erros": []
+      },
+      "passou": true,
+      "divergencias": []
+    },
+    {
+      "id": "F06",
+      "mensagem": "Consulte meu CEP 01001-000 para a entrega.",
+      "modo": "real",
+      "saida_modelo_nao_validada": "{\n  \"intencao\": \"entrega\",\n  \"veiculo\": {\n    \"modelo\": null,\n    \"ano_modelo\": null,\n    \"motor\": null,\n    \"combustivel\": null\n  },\n  \"peca\": null,\n  \"quantidade\": null,\n  \"cep\": \"01001000\",\n  \"campos_faltantes\": []\n}",
+      "esperado": {
+        "status": "ok",
+        "dados": {
+          "intencao": "entrega",
+          "cep": "01001000",
+          "campos_faltantes": []
+        }
+      },
+      "observado": {
+        "status": "ok",
+        "dados": {
+          "intencao": "entrega",
+          "veiculo": {
+            "modelo": null,
+            "ano_modelo": null,
+            "motor": null,
+            "combustivel": null
+          },
+          "peca": null,
+          "quantidade": null,
+          "cep": "01001000",
+          "campos_faltantes": []
+        },
+        "erros": []
+      },
+      "passou": true,
+      "divergencias": []
+    },
+    {
+      "id": "F07",
+      "mensagem": "Meu CEP é 123.",
+      "modo": "real",
+      "saida_modelo_nao_validada": "{\n  \"intencao\": \"entrega\",\n  \"veiculo\": {\n    \"modelo\": null,\n    \"ano_modelo\": null,\n    \"motor\": null,\n    \"combustivel\": null\n  },\n  \"peca\": null,\n  \"quantidade\": null,\n  \"cep\": \"123\",\n  \"campos_faltantes\": []\n}",
+      "esperado": {
+        "status": "erro_validacao",
+        "dados": null
+      },
+      "observado": {
+        "status": "erro_validacao",
+        "dados": null,
+        "erros": [
+          "cep: String should match pattern '^[0-9]{8}$'"
+        ]
+      },
+      "passou": true,
+      "divergencias": []
+    },
+    {
+      "id": "F08",
+      "mensagem": "Olá, bom dia!",
+      "modo": "real",
+      "saida_modelo_nao_validada": "{\n  \"intencao\": \"desconhecida\",\n  \"veiculo\": {\n    \"modelo\": null,\n    \"ano_modelo\": null,\n    \"motor\": null,\n    \"combustivel\": null\n  },\n  \"peca\": null,\n  \"quantidade\": null,\n  \"cep\": null,\n  \"campos_faltantes\": []\n}",
+      "esperado": {
+        "status": "ok",
+        "dados": {
+          "intencao": "desconhecida",
+          "campos_faltantes": [
+            "intencao"
+          ]
+        }
+      },
+      "observado": {
+        "status": "ok",
+        "dados": {
+          "intencao": "desconhecida",
+          "veiculo": {
+            "modelo": null,
+            "ano_modelo": null,
+            "motor": null,
+            "combustivel": null
+          },
+          "peca": null,
+          "quantidade": null,
+          "cep": null,
+          "campos_faltantes": [
+            "intencao"
+          ]
+        },
+        "erros": []
+      },
+      "passou": true,
+      "divergencias": []
+    },
+    {
+      "id": "F09",
+      "mensagem": "Qual o orçamento de velas para um Gol 2010 1.0 flex?",
+      "modo": "real",
+      "saida_modelo_nao_validada": "{\n  \"intencao\": \"orcamento\",\n  \"veiculo\": {\n    \"modelo\": \"Gol\",\n    \"ano_modelo\": 2010,\n    \"motor\": \"1.0\",\n    \"combustivel\": null\n  },\n  \"peca\": \"vela\",\n  \"quantidade\": null,\n  \"cep\": null,\n  \"campos_faltantes\": []\n}",
+      "esperado": {
+        "status": "ok",
+        "dados": {
+          "intencao": "orcamento",
+          "quantidade": null,
+          "campos_faltantes": [
+            "quantidade"
+          ]
+        }
+      },
+      "observado": {
+        "status": "ok",
+        "dados": {
+          "intencao": "orcamento",
+          "veiculo": {
+            "modelo": "Gol",
+            "ano_modelo": 2010,
+            "motor": "1.0",
+            "combustivel": null
+          },
+          "peca": "vela",
+          "quantidade": null,
+          "cep": null,
+          "campos_faltantes": [
+            "veiculo.combustivel",
+            "quantidade"
+          ]
+        },
+        "erros": []
+      },
+      "passou": false,
+      "divergencias": [
+        ".dados.campos_faltantes: esperado ['quantidade']; observado ['veiculo.combustivel', 'quantidade']"
+      ]
+    }
+  ],
+  "passaram": 8,
+  "total": 9,
+  "limite": "Testes de fase 1; não verificam catálogo, compatibilidade, ferramentas, memória, RAG ou qualidade geral."
+}

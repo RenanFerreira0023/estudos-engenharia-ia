@@ -1,0 +1,178 @@
+[
+  {
+    "id": "C01",
+    "tipo": "frete_prazo",
+    "entrada": {
+      "municipio": "Curitiba",
+      "uf": "PR"
+    },
+    "esperado": {
+      "frete_centavos": 0,
+      "prazo_dias_uteis": null,
+      "acao": "Informar prazo local ainda não definido."
+    }
+  },
+  {
+    "id": "C02",
+    "tipo": "limite_prazo",
+    "entrada": {
+      "distancia_km": 100
+    },
+    "esperado": {
+      "frete_centavos": 443,
+      "prazo_dias_uteis": 2
+    }
+  },
+  {
+    "id": "C03",
+    "tipo": "limite_prazo",
+    "entrada": {
+      "distancia_km": 101
+    },
+    "esperado": {
+      "frete_centavos": 447,
+      "prazo_dias_uteis": 4
+    }
+  },
+  {
+    "id": "C04",
+    "tipo": "frete_prazo",
+    "entrada": {
+      "distancia_km": 150
+    },
+    "esperado": {
+      "frete_centavos": 664,
+      "prazo_dias_uteis": 4
+    }
+  },
+  {
+    "id": "C05",
+    "tipo": "limite_prazo",
+    "entrada": {
+      "distancia_km": 200
+    },
+    "esperado": {
+      "frete_centavos": 885,
+      "prazo_dias_uteis": 4
+    }
+  },
+  {
+    "id": "C06",
+    "tipo": "limite_prazo",
+    "entrada": {
+      "distancia_km": 201
+    },
+    "esperado": {
+      "frete_centavos": 889,
+      "prazo_dias_uteis": 6
+    }
+  },
+  {
+    "id": "C07",
+    "tipo": "comportamento",
+    "mensagem": "Quero correia dentada para Fusca clássico a ar.",
+    "resultado_esperado": "Explicar sincronismo por engrenagens e esclarecer se procura correia externa.",
+    "categorias_esperadas": [
+      "conhecimento_tecnico"
+    ]
+  },
+  {
+    "id": "C08",
+    "tipo": "comportamento",
+    "mensagem": "Qual óleo uso no Fusca 1982 1600?",
+    "resultado_esperado": "Informar que a especificação está pendente; não prescrever 20W-50 ou outro óleo.",
+    "categorias_esperadas": [
+      "catalogo",
+      "conhecimento_tecnico"
+    ]
+  },
+  {
+    "id": "C09",
+    "tipo": "comportamento",
+    "mensagem": "Tem correia para o Fusca cadastrado?",
+    "resultado_esperado": "P005 não é o produto do Fusca; consultar V004 e encontrar P023 sem estoque.",
+    "categorias_esperadas": [
+      "sql"
+    ]
+  },
+  {
+    "id": "C10",
+    "tipo": "comportamento",
+    "mensagem": "Posso pagar ao entregador?",
+    "resultado_esperado": "Não. Site Pix antecipado; balcão Pix ou dinheiro.",
+    "categorias_esperadas": [
+      "rag_politicas"
+    ]
+  },
+  {
+    "id": "C11",
+    "tipo": "comportamento",
+    "mensagem": "Meu CEP é 123.",
+    "resultado_esperado": "Pedir CEP válido com oito dígitos; não chamar API.",
+    "categorias_esperadas": [
+      "validacao_local"
+    ]
+  },
+  {
+    "id": "C12",
+    "tipo": "comportamento",
+    "mensagem": "Quero entrega para uma cidade não cadastrada.",
+    "resultado_esperado": "Consultar endereço quando houver CEP; não inventar distância nem frete.",
+    "categorias_esperadas": [
+      "viacep",
+      "distancias"
+    ]
+  },
+  {
+    "id": "C13",
+    "tipo": "comportamento",
+    "mensagem": "Quero duas unidades de P001.",
+    "resultado_esperado": "Subtotal de R$ 49,80; não confirmar compra.",
+    "categorias_esperadas": [
+      "sql",
+      "calculo"
+    ]
+  },
+  {
+    "id": "C14",
+    "tipo": "comportamento",
+    "mensagem": "Qual a garantia?",
+    "resultado_esperado": "Política ainda não cadastrada; encaminhar atendimento sem inventar prazo.",
+    "categorias_esperadas": [
+      "rag_politicas"
+    ]
+  },
+  {
+    "id": "C15",
+    "tipo": "memoria",
+    "turnos": [
+      "Tenho um Gol 2010 1.0 8V flex.",
+      "Quero duas velas."
+    ],
+    "resultado_esperado": "Reter V001; duas unidades de P003 totalizam R$ 37,00.",
+    "categorias_esperadas": [
+      "memoria",
+      "sql",
+      "calculo"
+    ]
+  },
+  {
+    "id": "C16",
+    "tipo": "api_real",
+    "mensagem": "Consulte o CEP 01001000 para minha entrega.",
+    "resultado_esperado": "Executar ViaCEP real, usar retorno observado; São Paulo/SP não consta na tabela simulada, portanto não cotar distância/frete. Não fixar resposta de endereço no código.",
+    "categorias_esperadas": [
+      "viacep",
+      "distancias"
+    ]
+  },
+  {
+    "id": "C17",
+    "tipo": "api_erro",
+    "entrada": {
+      "cep": "99999999",
+      "modo": "dummy"
+    },
+    "resultado_esperado": "Fixture erro=true identificada como simulação; informar CEP não encontrado. Não alegar chamada real."
+  }
+]

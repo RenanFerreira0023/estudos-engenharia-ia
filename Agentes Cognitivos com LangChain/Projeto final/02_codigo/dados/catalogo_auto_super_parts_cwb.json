@@ -1,0 +1,698 @@
+{
+  "schema_version": "1.0",
+  "nome": "Catálogo Auto Super Parts CWB",
+  "natureza": "simulacao_academica",
+  "observacoes": [
+    "Preços, marcas, estoque e aplicações são fictícios.",
+    "Aplicações não homologadas para uso real.",
+    "Especificações técnicas de óleo ainda pendentes; valores null não devem ser inventados."
+  ],
+  "convencoes": {
+    "preco": "inteiro em centavos BRL",
+    "relacao": "aplicacoes.produto_id -> produtos.id; aplicacoes.veiculo_id -> veiculos.id"
+  },
+  "veiculos": [
+    {
+      "id": "V001",
+      "marca": "Volkswagen",
+      "modelo": "Gol",
+      "ano_modelo": 2010,
+      "motor": "1.0 8V",
+      "combustivel": "flex",
+      "status_configuracao": "recorte_academico_proposto",
+      "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+    },
+    {
+      "id": "V002",
+      "marca": "Fiat",
+      "modelo": "Palio",
+      "ano_modelo": 2010,
+      "motor": "1.0 Fire 8V",
+      "combustivel": "flex",
+      "status_configuracao": "recorte_academico_proposto",
+      "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+    },
+    {
+      "id": "V003",
+      "marca": "Chevrolet",
+      "modelo": "Celta",
+      "ano_modelo": 2012,
+      "motor": "1.0 8V",
+      "combustivel": "flex",
+      "status_configuracao": "recorte_academico_proposto",
+      "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+    },
+    {
+      "id": "V004",
+      "marca": "Volkswagen",
+      "modelo": "Fusca",
+      "ano_modelo": 1982,
+      "motor": "1600 a ar",
+      "combustivel": "gasolina",
+      "status_configuracao": "recorte_academico_proposto",
+      "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+    }
+  ],
+  "produtos": [
+    {
+      "id": "P001",
+      "sku": "CWB-SIM-P001",
+      "nome": "Filtro de óleo — Gol (simulação)",
+      "categoria": "filtro_oleo",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "unidade",
+      "preco_centavos": 2490,
+      "estoque": 8,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P002",
+      "sku": "CWB-SIM-P002",
+      "nome": "Filtro de ar — Gol (simulação)",
+      "categoria": "filtro_ar",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "unidade",
+      "preco_centavos": 3290,
+      "estoque": 6,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P003",
+      "sku": "CWB-SIM-P003",
+      "nome": "Vela de ignição — Gol (simulação)",
+      "categoria": "vela",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "unidade",
+      "preco_centavos": 1850,
+      "estoque": 16,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P004",
+      "sku": "CWB-SIM-P004",
+      "nome": "Jogo de pastilhas dianteiras — Gol (simulação)",
+      "categoria": "pastilha",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "jogo",
+      "preco_centavos": 8990,
+      "estoque": 3,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P005",
+      "sku": "CWB-SIM-P005",
+      "nome": "Correia de acessórios — Gol (simulação)",
+      "categoria": "correia_acessorios",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "unidade",
+      "preco_centavos": 2990,
+      "estoque": 5,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P006",
+      "sku": "CWB-SIM-P006",
+      "nome": "Óleo de motor 1 litro — Gol (simulação)",
+      "categoria": "oleo_motor",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "litro",
+      "preco_centavos": 3990,
+      "estoque": 12,
+      "atributos": {
+        "volume_ml": 1000,
+        "viscosidade_sae": null,
+        "tipo_base": null,
+        "especificacao_api_acea_vw": null,
+        "status_especificacao": "pendente_manual_da_configuracao",
+        "restricao": "Não escolher viscosidade, norma ou quantidade total de troca sem fonte técnica."
+      },
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P007",
+      "sku": "CWB-SIM-P007",
+      "nome": "Filtro de óleo — Palio (simulação)",
+      "categoria": "filtro_oleo",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "unidade",
+      "preco_centavos": 2490,
+      "estoque": 8,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P008",
+      "sku": "CWB-SIM-P008",
+      "nome": "Filtro de ar — Palio (simulação)",
+      "categoria": "filtro_ar",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "unidade",
+      "preco_centavos": 3290,
+      "estoque": 6,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P009",
+      "sku": "CWB-SIM-P009",
+      "nome": "Vela de ignição — Palio (simulação)",
+      "categoria": "vela",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "unidade",
+      "preco_centavos": 1850,
+      "estoque": 16,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P010",
+      "sku": "CWB-SIM-P010",
+      "nome": "Jogo de pastilhas dianteiras — Palio (simulação)",
+      "categoria": "pastilha",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "jogo",
+      "preco_centavos": 8990,
+      "estoque": 0,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P011",
+      "sku": "CWB-SIM-P011",
+      "nome": "Correia de acessórios — Palio (simulação)",
+      "categoria": "correia_acessorios",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "unidade",
+      "preco_centavos": 2990,
+      "estoque": 5,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P012",
+      "sku": "CWB-SIM-P012",
+      "nome": "Óleo de motor 1 litro — Palio (simulação)",
+      "categoria": "oleo_motor",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "litro",
+      "preco_centavos": 3990,
+      "estoque": 12,
+      "atributos": {
+        "volume_ml": 1000,
+        "viscosidade_sae": null,
+        "tipo_base": null,
+        "especificacao_api_acea_vw": null,
+        "status_especificacao": "pendente_manual_da_configuracao",
+        "restricao": "Não escolher viscosidade, norma ou quantidade total de troca sem fonte técnica."
+      },
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P013",
+      "sku": "CWB-SIM-P013",
+      "nome": "Filtro de óleo — Celta (simulação)",
+      "categoria": "filtro_oleo",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "unidade",
+      "preco_centavos": 2490,
+      "estoque": 8,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P014",
+      "sku": "CWB-SIM-P014",
+      "nome": "Filtro de ar — Celta (simulação)",
+      "categoria": "filtro_ar",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "unidade",
+      "preco_centavos": 3290,
+      "estoque": 6,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P015",
+      "sku": "CWB-SIM-P015",
+      "nome": "Vela de ignição — Celta (simulação)",
+      "categoria": "vela",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "unidade",
+      "preco_centavos": 1850,
+      "estoque": 16,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P016",
+      "sku": "CWB-SIM-P016",
+      "nome": "Jogo de pastilhas dianteiras — Celta (simulação)",
+      "categoria": "pastilha",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "jogo",
+      "preco_centavos": 8990,
+      "estoque": 3,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P017",
+      "sku": "CWB-SIM-P017",
+      "nome": "Correia de acessórios — Celta (simulação)",
+      "categoria": "correia_acessorios",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "unidade",
+      "preco_centavos": 2990,
+      "estoque": 5,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P018",
+      "sku": "CWB-SIM-P018",
+      "nome": "Óleo de motor 1 litro — Celta (simulação)",
+      "categoria": "oleo_motor",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "litro",
+      "preco_centavos": 3990,
+      "estoque": 12,
+      "atributos": {
+        "volume_ml": 1000,
+        "viscosidade_sae": null,
+        "tipo_base": null,
+        "especificacao_api_acea_vw": null,
+        "status_especificacao": "pendente_manual_da_configuracao",
+        "restricao": "Não escolher viscosidade, norma ou quantidade total de troca sem fonte técnica."
+      },
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P019",
+      "sku": "CWB-SIM-P019",
+      "nome": "Peneira de óleo — configuração clássica — Fusca (simulação)",
+      "categoria": "peneira_oleo",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "unidade",
+      "preco_centavos": 2490,
+      "estoque": 8,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P020",
+      "sku": "CWB-SIM-P020",
+      "nome": "Jogo de juntas da tampa da peneira — Fusca (simulação)",
+      "categoria": "junta",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "jogo",
+      "preco_centavos": 3290,
+      "estoque": 6,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P021",
+      "sku": "CWB-SIM-P021",
+      "nome": "Vela de ignição — especificação a confirmar — Fusca (simulação)",
+      "categoria": "vela",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "unidade",
+      "preco_centavos": 1850,
+      "estoque": 16,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P022",
+      "sku": "CWB-SIM-P022",
+      "nome": "Jogo de cabos de ignição — Fusca (simulação)",
+      "categoria": "cabo_vela",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "jogo",
+      "preco_centavos": 8990,
+      "estoque": 3,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P023",
+      "sku": "CWB-SIM-P023",
+      "nome": "Correia em V do alternador/dínamo — Fusca (simulação)",
+      "categoria": "correia_acessorios",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "unidade",
+      "preco_centavos": 2990,
+      "estoque": 0,
+      "atributos": {},
+      "natureza": "produto_ficticio_para_exercicio"
+    },
+    {
+      "id": "P024",
+      "sku": "CWB-SIM-P024",
+      "nome": "Óleo de motor 1 litro — Fusca (simulação)",
+      "categoria": "oleo_motor",
+      "marca": "CWB Didática — fictícia",
+      "codigo_fabricante_real": null,
+      "unidade": "litro",
+      "preco_centavos": 3990,
+      "estoque": 12,
+      "atributos": {
+        "volume_ml": 1000,
+        "viscosidade_sae": null,
+        "tipo_base": null,
+        "especificacao_api_acea_vw": null,
+        "status_especificacao": "pendente_manual_da_configuracao",
+        "restricao": "Não escolher viscosidade, norma ou quantidade total de troca sem fonte técnica."
+      },
+      "natureza": "produto_ficticio_para_exercicio"
+    }
+  ],
+  "aplicacoes": [
+    {
+      "id": "A001",
+      "produto_id": "P001",
+      "veiculo_id": "V001",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A002",
+      "produto_id": "P002",
+      "veiculo_id": "V001",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A003",
+      "produto_id": "P003",
+      "veiculo_id": "V001",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A004",
+      "produto_id": "P004",
+      "veiculo_id": "V001",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A005",
+      "produto_id": "P005",
+      "veiculo_id": "V001",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A006",
+      "produto_id": "P006",
+      "veiculo_id": "V001",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A007",
+      "produto_id": "P007",
+      "veiculo_id": "V002",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A008",
+      "produto_id": "P008",
+      "veiculo_id": "V002",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A009",
+      "produto_id": "P009",
+      "veiculo_id": "V002",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A010",
+      "produto_id": "P010",
+      "veiculo_id": "V002",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A011",
+      "produto_id": "P011",
+      "veiculo_id": "V002",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A012",
+      "produto_id": "P012",
+      "veiculo_id": "V002",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A013",
+      "produto_id": "P013",
+      "veiculo_id": "V003",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A014",
+      "produto_id": "P014",
+      "veiculo_id": "V003",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A015",
+      "produto_id": "P015",
+      "veiculo_id": "V003",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A016",
+      "produto_id": "P016",
+      "veiculo_id": "V003",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A017",
+      "produto_id": "P017",
+      "veiculo_id": "V003",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A018",
+      "produto_id": "P018",
+      "veiculo_id": "V003",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A019",
+      "produto_id": "P019",
+      "veiculo_id": "V004",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A020",
+      "produto_id": "P020",
+      "veiculo_id": "V004",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A021",
+      "produto_id": "P021",
+      "veiculo_id": "V004",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A022",
+      "produto_id": "P022",
+      "veiculo_id": "V004",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A023",
+      "produto_id": "P023",
+      "veiculo_id": "V004",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    },
+    {
+      "id": "A024",
+      "produto_id": "P024",
+      "veiculo_id": "V004",
+      "status": "simulada_na_base_academica",
+      "validada_para_uso_real": false,
+      "fonte_aplicacao_real": null,
+      "restricao": "Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes."
+    }
+  ],
+  "conhecimento_tecnico": [
+    {
+      "id": "T001",
+      "veiculo_id": "V004",
+      "assunto": "arquitetura",
+      "conteudo": "Fusca clássico a ar; distinguir do New Beetle e Fusca moderno.",
+      "fontes": [
+        "SRC01"
+      ]
+    },
+    {
+      "id": "T002",
+      "veiculo_id": "V004",
+      "assunto": "sincronismo",
+      "conteudo": "No motor clássico Type 1 o sincronismo do comando é por engrenagens; não cadastrar correia dentada de sincronismo para essa configuração.",
+      "fontes": [
+        "SRC02"
+      ],
+      "nota": "Referência consultada é de fabricante aftermarket; confirmar manual original para documentação técnica final."
+    },
+    {
+      "id": "T003",
+      "veiculo_id": "V004",
+      "assunto": "correia_externa",
+      "conteudo": "Correia externa em V, distinta do sincronismo. Confirmar dínamo/alternador e configuração antes de selecionar dimensões.",
+      "fontes": [
+        "SRC03"
+      ],
+      "status": "referencia_parcial_sem_codigo_homologado"
+    },
+    {
+      "id": "T004",
+      "veiculo_id": "V004",
+      "assunto": "oleo",
+      "conteudo": "Viscosidade, norma e capacidade não definidas. Não recomendar óleo apenas por ser Fusca ou por idade do veículo.",
+      "fontes": [],
+      "status": "pendente"
+    },
+    {
+      "id": "T005",
+      "veiculo_id": null,
+      "assunto": "distincao_correias",
+      "conteudo": "Correia de acessórios e correia de sincronismo têm funções distintas; não são alternativas universais uma da outra.",
+      "fontes": [],
+      "status": "regra_de_modelagem"
+    }
+  ],
+  "fontes": {
+    "consultado_em": "2026-11-02",
+    "fontes": [
+      {
+        "id": "SRC01",
+        "url": "https://www.volkswagen-newsroom.com/en/the-volkswagen-beetle-a-success-story-2341/vw-beetle-through-the-years-2361",
+        "suporta": "Arquitetura do Fusca clássico: boxer traseiro refrigerado a ar.",
+        "limite": "Não confirma aplicação de peças nem óleo de uma versão brasileira específica."
+      },
+      {
+        "id": "SRC02",
+        "url": "https://scatvw.com/product/cam-kit-with-c20-cam-single-springs/",
+        "suporta": "Conjunto de comando e engrenagem para VW Type 1.",
+        "limite": "Produto de preparação; não é recomendação de instalação nem catálogo de aplicação original."
+      },
+      {
+        "id": "SRC03",
+        "url": "https://www.gatesbrasil.com.br/upload/catalogos/catalogo_automotivo_gates_2015_web.pdf",
+        "suporta": "Resultado indexado do catálogo relaciona Fusca a ar a correia em V.",
+        "limite": "URL atualmente redireciona; não usar como validação de código/dimensão de peça."
+      },
+      {
+        "id": "SRC04",
+        "url": "https://viacep.com.br/",
+        "suporta": "Consulta de CEP, formato de oito dígitos, retorno de endereço, erro de CEP inexistente.",
+        "limite": "Não fornece distância, frete nem prazo."
+      },
+      {
+        "id": "SRC05",
+        "url": "https://www.chevrolet.com.br/servicos/manuais-veiculos/anos-anteriores",
+        "suporta": "Portal oficial para localizar manuais Chevrolet.",
+        "limite": "Especificações do Celta ainda precisam ser verificadas no manual da versão."
+      }
+    ]
+  }
+}
