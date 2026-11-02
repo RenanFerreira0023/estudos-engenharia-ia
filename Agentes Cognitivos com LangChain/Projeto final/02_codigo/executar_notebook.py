@@ -1,17 +1,21 @@
 import argparse
 import os
 import tempfile
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 import nbformat
 from nbclient import NotebookClient
+from jupyter_client import KernelManager
+from jupyter_client.kernelspec import KernelSpecManager
 
 
 def main():
     parser = argparse.ArgumentParser(description="Executa apenas o notebook da fase 1, em kernel novo.")
     parser.add_argument("--modo", choices=("real", "simulado"), default="real")
     parser.add_argument("--saida", type=Path, help="Destino opcional; por padrão atualiza o notebook da fase 1.")
+    parser.add_argument("--kernel", default="auto-super-parts-fase01", help="Nome registrado do kernel (padrão: auto-super-parts-fase01).")
     args = parser.parse_args()
     projeto = Path(__file__).resolve().parent.parent
     origem = projeto / "03_notebooks/fase_01_chain_inicial.ipynb"
@@ -26,8 +30,14 @@ def main():
         with tempfile.TemporaryDirectory(prefix="fase01_jupyter_") as temporario:
             ambiente["JUPYTER_RUNTIME_DIR"] = temporario
             ambiente["IPYTHONDIR"] = temporario
-            cliente = NotebookClient(notebook, timeout=600, kernel_name="python3", resources={"metadata": {"path": str(origem.parent)}})
-            cliente.execute(env=ambiente)
+            # KERNEL da .venv atual tem preferência sobre registros globais com o mesmo nome.
+            locais = [str(Path(sys.prefix) / "share/jupyter/kernels"), *KernelSpecManager().kernel_dirs]
+            specs = KernelSpecManager(kernel_dirs=locais)
+            manager = KernelManager(kernel_name=args.kernel, kernel_spec_manager=specs,
+                                    connection_file=str(Path(temporario) / "kernel.json"))
+            notebook.metadata.kernelspec = {"name": args.kernel, "display_name": "Auto Super Parts CWB (.venv)", "language": "python"}
+            cliente = NotebookClient(notebook, timeout=600, km=manager, kernel_name=args.kernel, resources={"metadata": {"path": str(origem.parent)}})
+            cliente.execute(env=ambiente, cleanup_kc=True)
     except Exception as erro:
         # Notebook parcial de falha fica separado; nunca substitui evidência anterior de sucesso.
         nome = f"fase01_notebook_falha_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')}.ipynb"

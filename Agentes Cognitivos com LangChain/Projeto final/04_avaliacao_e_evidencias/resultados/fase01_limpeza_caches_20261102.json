@@ -1,0 +1,12 @@
+﻿{
+    "fase":  1,
+    "operacao":  "remocao de caches solicitada pelo usuario",
+    "data_utc":  "2026-11-02T19:36:07.4254356Z",
+    "diretorio_verificado":  "C:\\Users\\Renan\\Documents\\GIT_PROJETOS\\estudos-engenharia-ia\\Agentes Cognitivos com LangChain\\Projeto final",
+    "pastas_removidas":  [
+                             "C:\\Users\\Renan\\Documents\\GIT_PROJETOS\\estudos-engenharia-ia\\Agentes Cognitivos com LangChain\\Projeto final\\02_codigo\\__pycache__",
+                             "C:\\Users\\Renan\\Documents\\GIT_PROJETOS\\estudos-engenharia-ia\\Agentes Cognitivos com LangChain\\Projeto final\\02_codigo\\src\\auto_super_parts\\__pycache__",
+                             "C:\\Users\\Renan\\Documents\\GIT_PROJETOS\\estudos-engenharia-ia\\Agentes Cognitivos com LangChain\\Projeto final\\02_codigo\\tests\\__pycache__"
+                         ],
+    "caches_restantes":  0
+}

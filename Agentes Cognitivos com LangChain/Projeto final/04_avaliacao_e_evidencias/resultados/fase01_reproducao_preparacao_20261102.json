@@ -1,0 +1,13 @@
+{
+  "fase": 1,
+  "tipo": "preparacao de copia isolada",
+  "data_utc": "2026-11-02T19:26:43.421988+00:00",
+  "copia": "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_n62hpb_l\\pacote_independente",
+  "python_copia": "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_n62hpb_l\\pacote_independente\\.venv\\Scripts\\python.exe",
+  "venv_criada": true,
+  "stdout": "",
+  "stderr": "",
+  "sem_env_local": true,
+  "sem_pythonpath": true,
+  "observacao": "Copia feita em pasta temporaria renomeada, sem .venv, .env ou caches do original."
+}

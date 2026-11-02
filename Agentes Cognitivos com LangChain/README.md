@@ -61,7 +61,8 @@ Cada aula deve ficar em uma pasta propria, com:
 - `README.md`: explicacao do exercicio e dos conceitos estudados.
 - Arquivos `.py`: codigos da aula ou exercicio.
 
-O `.env` e unico e fica na raiz do repositorio, compartilhado por todos os
-exercicios. Variaveis ja definidas no ambiente tem prioridade.
+Nas aulas, o `.env` compartilhado fica na raiz do repositorio. O Projeto final
+e independente: prioriza o ambiente e aceita um `.env` local em sua propria
+pasta, conforme seu README. Ele nao procura a configuracao das demais aulas.
 
 Arquivos `.env` nao devem ser enviados para o GitHub.

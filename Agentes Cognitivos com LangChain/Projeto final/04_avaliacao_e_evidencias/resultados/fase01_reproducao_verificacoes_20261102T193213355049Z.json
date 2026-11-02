@@ -1,0 +1,209 @@
+{
+  "fase": 1,
+  "tipo": "verificacoes de reproducao em copia renomeada e venv criada do zero",
+  "data_utc": "2026-11-02T19:32:13.355049+00:00",
+  "copia": "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente",
+  "python_copia": "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\.venv\\Scripts\\python.exe",
+  "modelo_real_executado": false,
+  "modo_notebook": "simulado",
+  "fixtures_configuracao": "Valores ficticios usados apenas para inicializacao/prioridade; sem requisicao HTTP.",
+  "sem_pythonpath": true,
+  "registros": [
+    {
+      "id": "pip_check",
+      "comando": [
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2",
+      "stdin": null,
+      "codigo_esperado": 0,
+      "observado": {
+        "returncode": 0,
+        "stdout": "No broken requirements found.\n",
+        "stderr": ""
+      },
+      "passou": true
+    },
+    {
+      "id": "bibliotecas_da_venv_nova",
+      "comando": [
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import sys,json,langchain_core,pydantic; print(json.dumps({'python':sys.executable,'prefix':sys.prefix,'langchain_core':langchain_core.__file__,'pydantic':pydantic.__file__}))"
+      ],
+      "cwd": "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2",
+      "stdin": null,
+      "codigo_esperado": 0,
+      "observado": {
+        "returncode": 0,
+        "stdout": "{\"python\": \"C:\\\\Users\\\\Renan\\\\AppData\\\\Local\\\\Temp\\\\fase01_repro_confirmada_juz945g2\\\\pacote_independente\\\\.venv\\\\Scripts\\\\python.exe\", \"prefix\": \"C:\\\\Users\\\\Renan\\\\AppData\\\\Local\\\\Temp\\\\fase01_repro_confirmada_juz945g2\\\\pacote_independente\\\\.venv\", \"langchain_core\": \"C:\\\\Users\\\\Renan\\\\AppData\\\\Local\\\\Temp\\\\fase01_repro_confirmada_juz945g2\\\\pacote_independente\\\\.venv\\\\Lib\\\\site-packages\\\\langchain_core\\\\__init__.py\", \"pydantic\": \"C:\\\\Users\\\\Renan\\\\AppData\\\\Local\\\\Temp\\\\fase01_repro_confirmada_juz945g2\\\\pacote_independente\\\\.venv\\\\Lib\\\\site-packages\\\\pydantic\\\\__init__.py\"}\n",
+        "stderr": ""
+      },
+      "passou": true
+    },
+    {
+      "id": "registro_kernel",
+      "comando": [
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ipykernel",
+        "install",
+        "--prefix",
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\.venv",
+        "--name",
+        "auto-super-parts-fase01",
+        "--display-name",
+        "Auto Super Parts CWB (.venv)"
+      ],
+      "cwd": "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2",
+      "stdin": null,
+      "codigo_esperado": 0,
+      "observado": {
+        "returncode": 0,
+        "stdout": "Installed kernelspec auto-super-parts-fase01 in C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\.venv\\share\\jupyter\\kernels\\auto-super-parts-fase01\n",
+        "stderr": ""
+      },
+      "passou": true
+    },
+    {
+      "id": "kernel_aponta_para_venv_nova",
+      "comando": [
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\.venv\\Scripts\\python.exe",
+        "-m",
+        "jupyter",
+        "kernelspec",
+        "list",
+        "--json"
+      ],
+      "cwd": "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2",
+      "stdin": null,
+      "codigo_esperado": 0,
+      "observado": {
+        "returncode": 0,
+        "stdout": "{\n  \"kernelspecs\": {\n    \"auto-super-parts-fase01\": {\n      \"resource_dir\": \"C:\\\\Users\\\\Renan\\\\AppData\\\\Local\\\\Temp\\\\fase01_repro_confirmada_juz945g2\\\\pacote_independente\\\\.venv\\\\share\\\\jupyter\\\\kernels\\\\auto-super-parts-fase01\",\n      \"spec\": {\n        \"argv\": [\n          \"C:\\\\Users\\\\Renan\\\\AppData\\\\Local\\\\Temp\\\\fase01_repro_confirmada_juz945g2\\\\pacote_independente\\\\.venv\\\\Scripts\\\\python.exe\",\n          \"-Xfrozen_modules=off\",\n          \"-m\",\n          \"ipykernel_launcher\",\n          \"-f\",\n          \"{connection_file}\"\n        ],\n        \"env\": {},\n        \"display_name\": \"Auto Super Parts CWB (.venv)\",\n        \"language\": \"python\",\n        \"interrupt_mode\": \"signal\",\n        \"metadata\": {\n          \"debugger\": true,\n          \"supported_encryption\": [\n            \"curve\"\n          ]\n        },\n        \"kernel_protocol_version\": \"5.5\"\n      }\n    },\n    \"python3\": {\n      \"resource_dir\": \"C:\\\\Users\\\\Renan\\\\AppData\\\\Local\\\\Temp\\\\fase01_repro_confirmada_juz945g2\\\\pacote_independente\\\\.venv\\\\share\\\\jupyter\\\\kernels\\\\python3\",\n      \"spec\": {\n        \"argv\": [\n          \"python\",\n          \"-m\",\n          \"ipykernel_launcher\",\n          \"-f\",\n          \"{connection_file}\"\n        ],\n        \"env\": {},\n        \"display_name\": \"Python 3 (ipykernel)\",\n        \"language\": \"python\",\n        \"interrupt_mode\": \"signal\",\n        \"metadata\": {\n          \"debugger\": true,\n          \"supported_encryption\": [\n            \"curve\"\n          ]\n        },\n        \"kernel_protocol_version\": \"5.5\"\n      }\n    }\n  }\n}\n",
+        "stderr": ""
+      },
+      "passou": true
+    },
+    {
+      "id": "testes_locais_na_copia",
+      "comando": [
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\.venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\02_codigo\\executar_testes.py"
+      ],
+      "cwd": "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2",
+      "stdin": null,
+      "codigo_esperado": 0,
+      "observado": {
+        "returncode": 0,
+        "stdout": "test_arquivo_explicitado_relativo_ao_projeto (test_configuracao.ConfiguracaoTest.test_arquivo_explicitado_relativo_ao_projeto) ... ok\ntest_env_local_sem_modificar_ambiente (test_configuracao.ConfiguracaoTest.test_env_local_sem_modificar_ambiente) ... ok\ntest_localizacao_por_marcador_em_projeto_renomeado (test_configuracao.ConfiguracaoTest.test_localizacao_por_marcador_em_projeto_renomeado) ... ok\ntest_nao_procura_env_fora_do_projeto (test_configuracao.ConfiguracaoTest.test_nao_procura_env_fora_do_projeto) ... ok\ntest_sem_marcador_falha_claramente (test_configuracao.ConfiguracaoTest.test_sem_marcador_falha_claramente) ... ok\ntest_variavel_de_ambiente_tem_prioridade_sem_ler_arquivo (test_configuracao.ConfiguracaoTest.test_variavel_de_ambiente_tem_prioridade_sem_ler_arquivo) ... ok\ntest_variavel_vazia_nao_dispara_fallback (test_configuracao.ConfiguracaoTest.test_variavel_vazia_nao_dispara_fallback) ... ok\ntest_batch_simulado_nove_casos (test_fase01.ComposicaoTest.test_batch_simulado_nove_casos) ... ok\ntest_entrada_vazia_nao_chama_modelo (test_fase01.ComposicaoTest.test_entrada_vazia_nao_chama_modelo) ... ok\ntest_execucao_direta_fora_do_projeto_sem_pythonpath (test_fase01.ComposicaoTest.test_execucao_direta_fora_do_projeto_sem_pythonpath) ... ok\ntest_falha_modelo_nao_vira_dado (test_fase01.ComposicaoTest.test_falha_modelo_nao_vira_dado) ... ok\ntest_formato_e_instrucoes_no_prompt (test_fase01.ComposicaoTest.test_formato_e_instrucoes_no_prompt) ... ok\ntest_json_invalido_e_falha_sem_repeticao (test_fase01.ComposicaoTest.test_json_invalido_e_falha_sem_repeticao) ... ok\ntest_parser_rejeita_zero (test_fase01.ComposicaoTest.test_parser_rejeita_zero) ... ok\ntest_templates_e_composicoes_mesmo_contrato (test_fase01.ComposicaoTest.test_templates_e_composicoes_mesmo_contrato) ... ok\ntest_cep_preserva_zero_e_normaliza_hifen (test_fase01.ContratoTest.test_cep_preserva_zero_e_normaliza_hifen) ... ok\ntest_nao_inventa_veiculo_ou_unidade (test_fase01.ContratoTest.test_nao_inventa_veiculo_ou_unidade) ... ok\ntest_pendencias_dependem_da_intencao (test_fase01.ContratoTest.test_pendencias_dependem_da_intencao) ... ok\ntest_quantidade_obrigatoria_so_no_orcamento (test_fase01.ContratoTest.test_quantidade_obrigatoria_so_no_orcamento) ... ok\ntest_quantidades_invalidas_nao_sao_convertidas (test_fase01.ContratoTest.test_quantidades_invalidas_nao_sao_convertidas) ... ok\ntest_recalcula_lista_alegada_pelo_modelo (test_fase01.ContratoTest.test_recalcula_lista_alegada_pelo_modelo) ... ok\ntest_rejeita_preco_e_compativel_adicionados (test_fase01.ContratoTest.test_rejeita_preco_e_compativel_adicionados) ... ok\ntest_veiculo_null_normaliza_sem_inventar (test_fase01.ContratoTest.test_veiculo_null_normaliza_sem_inventar) ... ok\n\n----------------------------------------------------------------------\nRan 23 tests in 3.196s\n\nOK\n\nEvidência: fase01_unittest_20261102T193154319783Z.json\n",
+        "stderr": ""
+      },
+      "passou": true
+    },
+    {
+      "id": "cli_help_em_outra_pasta",
+      "comando": [
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\.venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\02_codigo\\src\\auto_super_parts\\chain_inicial.py",
+        "--help"
+      ],
+      "cwd": "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2",
+      "stdin": null,
+      "codigo_esperado": 0,
+      "observado": {
+        "returncode": 0,
+        "stdout": "usage: chain_inicial.py [-h] [--mensagem MENSAGEM]\n\nSomente fase 1: chain inicial da Auto Super Parts CWB.\n\noptions:\n  -h, --help           show this help message and exit\n  --mensagem MENSAGEM  Processa uma mensagem e encerra, sem abrir o modo\n                       interativo.\n",
+        "stderr": ""
+      },
+      "passou": true
+    },
+    {
+      "id": "sem_configuracao_nao_le_env_pai",
+      "comando": [
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\.venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\02_codigo\\src\\auto_super_parts\\chain_inicial.py"
+      ],
+      "cwd": "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2",
+      "stdin": "\n",
+      "codigo_esperado": 2,
+      "observado": {
+        "returncode": 2,
+        "stdout": "",
+        "stderr": "Configuração: Defina OPENAI_API_KEY no ambiente ou no .env da pasta deste projeto.\n"
+      },
+      "passou": true
+    },
+    {
+      "id": "configuracao_local_inicializa_cli_sem_http",
+      "comando": [
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\.venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\02_codigo\\src\\auto_super_parts\\chain_inicial.py"
+      ],
+      "cwd": "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2",
+      "stdin": "/sair\n",
+      "codigo_esperado": 0,
+      "observado": {
+        "returncode": 0,
+        "stdout": "[estudo] PromptTemplate e ChatPromptTemplate organizam a mesma tarefa.\n[estudo] LCEL e @chain compõem prompt, modelo e PydanticOutputParser.\n[estudo] BaseModel valida tipos; Python recalcula os campos necessários à intenção.\n[estudo] invoke() processa uma entrada; batch() processa uma lista no notebook.\n[estudo] input() recebe novas mensagens independentes; não há memória nesta fase.\n\nMensagem (Enter ou /sair encerra): ",
+        "stderr": ""
+      },
+      "passou": true
+    },
+    {
+      "id": "ambiente_tem_prioridade_no_cliente",
+      "comando": [
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import sys;sys.path.insert(0,'C:\\\\Users\\\\Renan\\\\AppData\\\\Local\\\\Temp\\\\fase01_repro_confirmada_juz945g2\\\\pacote_independente\\\\02_codigo\\\\src');from auto_super_parts.chain_inicial import criar_modelo;modelo=criar_modelo();assert modelo.openai_api_key.get_secret_value()=='fixture-ambiente-sem-chamada-http';print('Prioridade do ambiente confirmada, sem chamada HTTP.')"
+      ],
+      "cwd": "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2",
+      "stdin": null,
+      "codigo_esperado": 0,
+      "observado": {
+        "returncode": 0,
+        "stdout": "Prioridade do ambiente confirmada, sem chamada HTTP.\n",
+        "stderr": ""
+      },
+      "passou": true
+    },
+    {
+      "id": "notebook_inteiro_com_kernel_registrado",
+      "comando": [
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\.venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\02_codigo\\executar_notebook.py",
+        "--modo",
+        "simulado",
+        "--saida",
+        "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2\\pacote_independente\\04_avaliacao_e_evidencias\\resultados\\fase01_notebook_reproducao_simulada.ipynb"
+      ],
+      "cwd": "C:\\Users\\Renan\\AppData\\Local\\Temp\\fase01_repro_confirmada_juz945g2",
+      "stdin": null,
+      "codigo_esperado": 0,
+      "observado": {
+        "returncode": 0,
+        "stdout": "Notebook executado do início ao fim (simulado): fase01_notebook_reproducao_simulada.ipynb\n",
+        "stderr": "[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.\n"
+      },
+      "passou": true,
+      "celulas_executadas": 7
+    }
+  ],
+  "novas_evidencias": [
+    "fase01_notebook_reproducao_simulada.ipynb",
+    "fase01_simulado_20261102T193212765856Z.json",
+    "fase01_unittest_20261102T193154319783Z.json"
+  ],
+  "passou": true,
+  "limite": "Instalacao, configuracao, testes locais e notebook simulado verificados. Nenhuma nova chamada a OpenAI."
+}

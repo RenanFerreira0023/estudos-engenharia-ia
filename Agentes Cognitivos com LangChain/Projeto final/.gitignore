@@ -1,0 +1,8 @@
+# Configuração local e ambiente: a cópia do projeto também pode ser um repositório independente.
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/

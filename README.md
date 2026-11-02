@@ -254,11 +254,15 @@ implementados em Agentes Cognitivos com LangChain.
 
 ## Observações
 
-Todos os exercicios compartilham o arquivo `.env` na raiz deste repositorio,
+Os exercicios das aulas compartilham o arquivo `.env` na raiz deste repositorio,
 ao lado deste README. Coloque `OPENAI_API_KEY` nele; nao crie copias nas aulas
 ou nos exercicios. Os scripts localizam esse arquivo a partir de sua propria
 localizacao, independentemente da pasta do terminal. Variaveis ja definidas no
 ambiente tem prioridade. O `.env` e ignorado pelo Git e nao deve ser versionado.
+
+O **Projeto final** usa configuração independente para permitir cópia isolada:
+variável de ambiente primeiro e `.env` opcional dentro da pasta do próprio projeto.
+Seu README documenta a criação da `.venv` e o registro do kernel desde o início.
 
 Este repositorio deve crescer com anotacoes, exemplos de codigo e pequenos
 projetos praticos. Cada aula pode ter sua propria pasta com README, codigo e

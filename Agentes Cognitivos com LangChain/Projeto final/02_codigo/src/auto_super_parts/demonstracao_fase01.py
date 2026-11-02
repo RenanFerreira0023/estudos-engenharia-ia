@@ -8,9 +8,10 @@ from langchain_core.language_models.fake_chat_models import FakeListChatModel
 from langchain_core.runnables import RunnableLambda
 
 from .chain_inicial import criar_chains, processar_mensagem
+from .configuracao import localizar_projeto
 
 
-PROJETO = Path(__file__).resolve().parents[3]
+PROJETO = localizar_projeto()
 
 
 class ObservarSaidas(BaseCallbackHandler):

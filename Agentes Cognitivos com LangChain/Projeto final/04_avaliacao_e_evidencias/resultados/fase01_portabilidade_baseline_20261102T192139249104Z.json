@@ -1,0 +1,27 @@
+{
+  "fase": 1,
+  "operacao": "inventario antes da revisao de portabilidade",
+  "evidencias_anteriores_sha256": {
+    "04_avaliacao_e_evidencias/resultados/fase01_cli_assistida_20261102T190918839535Z.json": "73c57642dd73ea69d6cee8d0f22edb9054444f845da8848277cfa9ab6a19d0c6",
+    "04_avaliacao_e_evidencias/resultados/fase01_notebook_falha_20261102T182925372708Z.ipynb": "b65d3182daf11edf94fc626d82b79c5dcc8ecf598ec3b490cdba4a90e464e772",
+    "04_avaliacao_e_evidencias/resultados/fase01_notebook_falha_20261102T183028145138Z.ipynb": "ad36ecd80be7b21ebb97ee15f062dfa5d4d51ebf8f0c3ca4b2eceb7f93d45709",
+    "04_avaliacao_e_evidencias/resultados/fase01_notebook_falha_20261102T183140960427Z.ipynb": "2e608693059e3ad26aecd029008902e71294dab1fc94a0a4ae3f195fec4ab75b",
+    "04_avaliacao_e_evidencias/resultados/fase01_notebook_falha_20261102T183232257633Z.ipynb": "eaf83e40e8d00e8d80ecd1dcdcdb34851f3ed65e1e71103788fb102ddcf45d80",
+    "04_avaliacao_e_evidencias/resultados/fase01_notebook_simulado.ipynb": "d7c4a66055caa4c9fef464d75a0934011c80c56bc896f7f4dd3012d83623cc75",
+    "04_avaliacao_e_evidencias/resultados/fase01_real_20261102T183027241397Z.json": "b22f34d3128389c487735387b2dab9fdb15c55048129e7dc6c4acd0de8109f4d",
+    "04_avaliacao_e_evidencias/resultados/fase01_real_20261102T183140100401Z.json": "9eb5e562fb63cbe4d1cfa11ab16cc916408ec13f7c5eaa2acbba10d00ebc659a",
+    "04_avaliacao_e_evidencias/resultados/fase01_real_20261102T183231362697Z.json": "7e5c207d8ce2c0c52f1dc5a78e796b001ae5b7754836061cc6f075b0a437192d",
+    "04_avaliacao_e_evidencias/resultados/fase01_real_20261102T183637172353Z.json": "bcaacf658825b9fcae3b030349111940c8fc363ac94e302aef9c0ee1647ae6ca",
+    "04_avaliacao_e_evidencias/resultados/fase01_simulado_20261102T182951808434Z.json": "2e3117feae809c0f9609303f4b4a33f92672f9458589f3b7c4324bd6ea8ae2a8",
+    "04_avaliacao_e_evidencias/resultados/fase01_unittest_20261102T182923883162Z.json": "7379c6b29e5ebfb9d58b8758cedc11184b1e80427b1b6e6ccb069a10228aa899",
+    "04_avaliacao_e_evidencias/resultados/fase01_unittest_20261102T183133912830Z.json": "8b8fd26a8144f906dc40808512116675dc324c41074b11d88f04bd84b8fb82e1",
+    "04_avaliacao_e_evidencias/resultados/fase01_unittest_20261102T183654122935Z.json": "0fd43126a113ad5e175feea0f7ccf7eb9d210bc3fb612ff3f1e988a14110b495",
+    "04_avaliacao_e_evidencias/resultados/fase01_unittest_20261102T184221907393Z.json": "a374af5fc56721360f4a59bbc2303596603f76ba6967eaa68b7008e1d6a2482a",
+    "04_avaliacao_e_evidencias/resultados/fase01_unittest_20261102T184419294226Z.json": "d477b22e752ce0f50b5cc80689ea6b16b12fbf249ccc7d9cfafad80500a9049a",
+    "04_avaliacao_e_evidencias/resultados/ORIENTACAO.md": "c26b8e27d45d563633f894bd77efd56b558ab5f74d0c39ce708eace19ccaf916",
+    "04_avaliacao_e_evidencias/resultados/RESULTADOS_FASE_01.md": "6a3b035d1031de137f666738a83dd014a2edf60fcf69863929ed88c3c6db464c",
+    "04_avaliacao_e_evidencias/resultados/TESTES_MANUAIS_FASE_01.md": "f6dc6a68d3ea7a28f1490dd78f330affcee1def4d7ca213bec0092d84b22bd46"
+  },
+  "notebook_original_sha256": "a755c79008bf09fa58f50b2e0ac175f7e11b4b2864c5b1cdc2c7f4ecd5c9b29e",
+  "snapshot_notebook": "04_avaliacao_e_evidencias/resultados/fase01_notebook_antes_portabilidade_20261102T192139249104Z.ipynb"
+}

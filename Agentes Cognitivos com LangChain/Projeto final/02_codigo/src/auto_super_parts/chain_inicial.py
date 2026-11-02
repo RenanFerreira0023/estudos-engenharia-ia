@@ -9,22 +9,21 @@ if __name__ == "__main__" and not __package__:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
     __package__ = "auto_super_parts"
 
-from dotenv import load_dotenv
 from langchain_core.exceptions import OutputParserException
 from langchain_core.runnables import Runnable, RunnableConfig, RunnableLambda, chain
 from langchain_openai import ChatOpenAI
 from pydantic import ValidationError
 
 from .prompts import criar_templates
+from .configuracao import ErroConfiguracao, obter_chave_api
 from .schemas import EntradaMensagem, ResultadoProcessamento
 
 
-def criar_modelo():
-    # CONFIGURAÇÃO sobe até a raiz do repositório; não copia .env para o projeto nem imprime credenciais.
-    raiz = Path(__file__).resolve().parents[5]
-    load_dotenv(raiz / ".env", override=False)
+def criar_modelo(arquivo_env=None):
+    # CONFIGURAÇÃO prioriza o ambiente; o arquivo opcional pertence ao projeto copiado.
+    chave = obter_chave_api(arquivo_env)
     # CHATOPENAI chama somente o modelo de chat definido na arquitetura; embeddings são de fases futuras.
-    return ChatOpenAI(model="gpt-4o-mini", temperature=0, max_retries=0, timeout=45)
+    return ChatOpenAI(model="gpt-4o-mini", api_key=chave, temperature=0, max_retries=0, timeout=45)
 
 
 def validar_entrada(entrada):
@@ -93,7 +92,10 @@ def main():
     parser = argparse.ArgumentParser(description="Somente fase 1: chain inicial da Auto Super Parts CWB.")
     parser.add_argument("--mensagem", help="Processa uma mensagem e encerra, sem abrir o modo interativo.")
     args = parser.parse_args()
-    fluxo = criar_chains().lcel
+    try:
+        fluxo = criar_chains().lcel
+    except ErroConfiguracao as erro:
+        parser.exit(2, f"Configuração: {erro}\n")
     if args.mensagem is not None:
         print(processar_mensagem(fluxo, args.mensagem).model_dump_json(indent=2))
         return
