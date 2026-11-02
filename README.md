@@ -142,7 +142,7 @@ Coletar veículo, dia, horário e nome por turnos e preparar uma solicitação s
 
 **Fluxo:** estado + mensagem → extração → atualização em Python → pergunta ou solicitação simulada pronta.
 
-### [Aula 26-10 — SQL e cálculo com ferramentas](./Agentes%20Cognitivos%20com%20LangChain/aula%2026-10/)
+### [Aula 26-10 — SQL, cálculo e busca de políticas com ferramentas](./Agentes%20Cognitivos%20com%20LangChain/aula%2026-10/)
 
 #### [Conferir estoque e calcular um orçamento](./Agentes%20Cognitivos%20com%20LangChain/aula%2026-10/Conferir%20estoque%20e%20calcular%20um%20orcamento/)
 
@@ -160,6 +160,22 @@ Consultar produto e estoque em um catálogo fictício antes de calcular um orça
 
 **Fluxo:** pedido → agente → SELECT → conferência de estoque → cálculo Python → resposta e auditoria.
 
+#### [Buscar uma regra sem inventar um benefício](./Agentes%20Cognitivos%20com%20LangChain/aula%2026-10/Buscar%20uma%20regra%20sem%20inventar%20um%20beneficio/)
+
+Interpretar dúvidas coloquiais e recuperar políticas sem inventar benefícios ausentes.
+
+- **Document e metadados:** cada política curta é um chunk com ID, fonte e domínio,
+  permitindo citar o conteúdo útil e conferir sua origem.
+- **Embeddings e busca com scores:** `OpenAIEmbeddings` e FAISS indexam uma vez;
+  `similarity_search_with_score` retorna até dois trechos, com filtro opcional.
+- **Reescrita pelo agente:** `create_agent` recebe instruções para transformar
+  linguagem coloquial em `query_otimizada`, preservando a necessidade, e chama `@tool`.
+- **Comparação e limites da recuperação:** original e reescrita usam o mesmo índice
+  e k; os resultados reais ficam no JSONL. Distância não comprova benefício nem
+  proibição, e ausência de melhoria na comparação também é registrada.
+
+**Fluxo:** pergunta → reescrita → busca com metadados e scores → conferência de evidência → resposta com fonte ou ausência de informação.
+
 ## Conceitos para revisar
 
 | Conceito | Significado neste repositório | Onde começar |
@@ -172,6 +188,7 @@ Consultar produto e estoque em um catálogo fictício antes de calcular um orça
 | Roteamento | Escolha de uma chain a partir da classificação da mensagem. | Encaminhar pedidos, aula 14-10. |
 | Agente e ferramenta | Ciclo em que o modelo solicita funções disponíveis e usa seus retornos. | Consulta de regras e preferências. |
 | RAG | Recuperação de trechos de uma base para fundamentar a resposta do modelo. | Consultar regras, aula 19-10. |
+| Reescrita e score vetorial | Reformulação fiel da consulta e inspeção das distâncias e documentos, sem tratar proximidade como verdade. | Busca de políticas, aula 26-10. |
 | Memória e estado | Dados mantidos pela aplicação e reutilizados nas interações seguintes. | Os dois exercícios da aula 21-10. |
 | Consulta SQL com LLM | Modelo escreve uma consulta a partir de um esquema; o código controla sua execução no banco fictício. | Estoque e orçamento, aula 26-10. |
 | Cálculo determinístico | Função Python produz o total em centavos a partir do preço consultado e da quantidade válida. | Estoque e orçamento, aula 26-10. |
