@@ -38,5 +38,15 @@
     "combustivel": "gasolina",
     "status_configuracao": "recorte_academico_proposto",
     "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+  },
+  {
+    "id": "V005",
+    "marca": "Chevrolet",
+    "modelo": "S10",
+    "ano_modelo": 2014,
+    "motor": "2.8 CTDI",
+    "combustivel": "diesel",
+    "status_configuracao": "recorte_academico_proposto",
+    "observacao": "Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão."
   }
 ]

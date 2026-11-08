@@ -1,0 +1,284 @@
+{
+  "fase": 2,
+  "modelo": "OpenAI/gpt-4o-mini",
+  "origem_cep": "viacep_real",
+  "mensagem": "Tenho um Gol 2010 1.0 8V flex e quero uma unidade de vela para retirada. Consulte a aplicação, o preço e calcule o orçamento.",
+  "status": "ok",
+  "resposta": "Para o seu Gol 2010 1.0 8V flex, encontramos a seguinte vela de ignição:\n\n- **Produto**: Vela de ignição — Gol (simulação)\n- **Marca**: CWB Didática — fictícia\n- **Preço**: R$ 18,50\n- **Estoque disponível**: 16 unidades\n\nO orçamento para 1 unidade de vela para retirada é:\n\n- **Subtotal**: R$ 18,50\n- **Frete**: R$ 0,00 (retirada)\n- **Total**: R$ 18,50\n\nLembrando que as aplicações e produtos são simulados para fins acadêmicos e não estão homologados para uso real. Se precisar de mais alguma informação, estou à disposição!",
+  "trajetoria": [
+    {
+      "tipo": "human",
+      "conteudo": "Tenho um Gol 2010 1.0 8V flex e quero uma unidade de vela para retirada. Consulte a aplicação, o preço e calcule o orçamento."
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "listar_veiculos",
+          "args": {},
+          "id": "call_Texlrkq8pUA3wTFmUlKmL6PW",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}",
+      "ferramenta": "listar_veiculos",
+      "tool_call_id": "call_Texlrkq8pUA3wTFmUlKmL6PW"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_catalogo",
+          "args": {
+            "produto_id": null,
+            "veiculo_id": "V001",
+            "categoria": "vela"
+          },
+          "id": "call_eCw4WxiS8y63sfBSaqA72q2d",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"nome\": \"Vela de ignição — Gol (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1850, \"estoque\": 16, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A003\", \"produto_id\": \"P003\", \"veiculo_id\": \"V001\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p JOIN aplicacoes a ON a.produto_id = p.id WHERE a.veiculo_id = ? AND p.categoria = ? ORDER BY p.id\", \"parametros\": [\"V001\", \"vela\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ? AND veiculo_id = ?\", \"parametros\": [\"P003\", \"V001\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}",
+      "ferramenta": "consultar_catalogo",
+      "tool_call_id": "call_eCw4WxiS8y63sfBSaqA72q2d"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "calcular_orcamento",
+          "args": {
+            "itens": [
+              {
+                "produto_id": "P003",
+                "quantidade": 1
+              }
+            ],
+            "modalidade": "retirada",
+            "municipio": null,
+            "uf": null
+          },
+          "id": "call_hnwQRoFuO9FejzKsvTqWbQvv",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"itens\": [{\"produto_id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"quantidade\": 1, \"preco_unitario_centavos\": 1850, \"estoque_consultado\": 16}], \"subtotal_centavos\": 1850, \"frete_centavos\": 0, \"total_centavos\": 1850, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"ok\"}",
+      "ferramenta": "calcular_orcamento",
+      "tool_call_id": "call_hnwQRoFuO9FejzKsvTqWbQvv"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "Para o seu Gol 2010 1.0 8V flex, encontramos a seguinte vela de ignição:\n\n- **Produto**: Vela de ignição — Gol (simulação)\n- **Marca**: CWB Didática — fictícia\n- **Preço**: R$ 18,50\n- **Estoque disponível**: 16 unidades\n\nO orçamento para 1 unidade de vela para retirada é:\n\n- **Subtotal**: R$ 18,50\n- **Frete**: R$ 0,00 (retirada)\n- **Total**: R$ 18,50\n\nLembrando que as aplicações e produtos são simulados para fins acadêmicos e não estão homologados para uso real. Se precisar de mais alguma informação, estou à disposição!",
+      "tool_calls": []
+    }
+  ],
+  "eventos_ferramentas": [
+    {
+      "evento": "inicio",
+      "run_id": "01a1bce9-dce9-75c3-9d58-d731ea985a54",
+      "ferramenta": "listar_veiculos",
+      "entrada": "{}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1bce9-dce9-75c3-9d58-d731ea985a54",
+      "observado": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a1bce9-e0fa-7062-a772-a13b13a4519d",
+      "ferramenta": "consultar_catalogo",
+      "entrada": "{'produto_id': None, 'veiculo_id': 'V001', 'categoria': 'vela'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1bce9-e0fa-7062-a772-a13b13a4519d",
+      "observado": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"nome\": \"Vela de ignição — Gol (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1850, \"estoque\": 16, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A003\", \"produto_id\": \"P003\", \"veiculo_id\": \"V001\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p JOIN aplicacoes a ON a.produto_id = p.id WHERE a.veiculo_id = ? AND p.categoria = ? ORDER BY p.id\", \"parametros\": [\"V001\", \"vela\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ? AND veiculo_id = ?\", \"parametros\": [\"P003\", \"V001\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a1bce9-e5d7-73f1-9dad-bf7cdd517572",
+      "ferramenta": "calcular_orcamento",
+      "entrada": "{'itens': [{'produto_id': 'P003', 'quantidade': 1}], 'modalidade': 'retirada', 'municipio': None, 'uf': None}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1bce9-e5d7-73f1-9dad-bf7cdd517572",
+      "observado": "{\"itens\": [{\"produto_id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"quantidade\": 1, \"preco_unitario_centavos\": 1850, \"estoque_consultado\": 16}], \"subtotal_centavos\": 1850, \"frete_centavos\": 0, \"total_centavos\": 1850, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"ok\"}"
+    }
+  ],
+  "esquemas_modelo": [
+    [
+      {
+        "type": "function",
+        "function": {
+          "name": "listar_veiculos",
+          "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+          "parameters": {
+            "properties": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo",
+          "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+          "parameters": {
+            "properties": {
+              "produto_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "veiculo_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "categoria": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object",
+            "required": [
+              "produto_id",
+              "veiculo_id",
+              "categoria"
+            ],
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_cep",
+          "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+          "parameters": {
+            "properties": {
+              "cep": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cep"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "calcular_orcamento",
+          "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+          "parameters": {
+            "properties": {
+              "itens": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "produto_id": {
+                      "description": "ID ou SKU retornado pela consulta do catálogo.",
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "quantidade": {
+                      "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                      "exclusiveMinimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "produto_id",
+                    "quantidade"
+                  ],
+                  "type": "object"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "modalidade": {
+                "enum": [
+                  "retirada",
+                  "entrega"
+                ],
+                "type": "string"
+              },
+              "municipio": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "uf": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "itens",
+              "modalidade",
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      }
+    ]
+  ]
+}

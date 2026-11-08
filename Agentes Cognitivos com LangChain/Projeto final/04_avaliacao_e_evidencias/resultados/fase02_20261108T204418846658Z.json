@@ -1,0 +1,214 @@
+{
+  "fase": 2,
+  "modelo": "OpenAI/gpt-4o-mini",
+  "origem_cep": "viacep_real",
+  "mensagem": "Oi, qual fica o frete para  01001000?",
+  "status": "ok",
+  "resposta": "O CEP 01001-000 corresponde à Praça da Sé, no bairro Sé, em São Paulo - SP. No entanto, a consulta não fornece informações sobre distância, frete ou prazo de entrega. \n\nSe precisar de mais informações ou quiser consultar produtos, estou à disposição!",
+  "trajetoria": [
+    {
+      "tipo": "human",
+      "conteudo": "Oi, qual fica o frete para  01001000?"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_cep",
+          "args": {
+            "cep": "01001000"
+          },
+          "id": "call_JSOIgmFUXlNBORd5JogCM9Gg",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"origem\": \"viacep_real\", \"cep\": \"01001000\", \"endereco\": {\"cep\": \"01001-000\", \"logradouro\": \"Praça da Sé\", \"complemento\": \"lado ímpar\", \"bairro\": \"Sé\", \"localidade\": \"São Paulo\", \"uf\": \"SP\", \"ibge\": \"3550308\"}, \"tentativa_http_real\": true, \"url\": \"https://viacep.com.br/ws/01001000/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}",
+      "ferramenta": "consultar_cep",
+      "tool_call_id": "call_JSOIgmFUXlNBORd5JogCM9Gg"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "O CEP 01001-000 corresponde à Praça da Sé, no bairro Sé, em São Paulo - SP. No entanto, a consulta não fornece informações sobre distância, frete ou prazo de entrega. \n\nSe precisar de mais informações ou quiser consultar produtos, estou à disposição!",
+      "tool_calls": []
+    }
+  ],
+  "eventos_ferramentas": [
+    {
+      "evento": "inicio",
+      "run_id": "01a1bce7-97d4-7833-93db-4e178aff57a6",
+      "ferramenta": "consultar_cep",
+      "entrada": "{'cep': '01001000'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1bce7-97d4-7833-93db-4e178aff57a6",
+      "observado": "{\"origem\": \"viacep_real\", \"cep\": \"01001000\", \"endereco\": {\"cep\": \"01001-000\", \"logradouro\": \"Praça da Sé\", \"complemento\": \"lado ímpar\", \"bairro\": \"Sé\", \"localidade\": \"São Paulo\", \"uf\": \"SP\", \"ibge\": \"3550308\"}, \"tentativa_http_real\": true, \"url\": \"https://viacep.com.br/ws/01001000/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}"
+    }
+  ],
+  "esquemas_modelo": [
+    [
+      {
+        "type": "function",
+        "function": {
+          "name": "listar_veiculos",
+          "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+          "parameters": {
+            "properties": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo",
+          "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+          "parameters": {
+            "properties": {
+              "produto_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "veiculo_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "categoria": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object",
+            "required": [
+              "produto_id",
+              "veiculo_id",
+              "categoria"
+            ],
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_cep",
+          "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+          "parameters": {
+            "properties": {
+              "cep": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cep"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "calcular_orcamento",
+          "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+          "parameters": {
+            "properties": {
+              "itens": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "produto_id": {
+                      "description": "ID ou SKU retornado pela consulta do catálogo.",
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "quantidade": {
+                      "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                      "exclusiveMinimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "produto_id",
+                    "quantidade"
+                  ],
+                  "type": "object"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "modalidade": {
+                "enum": [
+                  "retirada",
+                  "entrega"
+                ],
+                "type": "string"
+              },
+              "municipio": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "uf": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "itens",
+              "modalidade",
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      }
+    ]
+  ]
+}

@@ -9,7 +9,7 @@ Renan · Agentes Cognitivos com LangChain · Fases 1 e 2 · 02/11/2026
 
 O projeto tem a **fase 1 (chain inicial)** e a **fase 2 (agente com ferramentas)**:
 extração em JSON validado; consultas ao catálogo, orçamento determinístico e ViaCEP.
-As fases 3–5 continuam pendentes. Cada mensagem da fase 2 é independente.
+A fase 3 agora oferece memória em uma fachada separada, com CLI e notebook; fases 4–5 continuam pendentes. Cada mensagem da CLI antiga da fase 2 permanece independente.
 Os documentos HTML são a arquitetura inicial e foram preservados como referência;
 as decisões desta implementação estão identificadas como propostas no CSV.
 
@@ -18,7 +18,7 @@ as decisões desta implementação estão identificadas como propostas no CSV.
 |---|---|
 | 01_documentacao | Definição do problema, decisões, matriz de requisitos e futuro PDF técnico. |
 | 02_codigo | Módulos das fases 1 e 2 em src/auto_super_parts; testes da fase 1 em tests e verificação da fase 2 em verificar_fase02.py. |
-| 03_notebooks | Notebooks das fases 1 e 2 importam os .py; fases 3–5 permanecem vazias. |
+| 03_notebooks | Fases 1–3 importam os .py; fase 3 executada com fixtures identificadas; fases 4–5 permanecem pendentes. |
 | 04_avaliacao_e_evidencias | Expectativas separadas de testes locais, simulações e chamadas reais. Falhas históricas preservadas. LangSmith permanece pendente. |
 | 05_demonstracao | Orientações para o futuro vídeo e seu link. |
 
@@ -262,7 +262,101 @@ Implementação com apoio de Codex/OpenAI e revisão de Renan. Referências de A
 e [execução de notebooks com nbclient](https://nbclient.readthedocs.io/en/latest/client.html).
 
 ## Atenção aos dados
-São 4 configurações propostas e 24 produtos fictícios. Preços em centavos. Aplicações simuladas NÃO homologam compatibilidade real. Especificações de óleo continuam pendentes. Fontes e limites estão em fontes.json e conhecimento_tecnico.json. Distâncias são inventadas para teste. Casos de aceitação são expectativas, não resultados obtidos.
+São 5 configurações propostas (4 originais e uma S10 2014 2.8 CTDI diesel) e 24 produtos fictícios. Preços em centavos. Aplicações simuladas NÃO homologam compatibilidade real. A base técnica do Celta e da S10 possui campos de óleo verificados em manual; outras configurações/campos permanecem pendentes. Produtos comerciais não foram homologados. Fontes e limites estão em fontes.json e conhecimento_tecnico.json. Distâncias são inventadas para teste. Casos de aceitação são expectativas, não resultados obtidos.
 
 ## Pendências
 Prazo em Curitiba; marco inicial da contagem; troca e garantia; validação técnica de peças/óleos/configurações. Conferir requisitos explícitos do enunciado e orientações do professor antes de decidir equivalências de framework ou omissões.
+
+## Revisão após os testes assistidos de 08/11
+
+As falhas de frete isolado, troca de correia e recomendação de óleo sem fonte foram
+preservadas. Veja o [antes/depois e os resultados](./04_avaliacao_e_evidencias/resultados/CORRECOES_08_11.md).
+
+O agente agora expõe **seis ferramentas**: as quatro anteriores e `consultar_entrega`
+e `consultar_informacao_tecnica`. Frete isolado usa CEP → regra de entrega, sem exigir itens.
+`orcamento_fase02.py` compartilha a mesma consulta de entrega com o cálculo do orçamento.
+`consultas_complementares.py` lê o conhecimento técnico já cadastrado com fontes/limites:
+não é busca vetorial nem integração AutoTools. Esse era o estado no teste histórico; a curadoria manual descrita abaixo passou a liberar somente especificações documentadas.
+
+`ContextVar` mantém o pedido da chamada atual para bloquear troca silenciosa de correia
+dentada por acessórios, inclusive se o modelo tentar calcular diretamente outra peça.
+Regras específicas de resposta bloqueiam as duas falhas observadas; não são NLI nem
+verificador semântico universal. `resposta_candidata`, `resposta` e `verificacao_especifica`
+permitem conferir quando houve substituição pela regra.
+
+As respostas ao cliente deixam de repetir avisos de simulação. Os JSONs de origem,
+preços, produtos e metadados técnicos continuam preservados. Não foram inventadas
+especificações, alteradas aplicações ou homologados dados de catálogo.
+
+Para repetir os seis casos reais, na pasta deste projeto:
+
+```powershell
+python -B 02_codigo/validar_correcao_08_11.py --real
+```
+
+Esse comando usa a configuração do projeto e consome API. Para conferir as regressões
+locais, sem rede, execute a suíte `tests/` e `verificar_fase02.py` conforme as instruções.
+`executar_testes.py` passou a incluir também `test_correcao_fase02.py`; seu rótulo histórico
+de fase 1 não deve ser confundido com a divisão dos novos casos, listada no relatório.
+
+Os notebooks principais continuam como evidência histórica de 02/11. A revisão de 08/11
+está demonstrada pelos mesmos módulos, CLI, suíte e relatórios separados. Não houve nova
+execução real dos notebooks, nem implementação antecipada de memória, RAG ou LangSmith.
+
+## AutoTools — prova de cobertura em 08/11
+
+O cliente HTTP foi implementado e a busca real dos quatro veículos foi executada.
+**Não foi confirmada cobertura útil para nenhum deles nas consultas feitas.**
+Gol retornou apenas Golf 2019 na busca ampla; Palio, Celta, Fusca e a busca alternativa
+Beetle não retornaram candidatos. Consulta que responde HTTP 200 não comprova aplicação técnica.
+
+Veja o [relatório e os retornos reais](./04_avaliacao_e_evidencias/resultados/PROVA_AUTOTOOLS_08_11.md).
+O agente mantém suas seis ferramentas atuais; AutoTools não foi ligada como fonte
+de óleo/peças. ViaCEP segue como integração externa real demonstrada.
+
+Para repetir a prova, a partir da pasta Projeto final:
+
+```powershell
+python -B 02_codigo/provar_autotools.py --catalogo 02_codigo/dados/veiculos.json --saida 04_avaliacao_e_evidencias/resultados
+```
+
+`02_codigo/src/auto_super_parts/autotools.py` separa HTTP, Content-Type, JSON e contrato,
+trata timeout/indisponibilidade e identifica testes com transporte injetado.
+O script compara nome, ano, motor, combustível e mercado antes de aceitar identidade.
+IDs externos só vêm do resultado da busca ou da api_url oficial; não são códigos locais.
+As seções de óleo/peças só são consultadas após identidade confirmada, o que não ocorreu
+nos veículos deste catálogo. Não houve recomendação de viscosidade, aplicação ou preço pela AutoTools.
+
+Os 16 testes de `test_autotools.py` são fixtures de contrato/erros, não evidência de
+dados técnicos reais. A suíte completa desta revisão passou com 68 testes locais.
+Não houve nova instalação de dependências: httpx já constava nos requirements.
+
+## Base manual e especialidade — revisão de 08/11
+
+O plano passa a priorizar óleo/manutenção básica, freios, pneus, velas, correias e alternador. A S10 diesel é o único recorte adicional; não tem produtos à venda vinculados. As provas AutoTools e demais catálogos externos são históricas e não participam do atendimento. ViaCEP permanece ativo.
+
+Veja [fontes, perguntas e limites por veículo](./01_documentacao/BASE_TECNICA_MANUAL.md). A ferramenta `consultar_informacao_tecnica` mantém fonte/status por assunto e consulta os JSON locais; não é RAG. A guarda de óleo usa somente o contrato documentado retornado no próprio turno e distingue norma, km/meses e uso normal/severo.
+
+Exemplos para a CLI da fase 2 (cada mensagem ainda é independente):
+
+- `Tenho um Celta 2012 1.0 8V flex. Qual óleo e intervalo de troca?`
+- `Tenho uma S10 2014 2.8 CTDI diesel. Qual viscosidade e intervalo de troca do óleo?`
+- `Tenho um Celta 2012 1.0 flex com ar-condicionado. Qual amperagem do alternador?`
+- `Tenho um Fusca 1982 1600 a ar gasolina. Qual óleo devo usar?` — deve manter a pendência.
+
+Testes offline: `python -B 02_codigo/executar_testes.py` e `python -B 02_codigo/verificar_fase02.py`. O [relatório deste incremento](./04_avaliacao_e_evidencias/resultados/BASE_MANUAL_08_11.md) separa regressões locais de execução com modelo real. Memória e demais fases seguem o plano, sem serem declaradas concluídas nesta curadoria.
+
+## Fase 3 — chat com memória
+
+[Guia, arquitetura e comandos](./01_documentacao/MEMORIA_FASE_03.md). Histórico efetivamente enviado ao agente; veículo persistido somente por confirmação; resumos autorizados com embeddings e recuperação por cliente. SQLite local, janela de seis turnos e busca por cosseno para a coleção pequena. Não é FAISS/políticas, autenticação ou aprendizagem automática.
+
+```powershell
+python -B 02_codigo/src/auto_super_parts/atendimento_memoria.py --cliente cliente_demo
+python -B 02_codigo/validar_memoria.py
+python -B 02_codigo/validar_memoria.py --real
+python -B 02_codigo/executar_notebook.py --fase 3 --modo simulado
+```
+
+Use `/veiculos`, `/veiculo V003`, `/guardar Uso urbano com percursos curtos`, `/nova`, `/cliente outro_cliente`, `/perfil` e `/esquecer`. O último apaga perfil/resumos/histórico apenas do cliente selecionado. A identidade é de demonstração, sem login real. O banco da CLI fica em `02_codigo/estado_local` e não entra no Git/ZIP; a demonstração usa banco temporário.
+
+[Evidências e limites](./04_avaliacao_e_evidencias/resultados/MEMORIA_08_11.md): 96 testes locais (78 + 18), seis situações com modelo/embeddings reais e leitura do banco por processo separado. Notebook da fase 3 executado em kernel novo com fixtures; isso não é compreensão por LLM. O próximo incremento continua sendo RAG/text-to-query, seguido de verificação, Streamlit e avaliação.

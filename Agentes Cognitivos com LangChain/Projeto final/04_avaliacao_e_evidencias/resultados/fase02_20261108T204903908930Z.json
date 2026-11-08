@@ -1,0 +1,245 @@
+{
+  "fase": 2,
+  "modelo": "OpenAI/gpt-4o-mini",
+  "origem_cep": "viacep_real",
+  "mensagem": "Tenho um Fusca 1982 1600 a ar, gasolina. Quero uma correia dentada.",
+  "status": "ok",
+  "resposta": "Encontrei uma correia que pode ser aplicada ao seu Fusca 1982 1600 a ar, gasolina. Aqui estão os detalhes:\n\n- **Produto**: Correia em V do alternador/dínamo — Fusca (simulação)\n- **Marca**: CWB Didática — fictícia\n- **Preço**: R$ 29,90\n- **Estoque**: 0 (sem saldo disponível)\n\n**Observações**:\n- O produto é fictício e parte de um exercício acadêmico, portanto, não possui atestado de compatibilidade mecânica.\n- O estoque está zerado, o que significa que não há unidades disponíveis para venda no momento.\n\nSe precisar de mais informações ou de outro tipo de peça, estou à disposição!",
+  "trajetoria": [
+    {
+      "tipo": "human",
+      "conteudo": "Tenho um Fusca 1982 1600 a ar, gasolina. Quero uma correia dentada."
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "listar_veiculos",
+          "args": {},
+          "id": "call_zVK0vWCdAn1uIuwJzeLUt11P",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}",
+      "ferramenta": "listar_veiculos",
+      "tool_call_id": "call_zVK0vWCdAn1uIuwJzeLUt11P"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_catalogo",
+          "args": {
+            "produto_id": null,
+            "veiculo_id": "V004",
+            "categoria": "correia_acessorios"
+          },
+          "id": "call_j6Ag4jpClZozeKZwaExeQwAD",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P023\", \"sku\": \"CWB-SIM-P023\", \"nome\": \"Correia em V do alternador/dínamo — Fusca (simulação)\", \"categoria\": \"correia_acessorios\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 2990, \"estoque\": 0, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A023\", \"produto_id\": \"P023\", \"veiculo_id\": \"V004\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p JOIN aplicacoes a ON a.produto_id = p.id WHERE a.veiculo_id = ? AND p.categoria = ? ORDER BY p.id\", \"parametros\": [\"V004\", \"correia_acessorios\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ? AND veiculo_id = ?\", \"parametros\": [\"P023\", \"V004\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}",
+      "ferramenta": "consultar_catalogo",
+      "tool_call_id": "call_j6Ag4jpClZozeKZwaExeQwAD"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "Encontrei uma correia que pode ser aplicada ao seu Fusca 1982 1600 a ar, gasolina. Aqui estão os detalhes:\n\n- **Produto**: Correia em V do alternador/dínamo — Fusca (simulação)\n- **Marca**: CWB Didática — fictícia\n- **Preço**: R$ 29,90\n- **Estoque**: 0 (sem saldo disponível)\n\n**Observações**:\n- O produto é fictício e parte de um exercício acadêmico, portanto, não possui atestado de compatibilidade mecânica.\n- O estoque está zerado, o que significa que não há unidades disponíveis para venda no momento.\n\nSe precisar de mais informações ou de outro tipo de peça, estou à disposição!",
+      "tool_calls": []
+    }
+  ],
+  "eventos_ferramentas": [
+    {
+      "evento": "inicio",
+      "run_id": "01a1bceb-e920-75c2-ac9c-4d68be3fe02e",
+      "ferramenta": "listar_veiculos",
+      "entrada": "{}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1bceb-e920-75c2-ac9c-4d68be3fe02e",
+      "observado": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a1bceb-efb8-7520-8c76-fef972d11f0a",
+      "ferramenta": "consultar_catalogo",
+      "entrada": "{'produto_id': None, 'veiculo_id': 'V004', 'categoria': 'correia_acessorios'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1bceb-efb8-7520-8c76-fef972d11f0a",
+      "observado": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P023\", \"sku\": \"CWB-SIM-P023\", \"nome\": \"Correia em V do alternador/dínamo — Fusca (simulação)\", \"categoria\": \"correia_acessorios\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 2990, \"estoque\": 0, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A023\", \"produto_id\": \"P023\", \"veiculo_id\": \"V004\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p JOIN aplicacoes a ON a.produto_id = p.id WHERE a.veiculo_id = ? AND p.categoria = ? ORDER BY p.id\", \"parametros\": [\"V004\", \"correia_acessorios\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ? AND veiculo_id = ?\", \"parametros\": [\"P023\", \"V004\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}"
+    }
+  ],
+  "esquemas_modelo": [
+    [
+      {
+        "type": "function",
+        "function": {
+          "name": "listar_veiculos",
+          "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+          "parameters": {
+            "properties": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo",
+          "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+          "parameters": {
+            "properties": {
+              "produto_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "veiculo_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "categoria": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object",
+            "required": [
+              "produto_id",
+              "veiculo_id",
+              "categoria"
+            ],
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_cep",
+          "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+          "parameters": {
+            "properties": {
+              "cep": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cep"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "calcular_orcamento",
+          "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+          "parameters": {
+            "properties": {
+              "itens": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "produto_id": {
+                      "description": "ID ou SKU retornado pela consulta do catálogo.",
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "quantidade": {
+                      "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                      "exclusiveMinimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "produto_id",
+                    "quantidade"
+                  ],
+                  "type": "object"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "modalidade": {
+                "enum": [
+                  "retirada",
+                  "entrega"
+                ],
+                "type": "string"
+              },
+              "municipio": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "uf": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "itens",
+              "modalidade",
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      }
+    ]
+  ]
+}

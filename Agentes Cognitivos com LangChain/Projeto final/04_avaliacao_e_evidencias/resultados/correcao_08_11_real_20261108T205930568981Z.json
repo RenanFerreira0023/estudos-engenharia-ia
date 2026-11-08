@@ -1,0 +1,1926 @@
+{
+  "modo": "OpenAI e ViaCEP reais",
+  "casos": [
+    {
+      "caso": "oleo",
+      "entrada": "Tenho um Fusca 1982 1600 a ar, gasolina. Qual viscosidade de óleo devo usar e quantos litros vão no motor?",
+      "observado": {
+        "fase": 2,
+        "modelo": "OpenAI/gpt-4o-mini",
+        "origem_cep": "viacep_real",
+        "mensagem": "Tenho um Fusca 1982 1600 a ar, gasolina. Qual viscosidade de óleo devo usar e quantos litros vão no motor?",
+        "status": "ok",
+        "resposta": "Não tenho especificações verificadas de viscosidade, norma e capacidade de óleo para essa configuração na base disponível. Preciso de uma fonte técnica aplicável ao veículo e ao motor antes de recomendar o óleo ou a quantidade de litros.",
+        "trajetoria": [
+          {
+            "tipo": "human",
+            "conteudo": "Tenho um Fusca 1982 1600 a ar, gasolina. Qual viscosidade de óleo devo usar e quantos litros vão no motor?"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "listar_veiculos",
+                "args": {},
+                "id": "call_2NLUUXtOmrMYAiredspxB1WQ",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}",
+            "ferramenta": "listar_veiculos",
+            "tool_call_id": "call_2NLUUXtOmrMYAiredspxB1WQ"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_informacao_tecnica",
+                "args": {
+                  "veiculo_id": "V004",
+                  "assunto": "oleo"
+                },
+                "id": "call_wfmHwatPa9dcZWzAZRReLQgZ",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"informacao_pendente\", \"veiculo_id\": \"V004\", \"assunto\": \"oleo\", \"informacoes\": [{\"id\": \"T004\", \"veiculo_id\": \"V004\", \"assunto\": \"oleo\", \"conteudo\": \"Viscosidade, norma e capacidade não definidas. Não recomendar óleo apenas por ser Fusca ou por idade do veículo.\", \"fontes\": [], \"status\": \"pendente\"}], \"fontes\": [], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}",
+            "ferramenta": "consultar_informacao_tecnica",
+            "tool_call_id": "call_wfmHwatPa9dcZWzAZRReLQgZ"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "Para o seu Fusca 1982 1600 a ar, a informação sobre a viscosidade do óleo e a capacidade do motor não está definida no sistema. Não posso recomendar um óleo apenas com base no modelo ou na idade do veículo. É importante consultar um manual técnico ou um especialista para obter essas informações precisas.",
+            "tool_calls": []
+          }
+        ],
+        "eventos_ferramentas": [
+          {
+            "evento": "inicio",
+            "run_id": "01a1bcf5-3c06-7e60-bfbb-f3875d7bd7bc",
+            "ferramenta": "listar_veiculos",
+            "entrada": "{}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bcf5-3c06-7e60-bfbb-f3875d7bd7bc",
+            "observado": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1bcf5-4015-7412-acd3-90e55c1314d0",
+            "ferramenta": "consultar_informacao_tecnica",
+            "entrada": "{'veiculo_id': 'V004', 'assunto': 'oleo'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bcf5-4015-7412-acd3-90e55c1314d0",
+            "observado": "{\"status\": \"informacao_pendente\", \"veiculo_id\": \"V004\", \"assunto\": \"oleo\", \"informacoes\": [{\"id\": \"T004\", \"veiculo_id\": \"V004\", \"assunto\": \"oleo\", \"conteudo\": \"Viscosidade, norma e capacidade não definidas. Não recomendar óleo apenas por ser Fusca ou por idade do veículo.\", \"fontes\": [], \"status\": \"pendente\"}], \"fontes\": [], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}"
+          }
+        ],
+        "esquemas_modelo": [
+          [
+            {
+              "type": "function",
+              "function": {
+                "name": "listar_veiculos",
+                "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+                "parameters": {
+                  "properties": {},
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo",
+                "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+                "parameters": {
+                  "properties": {
+                    "produto_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "veiculo_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "categoria": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "produto_id",
+                    "veiculo_id",
+                    "categoria"
+                  ],
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_cep",
+                "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+                "parameters": {
+                  "properties": {
+                    "cep": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cep"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "calcular_orcamento",
+                "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+                "parameters": {
+                  "properties": {
+                    "itens": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "produto_id": {
+                            "description": "ID ou SKU retornado pela consulta do catálogo.",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "quantidade": {
+                            "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                            "exclusiveMinimum": 0,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "produto_id",
+                          "quantidade"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "modalidade": {
+                      "enum": [
+                        "retirada",
+                        "entrega"
+                      ],
+                      "type": "string"
+                    },
+                    "municipio": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "uf": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "required": [
+                    "itens",
+                    "modalidade",
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_entrega",
+                "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+                "parameters": {
+                  "properties": {
+                    "municipio": {
+                      "type": "string"
+                    },
+                    "uf": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_informacao_tecnica",
+                "description": "Consulte as informações técnicas cadastradas para o veículo identificado. Óleo pode estar pendente; nunca preencha viscosidade ou capacidade com conhecimento próprio.",
+                "parameters": {
+                  "properties": {
+                    "veiculo_id": {
+                      "type": "string"
+                    },
+                    "assunto": {
+                      "enum": [
+                        "oleo",
+                        "sincronismo",
+                        "correia_externa",
+                        "distincao_correias"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "veiculo_id",
+                    "assunto"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            }
+          ]
+        ],
+        "resposta_candidata": "Para o seu Fusca 1982 1600 a ar, a informação sobre a viscosidade do óleo e a capacidade do motor não está definida no sistema. Não posso recomendar um óleo apenas com base no modelo ou na idade do veículo. É importante consultar um manual técnico ou um especialista para obter essas informações precisas.",
+        "verificacao_especifica": {
+          "regra": "oleo_sem_especificacao_verificada",
+          "substituida": true,
+          "consulta_tecnica_executada": true
+        },
+        "arquivo_evidencia": "fase02_20261108T205912994300Z.json"
+      },
+      "verificacoes": {
+        "execucao_ok": true,
+        "sem_avisos_repetitivos": true,
+        "consulta_tecnica": true,
+        "especificacao_nao_inventada": true,
+        "limite_informado": true
+      },
+      "aprovado": true
+    },
+    {
+      "caso": "correia",
+      "entrada": "Tenho um Fusca 1982 1600 a ar, gasolina. Quero uma correia dentada.",
+      "observado": {
+        "fase": 2,
+        "modelo": "OpenAI/gpt-4o-mini",
+        "origem_cep": "viacep_real",
+        "mensagem": "Tenho um Fusca 1982 1600 a ar, gasolina. Quero uma correia dentada.",
+        "status": "ok",
+        "resposta": "Para o Fusca 1982 1600 a ar, a informação técnica cadastrada indica que o sincronismo do comando é por engrenagens, não por correia dentada. A correia externa em V do alternador/dínamo tem outra função e não a substitui. A referência cadastrada é parcial; não valida código ou dimensões de uma peça.",
+        "trajetoria": [
+          {
+            "tipo": "human",
+            "conteudo": "Tenho um Fusca 1982 1600 a ar, gasolina. Quero uma correia dentada."
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "listar_veiculos",
+                "args": {},
+                "id": "call_QxhPtK93hZRoQVSIZCeYa9JL",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}",
+            "ferramenta": "listar_veiculos",
+            "tool_call_id": "call_QxhPtK93hZRoQVSIZCeYa9JL"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_catalogo",
+                "args": {
+                  "produto_id": null,
+                  "veiculo_id": "V004",
+                  "categoria": "correia_acessorios"
+                },
+                "id": "call_BU1zLDOUYNDU6MYTOogj4qZW",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"tipo_peca_divergente\", \"produtos\": [], \"aplicacoes\": [], \"tipo_solicitado\": \"correia_dentada\", \"categoria_recusada\": \"correia_acessorios\", \"pendencias\": [\"Correia dentada e correia de acessórios não são equivalentes. Consulte a informação de sincronismo do veículo; não substitua a peça.\"]}",
+            "ferramenta": "consultar_catalogo",
+            "tool_call_id": "call_BU1zLDOUYNDU6MYTOogj4qZW"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_informacao_tecnica",
+                "args": {
+                  "veiculo_id": "V004",
+                  "assunto": "sincronismo"
+                },
+                "id": "call_Nj9zMay3wKe9vIbKyHsAHrno",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"informacao_disponivel\", \"veiculo_id\": \"V004\", \"assunto\": \"sincronismo\", \"informacoes\": [{\"id\": \"T002\", \"veiculo_id\": \"V004\", \"assunto\": \"sincronismo\", \"conteudo\": \"No motor clássico Type 1 o sincronismo do comando é por engrenagens; não cadastrar correia dentada de sincronismo para essa configuração.\", \"fontes\": [\"SRC02\"], \"nota\": \"Referência consultada é de fabricante aftermarket; confirmar manual original para documentação técnica final.\"}], \"fontes\": [{\"id\": \"SRC02\", \"url\": \"https://scatvw.com/product/cam-kit-with-c20-cam-single-springs/\", \"suporta\": \"Conjunto de comando e engrenagem para VW Type 1.\", \"limite\": \"Produto de preparação; não é recomendação de instalação nem catálogo de aplicação original.\"}], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}",
+            "ferramenta": "consultar_informacao_tecnica",
+            "tool_call_id": "call_Nj9zMay3wKe9vIbKyHsAHrno"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "Para o seu Fusca 1982 1600 a ar, a informação técnica disponível indica que o sincronismo do comando é feito por engrenagens, e não há correia dentada de sincronismo cadastrada para essa configuração. Portanto, não é possível fornecer uma correia dentada para o seu veículo.\n\nSe precisar de mais informações ou de outro tipo de peça, estou à disposição!",
+            "tool_calls": []
+          }
+        ],
+        "eventos_ferramentas": [
+          {
+            "evento": "inicio",
+            "run_id": "01a1bcf5-4837-7733-8e84-7a04caa2f07d",
+            "ferramenta": "listar_veiculos",
+            "entrada": "{}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bcf5-4837-7733-8e84-7a04caa2f07d",
+            "observado": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1bcf5-4be2-7ad1-a258-eb032685f2a4",
+            "ferramenta": "consultar_catalogo",
+            "entrada": "{'produto_id': None, 'veiculo_id': 'V004', 'categoria': 'correia_acessorios'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bcf5-4be2-7ad1-a258-eb032685f2a4",
+            "observado": "{\"status\": \"tipo_peca_divergente\", \"produtos\": [], \"aplicacoes\": [], \"tipo_solicitado\": \"correia_dentada\", \"categoria_recusada\": \"correia_acessorios\", \"pendencias\": [\"Correia dentada e correia de acessórios não são equivalentes. Consulte a informação de sincronismo do veículo; não substitua a peça.\"]}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1bcf5-4ef6-7031-bddc-873a24763732",
+            "ferramenta": "consultar_informacao_tecnica",
+            "entrada": "{'veiculo_id': 'V004', 'assunto': 'sincronismo'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bcf5-4ef6-7031-bddc-873a24763732",
+            "observado": "{\"status\": \"informacao_disponivel\", \"veiculo_id\": \"V004\", \"assunto\": \"sincronismo\", \"informacoes\": [{\"id\": \"T002\", \"veiculo_id\": \"V004\", \"assunto\": \"sincronismo\", \"conteudo\": \"No motor clássico Type 1 o sincronismo do comando é por engrenagens; não cadastrar correia dentada de sincronismo para essa configuração.\", \"fontes\": [\"SRC02\"], \"nota\": \"Referência consultada é de fabricante aftermarket; confirmar manual original para documentação técnica final.\"}], \"fontes\": [{\"id\": \"SRC02\", \"url\": \"https://scatvw.com/product/cam-kit-with-c20-cam-single-springs/\", \"suporta\": \"Conjunto de comando e engrenagem para VW Type 1.\", \"limite\": \"Produto de preparação; não é recomendação de instalação nem catálogo de aplicação original.\"}], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}"
+          }
+        ],
+        "esquemas_modelo": [
+          [
+            {
+              "type": "function",
+              "function": {
+                "name": "listar_veiculos",
+                "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+                "parameters": {
+                  "properties": {},
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo",
+                "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+                "parameters": {
+                  "properties": {
+                    "produto_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "veiculo_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "categoria": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "produto_id",
+                    "veiculo_id",
+                    "categoria"
+                  ],
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_cep",
+                "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+                "parameters": {
+                  "properties": {
+                    "cep": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cep"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "calcular_orcamento",
+                "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+                "parameters": {
+                  "properties": {
+                    "itens": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "produto_id": {
+                            "description": "ID ou SKU retornado pela consulta do catálogo.",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "quantidade": {
+                            "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                            "exclusiveMinimum": 0,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "produto_id",
+                          "quantidade"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "modalidade": {
+                      "enum": [
+                        "retirada",
+                        "entrega"
+                      ],
+                      "type": "string"
+                    },
+                    "municipio": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "uf": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "required": [
+                    "itens",
+                    "modalidade",
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_entrega",
+                "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+                "parameters": {
+                  "properties": {
+                    "municipio": {
+                      "type": "string"
+                    },
+                    "uf": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_informacao_tecnica",
+                "description": "Consulte as informações técnicas cadastradas para o veículo identificado. Óleo pode estar pendente; nunca preencha viscosidade ou capacidade com conhecimento próprio.",
+                "parameters": {
+                  "properties": {
+                    "veiculo_id": {
+                      "type": "string"
+                    },
+                    "assunto": {
+                      "enum": [
+                        "oleo",
+                        "sincronismo",
+                        "correia_externa",
+                        "distincao_correias"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "veiculo_id",
+                    "assunto"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            }
+          ]
+        ],
+        "resposta_candidata": "Para o seu Fusca 1982 1600 a ar, a informação técnica disponível indica que o sincronismo do comando é feito por engrenagens, e não há correia dentada de sincronismo cadastrada para essa configuração. Portanto, não é possível fornecer uma correia dentada para o seu veículo.\n\nSe precisar de mais informações ou de outro tipo de peça, estou à disposição!",
+        "verificacao_especifica": {
+          "regra": "preservar_tipo_correia",
+          "substituida": true,
+          "consulta_tecnica_executada": true
+        },
+        "arquivo_evidencia": "fase02_20261108T205917322648Z.json"
+      },
+      "verificacoes": {
+        "execucao_ok": true,
+        "sem_avisos_repetitivos": true,
+        "consulta_tecnica": true,
+        "resposta_distingue_tipos": true,
+        "sem_indicacao_p023": true
+      },
+      "aprovado": true
+    },
+    {
+      "caso": "frete_sem_distancia",
+      "entrada": "Oi, qual fica o frete para 01001000?",
+      "observado": {
+        "fase": 2,
+        "modelo": "OpenAI/gpt-4o-mini",
+        "origem_cep": "viacep_real",
+        "mensagem": "Oi, qual fica o frete para 01001000?",
+        "status": "ok",
+        "resposta": "Infelizmente, não conseguimos calcular o frete para o CEP 01001-000, pois a cidade de São Paulo não possui distância cadastrada na tabela da loja. Portanto, não é possível fornecer uma cotação automática de frete ou total com entrega. Se precisar de mais informações ou ajuda, estou à disposição!",
+        "trajetoria": [
+          {
+            "tipo": "human",
+            "conteudo": "Oi, qual fica o frete para 01001000?"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_cep",
+                "args": {
+                  "cep": "01001000"
+                },
+                "id": "call_kHcThuTkTmH4qt3dO8rjNQWe",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"origem\": \"viacep_real\", \"cep\": \"01001000\", \"endereco\": {\"cep\": \"01001-000\", \"logradouro\": \"Praça da Sé\", \"complemento\": \"lado ímpar\", \"bairro\": \"Sé\", \"localidade\": \"São Paulo\", \"uf\": \"SP\", \"ibge\": \"3550308\"}, \"tentativa_http_real\": true, \"url\": \"https://viacep.com.br/ws/01001000/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}",
+            "ferramenta": "consultar_cep",
+            "tool_call_id": "call_kHcThuTkTmH4qt3dO8rjNQWe"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_entrega",
+                "args": {
+                  "municipio": "São Paulo",
+                  "uf": "SP"
+                },
+                "id": "call_caNpwJZwGwmNIcgsqd2YkbSt",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"frete_centavos\": null, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [\"Cidade/UF sem distância simulada cadastrada; sem cotação automática de frete/total com entrega.\"], \"fontes_regras\": [\"loja_regras.json\", \"distancias_simuladas.json\"], \"status\": \"cotacao_entrega_pendente\"}",
+            "ferramenta": "consultar_entrega",
+            "tool_call_id": "call_caNpwJZwGwmNIcgsqd2YkbSt"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "Infelizmente, não conseguimos calcular o frete para o CEP 01001-000, pois a cidade de São Paulo não possui distância cadastrada na tabela da loja. Portanto, não é possível fornecer uma cotação automática de frete ou total com entrega. Se precisar de mais informações ou ajuda, estou à disposição!",
+            "tool_calls": []
+          }
+        ],
+        "eventos_ferramentas": [
+          {
+            "evento": "inicio",
+            "run_id": "01a1bcf5-59e2-7d60-b15f-80d9e18a25ab",
+            "ferramenta": "consultar_cep",
+            "entrada": "{'cep': '01001000'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bcf5-59e2-7d60-b15f-80d9e18a25ab",
+            "observado": "{\"origem\": \"viacep_real\", \"cep\": \"01001000\", \"endereco\": {\"cep\": \"01001-000\", \"logradouro\": \"Praça da Sé\", \"complemento\": \"lado ímpar\", \"bairro\": \"Sé\", \"localidade\": \"São Paulo\", \"uf\": \"SP\", \"ibge\": \"3550308\"}, \"tentativa_http_real\": true, \"url\": \"https://viacep.com.br/ws/01001000/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1bcf5-5e7b-7e23-b93b-610961a4f58c",
+            "ferramenta": "consultar_entrega",
+            "entrada": "{'municipio': 'São Paulo', 'uf': 'SP'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bcf5-5e7b-7e23-b93b-610961a4f58c",
+            "observado": "{\"frete_centavos\": null, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [\"Cidade/UF sem distância simulada cadastrada; sem cotação automática de frete/total com entrega.\"], \"fontes_regras\": [\"loja_regras.json\", \"distancias_simuladas.json\"], \"status\": \"cotacao_entrega_pendente\"}"
+          }
+        ],
+        "esquemas_modelo": [
+          [
+            {
+              "type": "function",
+              "function": {
+                "name": "listar_veiculos",
+                "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+                "parameters": {
+                  "properties": {},
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo",
+                "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+                "parameters": {
+                  "properties": {
+                    "produto_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "veiculo_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "categoria": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "produto_id",
+                    "veiculo_id",
+                    "categoria"
+                  ],
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_cep",
+                "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+                "parameters": {
+                  "properties": {
+                    "cep": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cep"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "calcular_orcamento",
+                "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+                "parameters": {
+                  "properties": {
+                    "itens": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "produto_id": {
+                            "description": "ID ou SKU retornado pela consulta do catálogo.",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "quantidade": {
+                            "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                            "exclusiveMinimum": 0,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "produto_id",
+                          "quantidade"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "modalidade": {
+                      "enum": [
+                        "retirada",
+                        "entrega"
+                      ],
+                      "type": "string"
+                    },
+                    "municipio": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "uf": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "required": [
+                    "itens",
+                    "modalidade",
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_entrega",
+                "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+                "parameters": {
+                  "properties": {
+                    "municipio": {
+                      "type": "string"
+                    },
+                    "uf": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_informacao_tecnica",
+                "description": "Consulte as informações técnicas cadastradas para o veículo identificado. Óleo pode estar pendente; nunca preencha viscosidade ou capacidade com conhecimento próprio.",
+                "parameters": {
+                  "properties": {
+                    "veiculo_id": {
+                      "type": "string"
+                    },
+                    "assunto": {
+                      "enum": [
+                        "oleo",
+                        "sincronismo",
+                        "correia_externa",
+                        "distincao_correias"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "veiculo_id",
+                    "assunto"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            }
+          ]
+        ],
+        "resposta_candidata": "Infelizmente, não conseguimos calcular o frete para o CEP 01001-000, pois a cidade de São Paulo não possui distância cadastrada na tabela da loja. Portanto, não é possível fornecer uma cotação automática de frete ou total com entrega. Se precisar de mais informações ou ajuda, estou à disposição!",
+        "verificacao_especifica": {
+          "regra": "fora_das_protecoes_especificas",
+          "substituida": false
+        },
+        "arquivo_evidencia": "fase02_20261108T205921085653Z.json"
+      },
+      "verificacoes": {
+        "execucao_ok": true,
+        "sem_avisos_repetitivos": true,
+        "cep_real": true,
+        "consulta_regra": true,
+        "cep_antes_regra": true,
+        "sem_exigir_produtos": true,
+        "frete_indisponivel": true,
+        "falta_distancia_explicada": true
+      },
+      "aprovado": true
+    },
+    {
+      "caso": "frete_cadastrado",
+      "entrada": "Qual fica o frete para o CEP 84010000?",
+      "observado": {
+        "fase": 2,
+        "modelo": "OpenAI/gpt-4o-mini",
+        "origem_cep": "viacep_real",
+        "mensagem": "Qual fica o frete para o CEP 84010000?",
+        "status": "ok",
+        "resposta": "O frete para o CEP 84010-000 (Ponta Grossa - PR) é de R$ 5,31 e o prazo estimado para entrega é de 4 dias úteis. \n\nPorém, não posso prometer uma data específica para a entrega, pois o marco inicial da contagem do prazo ainda está pendente.",
+        "trajetoria": [
+          {
+            "tipo": "human",
+            "conteudo": "Qual fica o frete para o CEP 84010000?"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_cep",
+                "args": {
+                  "cep": "84010000"
+                },
+                "id": "call_qugxLwovk07ILCUWksf3eFiy",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"origem\": \"viacep_real\", \"cep\": \"84010000\", \"endereco\": {\"cep\": \"84010-000\", \"logradouro\": \"Avenida Doutor Vicente Machado\", \"complemento\": \"\", \"bairro\": \"Centro\", \"localidade\": \"Ponta Grossa\", \"uf\": \"PR\", \"ibge\": \"4119905\"}, \"tentativa_http_real\": true, \"url\": \"https://viacep.com.br/ws/84010000/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}",
+            "ferramenta": "consultar_cep",
+            "tool_call_id": "call_qugxLwovk07ILCUWksf3eFiy"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_entrega",
+                "args": {
+                  "municipio": "Ponta Grossa",
+                  "uf": "PR"
+                },
+                "id": "call_Vh04qYDXjmrgz2b0oSFiGxJ8",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"frete_centavos\": 531, \"prazo_dias_uteis\": 4, \"distancia_km_simulada\": 120, \"pendencias\": [\"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"fontes_regras\": [\"loja_regras.json\", \"distancias_simuladas.json\"], \"status\": \"parcial\"}",
+            "ferramenta": "consultar_entrega",
+            "tool_call_id": "call_Vh04qYDXjmrgz2b0oSFiGxJ8"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "O frete para o CEP 84010-000 (Ponta Grossa - PR) é de R$ 5,31 e o prazo estimado para entrega é de 4 dias úteis. \n\nPorém, não posso prometer uma data específica para a entrega, pois o marco inicial da contagem do prazo ainda está pendente.",
+            "tool_calls": []
+          }
+        ],
+        "eventos_ferramentas": [
+          {
+            "evento": "inicio",
+            "run_id": "01a1bcf5-6722-7532-a3e5-e21ea9fe3bbc",
+            "ferramenta": "consultar_cep",
+            "entrada": "{'cep': '84010000'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bcf5-6722-7532-a3e5-e21ea9fe3bbc",
+            "observado": "{\"origem\": \"viacep_real\", \"cep\": \"84010000\", \"endereco\": {\"cep\": \"84010-000\", \"logradouro\": \"Avenida Doutor Vicente Machado\", \"complemento\": \"\", \"bairro\": \"Centro\", \"localidade\": \"Ponta Grossa\", \"uf\": \"PR\", \"ibge\": \"4119905\"}, \"tentativa_http_real\": true, \"url\": \"https://viacep.com.br/ws/84010000/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1bcf5-6c1f-7651-877d-250710e90cfb",
+            "ferramenta": "consultar_entrega",
+            "entrada": "{'municipio': 'Ponta Grossa', 'uf': 'PR'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bcf5-6c1f-7651-877d-250710e90cfb",
+            "observado": "{\"frete_centavos\": 531, \"prazo_dias_uteis\": 4, \"distancia_km_simulada\": 120, \"pendencias\": [\"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"fontes_regras\": [\"loja_regras.json\", \"distancias_simuladas.json\"], \"status\": \"parcial\"}"
+          }
+        ],
+        "esquemas_modelo": [
+          [
+            {
+              "type": "function",
+              "function": {
+                "name": "listar_veiculos",
+                "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+                "parameters": {
+                  "properties": {},
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo",
+                "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+                "parameters": {
+                  "properties": {
+                    "produto_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "veiculo_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "categoria": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "produto_id",
+                    "veiculo_id",
+                    "categoria"
+                  ],
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_cep",
+                "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+                "parameters": {
+                  "properties": {
+                    "cep": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cep"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "calcular_orcamento",
+                "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+                "parameters": {
+                  "properties": {
+                    "itens": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "produto_id": {
+                            "description": "ID ou SKU retornado pela consulta do catálogo.",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "quantidade": {
+                            "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                            "exclusiveMinimum": 0,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "produto_id",
+                          "quantidade"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "modalidade": {
+                      "enum": [
+                        "retirada",
+                        "entrega"
+                      ],
+                      "type": "string"
+                    },
+                    "municipio": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "uf": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "required": [
+                    "itens",
+                    "modalidade",
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_entrega",
+                "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+                "parameters": {
+                  "properties": {
+                    "municipio": {
+                      "type": "string"
+                    },
+                    "uf": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_informacao_tecnica",
+                "description": "Consulte as informações técnicas cadastradas para o veículo identificado. Óleo pode estar pendente; nunca preencha viscosidade ou capacidade com conhecimento próprio.",
+                "parameters": {
+                  "properties": {
+                    "veiculo_id": {
+                      "type": "string"
+                    },
+                    "assunto": {
+                      "enum": [
+                        "oleo",
+                        "sincronismo",
+                        "correia_externa",
+                        "distincao_correias"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "veiculo_id",
+                    "assunto"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            }
+          ]
+        ],
+        "resposta_candidata": "O frete para o CEP 84010-000 (Ponta Grossa - PR) é de R$ 5,31 e o prazo estimado para entrega é de 4 dias úteis. \n\nPorém, não posso prometer uma data específica para a entrega, pois o marco inicial da contagem do prazo ainda está pendente.",
+        "verificacao_especifica": {
+          "regra": "fora_das_protecoes_especificas",
+          "substituida": false
+        },
+        "arquivo_evidencia": "fase02_20261108T205924610424Z.json"
+      },
+      "verificacoes": {
+        "execucao_ok": true,
+        "sem_avisos_repetitivos": true,
+        "cep_real": true,
+        "consulta_regra": true,
+        "cep_antes_regra": true,
+        "sem_exigir_produtos": true,
+        "frete_correto": true,
+        "prazo_correto": true
+      },
+      "aprovado": true
+    },
+    {
+      "caso": "retirada",
+      "entrada": "Quero 2 unidades do P003 para retirada. Consulte preço e estoque e calcule o orçamento.",
+      "observado": {
+        "fase": 2,
+        "modelo": "OpenAI/gpt-4o-mini",
+        "origem_cep": "viacep_real",
+        "mensagem": "Quero 2 unidades do P003 para retirada. Consulte preço e estoque e calcule o orçamento.",
+        "status": "ok",
+        "resposta": "O orçamento para 2 unidades da Vela de ignição — Gol é o seguinte:\n\n- **Preço unitário:** R$ 18,50\n- **Subtotal:** R$ 37,00\n- **Frete:** R$ 0,00 (retirada)\n- **Total:** R$ 37,00\n\nO produto está disponível em estoque. Se precisar de mais informações ou quiser prosseguir, é só avisar!",
+        "trajetoria": [
+          {
+            "tipo": "human",
+            "conteudo": "Quero 2 unidades do P003 para retirada. Consulte preço e estoque e calcule o orçamento."
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_catalogo",
+                "args": {
+                  "produto_id": "P003",
+                  "veiculo_id": null,
+                  "categoria": null
+                },
+                "id": "call_fGlFAFV8TDhdwNPsAJ67YTXt",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"nome\": \"Vela de ignição — Gol (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1850, \"estoque\": 16, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A003\", \"produto_id\": \"P003\", \"veiculo_id\": \"V001\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P003\", \"P003\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P003\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}",
+            "ferramenta": "consultar_catalogo",
+            "tool_call_id": "call_fGlFAFV8TDhdwNPsAJ67YTXt"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "calcular_orcamento",
+                "args": {
+                  "itens": [
+                    {
+                      "produto_id": "P003",
+                      "quantidade": 2
+                    }
+                  ],
+                  "modalidade": "retirada",
+                  "municipio": null,
+                  "uf": null
+                },
+                "id": "call_sb1lOJXoAJPDnYtBuOBP83AO",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"itens\": [{\"produto_id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"quantidade\": 2, \"preco_unitario_centavos\": 1850, \"estoque_consultado\": 16}], \"subtotal_centavos\": 3700, \"frete_centavos\": 0, \"total_centavos\": 3700, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"ok\"}",
+            "ferramenta": "calcular_orcamento",
+            "tool_call_id": "call_sb1lOJXoAJPDnYtBuOBP83AO"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "O orçamento para 2 unidades da Vela de ignição — Gol é o seguinte:\n\n- **Preço unitário:** R$ 18,50\n- **Subtotal:** R$ 37,00\n- **Frete:** R$ 0,00 (retirada)\n- **Total:** R$ 37,00\n\nO produto está disponível em estoque. Se precisar de mais informações ou quiser prosseguir, é só avisar!",
+            "tool_calls": []
+          }
+        ],
+        "eventos_ferramentas": [
+          {
+            "evento": "inicio",
+            "run_id": "01a1bcf5-75b2-7c72-8391-4e1b9376dac4",
+            "ferramenta": "consultar_catalogo",
+            "entrada": "{'produto_id': 'P003', 'veiculo_id': None, 'categoria': None}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bcf5-75b2-7c72-8391-4e1b9376dac4",
+            "observado": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"nome\": \"Vela de ignição — Gol (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1850, \"estoque\": 16, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A003\", \"produto_id\": \"P003\", \"veiculo_id\": \"V001\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P003\", \"P003\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P003\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1bcf5-7a18-7521-8751-2fb90561ace0",
+            "ferramenta": "calcular_orcamento",
+            "entrada": "{'itens': [{'produto_id': 'P003', 'quantidade': 2}], 'modalidade': 'retirada', 'municipio': None, 'uf': None}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bcf5-7a18-7521-8751-2fb90561ace0",
+            "observado": "{\"itens\": [{\"produto_id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"quantidade\": 2, \"preco_unitario_centavos\": 1850, \"estoque_consultado\": 16}], \"subtotal_centavos\": 3700, \"frete_centavos\": 0, \"total_centavos\": 3700, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"ok\"}"
+          }
+        ],
+        "esquemas_modelo": [
+          [
+            {
+              "type": "function",
+              "function": {
+                "name": "listar_veiculos",
+                "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+                "parameters": {
+                  "properties": {},
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo",
+                "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+                "parameters": {
+                  "properties": {
+                    "produto_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "veiculo_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "categoria": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "produto_id",
+                    "veiculo_id",
+                    "categoria"
+                  ],
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_cep",
+                "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+                "parameters": {
+                  "properties": {
+                    "cep": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cep"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "calcular_orcamento",
+                "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+                "parameters": {
+                  "properties": {
+                    "itens": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "produto_id": {
+                            "description": "ID ou SKU retornado pela consulta do catálogo.",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "quantidade": {
+                            "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                            "exclusiveMinimum": 0,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "produto_id",
+                          "quantidade"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "modalidade": {
+                      "enum": [
+                        "retirada",
+                        "entrega"
+                      ],
+                      "type": "string"
+                    },
+                    "municipio": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "uf": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "required": [
+                    "itens",
+                    "modalidade",
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_entrega",
+                "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+                "parameters": {
+                  "properties": {
+                    "municipio": {
+                      "type": "string"
+                    },
+                    "uf": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_informacao_tecnica",
+                "description": "Consulte as informações técnicas cadastradas para o veículo identificado. Óleo pode estar pendente; nunca preencha viscosidade ou capacidade com conhecimento próprio.",
+                "parameters": {
+                  "properties": {
+                    "veiculo_id": {
+                      "type": "string"
+                    },
+                    "assunto": {
+                      "enum": [
+                        "oleo",
+                        "sincronismo",
+                        "correia_externa",
+                        "distincao_correias"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "veiculo_id",
+                    "assunto"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            }
+          ]
+        ],
+        "resposta_candidata": "O orçamento para 2 unidades da Vela de ignição — Gol é o seguinte:\n\n- **Preço unitário:** R$ 18,50\n- **Subtotal:** R$ 37,00\n- **Frete:** R$ 0,00 (retirada)\n- **Total:** R$ 37,00\n\nO produto está disponível em estoque. Se precisar de mais informações ou quiser prosseguir, é só avisar!",
+        "verificacao_especifica": {
+          "regra": "fora_das_protecoes_especificas",
+          "substituida": false
+        },
+        "arquivo_evidencia": "fase02_20261108T205928429057Z.json"
+      },
+      "verificacoes": {
+        "execucao_ok": true,
+        "sem_avisos_repetitivos": true,
+        "total_correto": true
+      },
+      "aprovado": true
+    },
+    {
+      "caso": "sem_estoque",
+      "entrada": "Quero 1 unidade do P023 para retirada. Tem estoque?",
+      "observado": {
+        "fase": 2,
+        "modelo": "OpenAI/gpt-4o-mini",
+        "origem_cep": "viacep_real",
+        "mensagem": "Quero 1 unidade do P023 para retirada. Tem estoque?",
+        "status": "ok",
+        "resposta": "O produto \"Correia em V do alternador/dínamo — Fusca\" (SKU: CWB-SIM-P023) está com estoque zero, portanto não está disponível para retirada. Se precisar de outra informação ou de um produto diferente, estou à disposição!",
+        "trajetoria": [
+          {
+            "tipo": "human",
+            "conteudo": "Quero 1 unidade do P023 para retirada. Tem estoque?"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_catalogo",
+                "args": {
+                  "produto_id": "P023",
+                  "veiculo_id": null,
+                  "categoria": null
+                },
+                "id": "call_i8WzWEqbpnchRRznMX5eGuw3",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P023\", \"sku\": \"CWB-SIM-P023\", \"nome\": \"Correia em V do alternador/dínamo — Fusca (simulação)\", \"categoria\": \"correia_acessorios\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 2990, \"estoque\": 0, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A023\", \"produto_id\": \"P023\", \"veiculo_id\": \"V004\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P023\", \"P023\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P023\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}",
+            "ferramenta": "consultar_catalogo",
+            "tool_call_id": "call_i8WzWEqbpnchRRznMX5eGuw3"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "O produto \"Correia em V do alternador/dínamo — Fusca\" (SKU: CWB-SIM-P023) está com estoque zero, portanto não está disponível para retirada. Se precisar de outra informação ou de um produto diferente, estou à disposição!",
+            "tool_calls": []
+          }
+        ],
+        "eventos_ferramentas": [
+          {
+            "evento": "inicio",
+            "run_id": "01a1bcf5-84b7-7861-9f75-e326faeaa1ef",
+            "ferramenta": "consultar_catalogo",
+            "entrada": "{'produto_id': 'P023', 'veiculo_id': None, 'categoria': None}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bcf5-84b7-7861-9f75-e326faeaa1ef",
+            "observado": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P023\", \"sku\": \"CWB-SIM-P023\", \"nome\": \"Correia em V do alternador/dínamo — Fusca (simulação)\", \"categoria\": \"correia_acessorios\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 2990, \"estoque\": 0, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A023\", \"produto_id\": \"P023\", \"veiculo_id\": \"V004\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P023\", \"P023\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P023\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}"
+          }
+        ],
+        "esquemas_modelo": [
+          [
+            {
+              "type": "function",
+              "function": {
+                "name": "listar_veiculos",
+                "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+                "parameters": {
+                  "properties": {},
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo",
+                "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+                "parameters": {
+                  "properties": {
+                    "produto_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "veiculo_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "categoria": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "produto_id",
+                    "veiculo_id",
+                    "categoria"
+                  ],
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_cep",
+                "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+                "parameters": {
+                  "properties": {
+                    "cep": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cep"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "calcular_orcamento",
+                "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+                "parameters": {
+                  "properties": {
+                    "itens": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "produto_id": {
+                            "description": "ID ou SKU retornado pela consulta do catálogo.",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "quantidade": {
+                            "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                            "exclusiveMinimum": 0,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "produto_id",
+                          "quantidade"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "modalidade": {
+                      "enum": [
+                        "retirada",
+                        "entrega"
+                      ],
+                      "type": "string"
+                    },
+                    "municipio": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "uf": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "required": [
+                    "itens",
+                    "modalidade",
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_entrega",
+                "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+                "parameters": {
+                  "properties": {
+                    "municipio": {
+                      "type": "string"
+                    },
+                    "uf": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_informacao_tecnica",
+                "description": "Consulte as informações técnicas cadastradas para o veículo identificado. Óleo pode estar pendente; nunca preencha viscosidade ou capacidade com conhecimento próprio.",
+                "parameters": {
+                  "properties": {
+                    "veiculo_id": {
+                      "type": "string"
+                    },
+                    "assunto": {
+                      "enum": [
+                        "oleo",
+                        "sincronismo",
+                        "correia_externa",
+                        "distincao_correias"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "veiculo_id",
+                    "assunto"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            }
+          ]
+        ],
+        "resposta_candidata": "O produto \"Correia em V do alternador/dínamo — Fusca\" (SKU: CWB-SIM-P023) está com estoque zero, portanto não está disponível para retirada. Se precisar de outra informação ou de um produto diferente, estou à disposição!",
+        "verificacao_especifica": {
+          "regra": "fora_das_protecoes_especificas",
+          "substituida": false
+        },
+        "arquivo_evidencia": "fase02_20261108T205930565832Z.json"
+      },
+      "verificacoes": {
+        "execucao_ok": true,
+        "sem_avisos_repetitivos": true,
+        "estoque_zero": true
+      },
+      "aprovado": true
+    }
+  ],
+  "limite": "Critérios específicos e checagens textuais; não é avaliação semântica universal."
+}

@@ -1,0 +1,27 @@
+{
+  "origem": "HTTP real AutoTools; busca exploratoria de nome alternativo, sem afirmar equivalencia",
+  "resultado": {
+    "origem": "autotools_real",
+    "atribuicao": "Dados consultados na AutoTools — https://autotools.brightcoding.dev",
+    "url": "https://autotools.brightcoding.dev/api/vehicles/search",
+    "parametros": {
+      "q": "Beetle",
+      "per_page": 10
+    },
+    "http_status": 200,
+    "content_type": "application/json",
+    "json": {
+      "data": [],
+      "meta": {
+        "query": "Beetle",
+        "filters": [],
+        "total": 0,
+        "per_page": 10,
+        "current_page": 1,
+        "last_page": 1,
+        "min_query_length": 2
+      }
+    },
+    "status": "sem_resultados"
+  }
+}

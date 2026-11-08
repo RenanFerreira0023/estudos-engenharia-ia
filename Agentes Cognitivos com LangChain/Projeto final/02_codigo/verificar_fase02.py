@@ -34,7 +34,7 @@ class CatalogoOrcamentoTest(unittest.TestCase):
         self.addCleanup(self.catalogo.fechar)
 
     def test_importa_todos_os_registros(self):
-        for tabela, quantidade in [("veiculos", 4), ("produtos", 24), ("aplicacoes", 24)]:
+        for tabela, quantidade in [("veiculos", 5), ("produtos", 24), ("aplicacoes", 24)]:
             self.assertEqual(len(self.catalogo.ler(f"SELECT id FROM {tabela}")), quantidade)
 
     def test_consulta_aplicacao_preserva_limite(self):

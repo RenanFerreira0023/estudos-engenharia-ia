@@ -1,0 +1,305 @@
+{
+  "fase": 2,
+  "modelo": "OpenAI/gpt-4o-mini",
+  "origem_cep": "viacep_real",
+  "mensagem": "Oi, qual fica o frete para 01001000?",
+  "status": "ok",
+  "resposta": "Infelizmente, não conseguimos calcular o frete para o CEP 01001-000, pois a cidade de São Paulo não possui distância cadastrada na tabela da loja. Portanto, não é possível fornecer uma cotação automática de frete ou total com entrega. Se precisar de mais informações ou ajuda, estou à disposição!",
+  "trajetoria": [
+    {
+      "tipo": "human",
+      "conteudo": "Oi, qual fica o frete para 01001000?"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_cep",
+          "args": {
+            "cep": "01001000"
+          },
+          "id": "call_kHcThuTkTmH4qt3dO8rjNQWe",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"origem\": \"viacep_real\", \"cep\": \"01001000\", \"endereco\": {\"cep\": \"01001-000\", \"logradouro\": \"Praça da Sé\", \"complemento\": \"lado ímpar\", \"bairro\": \"Sé\", \"localidade\": \"São Paulo\", \"uf\": \"SP\", \"ibge\": \"3550308\"}, \"tentativa_http_real\": true, \"url\": \"https://viacep.com.br/ws/01001000/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}",
+      "ferramenta": "consultar_cep",
+      "tool_call_id": "call_kHcThuTkTmH4qt3dO8rjNQWe"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_entrega",
+          "args": {
+            "municipio": "São Paulo",
+            "uf": "SP"
+          },
+          "id": "call_caNpwJZwGwmNIcgsqd2YkbSt",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"frete_centavos\": null, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [\"Cidade/UF sem distância simulada cadastrada; sem cotação automática de frete/total com entrega.\"], \"fontes_regras\": [\"loja_regras.json\", \"distancias_simuladas.json\"], \"status\": \"cotacao_entrega_pendente\"}",
+      "ferramenta": "consultar_entrega",
+      "tool_call_id": "call_caNpwJZwGwmNIcgsqd2YkbSt"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "Infelizmente, não conseguimos calcular o frete para o CEP 01001-000, pois a cidade de São Paulo não possui distância cadastrada na tabela da loja. Portanto, não é possível fornecer uma cotação automática de frete ou total com entrega. Se precisar de mais informações ou ajuda, estou à disposição!",
+      "tool_calls": []
+    }
+  ],
+  "eventos_ferramentas": [
+    {
+      "evento": "inicio",
+      "run_id": "01a1bcf5-59e2-7d60-b15f-80d9e18a25ab",
+      "ferramenta": "consultar_cep",
+      "entrada": "{'cep': '01001000'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1bcf5-59e2-7d60-b15f-80d9e18a25ab",
+      "observado": "{\"origem\": \"viacep_real\", \"cep\": \"01001000\", \"endereco\": {\"cep\": \"01001-000\", \"logradouro\": \"Praça da Sé\", \"complemento\": \"lado ímpar\", \"bairro\": \"Sé\", \"localidade\": \"São Paulo\", \"uf\": \"SP\", \"ibge\": \"3550308\"}, \"tentativa_http_real\": true, \"url\": \"https://viacep.com.br/ws/01001000/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a1bcf5-5e7b-7e23-b93b-610961a4f58c",
+      "ferramenta": "consultar_entrega",
+      "entrada": "{'municipio': 'São Paulo', 'uf': 'SP'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1bcf5-5e7b-7e23-b93b-610961a4f58c",
+      "observado": "{\"frete_centavos\": null, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [\"Cidade/UF sem distância simulada cadastrada; sem cotação automática de frete/total com entrega.\"], \"fontes_regras\": [\"loja_regras.json\", \"distancias_simuladas.json\"], \"status\": \"cotacao_entrega_pendente\"}"
+    }
+  ],
+  "esquemas_modelo": [
+    [
+      {
+        "type": "function",
+        "function": {
+          "name": "listar_veiculos",
+          "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+          "parameters": {
+            "properties": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo",
+          "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+          "parameters": {
+            "properties": {
+              "produto_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "veiculo_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "categoria": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object",
+            "required": [
+              "produto_id",
+              "veiculo_id",
+              "categoria"
+            ],
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_cep",
+          "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+          "parameters": {
+            "properties": {
+              "cep": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cep"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "calcular_orcamento",
+          "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+          "parameters": {
+            "properties": {
+              "itens": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "produto_id": {
+                      "description": "ID ou SKU retornado pela consulta do catálogo.",
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "quantidade": {
+                      "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                      "exclusiveMinimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "produto_id",
+                    "quantidade"
+                  ],
+                  "type": "object"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "modalidade": {
+                "enum": [
+                  "retirada",
+                  "entrega"
+                ],
+                "type": "string"
+              },
+              "municipio": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "uf": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "itens",
+              "modalidade",
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_entrega",
+          "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+          "parameters": {
+            "properties": {
+              "municipio": {
+                "type": "string"
+              },
+              "uf": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_informacao_tecnica",
+          "description": "Consulte as informações técnicas cadastradas para o veículo identificado. Óleo pode estar pendente; nunca preencha viscosidade ou capacidade com conhecimento próprio.",
+          "parameters": {
+            "properties": {
+              "veiculo_id": {
+                "type": "string"
+              },
+              "assunto": {
+                "enum": [
+                  "oleo",
+                  "sincronismo",
+                  "correia_externa",
+                  "distincao_correias"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "veiculo_id",
+              "assunto"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      }
+    ]
+  ],
+  "resposta_candidata": "Infelizmente, não conseguimos calcular o frete para o CEP 01001-000, pois a cidade de São Paulo não possui distância cadastrada na tabela da loja. Portanto, não é possível fornecer uma cotação automática de frete ou total com entrega. Se precisar de mais informações ou ajuda, estou à disposição!",
+  "verificacao_especifica": {
+    "regra": "fora_das_protecoes_especificas",
+    "substituida": false
+  }
+}

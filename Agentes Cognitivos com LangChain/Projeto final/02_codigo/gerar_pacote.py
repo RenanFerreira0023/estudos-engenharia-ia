@@ -11,7 +11,7 @@ def incluir(caminho):
     # ENTREGA contém código/documentação/evidências, sem configuração privada ou artefatos de execução.
     partes = {p.casefold() for p in caminho.parts}
     nome = caminho.name.casefold()
-    return (not partes.intersection({"__pycache__", ".venv", ".git", ".ipynb_checkpoints"})
+    return (not partes.intersection({"__pycache__", ".venv", ".git", ".ipynb_checkpoints", "estado_local"})
             and caminho.suffix.casefold() not in (".pyc", ".pyo")
             and (nome == ".env.example" or not (nome == ".env" or nome.startswith(".env.") or nome.endswith(".env"))))
 

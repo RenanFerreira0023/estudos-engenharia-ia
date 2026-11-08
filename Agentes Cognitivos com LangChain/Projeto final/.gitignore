@@ -6,3 +6,4 @@
 __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
+02_codigo/estado_local/

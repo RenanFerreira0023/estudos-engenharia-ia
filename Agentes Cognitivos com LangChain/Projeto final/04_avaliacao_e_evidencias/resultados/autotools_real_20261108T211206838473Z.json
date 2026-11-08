@@ -1,0 +1,425 @@
+{
+  "origem": "HTTP real AutoTools",
+  "documentacao": "https://autotools.brightcoding.dev/docs",
+  "termos": "https://autotools.brightcoding.dev/terms",
+  "casos": [
+    {
+      "veiculo_local": {
+        "id": "V001",
+        "marca": "Volkswagen",
+        "modelo": "Gol",
+        "ano_modelo": 2010,
+        "motor": "1.0 8V",
+        "combustivel": "flex",
+        "status_configuracao": "recorte_academico_proposto",
+        "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+      },
+      "busca_restrita": {
+        "origem": "autotools_real",
+        "atribuicao": "Dados consultados na AutoTools — https://autotools.brightcoding.dev",
+        "url": "https://autotools.brightcoding.dev/api/vehicles/search",
+        "parametros": {
+          "q": "Gol",
+          "per_page": 10,
+          "make": "Volkswagen",
+          "model": "Gol",
+          "year": 2010,
+          "engine": "1.0 8V",
+          "fuel": "flex"
+        },
+        "http_status": 200,
+        "content_type": "application/json",
+        "json": {
+          "data": [],
+          "meta": {
+            "query": "Gol",
+            "filters": {
+              "make": "Volkswagen",
+              "model": "Gol",
+              "year": "2010",
+              "engine": "1.0 8V",
+              "fuel": "flex"
+            },
+            "total": 0,
+            "per_page": 10,
+            "current_page": 1,
+            "last_page": 1,
+            "min_query_length": 2
+          }
+        },
+        "status": "sem_resultados"
+      },
+      "correspondencias": [
+        {
+          "candidato": {
+            "make": "Volkswagen",
+            "make_slug": "volkswagen",
+            "model": "Golf",
+            "model_slug": "golf",
+            "year": 2019,
+            "trim": "1.5 TSI",
+            "trim_slug": "1-5-tsi",
+            "engine": "DADA",
+            "engine_code": "DADA",
+            "engine_slug": "dada",
+            "body_type": "Hatchback",
+            "fuel_type": "Petrol",
+            "transmission": "6-speed manual",
+            "displacement_l": 1.5,
+            "power_hp": 150,
+            "is_indexable": true,
+            "url": "/vehicle-information/volkswagen/golf/2019/1-5-tsi",
+            "api_url": "https://autotools.brightcoding.dev/api/vehicles/8"
+          },
+          "identidade": {
+            "confirmada": false,
+            "campos_externos": {
+              "marca": "Volkswagen",
+              "modelo": "Golf",
+              "ano_modelo": 2019,
+              "motor": "DADA",
+              "combustivel": null
+            },
+            "mercado": null,
+            "pendencias": [
+              "modelo",
+              "ano_modelo",
+              "motor",
+              "combustivel",
+              "mercado_brasileiro_nao_confirmado"
+            ]
+          }
+        },
+        {
+          "candidato": {
+            "make": "Volkswagen",
+            "make_slug": "volkswagen",
+            "model": "Golf",
+            "model_slug": "golf",
+            "year": 2019,
+            "trim": "2.0 TDI",
+            "trim_slug": "2-0-tdi",
+            "engine": "CRBC",
+            "engine_code": "CRBC",
+            "engine_slug": "crbc",
+            "body_type": "Hatchback",
+            "fuel_type": "Diesel",
+            "transmission": "6-speed manual",
+            "displacement_l": 2,
+            "power_hp": 150,
+            "is_indexable": true,
+            "url": "/vehicle-information/volkswagen/golf/2019/2-0-tdi",
+            "api_url": "https://autotools.brightcoding.dev/api/vehicles/7"
+          },
+          "identidade": {
+            "confirmada": false,
+            "campos_externos": {
+              "marca": "Volkswagen",
+              "modelo": "Golf",
+              "ano_modelo": 2019,
+              "motor": "CRBC",
+              "combustivel": null
+            },
+            "mercado": null,
+            "pendencias": [
+              "modelo",
+              "ano_modelo",
+              "motor",
+              "combustivel",
+              "mercado_brasileiro_nao_confirmado"
+            ]
+          }
+        }
+      ],
+      "secoes": [],
+      "cobertura": "candidatos_sem_configuracao_exata_confirmada",
+      "busca_ampla": {
+        "origem": "autotools_real",
+        "atribuicao": "Dados consultados na AutoTools — https://autotools.brightcoding.dev",
+        "url": "https://autotools.brightcoding.dev/api/vehicles/search",
+        "parametros": {
+          "q": "Gol",
+          "per_page": 10
+        },
+        "http_status": 200,
+        "content_type": "application/json",
+        "json": {
+          "data": [
+            {
+              "make": "Volkswagen",
+              "make_slug": "volkswagen",
+              "model": "Golf",
+              "model_slug": "golf",
+              "year": 2019,
+              "trim": "1.5 TSI",
+              "trim_slug": "1-5-tsi",
+              "engine": "DADA",
+              "engine_code": "DADA",
+              "engine_slug": "dada",
+              "body_type": "Hatchback",
+              "fuel_type": "Petrol",
+              "transmission": "6-speed manual",
+              "displacement_l": 1.5,
+              "power_hp": 150,
+              "is_indexable": true,
+              "url": "/vehicle-information/volkswagen/golf/2019/1-5-tsi",
+              "api_url": "https://autotools.brightcoding.dev/api/vehicles/8"
+            },
+            {
+              "make": "Volkswagen",
+              "make_slug": "volkswagen",
+              "model": "Golf",
+              "model_slug": "golf",
+              "year": 2019,
+              "trim": "2.0 TDI",
+              "trim_slug": "2-0-tdi",
+              "engine": "CRBC",
+              "engine_code": "CRBC",
+              "engine_slug": "crbc",
+              "body_type": "Hatchback",
+              "fuel_type": "Diesel",
+              "transmission": "6-speed manual",
+              "displacement_l": 2,
+              "power_hp": 150,
+              "is_indexable": true,
+              "url": "/vehicle-information/volkswagen/golf/2019/2-0-tdi",
+              "api_url": "https://autotools.brightcoding.dev/api/vehicles/7"
+            }
+          ],
+          "meta": {
+            "query": "Gol",
+            "filters": [],
+            "total": 2,
+            "per_page": 10,
+            "current_page": 1,
+            "last_page": 1,
+            "min_query_length": 2
+          }
+        },
+        "status": "candidatos_retornados"
+      }
+    },
+    {
+      "veiculo_local": {
+        "id": "V002",
+        "marca": "Fiat",
+        "modelo": "Palio",
+        "ano_modelo": 2010,
+        "motor": "1.0 Fire 8V",
+        "combustivel": "flex",
+        "status_configuracao": "recorte_academico_proposto",
+        "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+      },
+      "busca_restrita": {
+        "origem": "autotools_real",
+        "atribuicao": "Dados consultados na AutoTools — https://autotools.brightcoding.dev",
+        "url": "https://autotools.brightcoding.dev/api/vehicles/search",
+        "parametros": {
+          "q": "Palio",
+          "per_page": 10,
+          "make": "Fiat",
+          "model": "Palio",
+          "year": 2010,
+          "engine": "1.0 Fire 8V",
+          "fuel": "flex"
+        },
+        "http_status": 200,
+        "content_type": "application/json",
+        "json": {
+          "data": [],
+          "meta": {
+            "query": "Palio",
+            "filters": {
+              "make": "Fiat",
+              "model": "Palio",
+              "year": "2010",
+              "engine": "1.0 Fire 8V",
+              "fuel": "flex"
+            },
+            "total": 0,
+            "per_page": 10,
+            "current_page": 1,
+            "last_page": 1,
+            "min_query_length": 2
+          }
+        },
+        "status": "sem_resultados"
+      },
+      "correspondencias": [],
+      "secoes": [],
+      "cobertura": "nenhum_candidato_nas_buscas_executadas",
+      "busca_ampla": {
+        "origem": "autotools_real",
+        "atribuicao": "Dados consultados na AutoTools — https://autotools.brightcoding.dev",
+        "url": "https://autotools.brightcoding.dev/api/vehicles/search",
+        "parametros": {
+          "q": "Palio",
+          "per_page": 10
+        },
+        "http_status": 200,
+        "content_type": "application/json",
+        "json": {
+          "data": [],
+          "meta": {
+            "query": "Palio",
+            "filters": [],
+            "total": 0,
+            "per_page": 10,
+            "current_page": 1,
+            "last_page": 1,
+            "min_query_length": 2
+          }
+        },
+        "status": "sem_resultados"
+      }
+    },
+    {
+      "veiculo_local": {
+        "id": "V003",
+        "marca": "Chevrolet",
+        "modelo": "Celta",
+        "ano_modelo": 2012,
+        "motor": "1.0 8V",
+        "combustivel": "flex",
+        "status_configuracao": "recorte_academico_proposto",
+        "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+      },
+      "busca_restrita": {
+        "origem": "autotools_real",
+        "atribuicao": "Dados consultados na AutoTools — https://autotools.brightcoding.dev",
+        "url": "https://autotools.brightcoding.dev/api/vehicles/search",
+        "parametros": {
+          "q": "Celta",
+          "per_page": 10,
+          "make": "Chevrolet",
+          "model": "Celta",
+          "year": 2012,
+          "engine": "1.0 8V",
+          "fuel": "flex"
+        },
+        "http_status": 200,
+        "content_type": "application/json",
+        "json": {
+          "data": [],
+          "meta": {
+            "query": "Celta",
+            "filters": {
+              "make": "Chevrolet",
+              "model": "Celta",
+              "year": "2012",
+              "engine": "1.0 8V",
+              "fuel": "flex"
+            },
+            "total": 0,
+            "per_page": 10,
+            "current_page": 1,
+            "last_page": 1,
+            "min_query_length": 2
+          }
+        },
+        "status": "sem_resultados"
+      },
+      "correspondencias": [],
+      "secoes": [],
+      "cobertura": "nenhum_candidato_nas_buscas_executadas",
+      "busca_ampla": {
+        "origem": "autotools_real",
+        "atribuicao": "Dados consultados na AutoTools — https://autotools.brightcoding.dev",
+        "url": "https://autotools.brightcoding.dev/api/vehicles/search",
+        "parametros": {
+          "q": "Celta",
+          "per_page": 10
+        },
+        "http_status": 200,
+        "content_type": "application/json",
+        "json": {
+          "data": [],
+          "meta": {
+            "query": "Celta",
+            "filters": [],
+            "total": 0,
+            "per_page": 10,
+            "current_page": 1,
+            "last_page": 1,
+            "min_query_length": 2
+          }
+        },
+        "status": "sem_resultados"
+      }
+    },
+    {
+      "veiculo_local": {
+        "id": "V004",
+        "marca": "Volkswagen",
+        "modelo": "Fusca",
+        "ano_modelo": 1982,
+        "motor": "1600 a ar",
+        "combustivel": "gasolina",
+        "status_configuracao": "recorte_academico_proposto",
+        "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+      },
+      "busca_restrita": {
+        "origem": "autotools_real",
+        "atribuicao": "Dados consultados na AutoTools — https://autotools.brightcoding.dev",
+        "url": "https://autotools.brightcoding.dev/api/vehicles/search",
+        "parametros": {
+          "q": "Fusca",
+          "per_page": 10,
+          "make": "Volkswagen",
+          "model": "Fusca",
+          "year": 1982,
+          "engine": "1600 a ar",
+          "fuel": "gasolina"
+        },
+        "http_status": 200,
+        "content_type": "application/json",
+        "json": {
+          "data": [],
+          "meta": {
+            "query": "Fusca",
+            "filters": {
+              "make": "Volkswagen",
+              "model": "Fusca",
+              "year": "1982",
+              "engine": "1600 a ar",
+              "fuel": "gasolina"
+            },
+            "total": 0,
+            "per_page": 10,
+            "current_page": 1,
+            "last_page": 1,
+            "min_query_length": 2
+          }
+        },
+        "status": "sem_resultados"
+      },
+      "correspondencias": [],
+      "secoes": [],
+      "cobertura": "nenhum_candidato_nas_buscas_executadas",
+      "busca_ampla": {
+        "origem": "autotools_real",
+        "atribuicao": "Dados consultados na AutoTools — https://autotools.brightcoding.dev",
+        "url": "https://autotools.brightcoding.dev/api/vehicles/search",
+        "parametros": {
+          "q": "Fusca",
+          "per_page": 10
+        },
+        "http_status": 200,
+        "content_type": "application/json",
+        "json": {
+          "data": [],
+          "meta": {
+            "query": "Fusca",
+            "filters": [],
+            "total": 0,
+            "per_page": 10,
+            "current_page": 1,
+            "last_page": 1,
+            "min_query_length": 2
+          }
+        },
+        "status": "sem_resultados"
+      }
+    }
+  ]
+}

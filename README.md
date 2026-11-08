@@ -303,3 +303,26 @@ arquivos de apoio.
 
 As skills em `codex-skills/` sao fontes versionadas. Para ficarem ativas no
 Codex, elas tambem precisam existir em `C:\Users\Renan\.codex\skills`.
+
+### Revisão do projeto final — consultas e respostas da fase 2 (08/11)
+
+O [projeto Auto Super Parts](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final/)
+passou a consultar entrega sem produtos e informações técnicas estruturadas com fontes.
+A regra de frete é compartilhada com o orçamento. `ContextVar` mantém o pedido atual
+no escopo da chamada para impedir troca de tipo de peça; proteções específicas impedem
+recomendações de óleo sem especificação e preservam candidata/resultado na evidência.
+Essas proteções não são RAG, NLI ou verificador geral. Os avisos repetitivos de simulação
+foram retirados das respostas, mantendo a origem identificada nos registros técnicos.
+Veja [falhas, correções e testes](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final/04_avaliacao_e_evidencias/resultados/CORRECOES_08_11.md).
+
+### Prova AutoTools do projeto final — 08/11
+
+Cliente HTTP com validação de Content-Type/JSON e tratamento de falhas; busca externa comparada com a configuração local e o mercado, sem inferir aplicação. As consultas reais não confirmaram cobertura dos quatro veículos. AutoTools permanece fora das ferramentas do agente; ViaCEP continua funcional. Veja a [evidência e os limites](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final/04_avaliacao_e_evidencias/resultados/PROVA_AUTOTOOLS_08_11.md).
+
+### Base técnica manual do projeto final — 08/11
+
+[Escopo, fontes e execução](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final/01_documentacao/BASE_TECNICA_MANUAL.md): consulta estruturada em JSON por configuração/assunto, com fontes e lacunas explícitas. Cinco veículos (quatro originais e uma S10 diesel), mantendo 24 produtos comerciais. Óleo diferencia norma e uso normal/severo; ViaCEP continua como API externa. Catálogos externos deixam o caminho ativo; memória, RAG e avaliação continuam na sequência planejada.
+
+### Memória do projeto final — fase 3
+
+[Guia e evidências](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final/01_documentacao/MEMORIA_FASE_03.md): janela de turnos realmente enviada a `invoke`, perfil confirmado em SQLite e recuperação vetorial de resumos autorizados, isolados por cliente. Nova conversa preserva dados salvos; esquecer apaga contexto curto/longo. CLI e notebook importam a mesma fachada do agente; sem autenticação ou resumo automático. Comparação documental LangMem/Mem0 e decisão por store local.

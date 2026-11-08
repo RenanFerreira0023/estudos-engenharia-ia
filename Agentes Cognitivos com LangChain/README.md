@@ -75,3 +75,23 @@ e independente: prioriza o ambiente e aceita um `.env` local em sua propria
 pasta, conforme seu README. Ele nao procura a configuracao das demais aulas.
 
 Arquivos `.env` nao devem ser enviados para o GitHub.
+
+## Revisão da fase 2 do projeto final — 08/11
+
+Consulta de frete sem itens, fonte técnica estruturada, proteção de tipo de peça por pedido
+(`ContextVar`) e regras de resposta para óleo/correia. A regra de frete é compartilhada
+com o cálculo do orçamento; candidata e resposta entregue ficam separadas na evidência.
+Não representa implementação de RAG ou de um verificador semântico geral.
+Consulte o [registro da revisão](./Projeto%20final/04_avaliacao_e_evidencias/resultados/CORRECOES_08_11.md).
+
+### Prova AutoTools do projeto final — 08/11
+
+Cliente HTTP com validação de Content-Type/JSON e tratamento de falhas; busca externa comparada com a configuração local e o mercado, sem inferir aplicação. As consultas reais não confirmaram cobertura dos quatro veículos. AutoTools permanece fora das ferramentas do agente; ViaCEP continua funcional. Veja a [evidência e os limites](./Projeto%20final/04_avaliacao_e_evidencias/resultados/PROVA_AUTOTOOLS_08_11.md).
+
+### Base técnica manual do projeto final — 08/11
+
+[Escopo, fontes e execução](./Projeto%20final/01_documentacao/BASE_TECNICA_MANUAL.md): consulta estruturada em JSON por configuração/assunto, com fontes e lacunas explícitas. Cinco veículos (quatro originais e uma S10 diesel), mantendo 24 produtos comerciais. Óleo diferencia norma e uso normal/severo; ViaCEP continua como API externa. Catálogos externos deixam o caminho ativo; memória, RAG e avaliação continuam na sequência planejada.
+
+### Memória do projeto final — fase 3
+
+[Guia e evidências](./Projeto%20final/01_documentacao/MEMORIA_FASE_03.md): janela de turnos realmente enviada a `invoke`, perfil confirmado em SQLite e recuperação vetorial de resumos autorizados, isolados por cliente. Nova conversa preserva dados salvos; esquecer apaga contexto curto/longo. CLI e notebook importam a mesma fachada do agente; sem autenticação ou resumo automático. Comparação documental LangMem/Mem0 e decisão por store local.

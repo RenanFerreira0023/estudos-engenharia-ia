@@ -1,0 +1,1900 @@
+{
+  "modo": "API real OpenAI; fonte técnica JSON local; ViaCEP não solicitado",
+  "criterio": "Consulta correta e trechos esperados; avaliação limitada, sem juiz LLM ou LangSmith",
+  "casos": [
+    {
+      "caso": "celta_oleo",
+      "assunto_esperado": "oleo",
+      "veiculo_esperado": "V003",
+      "consulta_correta": true,
+      "criterio_local_atendido": true,
+      "resultado": {
+        "fase": 2,
+        "modelo": "OpenAI/gpt-4o-mini",
+        "origem_cep": "viacep_real",
+        "mensagem": "Tenho um Celta 2012 1.0 8V flex original. Qual óleo e intervalo de troca?",
+        "status": "ok",
+        "resposta": "Especificação cadastrada para Celta 2012 1.0 8V flex:\n- SAE 5W-30, API SL ou superior.\n  Uso normal: 10.000 km ou 12 meses. o que ocorrer primeiro.\n  Uso severo: 5.000 km ou 6 meses. o que ocorrer primeiro.\n- Capacidade sem troca do filtro: 3,25 litros.\n- Capacidade com troca do filtro: 3,5 litros.\nValores da configuração original. Confirmar serviço e nível pela vareta; capacidade não é instrução para completar sem medição.\nPara definir o intervalo aplicável: como é a rotina de uso? Há trajetos curtos, poeira ou marcha lenta prolongada?\nFonte: Manual do proprietário Chevrolet Celta 2012 — Brasil — 12-6, 12-7 e 13-1: https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf",
+        "trajetoria": [
+          {
+            "tipo": "human",
+            "conteudo": "Tenho um Celta 2012 1.0 8V flex original. Qual óleo e intervalo de troca?"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "listar_veiculos",
+                "args": {},
+                "id": "call_Dgplc0WXbx6REzgR8IyhVa6W",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}",
+            "ferramenta": "listar_veiculos",
+            "tool_call_id": "call_Dgplc0WXbx6REzgR8IyhVa6W"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_informacao_tecnica",
+                "args": {
+                  "veiculo_id": "V003",
+                  "assunto": "oleo"
+                },
+                "id": "call_244clEHrA9sEiS9ZdKGSmsQn",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"informacao_disponivel\", \"veiculo_id\": \"V003\", \"veiculo\": {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, \"assunto\": \"oleo\", \"informacoes\": [{\"id\": \"TEC-V003-oleo\", \"veiculo_id\": \"V003\", \"assunto\": \"oleo\", \"conteudo\": \"SAE 5W-30, API SL ou superior. Troca condicionada ao uso; não calcular média entre os regimes.\", \"status\": \"verificado_manual\", \"fontes\": [\"SRC06\"], \"perguntas_necessarias\": [\"Confirmar geração/versão e identificação do motor; ano e cilindrada sozinhos não encerram a seleção.\", \"Confirmar motor e combustível; versão/geração quando necessário.\", \"Uso normal ou severo? Informar rotina, percursos curtos, poeira e marcha lenta prolongada.\", \"Para quantidade: haverá troca do filtro?\"], \"localizacao\": \"12-6, 12-7 e 13-1\", \"consultado_em\": \"2026-11-08\", \"dados_oleo\": {\"especificacoes\": [{\"viscosidade_sae\": \"5W-30\", \"norma\": \"API SL ou superior\", \"intervalos\": {\"normal\": {\"km\": 10000, \"meses\": 12, \"criterio\": \"o_que_ocorrer_primeiro\"}, \"severo\": {\"km\": 5000, \"meses\": 6, \"criterio\": \"o_que_ocorrer_primeiro\"}}}], \"capacidade_litros\": {\"sem_troca_filtro\": 3.25, \"com_troca_filtro\": 3.5}, \"observacoes\": [\"Valores da configuração original. Confirmar serviço e nível pela vareta; capacidade não é instrução para completar sem medição.\"]}}], \"fontes\": [{\"id\": \"SRC06\", \"tipo\": \"manual_oficial_fabricante\", \"url\": \"https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf\", \"titulo\": \"Manual do proprietário Chevrolet Celta 2012 — Brasil\", \"consultado_em\": \"2026-11-08\", \"suporta\": \"Especificações e manutenção das configurações cobertas. Seções consultadas: 12-2, 12-5 a 12-7, 13-1, 13-17.\", \"limite\": \"Não valida produtos fictícios ou alterações no veículo. Distinguir motores, condições de uso e equipamentos. Campos ambíguos permanecem pendentes.\"}], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}",
+            "ferramenta": "consultar_informacao_tecnica",
+            "tool_call_id": "call_244clEHrA9sEiS9ZdKGSmsQn"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "Para o seu Celta 2012 1.0 8V flex, as informações sobre o óleo são as seguintes:\n\n- **Viscosidade**: SAE 5W-30\n- **Norma**: API SL ou superior\n- **Capacidade**:\n  - Sem troca de filtro: 3,25 litros\n  - Com troca de filtro: 3,5 litros\n- **Intervalo de troca**:\n  - Uso normal: a cada 10.000 km ou 12 meses, o que ocorrer primeiro.\n  - Uso severo: a cada 5.000 km ou 6 meses, o que ocorrer primeiro.\n\nÉ importante confirmar a rotina de uso do veículo (se é normal ou severo) e se haverá troca do filtro de óleo. Para mais detalhes, você pode consultar o [manual do proprietário](https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf).",
+            "tool_calls": []
+          }
+        ],
+        "eventos_ferramentas": [
+          {
+            "evento": "inicio",
+            "run_id": "01a1bd59-6d78-7052-8148-95fdebcbb806",
+            "ferramenta": "listar_veiculos",
+            "entrada": "{}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bd59-6d78-7052-8148-95fdebcbb806",
+            "observado": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1bd59-72be-79a1-8c2e-7dc42c9511e5",
+            "ferramenta": "consultar_informacao_tecnica",
+            "entrada": "{'veiculo_id': 'V003', 'assunto': 'oleo'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bd59-72be-79a1-8c2e-7dc42c9511e5",
+            "observado": "{\"status\": \"informacao_disponivel\", \"veiculo_id\": \"V003\", \"veiculo\": {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, \"assunto\": \"oleo\", \"informacoes\": [{\"id\": \"TEC-V003-oleo\", \"veiculo_id\": \"V003\", \"assunto\": \"oleo\", \"conteudo\": \"SAE 5W-30, API SL ou superior. Troca condicionada ao uso; não calcular média entre os regimes.\", \"status\": \"verificado_manual\", \"fontes\": [\"SRC06\"], \"perguntas_necessarias\": [\"Confirmar geração/versão e identificação do motor; ano e cilindrada sozinhos não encerram a seleção.\", \"Confirmar motor e combustível; versão/geração quando necessário.\", \"Uso normal ou severo? Informar rotina, percursos curtos, poeira e marcha lenta prolongada.\", \"Para quantidade: haverá troca do filtro?\"], \"localizacao\": \"12-6, 12-7 e 13-1\", \"consultado_em\": \"2026-11-08\", \"dados_oleo\": {\"especificacoes\": [{\"viscosidade_sae\": \"5W-30\", \"norma\": \"API SL ou superior\", \"intervalos\": {\"normal\": {\"km\": 10000, \"meses\": 12, \"criterio\": \"o_que_ocorrer_primeiro\"}, \"severo\": {\"km\": 5000, \"meses\": 6, \"criterio\": \"o_que_ocorrer_primeiro\"}}}], \"capacidade_litros\": {\"sem_troca_filtro\": 3.25, \"com_troca_filtro\": 3.5}, \"observacoes\": [\"Valores da configuração original. Confirmar serviço e nível pela vareta; capacidade não é instrução para completar sem medição.\"]}}], \"fontes\": [{\"id\": \"SRC06\", \"tipo\": \"manual_oficial_fabricante\", \"url\": \"https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf\", \"titulo\": \"Manual do proprietário Chevrolet Celta 2012 — Brasil\", \"consultado_em\": \"2026-11-08\", \"suporta\": \"Especificações e manutenção das configurações cobertas. Seções consultadas: 12-2, 12-5 a 12-7, 13-1, 13-17.\", \"limite\": \"Não valida produtos fictícios ou alterações no veículo. Distinguir motores, condições de uso e equipamentos. Campos ambíguos permanecem pendentes.\"}], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}"
+          }
+        ],
+        "esquemas_modelo": [
+          [
+            {
+              "type": "function",
+              "function": {
+                "name": "listar_veiculos",
+                "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+                "parameters": {
+                  "properties": {},
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo",
+                "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+                "parameters": {
+                  "properties": {
+                    "produto_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "veiculo_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "categoria": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "produto_id",
+                    "veiculo_id",
+                    "categoria"
+                  ],
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_cep",
+                "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+                "parameters": {
+                  "properties": {
+                    "cep": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cep"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "calcular_orcamento",
+                "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+                "parameters": {
+                  "properties": {
+                    "itens": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "produto_id": {
+                            "description": "ID ou SKU retornado pela consulta do catálogo.",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "quantidade": {
+                            "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                            "exclusiveMinimum": 0,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "produto_id",
+                          "quantidade"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "modalidade": {
+                      "enum": [
+                        "retirada",
+                        "entrega"
+                      ],
+                      "type": "string"
+                    },
+                    "municipio": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "uf": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "required": [
+                    "itens",
+                    "modalidade",
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_entrega",
+                "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+                "parameters": {
+                  "properties": {
+                    "municipio": {
+                      "type": "string"
+                    },
+                    "uf": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_informacao_tecnica",
+                "description": "Consulte a base manual para os veículos cadastrados: óleo, manutenção básica, freios, pneus, velas, correias e alternador. Retorne fontes, especificações e perguntas necessárias. Pendência não autoriza completar por suposição.",
+                "parameters": {
+                  "properties": {
+                    "veiculo_id": {
+                      "type": "string"
+                    },
+                    "assunto": {
+                      "enum": [
+                        "oleo",
+                        "sincronismo",
+                        "correia_externa",
+                        "distincao_correias",
+                        "manutencao_basica",
+                        "freios",
+                        "pneus",
+                        "velas",
+                        "alternador"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "veiculo_id",
+                    "assunto"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            }
+          ]
+        ],
+        "resposta_candidata": "Para o seu Celta 2012 1.0 8V flex, as informações sobre o óleo são as seguintes:\n\n- **Viscosidade**: SAE 5W-30\n- **Norma**: API SL ou superior\n- **Capacidade**:\n  - Sem troca de filtro: 3,25 litros\n  - Com troca de filtro: 3,5 litros\n- **Intervalo de troca**:\n  - Uso normal: a cada 10.000 km ou 12 meses, o que ocorrer primeiro.\n  - Uso severo: a cada 5.000 km ou 6 meses, o que ocorrer primeiro.\n\nÉ importante confirmar a rotina de uso do veículo (se é normal ou severo) e se haverá troca do filtro de óleo. Para mais detalhes, você pode consultar o [manual do proprietário](https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf).",
+        "verificacao_especifica": {
+          "regra": "oleo_com_fonte_cadastrada",
+          "substituida": true,
+          "consulta_tecnica_executada": true
+        }
+      }
+    },
+    {
+      "caso": "s10_oleo",
+      "assunto_esperado": "oleo",
+      "veiculo_esperado": "V005",
+      "consulta_correta": true,
+      "criterio_local_atendido": true,
+      "resultado": {
+        "fase": 2,
+        "modelo": "OpenAI/gpt-4o-mini",
+        "origem_cep": "viacep_real",
+        "mensagem": "Tenho uma S10 2014 2.8 CTDI diesel original. Qual viscosidade e intervalo de troca do óleo?",
+        "status": "ok",
+        "resposta": "Especificação cadastrada para S10 2014 2.8 CTDI diesel:\n- SAE 5W-30, dexos2.\n  Uso normal: 20.000 km ou 12 meses. o que ocorrer primeiro.\n  Uso severo: 10.000 km ou 6 meses. o que ocorrer primeiro.\n- SAE 15W-40, API CI-4 (alternativa prevista nesta edição).\n  Uso normal: 10.000 km ou 12 meses. o que ocorrer primeiro.\n  Uso severo: 5.000 km ou 6 meses. o que ocorrer primeiro.\nCapacidade em litros ainda não confirmada para a configuração exata.\nTrocar o filtro em cada troca de óleo.\nCapacidade pendente: conferir tabela e tração; o resumo do PDF contém descrições ambíguas. Não extrapolar para outras S10 ou outros anos.\nPara definir o intervalo aplicável: como é a rotina de uso? Há trajetos curtos, poeira ou marcha lenta prolongada?\nFonte: Manual do proprietário Chevrolet S10 2014 — Brasil — Resumo 1-10, 10-13 e 11-15: https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2014/chevrolet/S10/pt/om_ng-chevrolet_S10_my14-pt_BR.pdf",
+        "trajetoria": [
+          {
+            "tipo": "human",
+            "conteudo": "Tenho uma S10 2014 2.8 CTDI diesel original. Qual viscosidade e intervalo de troca do óleo?"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "listar_veiculos",
+                "args": {},
+                "id": "call_acjIecq5fjLnw1iBgzSu3P23",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}",
+            "ferramenta": "listar_veiculos",
+            "tool_call_id": "call_acjIecq5fjLnw1iBgzSu3P23"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_informacao_tecnica",
+                "args": {
+                  "veiculo_id": "V005",
+                  "assunto": "oleo"
+                },
+                "id": "call_7yNdg48ztTcwX0pmBNBY2gZw",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"informacao_disponivel\", \"veiculo_id\": \"V005\", \"veiculo\": {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}, \"assunto\": \"oleo\", \"informacoes\": [{\"id\": \"TEC-V005-oleo\", \"veiculo_id\": \"V005\", \"assunto\": \"oleo\", \"conteudo\": \"Motor diesel 2.8: dexos2 5W-30; o manual também admite API CI-4 15W-40, com intervalos próprios. Não misturar intervalos ou recomendar só pela viscosidade.\", \"status\": \"verificado_manual\", \"fontes\": [\"SRC07\"], \"perguntas_necessarias\": [\"Confirmar geração/versão e identificação do motor; ano e cilindrada sozinhos não encerram a seleção.\", \"Confirmar motor e combustível; versão/geração quando necessário.\", \"Uso normal ou severo? Informar rotina, percursos curtos, poeira e marcha lenta prolongada.\", \"Para quantidade: haverá troca do filtro?\"], \"localizacao\": \"Resumo 1-10, 10-13 e 11-15\", \"consultado_em\": \"2026-11-08\", \"dados_oleo\": {\"especificacoes\": [{\"viscosidade_sae\": \"5W-30\", \"norma\": \"dexos2\", \"intervalos\": {\"normal\": {\"km\": 20000, \"meses\": 12, \"criterio\": \"o_que_ocorrer_primeiro\"}, \"severo\": {\"km\": 10000, \"meses\": 6, \"criterio\": \"o_que_ocorrer_primeiro\"}}}, {\"viscosidade_sae\": \"15W-40\", \"norma\": \"API CI-4 (alternativa prevista nesta edição)\", \"intervalos\": {\"normal\": {\"km\": 10000, \"meses\": 12, \"criterio\": \"o_que_ocorrer_primeiro\"}, \"severo\": {\"km\": 5000, \"meses\": 6, \"criterio\": \"o_que_ocorrer_primeiro\"}}}], \"capacidade_litros\": {\"sem_troca_filtro\": null, \"com_troca_filtro\": null}, \"observacoes\": [\"Trocar o filtro em cada troca de óleo.\", \"Capacidade pendente: conferir tabela e tração; o resumo do PDF contém descrições ambíguas. Não extrapolar para outras S10 ou outros anos.\"]}}], \"fontes\": [{\"id\": \"SRC07\", \"tipo\": \"manual_oficial_fabricante\", \"url\": \"https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2014/chevrolet/S10/pt/om_ng-chevrolet_S10_my14-pt_BR.pdf\", \"titulo\": \"Manual do proprietário Chevrolet S10 2014 — Brasil\", \"consultado_em\": \"2026-11-08\", \"suporta\": \"Especificações e manutenção das configurações cobertas. Seções consultadas: 10-10, 10-13, 11-9, 11-11 e 11-15.\", \"limite\": \"Não valida produtos fictícios ou alterações no veículo. Distinguir motores, condições de uso e equipamentos. Campos ambíguos permanecem pendentes.\"}], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}",
+            "ferramenta": "consultar_informacao_tecnica",
+            "tool_call_id": "call_7yNdg48ztTcwX0pmBNBY2gZw"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "Para a S10 2014 2.8 CTDI diesel, as informações sobre o óleo são as seguintes:\n\n- **Viscosidade**: \n  - **5W-30** (norma dexos2)\n  - **15W-40** (norma API CI-4, alternativa)\n\n- **Intervalo de troca**:\n  - **5W-30**:\n    - Uso normal: 20.000 km ou 12 meses (o que ocorrer primeiro)\n    - Uso severo: 10.000 km ou 6 meses (o que ocorrer primeiro)\n  - **15W-40**:\n    - Uso normal: 10.000 km ou 12 meses (o que ocorrer primeiro)\n    - Uso severo: 5.000 km ou 6 meses (o que ocorrer primeiro)\n\n**Observações**:\n- É importante trocar o filtro de óleo em cada troca de óleo.\n- A capacidade de óleo (com ou sem troca de filtro) está pendente e deve ser conferida na tabela específica do veículo.\n\nPara mais detalhes, você pode consultar o [Manual do proprietário Chevrolet S10 2014](https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2014/chevrolet/S10/pt/om_ng-chevrolet_S10_my14-pt_BR.pdf).",
+            "tool_calls": []
+          }
+        ],
+        "eventos_ferramentas": [
+          {
+            "evento": "inicio",
+            "run_id": "01a1bd59-8c29-76a0-8582-66aed166874d",
+            "ferramenta": "listar_veiculos",
+            "entrada": "{}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bd59-8c29-76a0-8582-66aed166874d",
+            "observado": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1bd59-90a4-7860-b289-b753b425fbe1",
+            "ferramenta": "consultar_informacao_tecnica",
+            "entrada": "{'veiculo_id': 'V005', 'assunto': 'oleo'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bd59-90a4-7860-b289-b753b425fbe1",
+            "observado": "{\"status\": \"informacao_disponivel\", \"veiculo_id\": \"V005\", \"veiculo\": {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}, \"assunto\": \"oleo\", \"informacoes\": [{\"id\": \"TEC-V005-oleo\", \"veiculo_id\": \"V005\", \"assunto\": \"oleo\", \"conteudo\": \"Motor diesel 2.8: dexos2 5W-30; o manual também admite API CI-4 15W-40, com intervalos próprios. Não misturar intervalos ou recomendar só pela viscosidade.\", \"status\": \"verificado_manual\", \"fontes\": [\"SRC07\"], \"perguntas_necessarias\": [\"Confirmar geração/versão e identificação do motor; ano e cilindrada sozinhos não encerram a seleção.\", \"Confirmar motor e combustível; versão/geração quando necessário.\", \"Uso normal ou severo? Informar rotina, percursos curtos, poeira e marcha lenta prolongada.\", \"Para quantidade: haverá troca do filtro?\"], \"localizacao\": \"Resumo 1-10, 10-13 e 11-15\", \"consultado_em\": \"2026-11-08\", \"dados_oleo\": {\"especificacoes\": [{\"viscosidade_sae\": \"5W-30\", \"norma\": \"dexos2\", \"intervalos\": {\"normal\": {\"km\": 20000, \"meses\": 12, \"criterio\": \"o_que_ocorrer_primeiro\"}, \"severo\": {\"km\": 10000, \"meses\": 6, \"criterio\": \"o_que_ocorrer_primeiro\"}}}, {\"viscosidade_sae\": \"15W-40\", \"norma\": \"API CI-4 (alternativa prevista nesta edição)\", \"intervalos\": {\"normal\": {\"km\": 10000, \"meses\": 12, \"criterio\": \"o_que_ocorrer_primeiro\"}, \"severo\": {\"km\": 5000, \"meses\": 6, \"criterio\": \"o_que_ocorrer_primeiro\"}}}], \"capacidade_litros\": {\"sem_troca_filtro\": null, \"com_troca_filtro\": null}, \"observacoes\": [\"Trocar o filtro em cada troca de óleo.\", \"Capacidade pendente: conferir tabela e tração; o resumo do PDF contém descrições ambíguas. Não extrapolar para outras S10 ou outros anos.\"]}}], \"fontes\": [{\"id\": \"SRC07\", \"tipo\": \"manual_oficial_fabricante\", \"url\": \"https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2014/chevrolet/S10/pt/om_ng-chevrolet_S10_my14-pt_BR.pdf\", \"titulo\": \"Manual do proprietário Chevrolet S10 2014 — Brasil\", \"consultado_em\": \"2026-11-08\", \"suporta\": \"Especificações e manutenção das configurações cobertas. Seções consultadas: 10-10, 10-13, 11-9, 11-11 e 11-15.\", \"limite\": \"Não valida produtos fictícios ou alterações no veículo. Distinguir motores, condições de uso e equipamentos. Campos ambíguos permanecem pendentes.\"}], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}"
+          }
+        ],
+        "esquemas_modelo": [
+          [
+            {
+              "type": "function",
+              "function": {
+                "name": "listar_veiculos",
+                "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+                "parameters": {
+                  "properties": {},
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo",
+                "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+                "parameters": {
+                  "properties": {
+                    "produto_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "veiculo_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "categoria": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "produto_id",
+                    "veiculo_id",
+                    "categoria"
+                  ],
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_cep",
+                "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+                "parameters": {
+                  "properties": {
+                    "cep": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cep"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "calcular_orcamento",
+                "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+                "parameters": {
+                  "properties": {
+                    "itens": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "produto_id": {
+                            "description": "ID ou SKU retornado pela consulta do catálogo.",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "quantidade": {
+                            "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                            "exclusiveMinimum": 0,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "produto_id",
+                          "quantidade"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "modalidade": {
+                      "enum": [
+                        "retirada",
+                        "entrega"
+                      ],
+                      "type": "string"
+                    },
+                    "municipio": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "uf": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "required": [
+                    "itens",
+                    "modalidade",
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_entrega",
+                "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+                "parameters": {
+                  "properties": {
+                    "municipio": {
+                      "type": "string"
+                    },
+                    "uf": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_informacao_tecnica",
+                "description": "Consulte a base manual para os veículos cadastrados: óleo, manutenção básica, freios, pneus, velas, correias e alternador. Retorne fontes, especificações e perguntas necessárias. Pendência não autoriza completar por suposição.",
+                "parameters": {
+                  "properties": {
+                    "veiculo_id": {
+                      "type": "string"
+                    },
+                    "assunto": {
+                      "enum": [
+                        "oleo",
+                        "sincronismo",
+                        "correia_externa",
+                        "distincao_correias",
+                        "manutencao_basica",
+                        "freios",
+                        "pneus",
+                        "velas",
+                        "alternador"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "veiculo_id",
+                    "assunto"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            }
+          ]
+        ],
+        "resposta_candidata": "Para a S10 2014 2.8 CTDI diesel, as informações sobre o óleo são as seguintes:\n\n- **Viscosidade**: \n  - **5W-30** (norma dexos2)\n  - **15W-40** (norma API CI-4, alternativa)\n\n- **Intervalo de troca**:\n  - **5W-30**:\n    - Uso normal: 20.000 km ou 12 meses (o que ocorrer primeiro)\n    - Uso severo: 10.000 km ou 6 meses (o que ocorrer primeiro)\n  - **15W-40**:\n    - Uso normal: 10.000 km ou 12 meses (o que ocorrer primeiro)\n    - Uso severo: 5.000 km ou 6 meses (o que ocorrer primeiro)\n\n**Observações**:\n- É importante trocar o filtro de óleo em cada troca de óleo.\n- A capacidade de óleo (com ou sem troca de filtro) está pendente e deve ser conferida na tabela específica do veículo.\n\nPara mais detalhes, você pode consultar o [Manual do proprietário Chevrolet S10 2014](https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2014/chevrolet/S10/pt/om_ng-chevrolet_S10_my14-pt_BR.pdf).",
+        "verificacao_especifica": {
+          "regra": "oleo_com_fonte_cadastrada",
+          "substituida": true,
+          "consulta_tecnica_executada": true
+        }
+      }
+    },
+    {
+      "caso": "fusca_oleo_pendente",
+      "assunto_esperado": "oleo",
+      "veiculo_esperado": "V004",
+      "consulta_correta": true,
+      "criterio_local_atendido": true,
+      "resultado": {
+        "fase": 2,
+        "modelo": "OpenAI/gpt-4o-mini",
+        "origem_cep": "viacep_real",
+        "mensagem": "Tenho um Fusca 1982 1600 a ar gasolina original. Qual viscosidade de óleo e quantos litros?",
+        "status": "ok",
+        "resposta": "Não tenho especificações verificadas de viscosidade, norma e capacidade de óleo para essa configuração na base disponível. Preciso de uma fonte técnica aplicável ao veículo e ao motor antes de recomendar o óleo ou a quantidade de litros.",
+        "trajetoria": [
+          {
+            "tipo": "human",
+            "conteudo": "Tenho um Fusca 1982 1600 a ar gasolina original. Qual viscosidade de óleo e quantos litros?"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "listar_veiculos",
+                "args": {},
+                "id": "call_DjDAHEhyXDb32lz1Z8ITuUyF",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}",
+            "ferramenta": "listar_veiculos",
+            "tool_call_id": "call_DjDAHEhyXDb32lz1Z8ITuUyF"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_informacao_tecnica",
+                "args": {
+                  "veiculo_id": "V004",
+                  "assunto": "oleo"
+                },
+                "id": "call_a5DRvd27t1k2gVBbJUcPoA9G",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"informacao_pendente\", \"veiculo_id\": \"V004\", \"veiculo\": {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, \"assunto\": \"oleo\", \"informacoes\": [{\"id\": \"T004\", \"veiculo_id\": \"V004\", \"assunto\": \"oleo\", \"conteudo\": \"Viscosidade, norma e capacidade não definidas. Não recomendar óleo apenas por ser Fusca ou por idade do veículo.\", \"fontes\": [], \"status\": \"pendente\", \"perguntas_necessarias\": [\"Confirmar geração/versão e identificação do motor; ano e cilindrada sozinhos não encerram a seleção.\", \"Confirmar motor e combustível; versão/geração quando necessário.\", \"Uso normal ou severo? Informar rotina, percursos curtos, poeira e marcha lenta prolongada.\", \"Para quantidade: haverá troca do filtro?\"]}], \"fontes\": [], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}",
+            "ferramenta": "consultar_informacao_tecnica",
+            "tool_call_id": "call_a5DRvd27t1k2gVBbJUcPoA9G"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "Para o seu Fusca 1982 1600 a ar gasolina, não consegui obter informações específicas sobre a viscosidade do óleo e a capacidade em litros. As informações estão pendentes e não é possível recomendar um óleo apenas com base no modelo e ano do veículo.\n\nPara prosseguir, preciso que você confirme algumas informações:\n1. Qual é a rotina de uso do veículo? (uso normal ou severo)\n2. Você fará a troca do filtro de óleo junto com a troca de óleo?\n\nEssas informações são importantes para determinar a viscosidade e a quantidade correta de óleo.",
+            "tool_calls": []
+          }
+        ],
+        "eventos_ferramentas": [
+          {
+            "evento": "inicio",
+            "run_id": "01a1bd59-b0f5-7292-ac22-f04f221ca296",
+            "ferramenta": "listar_veiculos",
+            "entrada": "{}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bd59-b0f5-7292-ac22-f04f221ca296",
+            "observado": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1bd59-b4c6-79a2-af37-041ad8db0d7d",
+            "ferramenta": "consultar_informacao_tecnica",
+            "entrada": "{'veiculo_id': 'V004', 'assunto': 'oleo'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bd59-b4c6-79a2-af37-041ad8db0d7d",
+            "observado": "{\"status\": \"informacao_pendente\", \"veiculo_id\": \"V004\", \"veiculo\": {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, \"assunto\": \"oleo\", \"informacoes\": [{\"id\": \"T004\", \"veiculo_id\": \"V004\", \"assunto\": \"oleo\", \"conteudo\": \"Viscosidade, norma e capacidade não definidas. Não recomendar óleo apenas por ser Fusca ou por idade do veículo.\", \"fontes\": [], \"status\": \"pendente\", \"perguntas_necessarias\": [\"Confirmar geração/versão e identificação do motor; ano e cilindrada sozinhos não encerram a seleção.\", \"Confirmar motor e combustível; versão/geração quando necessário.\", \"Uso normal ou severo? Informar rotina, percursos curtos, poeira e marcha lenta prolongada.\", \"Para quantidade: haverá troca do filtro?\"]}], \"fontes\": [], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}"
+          }
+        ],
+        "esquemas_modelo": [
+          [
+            {
+              "type": "function",
+              "function": {
+                "name": "listar_veiculos",
+                "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+                "parameters": {
+                  "properties": {},
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo",
+                "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+                "parameters": {
+                  "properties": {
+                    "produto_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "veiculo_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "categoria": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "produto_id",
+                    "veiculo_id",
+                    "categoria"
+                  ],
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_cep",
+                "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+                "parameters": {
+                  "properties": {
+                    "cep": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cep"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "calcular_orcamento",
+                "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+                "parameters": {
+                  "properties": {
+                    "itens": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "produto_id": {
+                            "description": "ID ou SKU retornado pela consulta do catálogo.",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "quantidade": {
+                            "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                            "exclusiveMinimum": 0,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "produto_id",
+                          "quantidade"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "modalidade": {
+                      "enum": [
+                        "retirada",
+                        "entrega"
+                      ],
+                      "type": "string"
+                    },
+                    "municipio": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "uf": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "required": [
+                    "itens",
+                    "modalidade",
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_entrega",
+                "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+                "parameters": {
+                  "properties": {
+                    "municipio": {
+                      "type": "string"
+                    },
+                    "uf": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_informacao_tecnica",
+                "description": "Consulte a base manual para os veículos cadastrados: óleo, manutenção básica, freios, pneus, velas, correias e alternador. Retorne fontes, especificações e perguntas necessárias. Pendência não autoriza completar por suposição.",
+                "parameters": {
+                  "properties": {
+                    "veiculo_id": {
+                      "type": "string"
+                    },
+                    "assunto": {
+                      "enum": [
+                        "oleo",
+                        "sincronismo",
+                        "correia_externa",
+                        "distincao_correias",
+                        "manutencao_basica",
+                        "freios",
+                        "pneus",
+                        "velas",
+                        "alternador"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "veiculo_id",
+                    "assunto"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            }
+          ]
+        ],
+        "resposta_candidata": "Para o seu Fusca 1982 1600 a ar gasolina, não consegui obter informações específicas sobre a viscosidade do óleo e a capacidade em litros. As informações estão pendentes e não é possível recomendar um óleo apenas com base no modelo e ano do veículo.\n\nPara prosseguir, preciso que você confirme algumas informações:\n1. Qual é a rotina de uso do veículo? (uso normal ou severo)\n2. Você fará a troca do filtro de óleo junto com a troca de óleo?\n\nEssas informações são importantes para determinar a viscosidade e a quantidade correta de óleo.",
+        "verificacao_especifica": {
+          "regra": "oleo_sem_especificacao_verificada",
+          "substituida": true,
+          "consulta_tecnica_executada": true
+        }
+      }
+    },
+    {
+      "caso": "celta_pneus",
+      "assunto_esperado": "pneus",
+      "veiculo_esperado": "V003",
+      "consulta_correta": true,
+      "criterio_local_atendido": true,
+      "resultado": {
+        "fase": 2,
+        "modelo": "OpenAI/gpt-4o-mini",
+        "origem_cep": "viacep_real",
+        "mensagem": "Tenho Celta 2012 1.0 8V flex, rodas originais e pneus 165/70 R13 79T. Qual pressão a frio com até três pessoas?",
+        "status": "ok",
+        "resposta": "Para o Chevrolet Celta 2012 1.0 8V flex com pneus 165/70 R13 79T, a pressão recomendada a frio, com até três pessoas, é de 27 PSI tanto para os pneus dianteiros quanto para os traseiros.\n\nPara mais informações, você pode consultar o [manual do proprietário](https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf).",
+        "trajetoria": [
+          {
+            "tipo": "human",
+            "conteudo": "Tenho Celta 2012 1.0 8V flex, rodas originais e pneus 165/70 R13 79T. Qual pressão a frio com até três pessoas?"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "listar_veiculos",
+                "args": {},
+                "id": "call_D6LGG2THR6vdUgfcw8Wm9acq",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}",
+            "ferramenta": "listar_veiculos",
+            "tool_call_id": "call_D6LGG2THR6vdUgfcw8Wm9acq"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_informacao_tecnica",
+                "args": {
+                  "veiculo_id": "V003",
+                  "assunto": "pneus"
+                },
+                "id": "call_m80sjvBaRjhPv1YsrYpJCict",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"informacao_disponivel\", \"veiculo_id\": \"V003\", \"veiculo\": {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, \"assunto\": \"pneus\", \"informacoes\": [{\"id\": \"TEC-V003-pneus\", \"veiculo_id\": \"V003\", \"assunto\": \"pneus\", \"conteudo\": \"Configuração original: 165/70 R13 79T. Pressões a frio dependem da carga; não aplicar a rodas alteradas.\", \"status\": \"verificado_manual\", \"fontes\": [\"SRC06\"], \"perguntas_necessarias\": [\"Qual medida completa está instalada e a indicada na etiqueta/manual?\", \"Rodas originais ou modificadas? Qual carga transportada?\"], \"localizacao\": \"12-5\", \"consultado_em\": \"2026-11-08\", \"dados\": {\"medida\": \"165/70 R13\", \"indice_carga_velocidade\": \"79T\", \"pressao_fria_psi\": {\"ate_3_pessoas\": {\"dianteira\": 27, \"traseira\": 27}, \"carga_plena\": {\"dianteira\": 30, \"traseira\": 36}}, \"troca_km\": null}}], \"fontes\": [{\"id\": \"SRC06\", \"tipo\": \"manual_oficial_fabricante\", \"url\": \"https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf\", \"titulo\": \"Manual do proprietário Chevrolet Celta 2012 — Brasil\", \"consultado_em\": \"2026-11-08\", \"suporta\": \"Especificações e manutenção das configurações cobertas. Seções consultadas: 12-2, 12-5 a 12-7, 13-1, 13-17.\", \"limite\": \"Não valida produtos fictícios ou alterações no veículo. Distinguir motores, condições de uso e equipamentos. Campos ambíguos permanecem pendentes.\"}], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}",
+            "ferramenta": "consultar_informacao_tecnica",
+            "tool_call_id": "call_m80sjvBaRjhPv1YsrYpJCict"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "Para o Chevrolet Celta 2012 1.0 8V flex com pneus 165/70 R13 79T, a pressão recomendada a frio, com até três pessoas, é de 27 PSI tanto para os pneus dianteiros quanto para os traseiros.\n\nPara mais informações, você pode consultar o [manual do proprietário](https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf).",
+            "tool_calls": []
+          }
+        ],
+        "eventos_ferramentas": [
+          {
+            "evento": "inicio",
+            "run_id": "01a1bd59-c30b-7981-a227-44865d91d7d4",
+            "ferramenta": "listar_veiculos",
+            "entrada": "{}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bd59-c30b-7981-a227-44865d91d7d4",
+            "observado": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1bd59-c7bf-7491-85bf-889c52dc6cab",
+            "ferramenta": "consultar_informacao_tecnica",
+            "entrada": "{'veiculo_id': 'V003', 'assunto': 'pneus'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bd59-c7bf-7491-85bf-889c52dc6cab",
+            "observado": "{\"status\": \"informacao_disponivel\", \"veiculo_id\": \"V003\", \"veiculo\": {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, \"assunto\": \"pneus\", \"informacoes\": [{\"id\": \"TEC-V003-pneus\", \"veiculo_id\": \"V003\", \"assunto\": \"pneus\", \"conteudo\": \"Configuração original: 165/70 R13 79T. Pressões a frio dependem da carga; não aplicar a rodas alteradas.\", \"status\": \"verificado_manual\", \"fontes\": [\"SRC06\"], \"perguntas_necessarias\": [\"Qual medida completa está instalada e a indicada na etiqueta/manual?\", \"Rodas originais ou modificadas? Qual carga transportada?\"], \"localizacao\": \"12-5\", \"consultado_em\": \"2026-11-08\", \"dados\": {\"medida\": \"165/70 R13\", \"indice_carga_velocidade\": \"79T\", \"pressao_fria_psi\": {\"ate_3_pessoas\": {\"dianteira\": 27, \"traseira\": 27}, \"carga_plena\": {\"dianteira\": 30, \"traseira\": 36}}, \"troca_km\": null}}], \"fontes\": [{\"id\": \"SRC06\", \"tipo\": \"manual_oficial_fabricante\", \"url\": \"https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf\", \"titulo\": \"Manual do proprietário Chevrolet Celta 2012 — Brasil\", \"consultado_em\": \"2026-11-08\", \"suporta\": \"Especificações e manutenção das configurações cobertas. Seções consultadas: 12-2, 12-5 a 12-7, 13-1, 13-17.\", \"limite\": \"Não valida produtos fictícios ou alterações no veículo. Distinguir motores, condições de uso e equipamentos. Campos ambíguos permanecem pendentes.\"}], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}"
+          }
+        ],
+        "esquemas_modelo": [
+          [
+            {
+              "type": "function",
+              "function": {
+                "name": "listar_veiculos",
+                "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+                "parameters": {
+                  "properties": {},
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo",
+                "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+                "parameters": {
+                  "properties": {
+                    "produto_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "veiculo_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "categoria": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "produto_id",
+                    "veiculo_id",
+                    "categoria"
+                  ],
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_cep",
+                "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+                "parameters": {
+                  "properties": {
+                    "cep": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cep"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "calcular_orcamento",
+                "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+                "parameters": {
+                  "properties": {
+                    "itens": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "produto_id": {
+                            "description": "ID ou SKU retornado pela consulta do catálogo.",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "quantidade": {
+                            "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                            "exclusiveMinimum": 0,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "produto_id",
+                          "quantidade"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "modalidade": {
+                      "enum": [
+                        "retirada",
+                        "entrega"
+                      ],
+                      "type": "string"
+                    },
+                    "municipio": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "uf": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "required": [
+                    "itens",
+                    "modalidade",
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_entrega",
+                "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+                "parameters": {
+                  "properties": {
+                    "municipio": {
+                      "type": "string"
+                    },
+                    "uf": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_informacao_tecnica",
+                "description": "Consulte a base manual para os veículos cadastrados: óleo, manutenção básica, freios, pneus, velas, correias e alternador. Retorne fontes, especificações e perguntas necessárias. Pendência não autoriza completar por suposição.",
+                "parameters": {
+                  "properties": {
+                    "veiculo_id": {
+                      "type": "string"
+                    },
+                    "assunto": {
+                      "enum": [
+                        "oleo",
+                        "sincronismo",
+                        "correia_externa",
+                        "distincao_correias",
+                        "manutencao_basica",
+                        "freios",
+                        "pneus",
+                        "velas",
+                        "alternador"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "veiculo_id",
+                    "assunto"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            }
+          ]
+        ],
+        "resposta_candidata": "Para o Chevrolet Celta 2012 1.0 8V flex com pneus 165/70 R13 79T, a pressão recomendada a frio, com até três pessoas, é de 27 PSI tanto para os pneus dianteiros quanto para os traseiros.\n\nPara mais informações, você pode consultar o [manual do proprietário](https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf).",
+        "verificacao_especifica": {
+          "regra": "fora_das_protecoes_especificas",
+          "substituida": false
+        }
+      }
+    },
+    {
+      "caso": "celta_alternador",
+      "assunto_esperado": "alternador",
+      "veiculo_esperado": "V003",
+      "consulta_correta": true,
+      "criterio_local_atendido": true,
+      "resultado": {
+        "fase": 2,
+        "modelo": "OpenAI/gpt-4o-mini",
+        "origem_cep": "viacep_real",
+        "mensagem": "Tenho Celta 2012 1.0 8V flex original com ar-condicionado. Qual amperagem de alternador consta no manual?",
+        "status": "ok",
+        "resposta": "O alternador do Celta 2012 1.0 8V flex com ar-condicionado possui amperagem de 90 A, conforme indicado no manual do proprietário. Para veículos sem ar-condicionado, a amperagem é de 60 A.\n\nPara mais detalhes, você pode consultar o [manual do proprietário Chevrolet Celta 2012](https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf).",
+        "trajetoria": [
+          {
+            "tipo": "human",
+            "conteudo": "Tenho Celta 2012 1.0 8V flex original com ar-condicionado. Qual amperagem de alternador consta no manual?"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "listar_veiculos",
+                "args": {},
+                "id": "call_MIHDekcozEEVNKQY11CRyL0Z",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}",
+            "ferramenta": "listar_veiculos",
+            "tool_call_id": "call_MIHDekcozEEVNKQY11CRyL0Z"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_informacao_tecnica",
+                "args": {
+                  "veiculo_id": "V003",
+                  "assunto": "alternador"
+                },
+                "id": "call_jNh9VGfUQCBdt48JBJWUXQTa",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"informacao_disponivel\", \"veiculo_id\": \"V003\", \"veiculo\": {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, \"assunto\": \"alternador\", \"informacoes\": [{\"id\": \"TEC-V003-alternador\", \"veiculo_id\": \"V003\", \"assunto\": \"alternador\", \"conteudo\": \"O manual distingue alternador de 60 A sem ar-condicionado e 90 A com ar-condicionado e/ou direção hidráulica. Amperagem não identifica sozinha o código da peça.\", \"status\": \"verificado_manual\", \"fontes\": [\"SRC06\"], \"perguntas_necessarias\": [\"Qual versão/equipamentos, amperagem e referência da peça instalada?\", \"No Fusca clássico: dínamo ou conversão para alternador?\"], \"localizacao\": \"12-2\", \"consultado_em\": \"2026-11-08\", \"dados\": {\"sem_ar_condicionado_a\": 60, \"com_ar_ou_direcao_hidraulica_a\": 90, \"codigo_peca\": null}}], \"fontes\": [{\"id\": \"SRC06\", \"tipo\": \"manual_oficial_fabricante\", \"url\": \"https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf\", \"titulo\": \"Manual do proprietário Chevrolet Celta 2012 — Brasil\", \"consultado_em\": \"2026-11-08\", \"suporta\": \"Especificações e manutenção das configurações cobertas. Seções consultadas: 12-2, 12-5 a 12-7, 13-1, 13-17.\", \"limite\": \"Não valida produtos fictícios ou alterações no veículo. Distinguir motores, condições de uso e equipamentos. Campos ambíguos permanecem pendentes.\"}], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}",
+            "ferramenta": "consultar_informacao_tecnica",
+            "tool_call_id": "call_jNh9VGfUQCBdt48JBJWUXQTa"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "O alternador do Celta 2012 1.0 8V flex com ar-condicionado possui amperagem de 90 A, conforme indicado no manual do proprietário. Para veículos sem ar-condicionado, a amperagem é de 60 A.\n\nPara mais detalhes, você pode consultar o [manual do proprietário Chevrolet Celta 2012](https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf).",
+            "tool_calls": []
+          }
+        ],
+        "eventos_ferramentas": [
+          {
+            "evento": "inicio",
+            "run_id": "01a1bd59-dc1e-7490-943e-bfc8302f281f",
+            "ferramenta": "listar_veiculos",
+            "entrada": "{}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bd59-dc1e-7490-943e-bfc8302f281f",
+            "observado": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1bd59-e110-7cb0-a692-22e0bc5dd508",
+            "ferramenta": "consultar_informacao_tecnica",
+            "entrada": "{'veiculo_id': 'V003', 'assunto': 'alternador'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bd59-e110-7cb0-a692-22e0bc5dd508",
+            "observado": "{\"status\": \"informacao_disponivel\", \"veiculo_id\": \"V003\", \"veiculo\": {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, \"assunto\": \"alternador\", \"informacoes\": [{\"id\": \"TEC-V003-alternador\", \"veiculo_id\": \"V003\", \"assunto\": \"alternador\", \"conteudo\": \"O manual distingue alternador de 60 A sem ar-condicionado e 90 A com ar-condicionado e/ou direção hidráulica. Amperagem não identifica sozinha o código da peça.\", \"status\": \"verificado_manual\", \"fontes\": [\"SRC06\"], \"perguntas_necessarias\": [\"Qual versão/equipamentos, amperagem e referência da peça instalada?\", \"No Fusca clássico: dínamo ou conversão para alternador?\"], \"localizacao\": \"12-2\", \"consultado_em\": \"2026-11-08\", \"dados\": {\"sem_ar_condicionado_a\": 60, \"com_ar_ou_direcao_hidraulica_a\": 90, \"codigo_peca\": null}}], \"fontes\": [{\"id\": \"SRC06\", \"tipo\": \"manual_oficial_fabricante\", \"url\": \"https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf\", \"titulo\": \"Manual do proprietário Chevrolet Celta 2012 — Brasil\", \"consultado_em\": \"2026-11-08\", \"suporta\": \"Especificações e manutenção das configurações cobertas. Seções consultadas: 12-2, 12-5 a 12-7, 13-1, 13-17.\", \"limite\": \"Não valida produtos fictícios ou alterações no veículo. Distinguir motores, condições de uso e equipamentos. Campos ambíguos permanecem pendentes.\"}], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}"
+          }
+        ],
+        "esquemas_modelo": [
+          [
+            {
+              "type": "function",
+              "function": {
+                "name": "listar_veiculos",
+                "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+                "parameters": {
+                  "properties": {},
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo",
+                "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+                "parameters": {
+                  "properties": {
+                    "produto_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "veiculo_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "categoria": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "produto_id",
+                    "veiculo_id",
+                    "categoria"
+                  ],
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_cep",
+                "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+                "parameters": {
+                  "properties": {
+                    "cep": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cep"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "calcular_orcamento",
+                "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+                "parameters": {
+                  "properties": {
+                    "itens": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "produto_id": {
+                            "description": "ID ou SKU retornado pela consulta do catálogo.",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "quantidade": {
+                            "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                            "exclusiveMinimum": 0,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "produto_id",
+                          "quantidade"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "modalidade": {
+                      "enum": [
+                        "retirada",
+                        "entrega"
+                      ],
+                      "type": "string"
+                    },
+                    "municipio": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "uf": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "required": [
+                    "itens",
+                    "modalidade",
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_entrega",
+                "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+                "parameters": {
+                  "properties": {
+                    "municipio": {
+                      "type": "string"
+                    },
+                    "uf": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_informacao_tecnica",
+                "description": "Consulte a base manual para os veículos cadastrados: óleo, manutenção básica, freios, pneus, velas, correias e alternador. Retorne fontes, especificações e perguntas necessárias. Pendência não autoriza completar por suposição.",
+                "parameters": {
+                  "properties": {
+                    "veiculo_id": {
+                      "type": "string"
+                    },
+                    "assunto": {
+                      "enum": [
+                        "oleo",
+                        "sincronismo",
+                        "correia_externa",
+                        "distincao_correias",
+                        "manutencao_basica",
+                        "freios",
+                        "pneus",
+                        "velas",
+                        "alternador"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "veiculo_id",
+                    "assunto"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            }
+          ]
+        ],
+        "resposta_candidata": "O alternador do Celta 2012 1.0 8V flex com ar-condicionado possui amperagem de 90 A, conforme indicado no manual do proprietário. Para veículos sem ar-condicionado, a amperagem é de 60 A.\n\nPara mais detalhes, você pode consultar o [manual do proprietário Chevrolet Celta 2012](https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf).",
+        "verificacao_especifica": {
+          "regra": "fora_das_protecoes_especificas",
+          "substituida": false
+        }
+      }
+    },
+    {
+      "caso": "celta_correia",
+      "assunto_esperado": "sincronismo",
+      "veiculo_esperado": "V003",
+      "consulta_correta": true,
+      "criterio_local_atendido": true,
+      "resultado": {
+        "fase": 2,
+        "modelo": "OpenAI/gpt-4o-mini",
+        "origem_cep": "viacep_real",
+        "mensagem": "Tenho Celta 2012 1.0 8V flex original. Tem correia dentada? Qual intervalo de troca consta na base?",
+        "status": "ok",
+        "resposta": "O manual cadastrado confirma correia dentada de distribuição nessa configuração. Ela é diferente da correia de acessórios. O código da peça e o intervalo de troca ainda precisam de confirmação; não vou inventar esses valores.",
+        "trajetoria": [
+          {
+            "tipo": "human",
+            "conteudo": "Tenho Celta 2012 1.0 8V flex original. Tem correia dentada? Qual intervalo de troca consta na base?"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "listar_veiculos",
+                "args": {},
+                "id": "call_GHZMyb0VSTHUEcdivReVA4pG",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}",
+            "ferramenta": "listar_veiculos",
+            "tool_call_id": "call_GHZMyb0VSTHUEcdivReVA4pG"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_informacao_tecnica",
+                "args": {
+                  "veiculo_id": "V003",
+                  "assunto": "sincronismo"
+                },
+                "id": "call_OcRnA2Dndx4HMX59Bl2uhaRa",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"informacao_disponivel\", \"veiculo_id\": \"V003\", \"veiculo\": {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, \"assunto\": \"sincronismo\", \"informacoes\": [{\"id\": \"TEC-V003-sincronismo\", \"veiculo_id\": \"V003\", \"assunto\": \"sincronismo\", \"conteudo\": \"O quadro de manutenção prevê correia dentada de distribuição para o motor 8V; é distinta das correias de agregados.\", \"status\": \"verificado_manual\", \"fontes\": [\"SRC06\"], \"perguntas_necessarias\": [\"Pede correia dentada de distribuição ou correia externa?\", \"Qual motor e histórico de troca do conjunto?\"], \"localizacao\": \"13-17\", \"consultado_em\": \"2026-11-08\", \"dados\": {\"tipo\": \"correia_dentada\", \"troca_km\": null, \"troca_meses\": null}, \"pendencias\": [\"Intervalo exato ainda depende de conferir visualmente as colunas do quadro.\"]}], \"fontes\": [{\"id\": \"SRC06\", \"tipo\": \"manual_oficial_fabricante\", \"url\": \"https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf\", \"titulo\": \"Manual do proprietário Chevrolet Celta 2012 — Brasil\", \"consultado_em\": \"2026-11-08\", \"suporta\": \"Especificações e manutenção das configurações cobertas. Seções consultadas: 12-2, 12-5 a 12-7, 13-1, 13-17.\", \"limite\": \"Não valida produtos fictícios ou alterações no veículo. Distinguir motores, condições de uso e equipamentos. Campos ambíguos permanecem pendentes.\"}], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}",
+            "ferramenta": "consultar_informacao_tecnica",
+            "tool_call_id": "call_OcRnA2Dndx4HMX59Bl2uhaRa"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "O Celta 2012 1.0 8V flex possui correia dentada de distribuição. No entanto, o intervalo exato de troca não está definido na base, pois depende de uma conferência visual das colunas do quadro de manutenção. \n\nPara mais detalhes, você pode consultar o [Manual do proprietário Chevrolet Celta 2012](https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf), que contém informações sobre manutenção e especificações.\n\nSe precisar de mais alguma informação, estou à disposição!",
+            "tool_calls": []
+          }
+        ],
+        "eventos_ferramentas": [
+          {
+            "evento": "inicio",
+            "run_id": "01a1bd59-eeb2-7a33-b458-de7d571f553f",
+            "ferramenta": "listar_veiculos",
+            "entrada": "{}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bd59-eeb2-7a33-b458-de7d571f553f",
+            "observado": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1bd59-f34b-76e0-adb6-2099c649ec0d",
+            "ferramenta": "consultar_informacao_tecnica",
+            "entrada": "{'veiculo_id': 'V003', 'assunto': 'sincronismo'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1bd59-f34b-76e0-adb6-2099c649ec0d",
+            "observado": "{\"status\": \"informacao_disponivel\", \"veiculo_id\": \"V003\", \"veiculo\": {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, \"assunto\": \"sincronismo\", \"informacoes\": [{\"id\": \"TEC-V003-sincronismo\", \"veiculo_id\": \"V003\", \"assunto\": \"sincronismo\", \"conteudo\": \"O quadro de manutenção prevê correia dentada de distribuição para o motor 8V; é distinta das correias de agregados.\", \"status\": \"verificado_manual\", \"fontes\": [\"SRC06\"], \"perguntas_necessarias\": [\"Pede correia dentada de distribuição ou correia externa?\", \"Qual motor e histórico de troca do conjunto?\"], \"localizacao\": \"13-17\", \"consultado_em\": \"2026-11-08\", \"dados\": {\"tipo\": \"correia_dentada\", \"troca_km\": null, \"troca_meses\": null}, \"pendencias\": [\"Intervalo exato ainda depende de conferir visualmente as colunas do quadro.\"]}], \"fontes\": [{\"id\": \"SRC06\", \"tipo\": \"manual_oficial_fabricante\", \"url\": \"https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf\", \"titulo\": \"Manual do proprietário Chevrolet Celta 2012 — Brasil\", \"consultado_em\": \"2026-11-08\", \"suporta\": \"Especificações e manutenção das configurações cobertas. Seções consultadas: 12-2, 12-5 a 12-7, 13-1, 13-17.\", \"limite\": \"Não valida produtos fictícios ou alterações no veículo. Distinguir motores, condições de uso e equipamentos. Campos ambíguos permanecem pendentes.\"}], \"limite\": \"Utilize somente o conteúdo registrado e respeite os limites de cada fonte.\"}"
+          }
+        ],
+        "esquemas_modelo": [
+          [
+            {
+              "type": "function",
+              "function": {
+                "name": "listar_veiculos",
+                "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+                "parameters": {
+                  "properties": {},
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo",
+                "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+                "parameters": {
+                  "properties": {
+                    "produto_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "veiculo_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "categoria": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "produto_id",
+                    "veiculo_id",
+                    "categoria"
+                  ],
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_cep",
+                "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+                "parameters": {
+                  "properties": {
+                    "cep": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cep"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "calcular_orcamento",
+                "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+                "parameters": {
+                  "properties": {
+                    "itens": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "produto_id": {
+                            "description": "ID ou SKU retornado pela consulta do catálogo.",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "quantidade": {
+                            "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                            "exclusiveMinimum": 0,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "produto_id",
+                          "quantidade"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "modalidade": {
+                      "enum": [
+                        "retirada",
+                        "entrega"
+                      ],
+                      "type": "string"
+                    },
+                    "municipio": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "uf": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "required": [
+                    "itens",
+                    "modalidade",
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_entrega",
+                "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+                "parameters": {
+                  "properties": {
+                    "municipio": {
+                      "type": "string"
+                    },
+                    "uf": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_informacao_tecnica",
+                "description": "Consulte a base manual para os veículos cadastrados: óleo, manutenção básica, freios, pneus, velas, correias e alternador. Retorne fontes, especificações e perguntas necessárias. Pendência não autoriza completar por suposição.",
+                "parameters": {
+                  "properties": {
+                    "veiculo_id": {
+                      "type": "string"
+                    },
+                    "assunto": {
+                      "enum": [
+                        "oleo",
+                        "sincronismo",
+                        "correia_externa",
+                        "distincao_correias",
+                        "manutencao_basica",
+                        "freios",
+                        "pneus",
+                        "velas",
+                        "alternador"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "veiculo_id",
+                    "assunto"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            }
+          ]
+        ],
+        "resposta_candidata": "O Celta 2012 1.0 8V flex possui correia dentada de distribuição. No entanto, o intervalo exato de troca não está definido na base, pois depende de uma conferência visual das colunas do quadro de manutenção. \n\nPara mais detalhes, você pode consultar o [Manual do proprietário Chevrolet Celta 2012](https://meu.chevrolet.com.br/content/dam/gmownercenter/gmsa/gmbr/dynamic/manuals/2012/chevrolet/Celta/pt/om_ng-chevrolet_Celta_my12-pt_BR.pdf), que contém informações sobre manutenção e especificações.\n\nSe precisar de mais alguma informação, estou à disposição!",
+        "verificacao_especifica": {
+          "regra": "preservar_tipo_correia",
+          "substituida": true,
+          "consulta_tecnica_executada": true
+        }
+      }
+    }
+  ]
+}

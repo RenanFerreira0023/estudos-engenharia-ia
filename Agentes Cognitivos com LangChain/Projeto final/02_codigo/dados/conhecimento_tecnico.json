@@ -16,7 +16,11 @@
     "fontes": [
       "SRC02"
     ],
-    "nota": "Referência consultada é de fabricante aftermarket; confirmar manual original para documentação técnica final."
+    "nota": "Referência consultada é de fabricante aftermarket; confirmar manual original para documentação técnica final.",
+    "perguntas_necessarias": [
+      "Pede correia dentada de distribuição ou correia externa?",
+      "Qual motor e histórico de troca do conjunto?"
+    ]
   },
   {
     "id": "T003",
@@ -26,7 +30,11 @@
     "fontes": [
       "SRC03"
     ],
-    "status": "referencia_parcial_sem_codigo_homologado"
+    "status": "referencia_parcial_sem_codigo_homologado",
+    "perguntas_necessarias": [
+      "Tem ar-condicionado e direção hidráulica?",
+      "Confirmar tipo de acionamento e componentes instalados."
+    ]
   },
   {
     "id": "T004",
@@ -34,7 +42,13 @@
     "assunto": "oleo",
     "conteudo": "Viscosidade, norma e capacidade não definidas. Não recomendar óleo apenas por ser Fusca ou por idade do veículo.",
     "fontes": [],
-    "status": "pendente"
+    "status": "pendente",
+    "perguntas_necessarias": [
+      "Confirmar geração/versão e identificação do motor; ano e cilindrada sozinhos não encerram a seleção.",
+      "Confirmar motor e combustível; versão/geração quando necessário.",
+      "Uso normal ou severo? Informar rotina, percursos curtos, poeira e marcha lenta prolongada.",
+      "Para quantidade: haverá troca do filtro?"
+    ]
   },
   {
     "id": "T005",
@@ -43,5 +57,638 @@
     "conteudo": "Correia de acessórios e correia de sincronismo têm funções distintas; não são alternativas universais uma da outra.",
     "fontes": [],
     "status": "regra_de_modelagem"
+  },
+  {
+    "id": "TEC-V001-oleo",
+    "veiculo_id": "V001",
+    "assunto": "oleo",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Confirmar geração/versão e identificação do motor; ano e cilindrada sozinhos não encerram a seleção.",
+      "Confirmar motor e combustível; versão/geração quando necessário.",
+      "Uso normal ou severo? Informar rotina, percursos curtos, poeira e marcha lenta prolongada.",
+      "Para quantidade: haverá troca do filtro?"
+    ]
+  },
+  {
+    "id": "TEC-V001-manutencao_basica",
+    "veiculo_id": "V001",
+    "assunto": "manutencao_basica",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Quilometragem atual e data/quilometragem da última manutenção?",
+      "Há histórico documentado e uso severo?"
+    ]
+  },
+  {
+    "id": "TEC-V001-freios",
+    "veiculo_id": "V001",
+    "assunto": "freios",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Qual eixo: dianteiro ou traseiro?",
+      "Busca pastilha, lona, sapata, disco, tambor ou fluido?",
+      "O sistema de freio foi alterado?"
+    ]
+  },
+  {
+    "id": "TEC-V001-pneus",
+    "veiculo_id": "V001",
+    "assunto": "pneus",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Qual medida completa está instalada e a indicada na etiqueta/manual?",
+      "Rodas originais ou modificadas? Qual carga transportada?"
+    ]
+  },
+  {
+    "id": "TEC-V001-velas",
+    "veiculo_id": "V001",
+    "assunto": "velas",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "É vela de ignição ou de aquecimento diesel?",
+      "Confirmar motor, combustível e alterações na ignição."
+    ]
+  },
+  {
+    "id": "TEC-V001-sincronismo",
+    "veiculo_id": "V001",
+    "assunto": "sincronismo",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Pede correia dentada de distribuição ou correia externa?",
+      "Qual motor e histórico de troca do conjunto?"
+    ]
+  },
+  {
+    "id": "TEC-V001-correia_externa",
+    "veiculo_id": "V001",
+    "assunto": "correia_externa",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Tem ar-condicionado e direção hidráulica?",
+      "Confirmar tipo de acionamento e componentes instalados."
+    ]
+  },
+  {
+    "id": "TEC-V001-alternador",
+    "veiculo_id": "V001",
+    "assunto": "alternador",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Qual versão/equipamentos, amperagem e referência da peça instalada?",
+      "No Fusca clássico: dínamo ou conversão para alternador?"
+    ]
+  },
+  {
+    "id": "TEC-V002-oleo",
+    "veiculo_id": "V002",
+    "assunto": "oleo",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Confirmar geração/versão e identificação do motor; ano e cilindrada sozinhos não encerram a seleção.",
+      "Confirmar motor e combustível; versão/geração quando necessário.",
+      "Uso normal ou severo? Informar rotina, percursos curtos, poeira e marcha lenta prolongada.",
+      "Para quantidade: haverá troca do filtro?"
+    ]
+  },
+  {
+    "id": "TEC-V002-manutencao_basica",
+    "veiculo_id": "V002",
+    "assunto": "manutencao_basica",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Quilometragem atual e data/quilometragem da última manutenção?",
+      "Há histórico documentado e uso severo?"
+    ]
+  },
+  {
+    "id": "TEC-V002-freios",
+    "veiculo_id": "V002",
+    "assunto": "freios",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Qual eixo: dianteiro ou traseiro?",
+      "Busca pastilha, lona, sapata, disco, tambor ou fluido?",
+      "O sistema de freio foi alterado?"
+    ]
+  },
+  {
+    "id": "TEC-V002-pneus",
+    "veiculo_id": "V002",
+    "assunto": "pneus",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Qual medida completa está instalada e a indicada na etiqueta/manual?",
+      "Rodas originais ou modificadas? Qual carga transportada?"
+    ]
+  },
+  {
+    "id": "TEC-V002-velas",
+    "veiculo_id": "V002",
+    "assunto": "velas",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "É vela de ignição ou de aquecimento diesel?",
+      "Confirmar motor, combustível e alterações na ignição."
+    ]
+  },
+  {
+    "id": "TEC-V002-sincronismo",
+    "veiculo_id": "V002",
+    "assunto": "sincronismo",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Pede correia dentada de distribuição ou correia externa?",
+      "Qual motor e histórico de troca do conjunto?"
+    ]
+  },
+  {
+    "id": "TEC-V002-correia_externa",
+    "veiculo_id": "V002",
+    "assunto": "correia_externa",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Tem ar-condicionado e direção hidráulica?",
+      "Confirmar tipo de acionamento e componentes instalados."
+    ]
+  },
+  {
+    "id": "TEC-V002-alternador",
+    "veiculo_id": "V002",
+    "assunto": "alternador",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Qual versão/equipamentos, amperagem e referência da peça instalada?",
+      "No Fusca clássico: dínamo ou conversão para alternador?"
+    ]
+  },
+  {
+    "id": "TEC-V003-oleo",
+    "veiculo_id": "V003",
+    "assunto": "oleo",
+    "conteudo": "SAE 5W-30, API SL ou superior. Troca condicionada ao uso; não calcular média entre os regimes.",
+    "status": "verificado_manual",
+    "fontes": [
+      "SRC06"
+    ],
+    "perguntas_necessarias": [
+      "Confirmar geração/versão e identificação do motor; ano e cilindrada sozinhos não encerram a seleção.",
+      "Confirmar motor e combustível; versão/geração quando necessário.",
+      "Uso normal ou severo? Informar rotina, percursos curtos, poeira e marcha lenta prolongada.",
+      "Para quantidade: haverá troca do filtro?"
+    ],
+    "localizacao": "12-6, 12-7 e 13-1",
+    "consultado_em": "2026-11-08",
+    "dados_oleo": {
+      "especificacoes": [
+        {
+          "viscosidade_sae": "5W-30",
+          "norma": "API SL ou superior",
+          "intervalos": {
+            "normal": {
+              "km": 10000,
+              "meses": 12,
+              "criterio": "o_que_ocorrer_primeiro"
+            },
+            "severo": {
+              "km": 5000,
+              "meses": 6,
+              "criterio": "o_que_ocorrer_primeiro"
+            }
+          }
+        }
+      ],
+      "capacidade_litros": {
+        "sem_troca_filtro": 3.25,
+        "com_troca_filtro": 3.5
+      },
+      "observacoes": [
+        "Valores da configuração original. Confirmar serviço e nível pela vareta; capacidade não é instrução para completar sem medição."
+      ]
+    }
+  },
+  {
+    "id": "TEC-V003-manutencao_basica",
+    "veiculo_id": "V003",
+    "assunto": "manutencao_basica",
+    "conteudo": "Consultar óleo, pneus, freios, velas e correias separadamente; usar condição e prazo aplicáveis, sem um intervalo universal para todos os itens.",
+    "status": "verificado_manual",
+    "fontes": [
+      "SRC06"
+    ],
+    "perguntas_necessarias": [
+      "Quilometragem atual e data/quilometragem da última manutenção?",
+      "Há histórico documentado e uso severo?"
+    ],
+    "localizacao": "12-2 a 12-7 e seção 13",
+    "consultado_em": "2026-11-08"
+  },
+  {
+    "id": "TEC-V003-freios",
+    "veiculo_id": "V003",
+    "assunto": "freios",
+    "conteudo": "Dianteiros a disco e traseiros a tambor. Fluido DOT 4, troca a cada 24 meses. Pastilhas e lonas exigem inspeção; não há vida útil universal em km.",
+    "status": "verificado_manual",
+    "fontes": [
+      "SRC06"
+    ],
+    "perguntas_necessarias": [
+      "Qual eixo: dianteiro ou traseiro?",
+      "Busca pastilha, lona, sapata, disco, tambor ou fluido?",
+      "O sistema de freio foi alterado?"
+    ],
+    "localizacao": "12-5 e 12-7",
+    "consultado_em": "2026-11-08",
+    "dados": {
+      "fluido": "DOT 4",
+      "troca_fluido_meses": 24,
+      "dianteiro": "disco",
+      "traseiro": "tambor",
+      "troca_material_atrito_km": null
+    }
+  },
+  {
+    "id": "TEC-V003-pneus",
+    "veiculo_id": "V003",
+    "assunto": "pneus",
+    "conteudo": "Configuração original: 165/70 R13 79T. Pressões a frio dependem da carga; não aplicar a rodas alteradas.",
+    "status": "verificado_manual",
+    "fontes": [
+      "SRC06"
+    ],
+    "perguntas_necessarias": [
+      "Qual medida completa está instalada e a indicada na etiqueta/manual?",
+      "Rodas originais ou modificadas? Qual carga transportada?"
+    ],
+    "localizacao": "12-5",
+    "consultado_em": "2026-11-08",
+    "dados": {
+      "medida": "165/70 R13",
+      "indice_carga_velocidade": "79T",
+      "pressao_fria_psi": {
+        "ate_3_pessoas": {
+          "dianteira": 27,
+          "traseira": 27
+        },
+        "carga_plena": {
+          "dianteira": 30,
+          "traseira": 36
+        }
+      },
+      "troca_km": null
+    }
+  },
+  {
+    "id": "TEC-V003-velas",
+    "veiculo_id": "V003",
+    "assunto": "velas",
+    "conteudo": "O manual lista NGK BR8ES e folga entre 0,8 e 0,9 mm. Confirmar configuração original.",
+    "status": "verificado_manual",
+    "fontes": [
+      "SRC06"
+    ],
+    "perguntas_necessarias": [
+      "É vela de ignição ou de aquecimento diesel?",
+      "Confirmar motor, combustível e alterações na ignição."
+    ],
+    "localizacao": "12-2",
+    "consultado_em": "2026-11-08",
+    "dados": {
+      "fabricante": "NGK",
+      "referencia_manual": "BR8ES",
+      "folga_mm_min": 0.8,
+      "folga_mm_max": 0.9,
+      "troca_km": null
+    },
+    "pendencias": [
+      "Intervalo de substituição precisa da leitura visual do quadro de manutenção; não inferir posições das marcas extraídas do PDF."
+    ]
+  },
+  {
+    "id": "TEC-V003-sincronismo",
+    "veiculo_id": "V003",
+    "assunto": "sincronismo",
+    "conteudo": "O quadro de manutenção prevê correia dentada de distribuição para o motor 8V; é distinta das correias de agregados.",
+    "status": "verificado_manual",
+    "fontes": [
+      "SRC06"
+    ],
+    "perguntas_necessarias": [
+      "Pede correia dentada de distribuição ou correia externa?",
+      "Qual motor e histórico de troca do conjunto?"
+    ],
+    "localizacao": "13-17",
+    "consultado_em": "2026-11-08",
+    "dados": {
+      "tipo": "correia_dentada",
+      "troca_km": null,
+      "troca_meses": null
+    },
+    "pendencias": [
+      "Intervalo exato ainda depende de conferir visualmente as colunas do quadro."
+    ]
+  },
+  {
+    "id": "TEC-V003-correia_externa",
+    "veiculo_id": "V003",
+    "assunto": "correia_externa",
+    "conteudo": "O quadro de manutenção separa correias de acessórios da distribuição; identificar equipamentos antes de escolher referência.",
+    "status": "verificado_manual",
+    "fontes": [
+      "SRC06"
+    ],
+    "perguntas_necessarias": [
+      "Tem ar-condicionado e direção hidráulica?",
+      "Confirmar tipo de acionamento e componentes instalados."
+    ],
+    "localizacao": "13-17",
+    "consultado_em": "2026-11-08",
+    "dados": {
+      "codigo_peca": null,
+      "troca_km": null
+    }
+  },
+  {
+    "id": "TEC-V003-alternador",
+    "veiculo_id": "V003",
+    "assunto": "alternador",
+    "conteudo": "O manual distingue alternador de 60 A sem ar-condicionado e 90 A com ar-condicionado e/ou direção hidráulica. Amperagem não identifica sozinha o código da peça.",
+    "status": "verificado_manual",
+    "fontes": [
+      "SRC06"
+    ],
+    "perguntas_necessarias": [
+      "Qual versão/equipamentos, amperagem e referência da peça instalada?",
+      "No Fusca clássico: dínamo ou conversão para alternador?"
+    ],
+    "localizacao": "12-2",
+    "consultado_em": "2026-11-08",
+    "dados": {
+      "sem_ar_condicionado_a": 60,
+      "com_ar_ou_direcao_hidraulica_a": 90,
+      "codigo_peca": null
+    }
+  },
+  {
+    "id": "TEC-V004-manutencao_basica",
+    "veiculo_id": "V004",
+    "assunto": "manutencao_basica",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Quilometragem atual e data/quilometragem da última manutenção?",
+      "Há histórico documentado e uso severo?"
+    ]
+  },
+  {
+    "id": "TEC-V004-freios",
+    "veiculo_id": "V004",
+    "assunto": "freios",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Qual eixo: dianteiro ou traseiro?",
+      "Busca pastilha, lona, sapata, disco, tambor ou fluido?",
+      "O sistema de freio foi alterado?"
+    ]
+  },
+  {
+    "id": "TEC-V004-pneus",
+    "veiculo_id": "V004",
+    "assunto": "pneus",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Qual medida completa está instalada e a indicada na etiqueta/manual?",
+      "Rodas originais ou modificadas? Qual carga transportada?"
+    ]
+  },
+  {
+    "id": "TEC-V004-velas",
+    "veiculo_id": "V004",
+    "assunto": "velas",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "É vela de ignição ou de aquecimento diesel?",
+      "Confirmar motor, combustível e alterações na ignição."
+    ]
+  },
+  {
+    "id": "TEC-V004-alternador",
+    "veiculo_id": "V004",
+    "assunto": "alternador",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Qual versão/equipamentos, amperagem e referência da peça instalada?",
+      "No Fusca clássico: dínamo ou conversão para alternador?"
+    ]
+  },
+  {
+    "id": "TEC-V005-oleo",
+    "veiculo_id": "V005",
+    "assunto": "oleo",
+    "conteudo": "Motor diesel 2.8: dexos2 5W-30; o manual também admite API CI-4 15W-40, com intervalos próprios. Não misturar intervalos ou recomendar só pela viscosidade.",
+    "status": "verificado_manual",
+    "fontes": [
+      "SRC07"
+    ],
+    "perguntas_necessarias": [
+      "Confirmar geração/versão e identificação do motor; ano e cilindrada sozinhos não encerram a seleção.",
+      "Confirmar motor e combustível; versão/geração quando necessário.",
+      "Uso normal ou severo? Informar rotina, percursos curtos, poeira e marcha lenta prolongada.",
+      "Para quantidade: haverá troca do filtro?"
+    ],
+    "localizacao": "Resumo 1-10, 10-13 e 11-15",
+    "consultado_em": "2026-11-08",
+    "dados_oleo": {
+      "especificacoes": [
+        {
+          "viscosidade_sae": "5W-30",
+          "norma": "dexos2",
+          "intervalos": {
+            "normal": {
+              "km": 20000,
+              "meses": 12,
+              "criterio": "o_que_ocorrer_primeiro"
+            },
+            "severo": {
+              "km": 10000,
+              "meses": 6,
+              "criterio": "o_que_ocorrer_primeiro"
+            }
+          }
+        },
+        {
+          "viscosidade_sae": "15W-40",
+          "norma": "API CI-4 (alternativa prevista nesta edição)",
+          "intervalos": {
+            "normal": {
+              "km": 10000,
+              "meses": 12,
+              "criterio": "o_que_ocorrer_primeiro"
+            },
+            "severo": {
+              "km": 5000,
+              "meses": 6,
+              "criterio": "o_que_ocorrer_primeiro"
+            }
+          }
+        }
+      ],
+      "capacidade_litros": {
+        "sem_troca_filtro": null,
+        "com_troca_filtro": null
+      },
+      "observacoes": [
+        "Trocar o filtro em cada troca de óleo.",
+        "Capacidade pendente: conferir tabela e tração; o resumo do PDF contém descrições ambíguas. Não extrapolar para outras S10 ou outros anos."
+      ]
+    }
+  },
+  {
+    "id": "TEC-V005-manutencao_basica",
+    "veiculo_id": "V005",
+    "assunto": "manutencao_basica",
+    "conteudo": "O plano do motor CTDI prevê filtro de combustível diesel a cada 40.000 km ou 24 meses, o primeiro limite. Filtro de óleo acompanha cada troca do óleo.",
+    "status": "verificado_manual",
+    "fontes": [
+      "SRC07"
+    ],
+    "perguntas_necessarias": [
+      "Quilometragem atual e data/quilometragem da última manutenção?",
+      "Há histórico documentado e uso severo?"
+    ],
+    "localizacao": "10-13 e 11-8",
+    "consultado_em": "2026-11-08",
+    "dados": {
+      "filtro_combustivel": {
+        "km": 40000,
+        "meses": 24,
+        "criterio": "o_que_ocorrer_primeiro"
+      }
+    }
+  },
+  {
+    "id": "TEC-V005-freios",
+    "veiculo_id": "V005",
+    "assunto": "freios",
+    "conteudo": "Manual especifica DOT 4 e substituição do fluido a cada 24 meses; componentes de atrito exigem inspeção.",
+    "status": "verificado_manual",
+    "fontes": [
+      "SRC07"
+    ],
+    "perguntas_necessarias": [
+      "Qual eixo: dianteiro ou traseiro?",
+      "Busca pastilha, lona, sapata, disco, tambor ou fluido?",
+      "O sistema de freio foi alterado?"
+    ],
+    "localizacao": "11-11 e 11-15",
+    "consultado_em": "2026-11-08",
+    "dados": {
+      "fluido": "DOT 4",
+      "troca_fluido_meses": 24,
+      "troca_material_atrito_km": null
+    }
+  },
+  {
+    "id": "TEC-V005-pneus",
+    "veiculo_id": "V005",
+    "assunto": "pneus",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Qual medida completa está instalada e a indicada na etiqueta/manual?",
+      "Rodas originais ou modificadas? Qual carga transportada?"
+    ]
+  },
+  {
+    "id": "TEC-V005-velas",
+    "veiculo_id": "V005",
+    "assunto": "velas",
+    "conteudo": "Recorte diesel: não aplicar referência de vela de ignição do catálogo flex. Referência de pré-aquecimento e intervalo ainda não verificados.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "É vela de ignição ou de aquecimento diesel?",
+      "Confirmar motor, combustível e alterações na ignição."
+    ]
+  },
+  {
+    "id": "TEC-V005-sincronismo",
+    "veiculo_id": "V005",
+    "assunto": "sincronismo",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Pede correia dentada de distribuição ou correia externa?",
+      "Qual motor e histórico de troca do conjunto?"
+    ]
+  },
+  {
+    "id": "TEC-V005-correia_externa",
+    "veiculo_id": "V005",
+    "assunto": "correia_externa",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Tem ar-condicionado e direção hidráulica?",
+      "Confirmar tipo de acionamento e componentes instalados."
+    ]
+  },
+  {
+    "id": "TEC-V005-alternador",
+    "veiculo_id": "V005",
+    "assunto": "alternador",
+    "conteudo": "Especificação e intervalo ainda não verificados para esta configuração. Não extrapolar de outro veículo.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Qual versão/equipamentos, amperagem e referência da peça instalada?",
+      "No Fusca clássico: dínamo ou conversão para alternador?"
+    ]
   }
 ]

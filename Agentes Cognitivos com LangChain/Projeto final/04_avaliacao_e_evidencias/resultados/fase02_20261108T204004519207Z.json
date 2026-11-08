@@ -1,0 +1,286 @@
+{
+  "fase": 2,
+  "modelo": "OpenAI/gpt-4o-mini",
+  "origem_cep": "viacep_real",
+  "mensagem": "Consulte o CEP 84010000 no ViaCEP e calcule 2 unidades do P003 para entrega nesse endereço.",
+  "status": "ok",
+  "resposta": "O CEP 84010000 corresponde ao endereço:\n\n- **Logradouro:** Avenida Doutor Vicente Machado\n- **Bairro:** Centro\n- **Localidade:** Ponta Grossa\n- **UF:** PR\n\nPara o produto **Vela de ignição — Gol (simulação)**, com o código **P003**, temos as seguintes informações:\n\n- **Preço unitário:** R$ 18,50\n- **Quantidade solicitada:** 2 unidades\n- **Subtotal:** R$ 37,00\n- **Frete:** R$ 5,31\n- **Total:** R$ 42,31\n\n**Prazo estimado para entrega:** 4 dias úteis (contagem de prazo pendente).\n\n**Pendências:** O marco inicial da contagem do prazo ainda não foi definido; portanto, não é possível prometer uma data de calendário.\n\nSe precisar de mais informações ou ajustes, estou à disposição!",
+  "trajetoria": [
+    {
+      "tipo": "human",
+      "conteudo": "Consulte o CEP 84010000 no ViaCEP e calcule 2 unidades do P003 para entrega nesse endereço."
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_cep",
+          "args": {
+            "cep": "84010000"
+          },
+          "id": "call_uaup0556t6t0eerFi52tplFO",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"origem\": \"viacep_real\", \"cep\": \"84010000\", \"endereco\": {\"cep\": \"84010-000\", \"logradouro\": \"Avenida Doutor Vicente Machado\", \"complemento\": \"\", \"bairro\": \"Centro\", \"localidade\": \"Ponta Grossa\", \"uf\": \"PR\", \"ibge\": \"4119905\"}, \"tentativa_http_real\": true, \"url\": \"https://viacep.com.br/ws/84010000/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}",
+      "ferramenta": "consultar_cep",
+      "tool_call_id": "call_uaup0556t6t0eerFi52tplFO"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_catalogo",
+          "args": {
+            "produto_id": "P003",
+            "veiculo_id": null,
+            "categoria": null
+          },
+          "id": "call_pULNbE4hWSZVC4we2eEX23mk",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"nome\": \"Vela de ignição — Gol (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1850, \"estoque\": 16, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A003\", \"produto_id\": \"P003\", \"veiculo_id\": \"V001\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P003\", \"P003\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P003\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}",
+      "ferramenta": "consultar_catalogo",
+      "tool_call_id": "call_pULNbE4hWSZVC4we2eEX23mk"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "calcular_orcamento",
+          "args": {
+            "itens": [
+              {
+                "produto_id": "P003",
+                "quantidade": 2
+              }
+            ],
+            "modalidade": "entrega",
+            "municipio": "Ponta Grossa",
+            "uf": "PR"
+          },
+          "id": "call_G9wzDRa9sCJVTV4cgzVX4vSF",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"itens\": [{\"produto_id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"quantidade\": 2, \"preco_unitario_centavos\": 1850, \"estoque_consultado\": 16}], \"subtotal_centavos\": 3700, \"frete_centavos\": 531, \"total_centavos\": 4231, \"prazo_dias_uteis\": 4, \"distancia_km_simulada\": 120, \"pendencias\": [\"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"parcial\"}",
+      "ferramenta": "calcular_orcamento",
+      "tool_call_id": "call_G9wzDRa9sCJVTV4cgzVX4vSF"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "O CEP 84010000 corresponde ao endereço:\n\n- **Logradouro:** Avenida Doutor Vicente Machado\n- **Bairro:** Centro\n- **Localidade:** Ponta Grossa\n- **UF:** PR\n\nPara o produto **Vela de ignição — Gol (simulação)**, com o código **P003**, temos as seguintes informações:\n\n- **Preço unitário:** R$ 18,50\n- **Quantidade solicitada:** 2 unidades\n- **Subtotal:** R$ 37,00\n- **Frete:** R$ 5,31\n- **Total:** R$ 42,31\n\n**Prazo estimado para entrega:** 4 dias úteis (contagem de prazo pendente).\n\n**Pendências:** O marco inicial da contagem do prazo ainda não foi definido; portanto, não é possível prometer uma data de calendário.\n\nSe precisar de mais informações ou ajustes, estou à disposição!",
+      "tool_calls": []
+    }
+  ],
+  "eventos_ferramentas": [
+    {
+      "evento": "inicio",
+      "run_id": "01a1bce3-a2c5-70b0-b158-bbeb90fb2b12",
+      "ferramenta": "consultar_cep",
+      "entrada": "{'cep': '84010000'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1bce3-a2c5-70b0-b158-bbeb90fb2b12",
+      "observado": "{\"origem\": \"viacep_real\", \"cep\": \"84010000\", \"endereco\": {\"cep\": \"84010-000\", \"logradouro\": \"Avenida Doutor Vicente Machado\", \"complemento\": \"\", \"bairro\": \"Centro\", \"localidade\": \"Ponta Grossa\", \"uf\": \"PR\", \"ibge\": \"4119905\"}, \"tentativa_http_real\": true, \"url\": \"https://viacep.com.br/ws/84010000/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a1bce3-aa1e-7810-89ad-13d2fe6f6eca",
+      "ferramenta": "consultar_catalogo",
+      "entrada": "{'produto_id': 'P003', 'veiculo_id': None, 'categoria': None}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1bce3-aa1e-7810-89ad-13d2fe6f6eca",
+      "observado": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"nome\": \"Vela de ignição — Gol (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1850, \"estoque\": 16, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A003\", \"produto_id\": \"P003\", \"veiculo_id\": \"V001\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P003\", \"P003\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P003\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a1bce3-b209-7f53-9818-dfd7d67dd708",
+      "ferramenta": "calcular_orcamento",
+      "entrada": "{'itens': [{'produto_id': 'P003', 'quantidade': 2}], 'modalidade': 'entrega', 'municipio': 'Ponta Grossa', 'uf': 'PR'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1bce3-b209-7f53-9818-dfd7d67dd708",
+      "observado": "{\"itens\": [{\"produto_id\": \"P003\", \"sku\": \"CWB-SIM-P003\", \"quantidade\": 2, \"preco_unitario_centavos\": 1850, \"estoque_consultado\": 16}], \"subtotal_centavos\": 3700, \"frete_centavos\": 531, \"total_centavos\": 4231, \"prazo_dias_uteis\": 4, \"distancia_km_simulada\": 120, \"pendencias\": [\"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"parcial\"}"
+    }
+  ],
+  "esquemas_modelo": [
+    [
+      {
+        "type": "function",
+        "function": {
+          "name": "listar_veiculos",
+          "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+          "parameters": {
+            "properties": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo",
+          "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+          "parameters": {
+            "properties": {
+              "produto_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "veiculo_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "categoria": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object",
+            "required": [
+              "produto_id",
+              "veiculo_id",
+              "categoria"
+            ],
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_cep",
+          "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+          "parameters": {
+            "properties": {
+              "cep": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cep"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "calcular_orcamento",
+          "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+          "parameters": {
+            "properties": {
+              "itens": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "produto_id": {
+                      "description": "ID ou SKU retornado pela consulta do catálogo.",
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "quantidade": {
+                      "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                      "exclusiveMinimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "produto_id",
+                    "quantidade"
+                  ],
+                  "type": "object"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "modalidade": {
+                "enum": [
+                  "retirada",
+                  "entrega"
+                ],
+                "type": "string"
+              },
+              "municipio": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "uf": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "itens",
+              "modalidade",
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      }
+    ]
+  ]
+}
