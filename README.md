@@ -249,6 +249,17 @@ Avaliar separadamente a resposta sobre pagamento e a consulta de uma política f
 
 **Fluxo:** casos → agente isolado → resposta + trajetória → notas separadas → revisão → tabela.
 
+#### [Chat que lembra o veículo na sessão](./Agentes%20Cognitivos%20com%20LangChain/aula%2004-11/Chat%20que%20lembra%20o%20veiculo%20na%20sessao/)
+
+Recordar o veículo fornecido pelo cliente na mesma conversa e pedir essa informação após limpar o contexto.
+
+- **Interface de chat:** `st.chat_input` recebe mensagens e `st.chat_message` renderiza o histórico.
+- **Estado de sessão:** `st.session_state` mantém mensagens entre reruns; Nova conversa limpa histórico, eventos e erros.
+- **Contexto explícito:** `create_agent` recebe uma cópia de toda a conversa em `invoke(messages)`; somente a nova resposta é anexada.
+- **Eventos e evidências:** callbacks reais do modelo, exportação de conversa e AppTest para verificar limpeza, duplicação e isolamento; simulação local identificada.
+
+**Fluxo:** pergunta → histórico da sessão → agente → nova resposta → histórico. Isso não comprova memória após reiniciar.
+
 ## Conceitos para revisar
 
 | Conceito | Significado neste repositório | Onde começar |
@@ -262,6 +273,7 @@ Avaliar separadamente a resposta sobre pagamento e a consulta de uma política f
 | Agente e ferramenta | Ciclo em que o modelo solicita funções disponíveis e usa seus retornos. | Consulta de regras e preferências. |
 | RAG | Recuperação de trechos de uma base para fundamentar a resposta do modelo. | Consultar regras, aula 19-10. |
 | Reescrita e score vetorial | Reformulação fiel da consulta e inspeção das distâncias e documentos, sem tratar proximidade como verdade. | Busca de políticas, aula 26-10. |
+| Histórico em interface de chat | Session State conserva mensagens entre reruns e as envia ao agente; limpar a conversa remove o contexto. | Chat do veículo, aula 04-11. |
 | Memória e estado | Dados mantidos pela aplicação e reutilizados nas interações seguintes. | Os dois exercícios da aula 21-10. |
 | Consulta SQL com LLM | Modelo escreve uma consulta a partir de um esquema; o código controla sua execução no banco fictício. | Estoque e orçamento, aula 26-10. |
 | Cálculo determinístico | Função Python produz o total em centavos a partir do preço consultado e da quantidade válida. | Estoque e orçamento, aula 26-10. |

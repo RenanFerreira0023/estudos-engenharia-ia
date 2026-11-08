@@ -1,0 +1,107 @@
+{
+  "chat": {
+    "modo": "API OpenAI",
+    "mesma_conversa": {
+      "mensagens": [
+        {
+          "role": "user",
+          "content": "Meu carro é um Fusca 1982"
+        },
+        {
+          "role": "assistant",
+          "content": "Entendido, seu carro é um Fusca 1982."
+        },
+        {
+          "role": "user",
+          "content": "Qual carro eu informei?"
+        },
+        {
+          "role": "assistant",
+          "content": "Você informou que seu carro é um Fusca 1982."
+        }
+      ],
+      "ultima_entrada": [
+        {
+          "role": "user",
+          "content": "Meu carro é um Fusca 1982"
+        },
+        {
+          "role": "assistant",
+          "content": "Entendido, seu carro é um Fusca 1982."
+        },
+        {
+          "role": "user",
+          "content": "Qual carro eu informei?"
+        }
+      ],
+      "eventos": [
+        {
+          "turno": 1,
+          "modo": "API OpenAI",
+          "eventos": [
+            {
+              "evento": "modelo_iniciado",
+              "mensagens": 2
+            },
+            {
+              "evento": "modelo_concluido"
+            }
+          ]
+        },
+        {
+          "turno": 2,
+          "modo": "API OpenAI",
+          "eventos": [
+            {
+              "evento": "modelo_iniciado",
+              "mensagens": 4
+            },
+            {
+              "evento": "modelo_concluido"
+            }
+          ]
+        }
+      ]
+    },
+    "apos_limpar": {
+      "mensagens": [
+        {
+          "role": "user",
+          "content": "Qual carro eu informei?"
+        },
+        {
+          "role": "assistant",
+          "content": "Você ainda não informou nenhum carro. Por favor, informe o veículo."
+        }
+      ],
+      "ultima_entrada": [
+        {
+          "role": "user",
+          "content": "Qual carro eu informei?"
+        }
+      ],
+      "eventos": [
+        {
+          "turno": 1,
+          "modo": "API OpenAI",
+          "eventos": [
+            {
+              "evento": "modelo_iniciado",
+              "mensagens": 2
+            },
+            {
+              "evento": "modelo_concluido"
+            }
+          ]
+        }
+      ]
+    },
+    "verificacoes": {
+      "veiculo_na_mesma_sessao": true,
+      "sem_veiculo_apos_limpar": true,
+      "sem_duplicacao_em_rerun": true,
+      "limpeza_de_estados": true
+    },
+    "limite": "Não testa recuperação após reiniciar; não há persistência durável."
+  }
+}

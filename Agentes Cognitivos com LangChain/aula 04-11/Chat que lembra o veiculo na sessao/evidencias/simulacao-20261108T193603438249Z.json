@@ -1,0 +1,128 @@
+{
+  "chat": {
+    "modo": "Simulação local",
+    "mesma_conversa": {
+      "mensagens": [
+        {
+          "role": "user",
+          "content": "Meu carro é um Fusca 1982"
+        },
+        {
+          "role": "assistant",
+          "content": "[SIMULAÇÃO LOCAL] Você informou: Fusca 1982."
+        },
+        {
+          "role": "user",
+          "content": "Qual carro eu informei?"
+        },
+        {
+          "role": "assistant",
+          "content": "[SIMULAÇÃO LOCAL] Você informou: Fusca 1982."
+        }
+      ],
+      "ultima_entrada": [
+        {
+          "role": "user",
+          "content": "Meu carro é um Fusca 1982"
+        },
+        {
+          "role": "assistant",
+          "content": "[SIMULAÇÃO LOCAL] Você informou: Fusca 1982."
+        },
+        {
+          "role": "user",
+          "content": "Qual carro eu informei?"
+        }
+      ],
+      "eventos": [
+        {
+          "turno": 1,
+          "modo": "Simulação local",
+          "eventos": [
+            {
+              "evento": "simulacao_local",
+              "llm_executado": false
+            }
+          ]
+        },
+        {
+          "turno": 2,
+          "modo": "Simulação local",
+          "eventos": [
+            {
+              "evento": "simulacao_local",
+              "llm_executado": false
+            }
+          ]
+        }
+      ]
+    },
+    "apos_limpar": {
+      "mensagens": [
+        {
+          "role": "user",
+          "content": "Qual carro eu informei?"
+        },
+        {
+          "role": "assistant",
+          "content": "[SIMULAÇÃO LOCAL] Você ainda não informou o veículo nesta conversa. Qual é o seu carro e ano?"
+        }
+      ],
+      "ultima_entrada": [
+        {
+          "role": "user",
+          "content": "Qual carro eu informei?"
+        }
+      ],
+      "eventos": [
+        {
+          "turno": 1,
+          "modo": "Simulação local",
+          "eventos": [
+            {
+              "evento": "simulacao_local",
+              "llm_executado": false
+            }
+          ]
+        }
+      ]
+    },
+    "verificacoes": {
+      "veiculo_na_mesma_sessao": true,
+      "sem_veiculo_apos_limpar": true,
+      "sem_duplicacao_em_rerun": true,
+      "limpeza_de_estados": true
+    },
+    "limite": "Não testa recuperação após reiniciar; não há persistência durável."
+  },
+  "isolamento": {
+    "origem": "AppTest com simulação local",
+    "sessoes_independentes": true,
+    "troca_de_modo_limpa_contexto": true
+  },
+  "falha": {
+    "origem": "falha injetada localmente",
+    "pergunta_nao_duplicada": true,
+    "nova_conversa_limpa_erro": true
+  },
+  "variantes_simuladas": [
+    {
+      "entrada": "fusca",
+      "resposta_simulada": "[SIMULAÇÃO LOCAL] Você informou: fusca.",
+      "ano_nao_inventado": true,
+      "correcao_e_limpeza": true
+    },
+    {
+      "entrada": "meu veiculo é um fusca",
+      "resposta_simulada": "[SIMULAÇÃO LOCAL] Você informou: fusca.",
+      "ano_nao_inventado": true,
+      "correcao_e_limpeza": true
+    },
+    {
+      "entrada": "Meu veículo é um Fusca 1974",
+      "resposta_simulada": "[SIMULAÇÃO LOCAL] Você informou: Fusca 1974.",
+      "ano_nao_inventado": true,
+      "correcao_e_limpeza": true
+    }
+  ]
+}

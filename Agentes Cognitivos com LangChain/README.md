@@ -21,6 +21,7 @@ explica os conceitos e o fluxo de cada projeto.
 | 28-10 | Atendimento com duas fontes e memória | SQLDatabaseToolkit, retriever documental, create_agent, MemorySaver/thread_id e recorte da trajetória após a última HumanMessage. |
 | 28-10 | Auditor de frete | Extração estruturada de afirmações, comparação Python com Decimal/tolerância, avaliação lógica fundamentada e relatórios separados. |
 | 04-11 | Atendente e política | Três casos isolados, @tool/create_agent, mensagens AI/Tool, comparador exato, LLM juiz, fixture adversarial, revisão humana e Client/evaluate opcionais. |
+| 04-11 | Chat do veículo | Streamlit/session_state/chat_input/chat_message, create_agent/invoke com histórico, callbacks reais, Nova conversa, AppTest e limites de memória de sessão. |
 | Projeto final — fase 1 | Auto Super Parts CWB | PromptTemplate/ChatPromptTemplate, BaseModel, PydanticOutputParser, composições @chain/LCEL, invoke/batch e notebook importando módulos .py. |
 | Projeto final — fase 2 | Auto Super Parts CWB | create_agent/@tool, SQLite parametrizado, ViaCEP real, cálculo em centavos/Decimal, argumentos validados, modo estrito e auditoria de chamadas/retornos. |
 
@@ -53,6 +54,7 @@ explica os conceitos e o fluxo de cada projeto.
 
 - [Aula 04-11](./aula%2004-11/)
   - [O atendente consultou a política?](./aula%2004-11/O%20atendente%20consultou%20a%20politica/)
+  - [Chat que lembra o veículo na sessão](./aula%2004-11/Chat%20que%20lembra%20o%20veiculo%20na%20sessao/)
 
 ## Projeto final
 
