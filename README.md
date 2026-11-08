@@ -236,6 +236,19 @@ distingue APIs reais de simulações. Destino sem distância mantém frete/prazo
 determinístico → resposta com evidências e limites. As fases 3–5 continuam pendentes;
 memória entre mensagens e RAG ainda não foram implementados.
 
+### [Aula 04-11 — Avaliação de resposta e trajetória](./Agentes%20Cognitivos%20com%20LangChain/aula%2004-11/)
+
+#### [O atendente consultou a política?](./Agentes%20Cognitivos%20com%20LangChain/aula%2004-11/O%20atendente%20consultou%20a%20politica/)
+
+Avaliar separadamente a resposta sobre pagamento e a consulta de uma política fictícia.
+
+- **Agente e ferramenta:** `create_agent`/`@tool`; cada `invoke` recebe uma pergunta isolada.
+- **Trajetória observada:** mensagens AI/Tool registram chamadas e retornos com IDs; Python compara listas exatas, preservando ordem e repetições.
+- **LLM juiz:** saída estruturada com critérios explícitos; oferecer consulta não equivale a responder. Uma fixture testa o próprio avaliador.
+- **Conjunto e avaliação:** três referências independentes; `Client`/`evaluate` opcionais no LangSmith; tabela separa origem, notas e revisão humana.
+
+**Fluxo:** casos → agente isolado → resposta + trajetória → notas separadas → revisão → tabela.
+
 ## Conceitos para revisar
 
 | Conceito | Significado neste repositório | Onde começar |
@@ -253,6 +266,7 @@ memória entre mensagens e RAG ainda não foram implementados.
 | Consulta SQL com LLM | Modelo escreve uma consulta a partir de um esquema; o código controla sua execução no banco fictício. | Estoque e orçamento, aula 26-10. |
 | Cálculo determinístico | Função Python produz o total em centavos a partir do preço consultado e da quantidade válida. | Estoque e orçamento, aula 26-10. |
 | Duas fontes com memória | Ferramentas distintas fornecem produtos e políticas; a conversa identifica o produto, e uma nova leitura atualiza seu saldo. | Atendimento, aula 28-10. |
+| Avaliação de resposta e trajetória | Comparação exata de consultas e LLM juiz com critérios explícitos; fixtures avaliam o juiz sem inventar falhas do agente. | Atendente e política, aula 04-11. |
 | Auditoria numérica e lógica | Valores são comparados com tolerância em Python; conclusões e cobertura são avaliadas separadamente contra fontes independentes. | Auditor de frete, aula 28-10. |
 
 A pasta [Arquiteturas Multiagentes com LangGraph](./Arquiteturas%20Multiagentes%20com%20LangGraph/)
