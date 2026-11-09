@@ -30,7 +30,7 @@ Não substituir requisitos literais de classes antigas por equivalentes modernos
 Fases de construção são cinco; entregas finais são quatro: código/notebook, PDF técnico, avaliação LangSmith e vídeo. Este pacote é insumo de planejamento. Não garante cumprimento de toda a rubrica. Manter registro decisão/motivo/teste/evidência e citar IA/fontes. Não criar saídas de API, falhas de recuperação ou métricas fictícias como se tivessem sido observadas.
 
 ## Pendências que não podem ser inventadas
-Prazo Curitiba; início da contagem; troca e garantia; regras de reserva e falta de estoque; validação técnica de versões/peças/óleo. O catálogo permite exercícios acadêmicos enquanto isso, com rótulos explícitos. Política comercial não preenchida significa informar ausência, não negar direitos reais.
+Prazo Curitiba; início da contagem do prazo de entrega; frete de devolução e prazo de avaliação; regras de reserva e falta de estoque; validação técnica de versões/peças/óleo. O catálogo permite exercícios acadêmicos enquanto isso, com rótulos explícitos. Política comercial não preenchida significa informar ausência, não negar direitos reais.
 
 
 ## Organização deste pacote
@@ -38,10 +38,38 @@ Dados: 02_codigo/dados. Políticas: 02_codigo/documentos. Casos de aceitação: 
 
 ## Escopo revisado — 08/11/2026
 
-Seguir o [plano atualizado](../../PLANO_ACAO_IA_PROGRAMADORA_AUTOPECAS.md), seção 6: óleo/manutenção básica, freios, pneus, velas, correias e alternador nos cinco recortes. Base técnica curada em JSON com fontes/status e perguntas para ambiguidades. Sem catálogo externo dinâmico ou scraping no fluxo; ViaCEP é a API externa. Provas antigas são históricas, não dependências a ativar.
+Seguir o [plano atualizado](../../PLANO_ACAO_IA_PROGRAMADORA_AUTOPECAS.md), seção 6: óleo/manutenção básica, freios, pneus, velas, correias e alternador nos seis recortes. Base técnica curada em JSON com fontes/status e perguntas para ambiguidades. Sem catálogo externo dinâmico ou scraping no fluxo; ViaCEP é a API externa. Provas antigas são históricas, não dependências a ativar.
 
 Periodicidade é km ou meses, o primeiro limite, condicionada ao uso normal/severo e à norma do óleo. Não calcular média nem transferir regra de flex para diesel. Uma especificação do manual não homologa produto fictício. Quando a base estiver verificada, retomar a sequência original de memória, RAG, verificação, interface e avaliações; registrar limites e evidências por incremento.
 
 ## Estado após a fase 3
 
 Memória implementada em `atendimento_memoria.py`/`memoria.py`, com confirmação explícita, SQLite e janela+recuperação de resumos por cliente. A CLI antiga da fase 2 continua independente. Ver `01_documentacao/MEMORIA_FASE_03.md` para execução e limites. Prosseguir pelo Incremento 3 do plano; não reiniciar as fases anteriores nem afirmar RAG de políticas, verificador geral ou LangSmith já implementados.
+
+## Estado após a fase 4
+
+RAG e text-to-query restrito implementados em `atendimento_rag.py`, `rag_politicas.py` e `planos_consulta.py`, preservando a fachada de memória. Ver `01_documentacao/RAG_FASE_04.md` e o relatório real de falhas/correções. O próximo incremento é verificação factual/lógica geral; não confundir consulta de fonte ou plano tipado com NLI, nem declarar LangSmith/Streamlit já concluídos.
+
+## Estado após a fase 5
+
+A nova CLI é atendimento_verificado.py. Verificacao.py classifica afirmações por juiz LLM e checa valores com Python; isso é adaptação documentada, não classificador NLI especializado. Não remover o limite de um reparo ou a reavaliação, não usar histórico como fonte de preço e não gravar a candidata reprovada na memória. Evidências incluem erros do próprio juiz e injeção controlada identificada. Consulte o guia VERIFICACAO_FASE_05.md e seus resultados antes de continuar para Streamlit, LangSmith e entregas.
+
+## Política vigente: garantia
+
+Renan definiu 30 dias de garantia para as peças. Fonte ativa: politicas_loja.txt e loja_regras.json. Consultar a política V3 para início da contagem, cobertura e condições de troca. Frete de devolução e prazo de avaliação não foram definidos. Fixtures com garantia desconhecida são cenários independentes, e registros anteriores refletem a política antiga.
+
+## Política V3 — troca e condições de garantia
+
+Renan autorizou criar regras fictícias: garantia 30 dias corridos e troca por preferência 7 dias corridos, a partir do recebimento/retirada. Consultar as condições detalhadas no documento e no JSON; não confundir prazo de troca com garantia de defeito ou aprovar operação automaticamente. Frete de devolução e prazo de análise ainda dependem do atendimento. Preservar evidências históricas de política incompleta e fixtures independentes.
+
+## Base atual: seis recortes, incluindo Fusca TSI
+
+Renan autorizou adicionar Fusca TSI; V006 corresponde ao recorte 2014 2.0 gasolina, com fonte SRC08. Nao cobre todos os anos nem cria produtos comerciais. V004 e V006 nao compartilham automaticamente aplicacoes. Pergunta tecnica/comercial so com Fusca pode exigir identificacao controlada antes de LLM/juiz; status identificacao_pendente nao e nota semantica. Referencia declarada na sessao nao altera perfil permanente. Ver FUSCA_TSI_08_11.md e decisoes D45-D46.
+
+## Preferencia reforcada por Renan   respostas ao cliente
+
+Nao repetir avisos didatico/simulado/academico nas respostas; manter origem nos registros. Pendencia tecnica deve explicar concretamente o dado que falta, sem inventar compatibilidade. D47 registra essa preferencia; sua anotacao nao significa implementacao concluida. D48 registra uma falha aberta: estoque zero deve ser separado da existencia do produto e nao implica disponibilidade imediata.
+
+## Pendencia solicitada: exemplos comerciais por veiculo
+
+D49: Renan pediu ANOTAR para cadastrar depois exemplos comerciais para S10 V005 e Fusca TSI V006. Planejar um exemplo por categoria pertinente a cada recorte, com preco e estoque ficticios. Nao copiar automaticamente pecas do classico nem cadastrar itens inadequados, como vela de ignicao em diesel. Separar vinculo de estudo de aplicacao mecanica homologada e sincronizar produtos/aplicacoes/agregado. Este registro nao executou o cadastro; Renan continua os testes com outras pecas.

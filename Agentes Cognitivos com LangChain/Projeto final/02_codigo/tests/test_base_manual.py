@@ -78,7 +78,7 @@ class BaseManualTest(unittest.TestCase):
     def test_consulta_tecnica_nao_cria_estoque_diesel(self):
         c = Catalogo()
         self.addCleanup(c.fechar)
-        self.assertEqual(len(c.listar_veiculos()['veiculos']),5)
+        self.assertEqual(len(c.listar_veiculos()['veiculos']),6)
         self.assertEqual(c.consultar(veiculo_id='V005')['produtos'],[])
         self.assertEqual(c.consultar(produto_id='P003')['produtos'][0]['preco_centavos'],1850)
         self.assertEqual(c.consultar(produto_id='P023')['produtos'][0]['estoque'],0)

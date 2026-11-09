@@ -358,3 +358,42 @@ Continue pelos incrementos autorizados quando os anteriores estiverem verificado
 - Incremento 1 / seção 6: base manual ampliada, somente quatro veículos originais mais uma S10 diesel; campos sem fonte mantidos pendentes. ViaCEP preservado. Evidência: `Agentes Cognitivos com LangChain/Projeto final/04_avaliacao_e_evidencias/resultados/BASE_MANUAL_08_11.md`.
 - Incremento 2: janela de seis turnos completos, perfil confirmado/corrigível, resumos explicitamente autorizados e recuperação vetorial por cliente/modelo em SQLite. Exclusão remove também históricos. Sem extração ou aprendizagem procedural automática. Comparação LangMem/Mem0 documentada, sem instalar ambas. Evidência: `Agentes Cognitivos com LangChain/Projeto final/04_avaliacao_e_evidencias/resultados/MEMORIA_08_11.md`.
 - Próximo trabalho: Incremento 3, RAG de políticas e text-to-query restrito. Não tratar a busca vetorial de memórias como RAG de políticas já concluído. Verificador geral, Streamlit, LangSmith, reprodução final, PDF e vídeo seguem pendentes.
+
+## 16. Incremento 3 verificado — RAG e consulta estruturada
+
+- FAISS sobre políticas existentes, embeddings text-embedding-3-small e carregamento de índice preparado, com fontes/modelo/integridade verificados. Decomposição de consulta após falha real top-1 em perguntas compostas; comparação nas mesmas perguntas e custo/contextos adicionais explicitados.
+- Text-to-query restrito: pergunta → plano Pydantic por LLM → SELECT compilado por Python → dados do SQLite somente leitura. A alternativa não é SQL livre gerado pela LLM; alcance e relação com rubrica documentados.
+- Atendimento com memória integra duas ferramentas novas, exige consulta no turno para políticas explícitas e apresenta fonte efetivamente recuperada. Falhas reais e falso positivo inicial da avaliação preservados.
+- Evidências: `Agentes Cognitivos com LangChain/Projeto final/04_avaliacao_e_evidencias/resultados/RAG_08_11.md`. Notebook fase 4 executado com fixtures identificadas; rodada final com chat/embeddings reais. Não declarar qualidade universal a partir das checagens locais.
+- Próximo incremento autorizado na ordem: verificação factual/lógica dentro do agente, depois interface Streamlit e avaliação LangSmith/entregas. Os passos pendentes não foram declarados concluídos por existir fonte no rodapé.
+
+## 17. Incremento 4 verificado — resposta apoiada nas evidências
+
+- Nova CLI atendimento_verificado.py mantém agente, ferramentas, RAG e memória; checagens financeiras e juiz LLM de três classes rodam antes de persistir/exibir. Não é classificador NLI especializado: adaptação e limites documentados.
+- Um reparo no máximo, seguido de nova avaliação; juiz indisponível/reparo inválido produzem limitação segura. Candidata e resultados intermediários ficam nas evidências.
+- 121 testes locais, notebook fase 5 executado com fixtures e comparação real: erros do juiz inicial preservados; modelo de verificação separado escolhido após 14 casos e três integrações. Não é qualidade universal ou relatório LangSmith.
+- Evidências e decisões: Agentes Cognitivos com LangChain/Projeto final/04_avaliacao_e_evidencias/resultados/VERIFICACAO_08_11.md e registro D35 a D38.
+- Próximo incremento: interface Streamlit usando o mesmo AtendimentoVerificado; depois avaliação LangSmith e entregas. Esses itens e reprodução final continuam pendentes.
+
+## 18. Regra vigente: garantia de 30 dias
+
+Renan definiu 30 dias de garantia para as pecas. Documento, JSON e indice FAISS atualizados; garantia deixa de ser prazo pendente. Regras de troca e demais condicoes nao foram definidas. Consultar o registro D39 e a evidencia GARANTIA_30_DIAS_08_11.md; registros anteriores e fixtures com garantia desconhecida sao historicos ou cenarios independentes.
+
+## 19. Condicoes ficticias de troca e garantia por delegacao
+
+Renan autorizou criar regras: garantia 30 dias corridos e troca por preferencia em 7 dias corridos, contados do recebimento/retirada, com condicoes na politica V3 e loja_regras.json. Peca instalada nao atende a troca por preferencia; defeito segue para avaliacao separada de garantia. Frete da devolucao e prazo de avaliacao seguem com o atendimento. Documento, JSON e FAISS atualizados; 124 testes e cenarios com API registrados em REGRAS_TROCA_GARANTIA_08_11.md. Decisoes D41 e D42.
+
+## 20. Referencias explicitas de veiculo e citacoes
+
+Protecoes locais validam modelo/ID declarado no pedido contra argumentos de consulta e produto escolhido; V004 explicito e tratado como veiculo. O estado comercial aprende a referencia executada, nao filtros descartados. Citacoes toleram diacriticos e formatacao mantendo palavras/valores. 132 testes locais e tres atendimentos com API registrados em REFERENCIA_VEICULO_08_11.md; decisoes D43-D44. Identificacao ambigua, compatibilidade real e limitacoes do juiz continuam explicitas.
+
+## 21. Fusca TSI autorizado e desambiguacao
+
+Renan autorizou incluir Fusca TSI. V006 representa 2014 2.0 TSI gasolina com manual VW como fonte; base passa a seis recortes, sem copiar produtos do V004 classico. Fonte e lacunas em FUSCA_TSI_08_11.md; 144 testes locais e fluxo hibrido com duas respostas por API registrados. Identificacao pendente e pergunta controlada sem LLM/juiz, nao nota semantica. Declaracao de geracao e ano atualiza referencia da sessao, preservando perfil permanente. Decisoes D45-D46.
+
+
+## 22. BrasilAPI e distância geográfica
+
+Renan autorizou substituir a consulta ativa ViaCEP por BrasilAPI CEP V2, sem conta/chave. Localização por CEP e cálculo Haversine em Python, com origem fixa do cadastro Ibram do Museu Oscar Niemeyer. Distância em linha reta aproximada, não rodoviária; Curitiba permanece grátis por município, sem inventar limiar gratuito em km. Coordenadas ausentes deixam frete externo pendente. Política V4 e reindexação FAISS acompanham a mudança; fixtures e evidências antigas preservadas como legado. Ver registro D55 e BRASILAPI_DISTANCIA_09_11.md.
+
+Validação D55: 175 testes locais passaram; API real retornou 337.238 km em linha reta e frete de R$ 14,92 para 01002-020. Pedido P013 + P017 totalizou R$ 69,72 com entrega. Índice FAISS V4 atualizado; evidências e tentativa inicial de sequência preservadas. Python resolve o CEP declarado quando o agente tenta calcular antes da localização.

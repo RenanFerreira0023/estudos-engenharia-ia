@@ -13,13 +13,13 @@ from jupyter_client.kernelspec import KernelSpecManager
 
 def main():
     parser = argparse.ArgumentParser(description="Executa o notebook da fase selecionada em kernel novo.")
-    parser.add_argument("--fase", choices=("1", "2", "3"), default="1")
+    parser.add_argument("--fase", choices=("1", "2", "3", "4", "5"), default="1")
     parser.add_argument("--modo", choices=("real", "simulado"), default="real")
     parser.add_argument("--saida", type=Path, help="Destino opcional; por padrão atualiza o notebook da fase selecionada.")
     parser.add_argument("--kernel", default="auto-super-parts-fase01", help="Nome registrado do kernel (padrão: auto-super-parts-fase01).")
     args = parser.parse_args()
     projeto = Path(__file__).resolve().parent.parent
-    nome_notebook = {"1":"fase_01_chain_inicial.ipynb", "2":"fase_02_agente_ferramentas.ipynb", "3":"fase_03_memoria.ipynb"}[args.fase]
+    nome_notebook = {"1":"fase_01_chain_inicial.ipynb", "2":"fase_02_agente_ferramentas.ipynb", "3":"fase_03_memoria.ipynb", "4":"fase_04_consultas_rag.ipynb", "5":"fase_05_verificacao.ipynb"}[args.fase]
     origem = projeto / "03_notebooks" / nome_notebook
     notebook = nbformat.read(origem, as_version=4)
     # KERNEL NOVO e limpeza de saídas evitam aproveitar variáveis ou resultados de execução anterior.

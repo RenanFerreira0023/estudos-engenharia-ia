@@ -1,8 +1,33 @@
 import json
 import sqlite3
+import unicodedata
 from threading import RLock
 
 from .configuracao import localizar_projeto
+
+
+# NORMALIZAÇÃO traduz variações conhecidas para a categoria do banco, sem adivinhar tipos ambíguos.
+def normalizar_categoria(categoria):
+    if categoria is None:
+        return None
+    chave = " ".join("".join(c for c in unicodedata.normalize("NFKD", categoria.casefold())
+                            if not unicodedata.combining(c)).replace("_", " ").replace("-", " ").split())
+    aliases = {
+        "vela": ("vela", "velas", "vela de ignicao", "velas de ignicao"),
+        "filtro_oleo": ("filtro oleo", "filtro de oleo", "filtros de oleo", "filtros oleo"),
+        "filtro_ar": ("filtro ar", "filtro de ar", "filtros de ar", "filtros ar"),
+        "pastilha": ("pastilha", "pastilhas", "pastilha de freio", "pastilhas de freio", "jogo de pastilhas"),
+        "correia_dentada": ("correia dentada", "correias dentadas", "correia de sincronismo", "correias de sincronismo"),
+        "correia_acessorios": ("correia acessorios", "correia de acessorios", "correias de acessorios", "correia externa", "correias externas"),
+        "oleo_motor": ("oleo motor", "oleo de motor", "oleos de motor", "oleo do motor"),
+        "cabo_vela": ("cabo vela", "cabos de vela", "cabo de vela", "cabos de ignicao", "jogo de cabos de ignicao", "jogo de cabos de vela"),
+        "peneira_oleo": ("peneira oleo", "peneira de oleo", "peneiras de oleo"),
+        "junta": ("junta", "juntas", "jogo de juntas"),
+    }
+    for codigo, formas in aliases.items():
+        if chave in formas:
+            return codigo
+    return categoria
 
 
 class Catalogo:
@@ -45,6 +70,7 @@ class Catalogo:
                 "sql_executado": sql, "parametros_sql": [], "natureza": "recortes_academicos_propostos"}
 
     def consultar(self, produto_id=None, veiculo_id=None, categoria=None):
+        categoria = normalizar_categoria(categoria)
         if not produto_id and not veiculo_id:
             return {"status": "identificacao_pendente", "produtos": [], "aplicacoes": [],
                     "pendencias": ["Informe código do produto ou identifique a configuração do veículo."]}

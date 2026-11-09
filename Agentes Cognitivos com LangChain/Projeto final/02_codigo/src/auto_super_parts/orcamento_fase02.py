@@ -56,7 +56,7 @@ def consultar_entrega(municipio=None, uf=None):
             "frete_centavos": frete, "prazo_dias_uteis": prazo}
 
 
-def calcular_orcamento(catalogo, itens, modalidade: Literal["retirada", "entrega"], municipio=None, uf=None):
+def calcular_orcamento(catalogo, itens, modalidade: Literal["retirada", "entrega"], municipio=None, uf=None, *, cotacao_entrega=None):
     regras = json.loads((localizar_projeto() / "02_codigo/dados/loja_regras.json").read_text(encoding="utf-8"))
     base = {"itens": [], "subtotal_centavos": None, "frete_centavos": None, "total_centavos": None,
             "prazo_dias_uteis": None, "distancia_km_simulada": None, "pendencias": [],
@@ -87,7 +87,7 @@ def calcular_orcamento(catalogo, itens, modalidade: Literal["retirada", "entrega
     if modalidade == "retirada":
         return {**base, "status": "ok", "frete_centavos": regras["frete"]["retirada_centavos"],
                 "total_centavos": base["subtotal_centavos"] + regras["frete"]["retirada_centavos"]}
-    entrega = consultar_entrega(municipio, uf)
+    entrega = cotacao_entrega if cotacao_entrega is not None else consultar_entrega(municipio, uf)
     return {**base, **entrega,
             "total_centavos": (base["subtotal_centavos"] + entrega["frete_centavos"]
                                if entrega["frete_centavos"] is not None else None)}

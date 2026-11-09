@@ -118,8 +118,8 @@
     "marca": "CWB Didática — fictícia",
     "codigo_fabricante_real": null,
     "unidade": "unidade",
-    "preco_centavos": 1850,
-    "estoque": 16,
+    "preco_centavos": 1690,
+    "estoque": 7,
     "atributos": {},
     "natureza": "produto_ficticio_para_exercicio"
   },
@@ -203,8 +203,8 @@
     "marca": "CWB Didática — fictícia",
     "codigo_fabricante_real": null,
     "unidade": "unidade",
-    "preco_centavos": 1850,
-    "estoque": 16,
+    "preco_centavos": 2490,
+    "estoque": 12,
     "atributos": {},
     "natureza": "produto_ficticio_para_exercicio"
   },
@@ -288,8 +288,8 @@
     "marca": "CWB Didática — fictícia",
     "codigo_fabricante_real": null,
     "unidade": "unidade",
-    "preco_centavos": 1850,
-    "estoque": 16,
+    "preco_centavos": 1490,
+    "estoque": 0,
     "atributos": {},
     "natureza": "produto_ficticio_para_exercicio"
   },

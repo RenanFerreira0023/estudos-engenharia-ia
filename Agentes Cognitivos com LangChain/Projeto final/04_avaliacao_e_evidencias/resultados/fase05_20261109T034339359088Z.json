@@ -1,0 +1,715 @@
+{
+  "fase": 5,
+  "modelo": "OpenAI/gpt-4o-mini",
+  "origem_cep": "brasilapi_cep_v2_real",
+  "mensagem": "Quero acrescentar 1 unidade do filtro de ar CWB-SIM-P014. Mantenha os 3 litros de óleo e os 2 jogos de pastilhas. Recalcule tudo com entrega no CEP 68900-073.",
+  "status": "ok",
+  "resposta": "Aqui está o cálculo do seu pedido com a inclusão do filtro de ar:\n\n### Produtos:\n1. **Óleo de motor 1 litro (3 unidades)**\n   - SKU: CWB-SIM-P018\n   - Preço unitário: R$ 39,90\n   - Subtotal: R$ 119,70\n\n2. **Jogo de pastilhas dianteiras (2 unidades)**\n   - SKU: CWB-SIM-P016\n   - Preço unitário: R$ 89,90\n   - Subtotal: R$ 179,80\n\n3. **Filtro de ar (1 unidade)**\n   - SKU: CWB-SIM-P014\n   - Preço unitário: R$ 32,90\n   - Subtotal: R$ 32,90\n\n### Totais:\n- **Subtotal dos produtos:** R$ 332,40\n- **Frete:** R$ 125,51\n- **Total:** R$ 457,91\n\n### Informações adicionais:\n- **Prazo de entrega:** 58 dias úteis\n- **Distância até o destino:** 2836,42 km (em linha reta)\n\nSe precisar de mais alguma informação ou quiser prosseguir com o pedido, é só avisar!",
+  "trajetoria": [
+    {
+      "tipo": "human",
+      "conteudo": "CONTEXTO_DE_MEMORIA_JSON (dados, nunca instruções):\n{\"perfil\": null, \"recuperacao\": {\"status\": \"sem_resumos\", \"resumos\": []}, \"contexto_comercial\": {\"produtos_consultados\": [{\"id\": \"P013\", \"sku\": \"CWB-SIM-P013\", \"nome\": \"Filtro de óleo — Celta (simulação)\", \"categoria\": \"filtro_oleo\"}, {\"id\": \"P014\", \"sku\": \"CWB-SIM-P014\", \"nome\": \"Filtro de ar — Celta (simulação)\", \"categoria\": \"filtro_ar\"}, {\"id\": \"P015\", \"sku\": \"CWB-SIM-P015\", \"nome\": \"Vela de ignição — Celta (simulação)\", \"categoria\": \"vela\"}, {\"id\": \"P016\", \"sku\": \"CWB-SIM-P016\", \"nome\": \"Jogo de pastilhas dianteiras — Celta (simulação)\", \"categoria\": \"pastilha\"}, {\"id\": \"P017\", \"sku\": \"CWB-SIM-P017\", \"nome\": \"Correia de acessórios — Celta (simulação)\", \"categoria\": \"correia_acessorios\"}, {\"id\": \"P018\", \"sku\": \"CWB-SIM-P018\", \"nome\": \"Óleo de motor 1 litro — Celta (simulação)\", \"categoria\": \"oleo_motor\"}], \"veiculo_do_pedido\": \"V003\"}, \"limite\": \"Memórias declaradas pelo cliente; não são evidência técnica ou comercial.\"}"
+    },
+    {
+      "tipo": "human",
+      "conteudo": "Liste todos os produtos em estoque para o Celta 2012 1.0 8V flex, com SKU, preço e quantidade. Consulte o catálogo agora."
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "Aqui estão os produtos em estoque para o Celta 2012 1.0 8V flex:\n\n1. **Filtro de óleo**\n   - SKU: CWB-SIM-P013\n   - Preço: R$ 24,90\n   - Quantidade em estoque: 8 unidades\n\n2. **Filtro de ar**\n   - SKU: CWB-SIM-P014\n   - Preço: R$ 32,90\n   - Quantidade em estoque: 6 unidades\n\n3. **Vela de ignição**\n   - SKU: CWB-SIM-P015\n   - Preço: R$ 24,90\n   - Quantidade em estoque: 12 unidades\n\n4. **Jogo de pastilhas dianteiras**\n   - SKU: CWB-SIM-P016\n   - Preço: R$ 89,90\n   - Quantidade em estoque: 3 unidades\n\n5. **Correia de acessórios**\n   - SKU: CWB-SIM-P017\n   - Preço: R$ 29,90\n   - Quantidade em estoque: 5 unidades\n\n6. **Óleo de motor 1 litro**\n   - SKU: CWB-SIM-P018\n   - Preço: R$ 39,90\n   - Quantidade em estoque: 12 unidades\n\nLembre-se de que esta lista é apenas informativa e não representa um orçamento ou reserva. Se precisar de mais informações ou quiser calcular um orçamento, é só avisar!",
+      "tool_calls": []
+    },
+    {
+      "tipo": "human",
+      "conteudo": "Calcule 3 unidades do CWB-SIM-P018 e 2 jogos do CWB-SIM-P016, para retirada. Consulte preço e estoque."
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "Para retirada, a consulta retornou:\n\n- CWB-SIM-P018 — R$ 39,90 cada, estoque: 12\n- CWB-SIM-P016 — R$ 89,90 cada, estoque: 3\n\nTotal do pedido: R$ 299,50\n\nOs dois itens têm estoque suficiente para as quantidades solicitadas.",
+      "tool_calls": []
+    },
+    {
+      "tipo": "human",
+      "conteudo": "Quero também 1 jogo do CWB-SIM-P01. , calcula o frete para 68900-073 + o total de todos os produtos"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "Não consegui confirmar uma resposta segura com as informações consultadas. Posso revisar os dados do pedido ou encaminhar a dúvida ao atendimento.",
+      "tool_calls": []
+    },
+    {
+      "tipo": "human",
+      "conteudo": "O código CWB-SIM-P01 está incompleto. Qual é o SKU completo do produto que deseja acrescentar?"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "O código CWB-SIM-P01 está incompleto. Pode informar o SKU completo ou o nome do produto que deseja acrescentar?",
+      "tool_calls": []
+    },
+    {
+      "tipo": "human",
+      "conteudo": "Quero acrescentar 1 unidade do filtro de ar CWB-SIM-P014. Mantenha os 3 litros de óleo e os 2 jogos de pastilhas. Recalcule tudo com entrega no CEP 68900-073."
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_cep",
+          "args": {
+            "cep": "68900-073"
+          },
+          "id": "call_nvyuTgiUofHXPPJ6kEUXQgyq",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"origem\": \"brasilapi_cep_v2_real\", \"cep\": \"68900073\", \"endereco\": {\"cep\": \"68900-073\", \"logradouro\": \"Avenida FAB\", \"bairro\": \"Central\", \"localidade\": \"Macapá\", \"uf\": \"AP\"}, \"coordenadas\": {\"latitude\": 0.03889, \"longitude\": -51.06639}, \"tentativa_http_real\": false, \"url\": \"https://brasilapi.com.br/api/cep/v2/68900073\", \"cache\": true, \"codigo_http\": 200, \"status\": \"ok\", \"servico_endereco\": \"open-cep\", \"precisao\": \"Coordenadas aproximadas do CEP; não confirmam número do imóvel nem trajeto rodoviário.\", \"pendencias\": [], \"limite\": \"BrasilAPI informa endereço e pode fornecer coordenadas; distância e frete são calculados por Python.\"}",
+      "ferramenta": "consultar_cep",
+      "tool_call_id": "call_nvyuTgiUofHXPPJ6kEUXQgyq"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_entrega",
+          "args": {
+            "municipio": "Macapá",
+            "uf": "AP"
+          },
+          "id": "call_fYj5fc3SjOg0dN0SRRpkWJUL",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"frete_centavos\": 12551, \"prazo_dias_uteis\": 58, \"distancia_km\": 2836.42, \"metodo_distancia\": \"haversine_linha_reta\", \"pendencias\": [\"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"fontes_regras\": [\"loja_regras.json\", \"BrasilAPI CEP V2\"], \"limite\": \"Distância aproximada em linha reta até o ponto do CEP; não representa percurso rodoviário.\", \"cep_destino\": \"68900073\", \"coordenadas_destino\": {\"latitude\": 0.03889, \"longitude\": -51.06639}, \"origem_cep\": \"brasilapi_cep_v2_real\", \"coordenadas_origem\": {\"latitude\": -25.4102283, \"longitude\": -49.2661342}, \"regra_aplicada\": \"externo_proporcional_distancia_linha_reta\", \"status\": \"parcial\"}",
+      "ferramenta": "consultar_entrega",
+      "tool_call_id": "call_fYj5fc3SjOg0dN0SRRpkWJUL"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "calcular_orcamento",
+          "args": {
+            "itens": [
+              {
+                "produto_id": "P018",
+                "quantidade": 3
+              },
+              {
+                "produto_id": "P016",
+                "quantidade": 2
+              },
+              {
+                "produto_id": "P014",
+                "quantidade": 1
+              }
+            ],
+            "modalidade": "entrega",
+            "municipio": "Macapá",
+            "uf": "AP"
+          },
+          "id": "call_fUJXBO84kW3pVDfI7kyUetPy",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"itens\": [{\"produto_id\": \"P018\", \"sku\": \"CWB-SIM-P018\", \"quantidade\": 3, \"preco_unitario_centavos\": 3990, \"estoque_consultado\": 12}, {\"produto_id\": \"P016\", \"sku\": \"CWB-SIM-P016\", \"quantidade\": 2, \"preco_unitario_centavos\": 8990, \"estoque_consultado\": 3}, {\"produto_id\": \"P014\", \"sku\": \"CWB-SIM-P014\", \"quantidade\": 1, \"preco_unitario_centavos\": 3290, \"estoque_consultado\": 6}], \"subtotal_centavos\": 33240, \"frete_centavos\": 12551, \"total_centavos\": 45791, \"prazo_dias_uteis\": 58, \"distancia_km_simulada\": null, \"pendencias\": [\"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"distancia_km\": 2836.42, \"metodo_distancia\": \"haversine_linha_reta\", \"fontes_regras\": [\"loja_regras.json\", \"BrasilAPI CEP V2\"], \"limite\": \"Distância aproximada em linha reta até o ponto do CEP; não representa percurso rodoviário.\", \"cep_destino\": \"68900073\", \"coordenadas_destino\": {\"latitude\": 0.03889, \"longitude\": -51.06639}, \"origem_cep\": \"brasilapi_cep_v2_real\", \"coordenadas_origem\": {\"latitude\": -25.4102283, \"longitude\": -49.2661342}, \"regra_aplicada\": \"externo_proporcional_distancia_linha_reta\", \"status\": \"parcial\"}",
+      "ferramenta": "calcular_orcamento",
+      "tool_call_id": "call_fUJXBO84kW3pVDfI7kyUetPy"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "Aqui está o cálculo do seu pedido com a inclusão do filtro de ar:\n\n### Produtos:\n1. **Óleo de motor 1 litro (3 unidades)**\n   - SKU: CWB-SIM-P018\n   - Preço unitário: R$ 39,90\n   - Subtotal: R$ 119,70\n\n2. **Jogo de pastilhas dianteiras (2 unidades)**\n   - SKU: CWB-SIM-P016\n   - Preço unitário: R$ 89,90\n   - Subtotal: R$ 179,80\n\n3. **Filtro de ar (1 unidade)**\n   - SKU: CWB-SIM-P014\n   - Preço unitário: R$ 32,90\n   - Subtotal: R$ 32,90\n\n### Totais:\n- **Subtotal dos produtos:** R$ 332,40\n- **Frete:** R$ 125,51\n- **Total:** R$ 457,91\n\n### Informações adicionais:\n- **Prazo de entrega:** 58 dias úteis\n- **Distância até o destino:** 2836,42 km (em linha reta)\n\nSe precisar de mais alguma informação ou quiser prosseguir com o pedido, é só avisar!",
+      "tool_calls": []
+    }
+  ],
+  "eventos_ferramentas": [
+    {
+      "evento": "inicio",
+      "run_id": "01a1be67-58c3-7fb0-93a9-9e47d8cb664a",
+      "ferramenta": "consultar_cep",
+      "entrada": "{'cep': '68900-073'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1be67-58c3-7fb0-93a9-9e47d8cb664a",
+      "observado": "{\"origem\": \"brasilapi_cep_v2_real\", \"cep\": \"68900073\", \"endereco\": {\"cep\": \"68900-073\", \"logradouro\": \"Avenida FAB\", \"bairro\": \"Central\", \"localidade\": \"Macapá\", \"uf\": \"AP\"}, \"coordenadas\": {\"latitude\": 0.03889, \"longitude\": -51.06639}, \"tentativa_http_real\": false, \"url\": \"https://brasilapi.com.br/api/cep/v2/68900073\", \"cache\": true, \"codigo_http\": 200, \"status\": \"ok\", \"servico_endereco\": \"open-cep\", \"precisao\": \"Coordenadas aproximadas do CEP; não confirmam número do imóvel nem trajeto rodoviário.\", \"pendencias\": [], \"limite\": \"BrasilAPI informa endereço e pode fornecer coordenadas; distância e frete são calculados por Python.\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a1be67-5c4f-70b2-9bda-f89c55be0f95",
+      "ferramenta": "consultar_entrega",
+      "entrada": "{'municipio': 'Macapá', 'uf': 'AP'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1be67-5c4f-70b2-9bda-f89c55be0f95",
+      "observado": "{\"frete_centavos\": 12551, \"prazo_dias_uteis\": 58, \"distancia_km\": 2836.42, \"metodo_distancia\": \"haversine_linha_reta\", \"pendencias\": [\"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"fontes_regras\": [\"loja_regras.json\", \"BrasilAPI CEP V2\"], \"limite\": \"Distância aproximada em linha reta até o ponto do CEP; não representa percurso rodoviário.\", \"cep_destino\": \"68900073\", \"coordenadas_destino\": {\"latitude\": 0.03889, \"longitude\": -51.06639}, \"origem_cep\": \"brasilapi_cep_v2_real\", \"coordenadas_origem\": {\"latitude\": -25.4102283, \"longitude\": -49.2661342}, \"regra_aplicada\": \"externo_proporcional_distancia_linha_reta\", \"status\": \"parcial\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a1be67-63fd-7031-a3df-9a837ca685b0",
+      "ferramenta": "calcular_orcamento",
+      "entrada": "{'itens': [{'produto_id': 'P018', 'quantidade': 3}, {'produto_id': 'P016', 'quantidade': 2}, {'produto_id': 'P014', 'quantidade': 1}], 'modalidade': 'entrega', 'municipio': 'Macapá', 'uf': 'AP'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1be67-63fd-7031-a3df-9a837ca685b0",
+      "observado": "{\"itens\": [{\"produto_id\": \"P018\", \"sku\": \"CWB-SIM-P018\", \"quantidade\": 3, \"preco_unitario_centavos\": 3990, \"estoque_consultado\": 12}, {\"produto_id\": \"P016\", \"sku\": \"CWB-SIM-P016\", \"quantidade\": 2, \"preco_unitario_centavos\": 8990, \"estoque_consultado\": 3}, {\"produto_id\": \"P014\", \"sku\": \"CWB-SIM-P014\", \"quantidade\": 1, \"preco_unitario_centavos\": 3290, \"estoque_consultado\": 6}], \"subtotal_centavos\": 33240, \"frete_centavos\": 12551, \"total_centavos\": 45791, \"prazo_dias_uteis\": 58, \"distancia_km_simulada\": null, \"pendencias\": [\"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"distancia_km\": 2836.42, \"metodo_distancia\": \"haversine_linha_reta\", \"fontes_regras\": [\"loja_regras.json\", \"BrasilAPI CEP V2\"], \"limite\": \"Distância aproximada em linha reta até o ponto do CEP; não representa percurso rodoviário.\", \"cep_destino\": \"68900073\", \"coordenadas_destino\": {\"latitude\": 0.03889, \"longitude\": -51.06639}, \"origem_cep\": \"brasilapi_cep_v2_real\", \"coordenadas_origem\": {\"latitude\": -25.4102283, \"longitude\": -49.2661342}, \"regra_aplicada\": \"externo_proporcional_distancia_linha_reta\", \"status\": \"parcial\"}"
+    }
+  ],
+  "esquemas_modelo": [
+    [
+      {
+        "type": "function",
+        "function": {
+          "name": "listar_veiculos",
+          "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+          "parameters": {
+            "properties": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo",
+          "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+          "parameters": {
+            "properties": {
+              "produto_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "veiculo_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "categoria": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object",
+            "required": [
+              "produto_id",
+              "veiculo_id",
+              "categoria"
+            ],
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_cep",
+          "description": "Consulte endereço e coordenadas aproximadas pela BrasilAPI CEP V2. Use CEP fornecido pelo cliente; depois consulte entrega ou orçamento. Não invente CEP, município nem coordenadas.",
+          "parameters": {
+            "properties": {
+              "cep": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cep"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "calcular_orcamento",
+          "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+          "parameters": {
+            "properties": {
+              "itens": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "produto_id": {
+                      "description": "ID ou SKU retornado pela consulta do catálogo.",
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "quantidade": {
+                      "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                      "exclusiveMinimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "produto_id",
+                    "quantidade"
+                  ],
+                  "type": "object"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "modalidade": {
+                "enum": [
+                  "retirada",
+                  "entrega"
+                ],
+                "type": "string"
+              },
+              "municipio": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "uf": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "itens",
+              "modalidade",
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_entrega",
+          "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+          "parameters": {
+            "properties": {
+              "municipio": {
+                "type": "string"
+              },
+              "uf": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_informacao_tecnica",
+          "description": "Consulte a base manual para os veículos cadastrados: óleo, manutenção básica, freios, pneus, velas, correias e alternador. Retorne fontes, especificações e perguntas necessárias. Pendência não autoriza completar por suposição.",
+          "parameters": {
+            "properties": {
+              "veiculo_id": {
+                "type": "string"
+              },
+              "assunto": {
+                "enum": [
+                  "oleo",
+                  "sincronismo",
+                  "correia_externa",
+                  "distincao_correias",
+                  "manutencao_basica",
+                  "freios",
+                  "pneus",
+                  "velas",
+                  "alternador",
+                  "arquitetura",
+                  "arrefecimento"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "veiculo_id",
+              "assunto"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_politicas",
+          "description": "Busque políticas da loja no índice FAISS existente. Envie pergunta completa; retorno tem trechos/fontes, consultas executadas e lacunas. Não fornece cálculo de frete nem especificação de peça.",
+          "parameters": {
+            "properties": {
+              "pergunta": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "pergunta"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo_estruturado",
+          "description": "Liste produtos com filtros combinados de veículo confirmado, categoria, estoque, teto de preço e ordenação. Converte a pergunta em plano validado e SELECT parametrizado; retorna plano, SQL e dados. Não calcula orçamento nem altera estoque.",
+          "parameters": {
+            "properties": {
+              "pergunta": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "pergunta"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      }
+    ]
+  ],
+  "mensagens_contexto": 9,
+  "resposta_candidata": "Aqui está o cálculo do seu pedido com a inclusão do filtro de ar:\n\n### Produtos:\n1. **Óleo de motor 1 litro (3 unidades)**\n   - SKU: CWB-SIM-P018\n   - Preço unitário: R$ 39,90\n   - Subtotal: R$ 119,70\n\n2. **Jogo de pastilhas dianteiras (2 unidades)**\n   - SKU: CWB-SIM-P016\n   - Preço unitário: R$ 89,90\n   - Subtotal: R$ 179,80\n\n3. **Filtro de ar (1 unidade)**\n   - SKU: CWB-SIM-P014\n   - Preço unitário: R$ 32,90\n   - Subtotal: R$ 32,90\n\n### Totais:\n- **Subtotal dos produtos:** R$ 332,40\n- **Frete:** R$ 125,51\n- **Total:** R$ 457,91\n\n### Informações adicionais:\n- **Prazo de entrega:** 58 dias úteis\n- **Distância até o destino:** 2836,42 km (em linha reta)\n\nSe precisar de mais alguma informação ou quiser prosseguir com o pedido, é só avisar!",
+  "verificacao_especifica": {
+    "regra": "fora_das_protecoes_especificas",
+    "substituida": false
+  },
+  "cliente_demo": "teste_celta",
+  "sessao": "3c71e19508ef4cc3ad771ef76c6a7ec8",
+  "historico_enviado": [
+    {
+      "role": "user",
+      "content": "Liste todos os produtos em estoque para o Celta 2012 1.0 8V flex, com SKU, preço e quantidade. Consulte o catálogo agora."
+    },
+    {
+      "role": "assistant",
+      "content": "Aqui estão os produtos em estoque para o Celta 2012 1.0 8V flex:\n\n1. **Filtro de óleo**\n   - SKU: CWB-SIM-P013\n   - Preço: R$ 24,90\n   - Quantidade em estoque: 8 unidades\n\n2. **Filtro de ar**\n   - SKU: CWB-SIM-P014\n   - Preço: R$ 32,90\n   - Quantidade em estoque: 6 unidades\n\n3. **Vela de ignição**\n   - SKU: CWB-SIM-P015\n   - Preço: R$ 24,90\n   - Quantidade em estoque: 12 unidades\n\n4. **Jogo de pastilhas dianteiras**\n   - SKU: CWB-SIM-P016\n   - Preço: R$ 89,90\n   - Quantidade em estoque: 3 unidades\n\n5. **Correia de acessórios**\n   - SKU: CWB-SIM-P017\n   - Preço: R$ 29,90\n   - Quantidade em estoque: 5 unidades\n\n6. **Óleo de motor 1 litro**\n   - SKU: CWB-SIM-P018\n   - Preço: R$ 39,90\n   - Quantidade em estoque: 12 unidades\n\nLembre-se de que esta lista é apenas informativa e não representa um orçamento ou reserva. Se precisar de mais informações ou quiser calcular um orçamento, é só avisar!"
+    },
+    {
+      "role": "user",
+      "content": "Calcule 3 unidades do CWB-SIM-P018 e 2 jogos do CWB-SIM-P016, para retirada. Consulte preço e estoque."
+    },
+    {
+      "role": "assistant",
+      "content": "Para retirada, a consulta retornou:\n\n- CWB-SIM-P018 — R$ 39,90 cada, estoque: 12\n- CWB-SIM-P016 — R$ 89,90 cada, estoque: 3\n\nTotal do pedido: R$ 299,50\n\nOs dois itens têm estoque suficiente para as quantidades solicitadas."
+    },
+    {
+      "role": "user",
+      "content": "Quero também 1 jogo do CWB-SIM-P01. , calcula o frete para 68900-073 + o total de todos os produtos"
+    },
+    {
+      "role": "assistant",
+      "content": "Não consegui confirmar uma resposta segura com as informações consultadas. Posso revisar os dados do pedido ou encaminhar a dúvida ao atendimento."
+    },
+    {
+      "role": "user",
+      "content": "O código CWB-SIM-P01 está incompleto. Qual é o SKU completo do produto que deseja acrescentar?"
+    },
+    {
+      "role": "assistant",
+      "content": "O código CWB-SIM-P01 está incompleto. Pode informar o SKU completo ou o nome do produto que deseja acrescentar?"
+    }
+  ],
+  "memoria_utilizada": {
+    "perfil": null,
+    "recuperacao": {
+      "status": "sem_resumos",
+      "resumos": []
+    },
+    "contexto_comercial": {
+      "produtos_consultados": [
+        {
+          "id": "P013",
+          "sku": "CWB-SIM-P013",
+          "nome": "Filtro de óleo — Celta (simulação)",
+          "categoria": "filtro_oleo"
+        },
+        {
+          "id": "P014",
+          "sku": "CWB-SIM-P014",
+          "nome": "Filtro de ar — Celta (simulação)",
+          "categoria": "filtro_ar"
+        },
+        {
+          "id": "P015",
+          "sku": "CWB-SIM-P015",
+          "nome": "Vela de ignição — Celta (simulação)",
+          "categoria": "vela"
+        },
+        {
+          "id": "P016",
+          "sku": "CWB-SIM-P016",
+          "nome": "Jogo de pastilhas dianteiras — Celta (simulação)",
+          "categoria": "pastilha"
+        },
+        {
+          "id": "P017",
+          "sku": "CWB-SIM-P017",
+          "nome": "Correia de acessórios — Celta (simulação)",
+          "categoria": "correia_acessorios"
+        },
+        {
+          "id": "P018",
+          "sku": "CWB-SIM-P018",
+          "nome": "Óleo de motor 1 litro — Celta (simulação)",
+          "categoria": "oleo_motor"
+        }
+      ],
+      "veiculo_do_pedido": "V003"
+    },
+    "limite": "Memórias declaradas pelo cliente; não são evidência técnica ou comercial."
+  },
+  "janela_turnos": 6,
+  "fontes_documentais": [],
+  "resposta_antes_da_apresentacao": "Aqui está o cálculo do seu pedido com a inclusão do filtro de ar:\n\n### Produtos:\n1. **Óleo de motor 1 litro (3 unidades)**\n   - SKU: CWB-SIM-P018\n   - Preço unitário: R$ 39,90\n   - Subtotal: R$ 119,70\n\n2. **Jogo de pastilhas dianteiras (2 unidades)**\n   - SKU: CWB-SIM-P016\n   - Preço unitário: R$ 89,90\n   - Subtotal: R$ 179,80\n\n3. **Filtro de ar (1 unidade)**\n   - SKU: CWB-SIM-P014\n   - Preço unitário: R$ 32,90\n   - Subtotal: R$ 32,90\n\n### Totais:\n- **Subtotal dos produtos:** R$ 332,40\n- **Frete:** R$ 125,51\n- **Total:** R$ 457,91\n\n### Informações adicionais:\n- **Prazo de entrega:** 58 dias úteis\n- **Distância até o destino:** 2836,42 km (em linha reta)\n\nSe precisar de mais alguma informação ou quiser prosseguir com o pedido, é só avisar!",
+  "resposta_antes_da_verificacao": "Aqui está o cálculo do seu pedido com a inclusão do filtro de ar:\n\n### Produtos:\n1. **Óleo de motor 1 litro (3 unidades)**\n   - SKU: CWB-SIM-P018\n   - Preço unitário: R$ 39,90\n   - Subtotal: R$ 119,70\n\n2. **Jogo de pastilhas dianteiras (2 unidades)**\n   - SKU: CWB-SIM-P016\n   - Preço unitário: R$ 89,90\n   - Subtotal: R$ 179,80\n\n3. **Filtro de ar (1 unidade)**\n   - SKU: CWB-SIM-P014\n   - Preço unitário: R$ 32,90\n   - Subtotal: R$ 32,90\n\n### Totais:\n- **Subtotal dos produtos:** R$ 332,40\n- **Frete:** R$ 125,51\n- **Total:** R$ 457,91\n\n### Informações adicionais:\n- **Prazo de entrega:** 58 dias úteis\n- **Distância até o destino:** 2836,42 km (em linha reta)\n\nSe precisar de mais alguma informação ou quiser prosseguir com o pedido, é só avisar!",
+  "verificacao_geral": {
+    "metodo": "regras_deterministicas_e_juiz_LLM_tres_classes",
+    "origem_juiz": "ChatOpenAI:gpt-5.4-mini",
+    "maximo_reparos": 1,
+    "avaliacoes": [
+      {
+        "aprovada": true,
+        "parecer": {
+          "afirmacoes": [
+            {
+              "trecho": "Aqui está o cálculo do seu pedido com a inclusão do filtro de ar:",
+              "classe": "sustentada",
+              "evidencias": [
+                "M001",
+                "E003"
+              ],
+              "motivo": "A candidata recalcula o pedido incluindo o filtro de ar, o que corresponde aos itens presentes em E003."
+            },
+            {
+              "trecho": "Óleo de motor 1 litro (3 unidades)",
+              "classe": "sustentada",
+              "evidencias": [
+                "M001",
+                "E003"
+              ],
+              "motivo": "E003 lista P018 com quantidade 3."
+            },
+            {
+              "trecho": "SKU: CWB-SIM-P018",
+              "classe": "sustentada",
+              "evidencias": [
+                "C001",
+                "E003"
+              ],
+              "motivo": "C001 informa o SKU P018 e E003 usa o mesmo SKU no orçamento."
+            },
+            {
+              "trecho": "Preço unitário: R$ 39,90",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 traz preco_unitario_centavos 3990 para P018, equivalente a R$ 39,90."
+            },
+            {
+              "trecho": "Subtotal: R$ 119,70",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "3 x 39,90 = 119,70, coerente com o item P018 em E003."
+            },
+            {
+              "trecho": "Jogo de pastilhas dianteiras (2 unidades)",
+              "classe": "sustentada",
+              "evidencias": [
+                "M001",
+                "E003"
+              ],
+              "motivo": "E003 lista P016 com quantidade 2."
+            },
+            {
+              "trecho": "SKU: CWB-SIM-P016",
+              "classe": "sustentada",
+              "evidencias": [
+                "C001",
+                "E003"
+              ],
+              "motivo": "C001 informa o SKU P016 e E003 usa o mesmo SKU no orçamento."
+            },
+            {
+              "trecho": "Preço unitário: R$ 89,90",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 traz preco_unitario_centavos 8990 para P016, equivalente a R$ 89,90."
+            },
+            {
+              "trecho": "Subtotal: R$ 179,80",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "2 x 89,90 = 179,80, coerente com o item P016 em E003."
+            },
+            {
+              "trecho": "Filtro de ar (1 unidade)",
+              "classe": "sustentada",
+              "evidencias": [
+                "M001",
+                "E003"
+              ],
+              "motivo": "E003 lista P014 com quantidade 1."
+            },
+            {
+              "trecho": "SKU: CWB-SIM-P014",
+              "classe": "sustentada",
+              "evidencias": [
+                "C001",
+                "E003"
+              ],
+              "motivo": "C001 informa o SKU P014 e E003 usa o mesmo SKU no orçamento."
+            },
+            {
+              "trecho": "Preço unitário: R$ 32,90",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 traz preco_unitario_centavos 3290 para P014, equivalente a R$ 32,90."
+            },
+            {
+              "trecho": "Subtotal: R$ 32,90",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "1 x 32,90 = 32,90, coerente com o item P014 em E003."
+            },
+            {
+              "trecho": "Subtotal dos produtos: R$ 332,40",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 informa subtotal_centavos 33240, equivalente a R$ 332,40."
+            },
+            {
+              "trecho": "Frete: R$ 125,51",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 informa frete_centavos 12551, equivalente a R$ 125,51."
+            },
+            {
+              "trecho": "Total: R$ 457,91",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 informa total_centavos 45791, equivalente a R$ 457,91."
+            },
+            {
+              "trecho": "Prazo de entrega: 58 dias úteis",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 informa prazo_dias_uteis 58."
+            },
+            {
+              "trecho": "Distância até o destino: 2836,42 km (em linha reta)",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 informa distancia_km 2836.42 e limita a medida como linha reta."
+            },
+            {
+              "trecho": "Se precisar de mais alguma informação ou quiser prosseguir com o pedido, é só avisar!",
+              "classe": "sustentada",
+              "evidencias": [
+                "M001"
+              ],
+              "motivo": "É uma oferta de continuidade/ajuda, sem afirmar fato comercial novo."
+            }
+          ],
+          "cobertura_completa": true,
+          "responde_pedido": true,
+          "coerencia_logica": true,
+          "comentario": "Todos os números e itens da resposta candidata foram verificados contra E003, com vínculo dos SKUs em C001. O prazo e a distância também estão documentados, respeitando a observação de linha reta e prazo em dias úteis."
+        },
+        "regras": [],
+        "origem_juiz": "ChatOpenAI:gpt-5.4-mini"
+      }
+    ],
+    "reparos_executados": 0,
+    "status": "aprovada",
+    "substituida": false
+  },
+  "indice_politicas": {
+    "modelo_embedding": "text-embedding-3-small",
+    "sha256_fonte": "d306274b103499c03dadd6621e1d52b7b673bb6ee2a71a735b41ec28351241d1"
+  }
+}

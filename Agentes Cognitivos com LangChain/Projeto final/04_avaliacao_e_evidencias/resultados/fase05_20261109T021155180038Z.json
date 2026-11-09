@@ -1,0 +1,97 @@
+{
+  "fase": 5,
+  "modelo": "OpenAI/gpt-4o-mini",
+  "origem_cep": "viacep_real",
+  "mensagem": "Quanto custa uma vela para meu Fusca?",
+  "status": "ok",
+  "resposta": "Você se refere ao Fusca 1982 1600 a ar (V004) ou Fusca 2014 2.0 TSI (V006)? Confirme ano e motor ou informe o ID do veículo.",
+  "trajetoria": [],
+  "eventos_ferramentas": [],
+  "esquemas_modelo": [],
+  "resposta_candidata": null,
+  "controle_identificacao": {
+    "resposta": "Você se refere ao Fusca 1982 1600 a ar (V004) ou Fusca 2014 2.0 TSI (V006)? Confirme ano e motor ou informe o ID do veículo.",
+    "opcoes": [
+      {
+        "id": "V004",
+        "marca": "Volkswagen",
+        "modelo": "Fusca",
+        "ano_modelo": 1982,
+        "motor": "1600 a ar",
+        "combustivel": "gasolina",
+        "status_configuracao": "recorte_academico_proposto",
+        "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.",
+        "geracao": "classico_a_ar",
+        "refrigeracao": "ar",
+        "rotulos_identificacao": [
+          "a ar",
+          "clássico"
+        ]
+      },
+      {
+        "id": "V006",
+        "marca": "Volkswagen",
+        "modelo": "Fusca",
+        "ano_modelo": 2014,
+        "motor": "2.0 TSI",
+        "combustivel": "gasolina",
+        "geracao": "moderno_tsi",
+        "refrigeracao": "liquida",
+        "rotulos_identificacao": [
+          "TSI",
+          "moderno"
+        ],
+        "status_configuracao": "recorte_academico_proposto",
+        "codigo_motor": null,
+        "observacao": "Recorte técnico separado do clássico. Confirmar código do motor, versão e transmissão quando necessários. Sem produtos comerciais vinculados; não inferir óleo, capacidade, sincronismo ou código de peça por nome/ano."
+      }
+    ],
+    "origem": "validacao deterministica de configuracoes cadastradas; modelo nao executado"
+  },
+  "geracao_executada": false,
+  "cliente_demo": "cliente_demo",
+  "sessao": "a323610346554cd1821c8209473f9626",
+  "historico_enviado": [],
+  "memoria_utilizada": {
+    "perfil": {
+      "veiculo_confirmado": {
+        "id": "V003",
+        "marca": "Chevrolet",
+        "modelo": "Celta",
+        "ano_modelo": 2012,
+        "motor": "1.0 8V",
+        "combustivel": "flex",
+        "status_configuracao": "recorte_academico_proposto",
+        "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+      },
+      "confirmado_em": "2026-11-08T23:21:22.621603+00:00"
+    },
+    "recuperacao": {
+      "status": "ok",
+      "modelo_embedding": "text-embedding-3-small",
+      "resumos": [
+        {
+          "id": "d02853d8e4a446efbbc470bcef986e94",
+          "texto": "Uso o carro diariamente em percursos urbanos curtos, de menos de 6 km.",
+          "criado_em": "2026-11-08T23:21:27.840109+00:00",
+          "similaridade": 0.2837784215912204
+        }
+      ]
+    },
+    "contexto_comercial": {},
+    "limite": "Memórias declaradas pelo cliente; não são evidência técnica ou comercial."
+  },
+  "janela_turnos": 6,
+  "fontes_documentais": [],
+  "resposta_antes_da_apresentacao": "Você se refere ao Fusca 1982 1600 a ar (V004) ou Fusca 2014 2.0 TSI (V006)? Confirme ano e motor ou informe o ID do veículo.",
+  "verificacao_geral": {
+    "status": "identificacao_pendente",
+    "metodo": "pergunta_controlada_por_dados_faltantes",
+    "reparos_executados": 0,
+    "juiz_executado": false
+  },
+  "indice_politicas": {
+    "modelo_embedding": "text-embedding-3-small",
+    "sha256_fonte": "945cb1379065a650aef3acd4f5a88f129b99718ad6f71c47140664e2366538b4"
+  }
+}

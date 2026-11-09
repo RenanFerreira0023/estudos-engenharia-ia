@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "modelo_embedding": "text-embedding-3-small",
+  "origem_embedding": "API real OpenAI",
+  "criado_em": "2026-11-09T03:23:04.211077+00:00",
+  "fonte": "politicas_loja.txt",
+  "sha256_fonte": "d306274b103499c03dadd6621e1d52b7b673bb6ee2a71a735b41ec28351241d1",
+  "sha256_indice": "125d0bd4c909631200b700b7c7725044590f847e3ea8a0a3598a46a00c3b11f4",
+  "dimensao": 1536,
+  "quantidade": 4,
+  "documentos": [
+    {
+      "id": "POL-01",
+      "fonte": "politicas_loja.txt",
+      "secao": "Pagamento",
+      "texto": "Pagamento: site somente Pix antecipado. Balcão Pix ou dinheiro, inclusive retirada. Sem cartão ou parcelamento. Entrega exige pagamento antecipado pelo site; não pagar ao entregador.",
+      "estado": "documentado"
+    },
+    {
+      "id": "POL-02",
+      "fonte": "politicas_loja.txt",
+      "secao": "Entrega",
+      "texto": "Entrega: Curitiba/PR tem frete grátis; prazo local ainda não definido. Fora de Curitiba, transportadora com valor proporcional de R$ 8,85 por 200 km sobre distância aproximada em linha reta, calculada por Python entre coordenadas fixas da loja e coordenadas do CEP retornadas pela BrasilAPI CEP V2. Não representa percurso rodoviário. Prazo externo de dois dias úteis por faixa de 100 km, arredondando para cima. Marco inicial ainda não definido. Falta de coordenadas válidas exige consulta ao atendimento, sem inventar distância nem cotar frete externo. CEP sem coordenadas ainda pode identificar o município para a gratuidade de Curitiba. Não há raio gratuito em quilômetros cadastrado.",
+      "estado": "documentado"
+    },
+    {
+      "id": "POL-03",
+      "fonte": "politicas_loja.txt",
+      "secao": "Troca e garantia",
+      "texto": "Troca e garantia: as peças têm 30 dias de garantia, em dias corridos contados do recebimento na entrega ou da retirada. A garantia cobre defeitos de fabricação confirmados após avaliação pelo atendimento; não cobre desgaste natural, mau uso ou instalação inadequada. Troca por preferência ou compra incorreta pode ser solicitada em até 7 dias corridos após o recebimento ou retirada, com peça sem uso e sem instalação, embalagem original, acessórios completos e comprovante de compra. Peça já usada ou instalada não atende à troca por preferência, mesmo dentro dos 7 dias. Essa restrição não exclui automaticamente a avaliação de um defeito dentro dos 30 dias de garantia. Após os 7 dias de troca por preferência, um defeito dentro dos 30 dias segue para avaliação de garantia, sem aprovação automática. Para solicitar troca ou garantia, apresentar comprovante de compra, identificar a peça e informar o motivo ao atendimento. Frete de devolução e prazo de avaliação devem ser confirmados com o atendimento. O assistente informa as regras e encaminha a solicitação; não aprova troca, reembolso ou compra automaticamente.",
+      "estado": "documentado"
+    },
+    {
+      "id": "POL-04",
+      "fonte": "politicas_loja.txt",
+      "secao": "Limites do orçamento",
+      "texto": "Orçamento não confirma compra nem reserva estoque. Todos os produtos e condições são de simulação acadêmica.",
+      "estado": "documentado"
+    }
+  ]
+}

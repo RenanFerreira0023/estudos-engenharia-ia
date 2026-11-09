@@ -67,3 +67,7 @@ O comando real consome API. O script verifica ferramenta/assunto/veículo e trec
 ## Continuidade do plano
 
 Após esta curadoria, a ordem permanece: memória curta/longa e isolamento por cliente → RAG/text-to-query → verificação → Streamlit → avaliação LangSmith e entregas. A fase 2 continua sem memória entre perguntas. Não confundir plano atualizado com implementação de todas essas fases.
+
+## Recorte adicional autorizado: Fusca TSI
+
+A base atual tem seis recortes. V006 e Fusca 2014 2.0 TSI gasolina, com SRC08 (manual Volkswagen) e registros de arquitetura/arrefecimento/freios; especificacoes nao confirmadas continuam pendentes. Nao possui produtos comerciais vinculados. V004 continua sendo o classico 1982 a ar. [Detalhes e evidencias](../04_avaliacao_e_evidencias/resultados/FUSCA_TSI_08_11.md).

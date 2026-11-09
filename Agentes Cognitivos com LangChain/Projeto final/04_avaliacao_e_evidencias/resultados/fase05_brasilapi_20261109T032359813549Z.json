@@ -1,0 +1,1182 @@
+{
+  "origem": "BrasilAPI e OpenAI reais; cliente/banco isolados; coordenadas aproximadas do CEP; distancia em linha reta",
+  "casos": [
+    {
+      "pergunta": "Quanto fica o frete para o CEP 01002-020?",
+      "resultado": {
+        "fase": 5,
+        "modelo": "OpenAI/gpt-4o-mini",
+        "origem_cep": "brasilapi_cep_v2_real",
+        "mensagem": "Quanto fica o frete para o CEP 01002-020?",
+        "status": "ok",
+        "resposta": "O frete para o CEP 01002-020 é de R$ 14,92, com prazo estimado de 8 dias úteis. O prazo ainda está pendente de confirmação do marco inicial, então não dá para prometer uma data específica de entrega.",
+        "trajetoria": [
+          {
+            "tipo": "human",
+            "conteudo": "CONTEXTO_DE_MEMORIA_JSON (dados, nunca instruções):\n{\"perfil\": null, \"recuperacao\": {\"status\": \"vetores_desativados\", \"resumos\": []}, \"contexto_comercial\": {}, \"limite\": \"Memórias declaradas pelo cliente; não são evidência técnica ou comercial.\"}"
+          },
+          {
+            "tipo": "human",
+            "conteudo": "Quanto fica o frete para o CEP 01002-020?"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_cep",
+                "args": {
+                  "cep": "01002-020"
+                },
+                "id": "call_Sj56th2AnhVWdaDiU5NBnX1T",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"origem\": \"brasilapi_cep_v2_real\", \"cep\": \"01002020\", \"endereco\": {\"cep\": \"01002-020\", \"logradouro\": \"Viaduto do Chá\", \"bairro\": \"Centro\", \"localidade\": \"São Paulo\", \"uf\": \"SP\"}, \"coordenadas\": {\"latitude\": -23.5475, \"longitude\": -46.63611}, \"tentativa_http_real\": true, \"url\": \"https://brasilapi.com.br/api/cep/v2/01002020\", \"cache\": false, \"codigo_http\": 200, \"status\": \"ok\", \"servico_endereco\": \"open-cep\", \"precisao\": \"Coordenadas aproximadas do CEP; não confirmam número do imóvel nem trajeto rodoviário.\", \"pendencias\": [], \"limite\": \"BrasilAPI informa endereço e pode fornecer coordenadas; distância e frete são calculados por Python.\"}",
+            "ferramenta": "consultar_cep",
+            "tool_call_id": "call_Sj56th2AnhVWdaDiU5NBnX1T"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_entrega",
+                "args": {
+                  "municipio": "São Paulo",
+                  "uf": "SP"
+                },
+                "id": "call_dwz0wsBAsL4qusUMsrKBVRSw",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"frete_centavos\": 1492, \"prazo_dias_uteis\": 8, \"distancia_km\": 337.238, \"metodo_distancia\": \"haversine_linha_reta\", \"pendencias\": [\"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"fontes_regras\": [\"loja_regras.json\", \"BrasilAPI CEP V2\"], \"limite\": \"Distância aproximada em linha reta até o ponto do CEP; não representa percurso rodoviário.\", \"cep_destino\": \"01002020\", \"coordenadas_destino\": {\"latitude\": -23.5475, \"longitude\": -46.63611}, \"origem_cep\": \"brasilapi_cep_v2_real\", \"coordenadas_origem\": {\"latitude\": -25.4102283, \"longitude\": -49.2661342}, \"regra_aplicada\": \"externo_proporcional_distancia_linha_reta\", \"status\": \"parcial\"}",
+            "ferramenta": "consultar_entrega",
+            "tool_call_id": "call_dwz0wsBAsL4qusUMsrKBVRSw"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "O frete para o CEP 01002-020 (São Paulo - SP) é de R$ 14,92 e o prazo estimado para entrega é de 8 dias úteis. \n\nPor favor, note que o prazo é pendente e não posso prometer uma data específica de entrega. Se precisar de mais informações ou quiser calcular um orçamento com produtos, estou à disposição!",
+            "tool_calls": []
+          }
+        ],
+        "eventos_ferramentas": [
+          {
+            "evento": "inicio",
+            "run_id": "01a1be55-97e4-7aa1-8fbf-cc9e711f9f7c",
+            "ferramenta": "consultar_cep",
+            "entrada": "{'cep': '01002-020'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1be55-97e4-7aa1-8fbf-cc9e711f9f7c",
+            "observado": "{\"origem\": \"brasilapi_cep_v2_real\", \"cep\": \"01002020\", \"endereco\": {\"cep\": \"01002-020\", \"logradouro\": \"Viaduto do Chá\", \"bairro\": \"Centro\", \"localidade\": \"São Paulo\", \"uf\": \"SP\"}, \"coordenadas\": {\"latitude\": -23.5475, \"longitude\": -46.63611}, \"tentativa_http_real\": true, \"url\": \"https://brasilapi.com.br/api/cep/v2/01002020\", \"cache\": false, \"codigo_http\": 200, \"status\": \"ok\", \"servico_endereco\": \"open-cep\", \"precisao\": \"Coordenadas aproximadas do CEP; não confirmam número do imóvel nem trajeto rodoviário.\", \"pendencias\": [], \"limite\": \"BrasilAPI informa endereço e pode fornecer coordenadas; distância e frete são calculados por Python.\"}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1be55-9cfd-7163-a4b1-bc8ad5de8e03",
+            "ferramenta": "consultar_entrega",
+            "entrada": "{'municipio': 'São Paulo', 'uf': 'SP'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1be55-9cfd-7163-a4b1-bc8ad5de8e03",
+            "observado": "{\"frete_centavos\": 1492, \"prazo_dias_uteis\": 8, \"distancia_km\": 337.238, \"metodo_distancia\": \"haversine_linha_reta\", \"pendencias\": [\"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"fontes_regras\": [\"loja_regras.json\", \"BrasilAPI CEP V2\"], \"limite\": \"Distância aproximada em linha reta até o ponto do CEP; não representa percurso rodoviário.\", \"cep_destino\": \"01002020\", \"coordenadas_destino\": {\"latitude\": -23.5475, \"longitude\": -46.63611}, \"origem_cep\": \"brasilapi_cep_v2_real\", \"coordenadas_origem\": {\"latitude\": -25.4102283, \"longitude\": -49.2661342}, \"regra_aplicada\": \"externo_proporcional_distancia_linha_reta\", \"status\": \"parcial\"}"
+          }
+        ],
+        "esquemas_modelo": [
+          [
+            {
+              "type": "function",
+              "function": {
+                "name": "listar_veiculos",
+                "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+                "parameters": {
+                  "properties": {},
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo",
+                "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+                "parameters": {
+                  "properties": {
+                    "produto_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "veiculo_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "categoria": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "produto_id",
+                    "veiculo_id",
+                    "categoria"
+                  ],
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_cep",
+                "description": "Consulte endereço e coordenadas aproximadas pela BrasilAPI CEP V2. Use CEP fornecido pelo cliente; depois consulte entrega ou orçamento. Não invente CEP, município nem coordenadas.",
+                "parameters": {
+                  "properties": {
+                    "cep": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cep"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "calcular_orcamento",
+                "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+                "parameters": {
+                  "properties": {
+                    "itens": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "produto_id": {
+                            "description": "ID ou SKU retornado pela consulta do catálogo.",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "quantidade": {
+                            "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                            "exclusiveMinimum": 0,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "produto_id",
+                          "quantidade"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "modalidade": {
+                      "enum": [
+                        "retirada",
+                        "entrega"
+                      ],
+                      "type": "string"
+                    },
+                    "municipio": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "uf": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "required": [
+                    "itens",
+                    "modalidade",
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_entrega",
+                "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+                "parameters": {
+                  "properties": {
+                    "municipio": {
+                      "type": "string"
+                    },
+                    "uf": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_informacao_tecnica",
+                "description": "Consulte a base manual para os veículos cadastrados: óleo, manutenção básica, freios, pneus, velas, correias e alternador. Retorne fontes, especificações e perguntas necessárias. Pendência não autoriza completar por suposição.",
+                "parameters": {
+                  "properties": {
+                    "veiculo_id": {
+                      "type": "string"
+                    },
+                    "assunto": {
+                      "enum": [
+                        "oleo",
+                        "sincronismo",
+                        "correia_externa",
+                        "distincao_correias",
+                        "manutencao_basica",
+                        "freios",
+                        "pneus",
+                        "velas",
+                        "alternador",
+                        "arquitetura",
+                        "arrefecimento"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "veiculo_id",
+                    "assunto"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_politicas",
+                "description": "Busque políticas da loja no índice FAISS existente. Envie pergunta completa; retorno tem trechos/fontes, consultas executadas e lacunas. Não fornece cálculo de frete nem especificação de peça.",
+                "parameters": {
+                  "properties": {
+                    "pergunta": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "pergunta"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo_estruturado",
+                "description": "Liste produtos com filtros combinados de veículo confirmado, categoria, estoque, teto de preço e ordenação. Converte a pergunta em plano validado e SELECT parametrizado; retorna plano, SQL e dados. Não calcula orçamento nem altera estoque.",
+                "parameters": {
+                  "properties": {
+                    "pergunta": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "pergunta"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            }
+          ]
+        ],
+        "mensagens_contexto": 1,
+        "resposta_candidata": "O frete para o CEP 01002-020 (São Paulo - SP) é de R$ 14,92 e o prazo estimado para entrega é de 8 dias úteis. \n\nPor favor, note que o prazo é pendente e não posso prometer uma data específica de entrega. Se precisar de mais informações ou quiser calcular um orçamento com produtos, estou à disposição!",
+        "verificacao_especifica": {
+          "regra": "fora_das_protecoes_especificas",
+          "substituida": false
+        },
+        "cliente_demo": "teste_brasilapi",
+        "sessao": "c5a1811a832f4d438a64a721c5807ae7",
+        "historico_enviado": [],
+        "memoria_utilizada": {
+          "perfil": null,
+          "recuperacao": {
+            "status": "vetores_desativados",
+            "resumos": []
+          },
+          "contexto_comercial": {},
+          "limite": "Memórias declaradas pelo cliente; não são evidência técnica ou comercial."
+        },
+        "janela_turnos": 6,
+        "fontes_documentais": [],
+        "resposta_antes_da_apresentacao": "O frete para o CEP 01002-020 (São Paulo - SP) é de R$ 14,92 e o prazo estimado para entrega é de 8 dias úteis. \n\nPor favor, note que o prazo é pendente e não posso prometer uma data específica de entrega. Se precisar de mais informações ou quiser calcular um orçamento com produtos, estou à disposição!",
+        "resposta_antes_da_verificacao": "O frete para o CEP 01002-020 (São Paulo - SP) é de R$ 14,92 e o prazo estimado para entrega é de 8 dias úteis. \n\nPor favor, note que o prazo é pendente e não posso prometer uma data específica de entrega. Se precisar de mais informações ou quiser calcular um orçamento com produtos, estou à disposição!",
+        "verificacao_geral": {
+          "metodo": "regras_deterministicas_e_juiz_LLM_tres_classes",
+          "origem_juiz": "ChatOpenAI:gpt-5.4-mini",
+          "maximo_reparos": 1,
+          "avaliacoes": [
+            {
+              "aprovada": false,
+              "parecer": {
+                "afirmacoes": [
+                  {
+                    "trecho": "O frete para o CEP 01002-020 (São Paulo - SP) é de R$ 14,92",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E001",
+                      "E002"
+                    ],
+                    "motivo": "E001 traz o CEP com endereço em São Paulo/SP e E002 informa frete_centavos 1492 para o mesmo CEP de destino."
+                  },
+                  {
+                    "trecho": "o prazo estimado para entrega é de 8 dias úteis",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E002"
+                    ],
+                    "motivo": "E002 informa prazo_dias_uteis 8 para o CEP de destino consultado."
+                  },
+                  {
+                    "trecho": "o prazo é pendente",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E002"
+                    ],
+                    "motivo": "E002 registra pendencias incluindo o marco inicial da contagem do prazo pendente."
+                  },
+                  {
+                    "trecho": "não posso prometer uma data específica de entrega",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E002"
+                    ],
+                    "motivo": "E002 indica pendência do marco inicial da contagem e orienta a não prometer data de calendário."
+                  },
+                  {
+                    "trecho": "Se precisar de mais informações ou quiser calcular um orçamento com produtos, estou à disposição!",
+                    "classe": "sem_suporte",
+                    "evidencias": [],
+                    "motivo": "É uma oferta de ajuda e menção a orçamento, mas não há evidência que a imponha ou a confirme como fato comercial necessário."
+                  }
+                ],
+                "cobertura_completa": true,
+                "responde_pedido": true,
+                "coerencia_logica": true,
+                "comentario": "As informações de frete e prazo batem com E001/E002. A ressalva sobre data específica também é compatível com a pendência informada em E002."
+              },
+              "regras": [],
+              "origem_juiz": "ChatOpenAI:gpt-5.4-mini"
+            },
+            {
+              "aprovada": true,
+              "parecer": {
+                "afirmacoes": [
+                  {
+                    "trecho": "O frete para o CEP 01002-020 é de R$ 14,92",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E002"
+                    ],
+                    "motivo": "E002 informa frete_centavos 1492 para o CEP 01002020/01002-020."
+                  },
+                  {
+                    "trecho": "com prazo estimado de 8 dias úteis.",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E002"
+                    ],
+                    "motivo": "E002 informa prazo_dias_uteis 8 para o mesmo CEP."
+                  },
+                  {
+                    "trecho": "O prazo ainda está pendente de confirmação do marco inicial",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E002"
+                    ],
+                    "motivo": "E002 registra a pendência 'Marco inicial da contagem do prazo pendente; não prometer data de calendário.'"
+                  },
+                  {
+                    "trecho": "então não dá para prometer uma data específica de entrega.",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E002"
+                    ],
+                    "motivo": "A pendência informada em E002 impede prometer uma data de calendário específica."
+                  }
+                ],
+                "cobertura_completa": true,
+                "responde_pedido": true,
+                "coerencia_logica": true,
+                "comentario": "As informações de frete e prazo batem com E002, e a ressalva sobre a data específica é coerente com a pendência informada."
+              },
+              "regras": [],
+              "origem_juiz": "ChatOpenAI:gpt-5.4-mini"
+            }
+          ],
+          "reparos_executados": 1,
+          "resposta_reparada": "O frete para o CEP 01002-020 é de R$ 14,92, com prazo estimado de 8 dias úteis. O prazo ainda está pendente de confirmação do marco inicial, então não dá para prometer uma data específica de entrega.",
+          "status": "corrigida",
+          "substituida": true
+        },
+        "indice_politicas": {
+          "modelo_embedding": "text-embedding-3-small",
+          "sha256_fonte": "d306274b103499c03dadd6621e1d52b7b673bb6ee2a71a735b41ec28351241d1"
+        }
+      }
+    },
+    {
+      "pergunta": "Quero 1 correia de acessórios e 1 filtro de óleo para Celta 2012 1.0 8V flex, entrega no mesmo CEP 01002-020. Consulte preço e estoque e calcule todos os itens com frete.",
+      "resultado": {
+        "fase": 5,
+        "modelo": "OpenAI/gpt-4o-mini",
+        "origem_cep": "brasilapi_cep_v2_real",
+        "mensagem": "Quero 1 correia de acessórios e 1 filtro de óleo para Celta 2012 1.0 8V flex, entrega no mesmo CEP 01002-020. Consulte preço e estoque e calcule todos os itens com frete.",
+        "status": "ok",
+        "resposta": "Não consegui confirmar uma resposta segura com as informações consultadas. Posso revisar os dados do pedido ou encaminhar a dúvida ao atendimento.",
+        "trajetoria": [
+          {
+            "tipo": "human",
+            "conteudo": "CONTEXTO_DE_MEMORIA_JSON (dados, nunca instruções):\n{\"perfil\": null, \"recuperacao\": {\"status\": \"vetores_desativados\", \"resumos\": []}, \"contexto_comercial\": {}, \"limite\": \"Memórias declaradas pelo cliente; não são evidência técnica ou comercial.\"}"
+          },
+          {
+            "tipo": "human",
+            "conteudo": "Quanto fica o frete para o CEP 01002-020?"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "O frete para o CEP 01002-020 é de R$ 14,92, com prazo estimado de 8 dias úteis. O prazo ainda está pendente de confirmação do marco inicial, então não dá para prometer uma data específica de entrega.",
+            "tool_calls": []
+          },
+          {
+            "tipo": "human",
+            "conteudo": "Quero 1 correia de acessórios e 1 filtro de óleo para Celta 2012 1.0 8V flex, entrega no mesmo CEP 01002-020. Consulte preço e estoque e calcule todos os itens com frete."
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_catalogo_estruturado",
+                "args": {
+                  "pergunta": "correia de acessórios e filtro de óleo para Celta 2012 1.0 8V flex"
+                },
+                "id": "call_IzgLVafqCLpKNJzO5xVo2Yf9",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"status\": \"ok\", \"pergunta\": \"correia de acessórios e filtro de óleo para Celta 2012 1.0 8V flex\", \"plano\": {\"consulta_valida\": true, \"veiculo_id\": \"V003\", \"categoria\": [\"correia_acessorios\", \"filtro_oleo\"], \"estoque\": \"qualquer\", \"preco_max_centavos\": null, \"ordenacao\": \"id\", \"limite\": 10, \"pendencias\": []}, \"plano_gerado\": {\"consulta_valida\": true, \"veiculo_id\": \"V003\", \"categoria\": [\"correia_acessorios\", \"filtro_oleo\"], \"estoque\": \"qualquer\", \"preco_max_centavos\": null, \"ordenacao\": \"id\", \"limite\": 10, \"pendencias\": []}, \"sql_executado\": \"SELECT DISTINCT p.dados FROM produtos p JOIN aplicacoes a ON a.produto_id=p.id WHERE a.veiculo_id=? AND p.categoria IN (?,?) ORDER BY p.id LIMIT ?\", \"parametros_sql\": [\"V003\", \"correia_acessorios\", \"filtro_oleo\", 10], \"produtos\": [{\"id\": \"P013\", \"sku\": \"CWB-SIM-P013\", \"nome\": \"Filtro de óleo — Celta (simulação)\", \"categoria\": \"filtro_oleo\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 2490, \"estoque\": 8, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}, {\"id\": \"P017\", \"sku\": \"CWB-SIM-P017\", \"nome\": \"Correia de acessórios — Celta (simulação)\", \"categoria\": \"correia_acessorios\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 2990, \"estoque\": 5, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"ajustes_plano\": [], \"configuracoes_consultadas\": [{\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}], \"cobertura\": \"Somente recortes cadastrados; não cobre automaticamente outros anos nem confirma aplicação no veículo do cliente.\", \"limite_atingido\": false, \"limite\": \"Catálogo didático; vínculo local não homologa aplicação real. Lista não é orçamento nem reserva.\"}",
+            "ferramenta": "consultar_catalogo_estruturado",
+            "tool_call_id": "call_IzgLVafqCLpKNJzO5xVo2Yf9"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "calcular_orcamento",
+                "args": {
+                  "itens": [
+                    {
+                      "produto_id": "P013",
+                      "quantidade": 1
+                    },
+                    {
+                      "produto_id": "P017",
+                      "quantidade": 1
+                    }
+                  ],
+                  "modalidade": "entrega",
+                  "municipio": "São Paulo",
+                  "uf": "SP"
+                },
+                "id": "call_G1z5DuB51nFbqscWJadqd0zC",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"itens\": [{\"produto_id\": \"P013\", \"sku\": \"CWB-SIM-P013\", \"quantidade\": 1, \"preco_unitario_centavos\": 2490, \"estoque_consultado\": 8}, {\"produto_id\": \"P017\", \"sku\": \"CWB-SIM-P017\", \"quantidade\": 1, \"preco_unitario_centavos\": 2990, \"estoque_consultado\": 5}], \"subtotal_centavos\": 5480, \"frete_centavos\": null, \"total_centavos\": null, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [\"Consulte um único CEP de entrega neste turno antes de calcular.\"], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"destino_pendente\"}",
+            "ferramenta": "calcular_orcamento",
+            "tool_call_id": "call_G1z5DuB51nFbqscWJadqd0zC"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_cep",
+                "args": {
+                  "cep": "01002-020"
+                },
+                "id": "call_XI1IU4AiiXbOEex3S2SEbXiu",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"origem\": \"brasilapi_cep_v2_real\", \"cep\": \"01002020\", \"endereco\": {\"cep\": \"01002-020\", \"logradouro\": \"Viaduto do Chá\", \"bairro\": \"Centro\", \"localidade\": \"São Paulo\", \"uf\": \"SP\"}, \"coordenadas\": {\"latitude\": -23.5475, \"longitude\": -46.63611}, \"tentativa_http_real\": false, \"url\": \"https://brasilapi.com.br/api/cep/v2/01002020\", \"cache\": true, \"codigo_http\": 200, \"status\": \"ok\", \"servico_endereco\": \"open-cep\", \"precisao\": \"Coordenadas aproximadas do CEP; não confirmam número do imóvel nem trajeto rodoviário.\", \"pendencias\": [], \"limite\": \"BrasilAPI informa endereço e pode fornecer coordenadas; distância e frete são calculados por Python.\"}",
+            "ferramenta": "consultar_cep",
+            "tool_call_id": "call_XI1IU4AiiXbOEex3S2SEbXiu"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "",
+            "tool_calls": [
+              {
+                "name": "consultar_entrega",
+                "args": {
+                  "municipio": "São Paulo",
+                  "uf": "SP"
+                },
+                "id": "call_Eii6ESHrpCqqNOVr9GU9LqZp",
+                "type": "tool_call"
+              }
+            ]
+          },
+          {
+            "tipo": "tool",
+            "conteudo": "{\"frete_centavos\": 1492, \"prazo_dias_uteis\": 8, \"distancia_km\": 337.238, \"metodo_distancia\": \"haversine_linha_reta\", \"pendencias\": [\"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"fontes_regras\": [\"loja_regras.json\", \"BrasilAPI CEP V2\"], \"limite\": \"Distância aproximada em linha reta até o ponto do CEP; não representa percurso rodoviário.\", \"cep_destino\": \"01002020\", \"coordenadas_destino\": {\"latitude\": -23.5475, \"longitude\": -46.63611}, \"origem_cep\": \"brasilapi_cep_v2_real\", \"coordenadas_origem\": {\"latitude\": -25.4102283, \"longitude\": -49.2661342}, \"regra_aplicada\": \"externo_proporcional_distancia_linha_reta\", \"status\": \"parcial\"}",
+            "ferramenta": "consultar_entrega",
+            "tool_call_id": "call_Eii6ESHrpCqqNOVr9GU9LqZp"
+          },
+          {
+            "tipo": "ai",
+            "conteudo": "Aqui estão os detalhes do seu pedido:\n\n1. **Filtro de óleo** — Celta (simulação)\n   - Preço: R$ 24,90\n   - Estoque: 8 unidades disponíveis\n\n2. **Correia de acessórios** — Celta (simulação)\n   - Preço: R$ 29,90\n   - Estoque: 5 unidades disponíveis\n\n### Resumo do Orçamento:\n- **Subtotal dos produtos:** R$ 54,80\n- **Frete:** R$ 14,92\n- **Total:** R$ 69,72\n\n### Prazo de Entrega:\n- **Prazo estimado:** 8 dias úteis (marco inicial da contagem ainda está pendente).\n\nSe precisar de mais alguma informação ou quiser prosseguir com o pedido, é só avisar!",
+            "tool_calls": []
+          }
+        ],
+        "eventos_ferramentas": [
+          {
+            "evento": "inicio",
+            "run_id": "01a1be55-c27a-78a2-aaae-6d56e5032152",
+            "ferramenta": "consultar_catalogo_estruturado",
+            "entrada": "{'pergunta': 'correia de acessórios e filtro de óleo para Celta 2012 1.0 8V flex'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1be55-c27a-78a2-aaae-6d56e5032152",
+            "observado": "{\"status\": \"ok\", \"pergunta\": \"correia de acessórios e filtro de óleo para Celta 2012 1.0 8V flex\", \"plano\": {\"consulta_valida\": true, \"veiculo_id\": \"V003\", \"categoria\": [\"correia_acessorios\", \"filtro_oleo\"], \"estoque\": \"qualquer\", \"preco_max_centavos\": null, \"ordenacao\": \"id\", \"limite\": 10, \"pendencias\": []}, \"plano_gerado\": {\"consulta_valida\": true, \"veiculo_id\": \"V003\", \"categoria\": [\"correia_acessorios\", \"filtro_oleo\"], \"estoque\": \"qualquer\", \"preco_max_centavos\": null, \"ordenacao\": \"id\", \"limite\": 10, \"pendencias\": []}, \"sql_executado\": \"SELECT DISTINCT p.dados FROM produtos p JOIN aplicacoes a ON a.produto_id=p.id WHERE a.veiculo_id=? AND p.categoria IN (?,?) ORDER BY p.id LIMIT ?\", \"parametros_sql\": [\"V003\", \"correia_acessorios\", \"filtro_oleo\", 10], \"produtos\": [{\"id\": \"P013\", \"sku\": \"CWB-SIM-P013\", \"nome\": \"Filtro de óleo — Celta (simulação)\", \"categoria\": \"filtro_oleo\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 2490, \"estoque\": 8, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}, {\"id\": \"P017\", \"sku\": \"CWB-SIM-P017\", \"nome\": \"Correia de acessórios — Celta (simulação)\", \"categoria\": \"correia_acessorios\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 2990, \"estoque\": 5, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"ajustes_plano\": [], \"configuracoes_consultadas\": [{\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}], \"cobertura\": \"Somente recortes cadastrados; não cobre automaticamente outros anos nem confirma aplicação no veículo do cliente.\", \"limite_atingido\": false, \"limite\": \"Catálogo didático; vínculo local não homologa aplicação real. Lista não é orçamento nem reserva.\"}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1be55-cf41-7610-ba47-afef77184ee9",
+            "ferramenta": "calcular_orcamento",
+            "entrada": "{'itens': [{'produto_id': 'P013', 'quantidade': 1}, {'produto_id': 'P017', 'quantidade': 1}], 'modalidade': 'entrega', 'municipio': 'São Paulo', 'uf': 'SP'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1be55-cf41-7610-ba47-afef77184ee9",
+            "observado": "{\"itens\": [{\"produto_id\": \"P013\", \"sku\": \"CWB-SIM-P013\", \"quantidade\": 1, \"preco_unitario_centavos\": 2490, \"estoque_consultado\": 8}, {\"produto_id\": \"P017\", \"sku\": \"CWB-SIM-P017\", \"quantidade\": 1, \"preco_unitario_centavos\": 2990, \"estoque_consultado\": 5}], \"subtotal_centavos\": 5480, \"frete_centavos\": null, \"total_centavos\": null, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [\"Consulte um único CEP de entrega neste turno antes de calcular.\"], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"destino_pendente\"}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1be55-d44e-7cf2-9018-ac507d4b7682",
+            "ferramenta": "consultar_cep",
+            "entrada": "{'cep': '01002-020'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1be55-d44e-7cf2-9018-ac507d4b7682",
+            "observado": "{\"origem\": \"brasilapi_cep_v2_real\", \"cep\": \"01002020\", \"endereco\": {\"cep\": \"01002-020\", \"logradouro\": \"Viaduto do Chá\", \"bairro\": \"Centro\", \"localidade\": \"São Paulo\", \"uf\": \"SP\"}, \"coordenadas\": {\"latitude\": -23.5475, \"longitude\": -46.63611}, \"tentativa_http_real\": false, \"url\": \"https://brasilapi.com.br/api/cep/v2/01002020\", \"cache\": true, \"codigo_http\": 200, \"status\": \"ok\", \"servico_endereco\": \"open-cep\", \"precisao\": \"Coordenadas aproximadas do CEP; não confirmam número do imóvel nem trajeto rodoviário.\", \"pendencias\": [], \"limite\": \"BrasilAPI informa endereço e pode fornecer coordenadas; distância e frete são calculados por Python.\"}"
+          },
+          {
+            "evento": "inicio",
+            "run_id": "01a1be55-d88c-77b0-8308-ce984fd8f792",
+            "ferramenta": "consultar_entrega",
+            "entrada": "{'municipio': 'São Paulo', 'uf': 'SP'}"
+          },
+          {
+            "evento": "retorno",
+            "run_id": "01a1be55-d88c-77b0-8308-ce984fd8f792",
+            "observado": "{\"frete_centavos\": 1492, \"prazo_dias_uteis\": 8, \"distancia_km\": 337.238, \"metodo_distancia\": \"haversine_linha_reta\", \"pendencias\": [\"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"fontes_regras\": [\"loja_regras.json\", \"BrasilAPI CEP V2\"], \"limite\": \"Distância aproximada em linha reta até o ponto do CEP; não representa percurso rodoviário.\", \"cep_destino\": \"01002020\", \"coordenadas_destino\": {\"latitude\": -23.5475, \"longitude\": -46.63611}, \"origem_cep\": \"brasilapi_cep_v2_real\", \"coordenadas_origem\": {\"latitude\": -25.4102283, \"longitude\": -49.2661342}, \"regra_aplicada\": \"externo_proporcional_distancia_linha_reta\", \"status\": \"parcial\"}"
+          }
+        ],
+        "esquemas_modelo": [
+          [
+            {
+              "type": "function",
+              "function": {
+                "name": "listar_veiculos",
+                "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+                "parameters": {
+                  "properties": {},
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo",
+                "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+                "parameters": {
+                  "properties": {
+                    "produto_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "veiculo_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "categoria": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "produto_id",
+                    "veiculo_id",
+                    "categoria"
+                  ],
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_cep",
+                "description": "Consulte endereço e coordenadas aproximadas pela BrasilAPI CEP V2. Use CEP fornecido pelo cliente; depois consulte entrega ou orçamento. Não invente CEP, município nem coordenadas.",
+                "parameters": {
+                  "properties": {
+                    "cep": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "cep"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "calcular_orcamento",
+                "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+                "parameters": {
+                  "properties": {
+                    "itens": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "produto_id": {
+                            "description": "ID ou SKU retornado pela consulta do catálogo.",
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "quantidade": {
+                            "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                            "exclusiveMinimum": 0,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "produto_id",
+                          "quantidade"
+                        ],
+                        "type": "object"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "modalidade": {
+                      "enum": [
+                        "retirada",
+                        "entrega"
+                      ],
+                      "type": "string"
+                    },
+                    "municipio": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    },
+                    "uf": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null
+                    }
+                  },
+                  "required": [
+                    "itens",
+                    "modalidade",
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_entrega",
+                "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+                "parameters": {
+                  "properties": {
+                    "municipio": {
+                      "type": "string"
+                    },
+                    "uf": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "municipio",
+                    "uf"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_informacao_tecnica",
+                "description": "Consulte a base manual para os veículos cadastrados: óleo, manutenção básica, freios, pneus, velas, correias e alternador. Retorne fontes, especificações e perguntas necessárias. Pendência não autoriza completar por suposição.",
+                "parameters": {
+                  "properties": {
+                    "veiculo_id": {
+                      "type": "string"
+                    },
+                    "assunto": {
+                      "enum": [
+                        "oleo",
+                        "sincronismo",
+                        "correia_externa",
+                        "distincao_correias",
+                        "manutencao_basica",
+                        "freios",
+                        "pneus",
+                        "velas",
+                        "alternador",
+                        "arquitetura",
+                        "arrefecimento"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "veiculo_id",
+                    "assunto"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_politicas",
+                "description": "Busque políticas da loja no índice FAISS existente. Envie pergunta completa; retorno tem trechos/fontes, consultas executadas e lacunas. Não fornece cálculo de frete nem especificação de peça.",
+                "parameters": {
+                  "properties": {
+                    "pergunta": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "pergunta"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            },
+            {
+              "type": "function",
+              "function": {
+                "name": "consultar_catalogo_estruturado",
+                "description": "Liste produtos com filtros combinados de veículo confirmado, categoria, estoque, teto de preço e ordenação. Converte a pergunta em plano validado e SELECT parametrizado; retorna plano, SQL e dados. Não calcula orçamento nem altera estoque.",
+                "parameters": {
+                  "properties": {
+                    "pergunta": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "pergunta"
+                  ],
+                  "type": "object",
+                  "additionalProperties": false
+                },
+                "strict": true
+              }
+            }
+          ]
+        ],
+        "mensagens_contexto": 3,
+        "resposta_candidata": "Aqui estão os detalhes do seu pedido:\n\n1. **Filtro de óleo** — Celta (simulação)\n   - Preço: R$ 24,90\n   - Estoque: 8 unidades disponíveis\n\n2. **Correia de acessórios** — Celta (simulação)\n   - Preço: R$ 29,90\n   - Estoque: 5 unidades disponíveis\n\n### Resumo do Orçamento:\n- **Subtotal dos produtos:** R$ 54,80\n- **Frete:** R$ 14,92\n- **Total:** R$ 69,72\n\n### Prazo de Entrega:\n- **Prazo estimado:** 8 dias úteis (marco inicial da contagem ainda está pendente).\n\nSe precisar de mais alguma informação ou quiser prosseguir com o pedido, é só avisar!",
+        "verificacao_especifica": {
+          "regra": "fora_das_protecoes_especificas",
+          "substituida": false
+        },
+        "cliente_demo": "teste_brasilapi",
+        "sessao": "c5a1811a832f4d438a64a721c5807ae7",
+        "historico_enviado": [
+          {
+            "role": "user",
+            "content": "Quanto fica o frete para o CEP 01002-020?"
+          },
+          {
+            "role": "assistant",
+            "content": "O frete para o CEP 01002-020 é de R$ 14,92, com prazo estimado de 8 dias úteis. O prazo ainda está pendente de confirmação do marco inicial, então não dá para prometer uma data específica de entrega."
+          }
+        ],
+        "memoria_utilizada": {
+          "perfil": null,
+          "recuperacao": {
+            "status": "vetores_desativados",
+            "resumos": []
+          },
+          "contexto_comercial": {},
+          "limite": "Memórias declaradas pelo cliente; não são evidência técnica ou comercial."
+        },
+        "janela_turnos": 6,
+        "fontes_documentais": [],
+        "resposta_antes_da_apresentacao": "Aqui estão os detalhes do seu pedido:\n\n1. **Filtro de óleo** — Celta (simulação)\n   - Preço: R$ 24,90\n   - Estoque: 8 unidades disponíveis\n\n2. **Correia de acessórios** — Celta (simulação)\n   - Preço: R$ 29,90\n   - Estoque: 5 unidades disponíveis\n\n### Resumo do Orçamento:\n- **Subtotal dos produtos:** R$ 54,80\n- **Frete:** R$ 14,92\n- **Total:** R$ 69,72\n\n### Prazo de Entrega:\n- **Prazo estimado:** 8 dias úteis (marco inicial da contagem ainda está pendente).\n\nSe precisar de mais alguma informação ou quiser prosseguir com o pedido, é só avisar!",
+        "resposta_antes_da_verificacao": "Aqui estão os detalhes do seu pedido:\n\n1. **Filtro de óleo** — Celta (simulação)\n   - Preço: R$ 24,90\n   - Estoque: 8 unidades disponíveis\n\n2. **Correia de acessórios** — Celta (simulação)\n   - Preço: R$ 29,90\n   - Estoque: 5 unidades disponíveis\n\n### Resumo do Orçamento:\n- **Subtotal dos produtos:** R$ 54,80\n- **Frete:** R$ 14,92\n- **Total:** R$ 69,72\n\n### Prazo de Entrega:\n- **Prazo estimado:** 8 dias úteis (marco inicial da contagem ainda está pendente).\n\nSe precisar de mais alguma informação ou quiser prosseguir com o pedido, é só avisar!",
+        "verificacao_geral": {
+          "metodo": "regras_deterministicas_e_juiz_LLM_tres_classes",
+          "origem_juiz": "ChatOpenAI:gpt-5.4-mini",
+          "maximo_reparos": 1,
+          "avaliacoes": [
+            {
+              "aprovada": false,
+              "parecer": {
+                "afirmacoes": [
+                  {
+                    "trecho": "Filtro de óleo — Celta (simulação)",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E001"
+                    ],
+                    "motivo": "O produto P013 é exatamente \"Filtro de óleo — Celta (simulação)\"."
+                  },
+                  {
+                    "trecho": "Preço: R$ 24,90",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E001",
+                      "E002"
+                    ],
+                    "motivo": "E001 traz o preço_centavos 2490 do P013 e E002 repete o preco_unitario_centavos 2490 para o item."
+                  },
+                  {
+                    "trecho": "Estoque: 8 unidades disponíveis",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E001",
+                      "E002"
+                    ],
+                    "motivo": "E001 informa estoque 8 para o P013 e E002 consulta estoque 8 para esse item."
+                  },
+                  {
+                    "trecho": "Correia de acessórios — Celta (simulação)",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E001"
+                    ],
+                    "motivo": "O produto P017 é exatamente \"Correia de acessórios — Celta (simulação)\"."
+                  },
+                  {
+                    "trecho": "Preço: R$ 29,90",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E001",
+                      "E002"
+                    ],
+                    "motivo": "E001 traz o preço_centavos 2990 do P017 e E002 repete o preco_unitario_centavos 2990 para o item."
+                  },
+                  {
+                    "trecho": "Estoque: 5 unidades disponíveis",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E001",
+                      "E002"
+                    ],
+                    "motivo": "E001 informa estoque 5 para o P017 e E002 consulta estoque 5 para esse item."
+                  },
+                  {
+                    "trecho": "Subtotal dos produtos: R$ 54,80",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E002"
+                    ],
+                    "motivo": "E002 informa subtotal_centavos 5480."
+                  },
+                  {
+                    "trecho": "Frete: R$ 14,92",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E004"
+                    ],
+                    "motivo": "E004 informa frete_centavos 1492."
+                  },
+                  {
+                    "trecho": "Total: R$ 69,72",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E002",
+                      "E004"
+                    ],
+                    "motivo": "Somando o subtotal de E002 (5480) com o frete de E004 (1492) resulta em 6972 centavos."
+                  },
+                  {
+                    "trecho": "Prazo estimado: 8 dias úteis",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E004"
+                    ],
+                    "motivo": "E004 informa prazo_dias_uteis 8."
+                  },
+                  {
+                    "trecho": "marco inicial da contagem ainda está pendente",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E004"
+                    ],
+                    "motivo": "E004 traz a pendencia \"Marco inicial da contagem do prazo pendente\"."
+                  }
+                ],
+                "cobertura_completa": true,
+                "responde_pedido": true,
+                "coerencia_logica": true,
+                "comentario": "Os valores, estoques, subtotal, frete, total e prazo estão sustentados pelas evidências. A ressalva sobre o marco inicial do prazo também está alinhada com E004."
+              },
+              "regras": [
+                {
+                  "regra": "valor_sem_evidencia",
+                  "trecho": "R$ 69,72"
+                },
+                {
+                  "regra": "valor_diverge_do_orcamento",
+                  "trecho": "Frete: R$ 14,92",
+                  "esperado_centavos": null
+                },
+                {
+                  "regra": "valor_diverge_do_orcamento",
+                  "trecho": "Total: R$ 69,72",
+                  "esperado_centavos": null
+                }
+              ],
+              "origem_juiz": "ChatOpenAI:gpt-5.4-mini"
+            },
+            {
+              "aprovada": false,
+              "parecer": {
+                "afirmacoes": [
+                  {
+                    "trecho": "Filtro de óleo — Celta: R$ 24,90 | estoque: 8",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E001"
+                    ],
+                    "motivo": "O produto P013 tem preco de 2490 centavos e estoque 8."
+                  },
+                  {
+                    "trecho": "Correia de acessórios — Celta: R$ 29,90 | estoque: 5",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E001"
+                    ],
+                    "motivo": "O produto P017 tem preco de 2990 centavos e estoque 5."
+                  },
+                  {
+                    "trecho": "Subtotal: R$ 54,80",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E002"
+                    ],
+                    "motivo": "O subtotal informado pela ferramenta e 5480 centavos."
+                  },
+                  {
+                    "trecho": "Frete: R$ 14,92",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E004"
+                    ],
+                    "motivo": "A ferramenta de entrega informa frete_centavos 1492."
+                  },
+                  {
+                    "trecho": "Total: R$ 69,72",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E002",
+                      "E004"
+                    ],
+                    "motivo": "O total corresponde ao subtotal de 5480 centavos somado ao frete de 1492 centavos."
+                  },
+                  {
+                    "trecho": "Prazo estimado: 8 dias úteis",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E004"
+                    ],
+                    "motivo": "A ferramenta de entrega informa prazo_dias_uteis 8."
+                  },
+                  {
+                    "trecho": "com marco inicial ainda pendente",
+                    "classe": "sustentada",
+                    "evidencias": [
+                      "E004"
+                    ],
+                    "motivo": "A ferramenta registra pendencia sobre o marco inicial da contagem do prazo."
+                  }
+                ],
+                "cobertura_completa": true,
+                "responde_pedido": true,
+                "coerencia_logica": true,
+                "comentario": "Todas as afirmacoes da resposta sao suportadas pelas evidencias, e o total bate com os valores informados."
+              },
+              "regras": [
+                {
+                  "regra": "valor_sem_evidencia",
+                  "trecho": "R$ 69,72"
+                },
+                {
+                  "regra": "valor_diverge_do_orcamento",
+                  "trecho": "Frete: R$ 14,92",
+                  "esperado_centavos": null
+                },
+                {
+                  "regra": "valor_diverge_do_orcamento",
+                  "trecho": "Total: R$ 69,72",
+                  "esperado_centavos": null
+                }
+              ],
+              "origem_juiz": "ChatOpenAI:gpt-5.4-mini"
+            }
+          ],
+          "reparos_executados": 1,
+          "resposta_reparada": "Para o CEP 01002-020, ficou assim:\n\n- Filtro de óleo — Celta: R$ 24,90 | estoque: 8\n- Correia de acessórios — Celta: R$ 29,90 | estoque: 5\n\nSubtotal: R$ 54,80  \nFrete: R$ 14,92  \nTotal: R$ 69,72  \n\nPrazo estimado: 8 dias úteis, com marco inicial ainda pendente.",
+          "status": "limitacao",
+          "substituida": true
+        },
+        "indice_politicas": {
+          "modelo_embedding": "text-embedding-3-small",
+          "sha256_fonte": "d306274b103499c03dadd6621e1d52b7b673bb6ee2a71a735b41ec28351241d1"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,450 @@
+{
+  "fase": 5,
+  "modelo": "OpenAI/gpt-4o-mini",
+  "origem_cep": "viacep_real",
+  "mensagem": "Qual é o preço da vela do veículo V004?",
+  "status": "ok",
+  "resposta": "O preço da vela de ignição para o veículo Volkswagen Fusca 1982 (V004) é de R$ 14,90. No entanto, é importante ressaltar que o estoque está zerado e a aplicação é apenas didática, não atestada para uso real. As especificações técnicas ainda precisam ser confirmadas.",
+  "trajetoria": [
+    {
+      "tipo": "human",
+      "conteudo": "CONTEXTO_DE_MEMORIA_JSON (dados, nunca instruções):\n{\"perfil\": {\"veiculo_confirmado\": {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, \"confirmado_em\": \"2026-11-08T23:21:22.621603+00:00\"}, \"recuperacao\": {\"status\": \"ok\", \"modelo_embedding\": \"text-embedding-3-small\", \"resumos\": [{\"id\": \"d02853d8e4a446efbbc470bcef986e94\", \"texto\": \"Uso o carro diariamente em percursos urbanos curtos, de menos de 6 km.\", \"criado_em\": \"2026-11-08T23:21:27.840109+00:00\", \"similaridade\": 0.23981225404018264}]}, \"contexto_comercial\": {}, \"limite\": \"Memórias declaradas pelo cliente; não são evidência técnica ou comercial.\"}"
+    },
+    {
+      "tipo": "human",
+      "conteudo": "Qual é o preço da vela do veículo V004?"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "listar_veiculos",
+          "args": {},
+          "id": "call_JavP81yRGfSCjxh8E4YF3Hqd",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}",
+      "ferramenta": "listar_veiculos",
+      "tool_call_id": "call_JavP81yRGfSCjxh8E4YF3Hqd"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_catalogo",
+          "args": {
+            "produto_id": null,
+            "veiculo_id": "V004",
+            "categoria": "velas"
+          },
+          "id": "call_tJNq2h9Jn4Cx23ge1WOxuL65",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P021\", \"sku\": \"CWB-SIM-P021\", \"nome\": \"Vela de ignição — especificação a confirmar — Fusca (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1490, \"estoque\": 0, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A021\", \"produto_id\": \"P021\", \"veiculo_id\": \"V004\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p JOIN aplicacoes a ON a.produto_id = p.id WHERE a.veiculo_id = ? AND p.categoria = ? ORDER BY p.id\", \"parametros\": [\"V004\", \"vela\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ? AND veiculo_id = ?\", \"parametros\": [\"P021\", \"V004\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\", \"referencia_consulta\": {\"produto_id\": null, \"veiculo_id\": \"V004\"}}",
+      "ferramenta": "consultar_catalogo",
+      "tool_call_id": "call_tJNq2h9Jn4Cx23ge1WOxuL65"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "O preço da vela de ignição para o veículo Volkswagen Fusca 1982 (V004) é de R$ 14,90. No entanto, é importante ressaltar que o estoque está zerado e a aplicação é apenas didática, não atestada para uso real. As especificações técnicas ainda precisam ser confirmadas.",
+      "tool_calls": []
+    }
+  ],
+  "eventos_ferramentas": [
+    {
+      "evento": "inicio",
+      "run_id": "01a1bdf4-3b22-7d01-afc4-cd1d5003b07a",
+      "ferramenta": "listar_veiculos",
+      "entrada": "{}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1bdf4-3b22-7d01-afc4-cd1d5003b07a",
+      "observado": "{\"status\": \"ok\", \"veiculos\": [{\"id\": \"V001\", \"marca\": \"Volkswagen\", \"modelo\": \"Gol\", \"ano_modelo\": 2010, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V002\", \"marca\": \"Fiat\", \"modelo\": \"Palio\", \"ano_modelo\": 2010, \"motor\": \"1.0 Fire 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V004\", \"marca\": \"Volkswagen\", \"modelo\": \"Fusca\", \"ano_modelo\": 1982, \"motor\": \"1600 a ar\", \"combustivel\": \"gasolina\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, {\"id\": \"V005\", \"marca\": \"Chevrolet\", \"modelo\": \"S10\", \"ano_modelo\": 2014, \"motor\": \"2.8 CTDI\", \"combustivel\": \"diesel\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão.\"}], \"sql_executado\": \"SELECT dados FROM veiculos ORDER BY id\", \"parametros_sql\": [], \"natureza\": \"recortes_academicos_propostos\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a1bdf4-3f94-7b91-88ad-ea0b555d2e1b",
+      "ferramenta": "consultar_catalogo",
+      "entrada": "{'produto_id': None, 'veiculo_id': 'V004', 'categoria': 'velas'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1bdf4-3f94-7b91-88ad-ea0b555d2e1b",
+      "observado": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P021\", \"sku\": \"CWB-SIM-P021\", \"nome\": \"Vela de ignição — especificação a confirmar — Fusca (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1490, \"estoque\": 0, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A021\", \"produto_id\": \"P021\", \"veiculo_id\": \"V004\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p JOIN aplicacoes a ON a.produto_id = p.id WHERE a.veiculo_id = ? AND p.categoria = ? ORDER BY p.id\", \"parametros\": [\"V004\", \"vela\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ? AND veiculo_id = ?\", \"parametros\": [\"P021\", \"V004\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\", \"referencia_consulta\": {\"produto_id\": null, \"veiculo_id\": \"V004\"}}"
+    }
+  ],
+  "esquemas_modelo": [
+    [
+      {
+        "type": "function",
+        "function": {
+          "name": "listar_veiculos",
+          "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+          "parameters": {
+            "properties": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo",
+          "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+          "parameters": {
+            "properties": {
+              "produto_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "veiculo_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "categoria": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object",
+            "required": [
+              "produto_id",
+              "veiculo_id",
+              "categoria"
+            ],
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_cep",
+          "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+          "parameters": {
+            "properties": {
+              "cep": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cep"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "calcular_orcamento",
+          "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+          "parameters": {
+            "properties": {
+              "itens": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "produto_id": {
+                      "description": "ID ou SKU retornado pela consulta do catálogo.",
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "quantidade": {
+                      "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                      "exclusiveMinimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "produto_id",
+                    "quantidade"
+                  ],
+                  "type": "object"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "modalidade": {
+                "enum": [
+                  "retirada",
+                  "entrega"
+                ],
+                "type": "string"
+              },
+              "municipio": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "uf": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "itens",
+              "modalidade",
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_entrega",
+          "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+          "parameters": {
+            "properties": {
+              "municipio": {
+                "type": "string"
+              },
+              "uf": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_informacao_tecnica",
+          "description": "Consulte a base manual para os veículos cadastrados: óleo, manutenção básica, freios, pneus, velas, correias e alternador. Retorne fontes, especificações e perguntas necessárias. Pendência não autoriza completar por suposição.",
+          "parameters": {
+            "properties": {
+              "veiculo_id": {
+                "type": "string"
+              },
+              "assunto": {
+                "enum": [
+                  "oleo",
+                  "sincronismo",
+                  "correia_externa",
+                  "distincao_correias",
+                  "manutencao_basica",
+                  "freios",
+                  "pneus",
+                  "velas",
+                  "alternador"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "veiculo_id",
+              "assunto"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_politicas",
+          "description": "Busque políticas da loja no índice FAISS existente. Envie pergunta completa; retorno tem trechos/fontes, consultas executadas e lacunas. Não fornece cálculo de frete nem especificação de peça.",
+          "parameters": {
+            "properties": {
+              "pergunta": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "pergunta"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo_estruturado",
+          "description": "Liste produtos com filtros combinados de veículo confirmado, categoria, estoque, teto de preço e ordenação. Converte a pergunta em plano validado e SELECT parametrizado; retorna plano, SQL e dados. Não calcula orçamento nem altera estoque.",
+          "parameters": {
+            "properties": {
+              "pergunta": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "pergunta"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      }
+    ]
+  ],
+  "mensagens_contexto": 1,
+  "resposta_candidata": "O preço da vela de ignição para o veículo Volkswagen Fusca 1982 (V004) é de R$ 14,90. No entanto, é importante ressaltar que o estoque está zerado e a aplicação é apenas didática, não atestada para uso real. As especificações técnicas ainda precisam ser confirmadas.",
+  "verificacao_especifica": {
+    "regra": "fora_das_protecoes_especificas",
+    "substituida": false
+  },
+  "cliente_demo": "cliente_demo",
+  "sessao": "975cb89e71e04c5a9d8bba6948e93b13",
+  "historico_enviado": [],
+  "memoria_utilizada": {
+    "perfil": {
+      "veiculo_confirmado": {
+        "id": "V003",
+        "marca": "Chevrolet",
+        "modelo": "Celta",
+        "ano_modelo": 2012,
+        "motor": "1.0 8V",
+        "combustivel": "flex",
+        "status_configuracao": "recorte_academico_proposto",
+        "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+      },
+      "confirmado_em": "2026-11-08T23:21:22.621603+00:00"
+    },
+    "recuperacao": {
+      "status": "ok",
+      "modelo_embedding": "text-embedding-3-small",
+      "resumos": [
+        {
+          "id": "d02853d8e4a446efbbc470bcef986e94",
+          "texto": "Uso o carro diariamente em percursos urbanos curtos, de menos de 6 km.",
+          "criado_em": "2026-11-08T23:21:27.840109+00:00",
+          "similaridade": 0.23981225404018264
+        }
+      ]
+    },
+    "contexto_comercial": {},
+    "limite": "Memórias declaradas pelo cliente; não são evidência técnica ou comercial."
+  },
+  "janela_turnos": 6,
+  "fontes_documentais": [],
+  "resposta_antes_da_apresentacao": "O preço da vela de ignição para o veículo Volkswagen Fusca 1982 (V004) é de R$ 14,90. No entanto, é importante ressaltar que o estoque está zerado e a aplicação é apenas didática, não atestada para uso real. As especificações técnicas ainda precisam ser confirmadas.",
+  "resposta_antes_da_verificacao": "O preço da vela de ignição para o veículo Volkswagen Fusca 1982 (V004) é de R$ 14,90. No entanto, é importante ressaltar que o estoque está zerado e a aplicação é apenas didática, não atestada para uso real. As especificações técnicas ainda precisam ser confirmadas.",
+  "verificacao_geral": {
+    "metodo": "regras_deterministicas_e_juiz_LLM_tres_classes",
+    "origem_juiz": "ChatOpenAI:gpt-5.4-mini",
+    "maximo_reparos": 1,
+    "avaliacoes": [
+      {
+        "aprovada": true,
+        "parecer": {
+          "afirmacoes": [
+            {
+              "trecho": "O preço da vela de ignição para o veículo Volkswagen Fusca 1982 (V004) é de R$ 14,90.",
+              "classe": "sustentada",
+              "evidencias": [
+                "E001",
+                "E002"
+              ],
+              "motivo": "E001 identifica V004 como Volkswagen Fusca 1982, e E002 traz o produto de categoria vela com preco_centavos 1490 para esse vínculo."
+            },
+            {
+              "trecho": "o estoque está zerado",
+              "classe": "sustentada",
+              "evidencias": [
+                "E002"
+              ],
+              "motivo": "E002 informa estoque: 0 para o produto P021."
+            },
+            {
+              "trecho": "a aplicação é apenas didática, não atestada para uso real.",
+              "classe": "sustentada",
+              "evidencias": [
+                "E002"
+              ],
+              "motivo": "E002 afirma que o vínculo tem status simulada_na_base_academica e validada_para_uso_real false, com restrição de vínculo didático."
+            },
+            {
+              "trecho": "As especificações técnicas ainda precisam ser confirmadas.",
+              "classe": "sustentada",
+              "evidencias": [
+                "E002"
+              ],
+              "motivo": "E002 traz a observação de que a especificação é 'a confirmar' e que os vínculos não são homologados para uso real."
+            }
+          ],
+          "cobertura_completa": true,
+          "responde_pedido": true,
+          "coerencia_logica": true,
+          "comentario": "A resposta atende ao pedido de preço e acrescenta limitações coerentes com a evidência: estoque zero, vínculo didático e especificação a confirmar."
+        },
+        "regras": [],
+        "origem_juiz": "ChatOpenAI:gpt-5.4-mini"
+      }
+    ],
+    "reparos_executados": 0,
+    "status": "aprovada",
+    "substituida": false
+  },
+  "indice_politicas": {
+    "modelo_embedding": "text-embedding-3-small",
+    "sha256_fonte": "945cb1379065a650aef3acd4f5a88f129b99718ad6f71c47140664e2366538b4"
+  }
+}

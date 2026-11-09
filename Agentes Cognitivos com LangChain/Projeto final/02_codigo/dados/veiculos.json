@@ -37,7 +37,13 @@
     "motor": "1600 a ar",
     "combustivel": "gasolina",
     "status_configuracao": "recorte_academico_proposto",
-    "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+    "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.",
+    "geracao": "classico_a_ar",
+    "refrigeracao": "ar",
+    "rotulos_identificacao": [
+      "a ar",
+      "clássico"
+    ]
   },
   {
     "id": "V005",
@@ -48,5 +54,22 @@
     "combustivel": "diesel",
     "status_configuracao": "recorte_academico_proposto",
     "observacao": "Recorte adicional diesel autorizado em 08/11. Confirmar versão, tração e código do motor quando a especificação exigir. Sem produtos comerciais vinculados nesta revisão."
+  },
+  {
+    "id": "V006",
+    "marca": "Volkswagen",
+    "modelo": "Fusca",
+    "ano_modelo": 2014,
+    "motor": "2.0 TSI",
+    "combustivel": "gasolina",
+    "geracao": "moderno_tsi",
+    "refrigeracao": "liquida",
+    "rotulos_identificacao": [
+      "TSI",
+      "moderno"
+    ],
+    "status_configuracao": "recorte_academico_proposto",
+    "codigo_motor": null,
+    "observacao": "Recorte técnico separado do clássico. Confirmar código do motor, versão e transmissão quando necessários. Sem produtos comerciais vinculados; não inferir óleo, capacidade, sincronismo ou código de peça por nome/ano."
   }
 ]

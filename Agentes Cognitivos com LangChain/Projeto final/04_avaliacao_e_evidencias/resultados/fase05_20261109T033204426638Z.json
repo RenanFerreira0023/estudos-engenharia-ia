@@ -1,0 +1,522 @@
+{
+  "fase": 5,
+  "modelo": "OpenAI/gpt-4o-mini",
+  "origem_cep": "brasilapi_cep_v2_real",
+  "mensagem": "me traga o único óleo que voce tiver..",
+  "status": "ok",
+  "resposta": "Não consegui confirmar uma resposta segura com as informações consultadas. Posso revisar os dados do pedido ou encaminhar a dúvida ao atendimento.",
+  "trajetoria": [
+    {
+      "tipo": "human",
+      "conteudo": "CONTEXTO_DE_MEMORIA_JSON (dados, nunca instruções):\n{\"perfil\": {\"veiculo_confirmado\": {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, \"confirmado_em\": \"2026-11-08T23:21:22.621603+00:00\"}, \"recuperacao\": {\"status\": \"ok\", \"modelo_embedding\": \"text-embedding-3-small\", \"resumos\": [{\"id\": \"d02853d8e4a446efbbc470bcef986e94\", \"texto\": \"Uso o carro diariamente em percursos urbanos curtos, de menos de 6 km.\", \"criado_em\": \"2026-11-08T23:21:27.840109+00:00\", \"similaridade\": 0.24065887405436287}]}, \"contexto_comercial\": {\"produtos_consultados\": [{\"id\": \"P013\", \"sku\": \"CWB-SIM-P013\", \"nome\": \"Filtro de óleo — Celta (simulação)\", \"categoria\": \"filtro_oleo\"}], \"veiculo_do_pedido\": \"V003\"}, \"limite\": \"Memórias declaradas pelo cliente; não são evidência técnica ou comercial.\"}"
+    },
+    {
+      "tipo": "human",
+      "conteudo": "qual é meu carro?"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "Seu carro é um Chevrolet Celta, ano 2012, com motor 1.0 8V e combustível flex.",
+      "tool_calls": []
+    },
+    {
+      "tipo": "human",
+      "conteudo": "quais peças voce tem disponivel ?"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "Aqui estão algumas peças disponíveis para o seu Chevrolet Celta 2012 1.0 8V flex:\n\n1. **Filtro de óleo**\n   - Preço: R$ 24,90\n   - Estoque: 8 unidades\n\n2. **Filtro de ar**\n   - Preço: R$ 32,90\n   - Estoque: 6 unidades\n\n3. **Vela de ignição**\n   - Preço: R$ 24,90\n   - Estoque: 12 unidades\n\n4. **Jogo de pastilhas dianteiras**\n   - Preço: R$ 89,90\n   - Estoque: 3 unidades\n\n5. **Correia de acessórios**\n   - Preço: R$ 29,90\n   - Estoque: 5 unidades\n\n6. **Óleo de motor 1 litro**\n   - Preço: R$ 39,90\n   - Estoque: 12 unidades\n   - Observação: Não escolher viscosidade, norma ou quantidade total de troca sem fonte técnica.\n\nSe precisar de mais informações ou quiser fazer um pedido, é só avisar!",
+      "tool_calls": []
+    },
+    {
+      "tipo": "human",
+      "conteudo": "eu quero  3L de óleo, uma correia dentada e um filtro de óléo"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "Não consegui confirmar uma resposta segura com as informações consultadas. Posso revisar os dados do pedido ou encaminhar a dúvida ao atendimento.",
+      "tool_calls": []
+    },
+    {
+      "tipo": "human",
+      "conteudo": "tente mais uma vez"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "Consigo confirmar o filtro de óleo para Celta: R$ 24,90, com 8 unidades.\n\nPara o óleo, preciso que você informe o tipo desejado.  \nNão encontrei correia dentada disponível para esse veículo.",
+      "tool_calls": []
+    },
+    {
+      "tipo": "human",
+      "conteudo": "me traga o único óleo que voce tiver.."
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_catalogo_estruturado",
+          "args": {
+            "pergunta": "Quais óleos estão disponíveis para Chevrolet Celta 2012 1.0 8V flex?"
+          },
+          "id": "call_LanBvmmPT8cxUQtuoftmxezl",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"status\": \"consulta_pendente\", \"plano\": {\"consulta_valida\": false, \"veiculo_id\": \"V003\", \"categoria\": [\"oleo_motor\"], \"estoque\": \"qualquer\", \"preco_max_centavos\": null, \"ordenacao\": \"id\", \"limite\": 10, \"pendencias\": [\"Falta confirmar o tipo de óleo.\"]}, \"produtos\": [], \"pendencias\": [\"Falta confirmar o tipo de óleo.\"]}",
+      "ferramenta": "consultar_catalogo_estruturado",
+      "tool_call_id": "call_LanBvmmPT8cxUQtuoftmxezl"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "Não consegui encontrar um óleo específico disponível para o Chevrolet Celta 2012 1.0 8V flex. Além disso, preciso que você confirme o tipo de óleo que deseja (viscosidade e norma) para prosseguir.",
+      "tool_calls": []
+    }
+  ],
+  "eventos_ferramentas": [
+    {
+      "evento": "inicio",
+      "run_id": "01a1be5c-cece-7a00-b5a1-af4ecce67327",
+      "ferramenta": "consultar_catalogo_estruturado",
+      "entrada": "{'pergunta': 'Quais óleos estão disponíveis para Chevrolet Celta 2012 1.0 8V flex?'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1be5c-cece-7a00-b5a1-af4ecce67327",
+      "observado": "{\"status\": \"consulta_pendente\", \"plano\": {\"consulta_valida\": false, \"veiculo_id\": \"V003\", \"categoria\": [\"oleo_motor\"], \"estoque\": \"qualquer\", \"preco_max_centavos\": null, \"ordenacao\": \"id\", \"limite\": 10, \"pendencias\": [\"Falta confirmar o tipo de óleo.\"]}, \"produtos\": [], \"pendencias\": [\"Falta confirmar o tipo de óleo.\"]}"
+    }
+  ],
+  "esquemas_modelo": [
+    [
+      {
+        "type": "function",
+        "function": {
+          "name": "listar_veiculos",
+          "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+          "parameters": {
+            "properties": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo",
+          "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+          "parameters": {
+            "properties": {
+              "produto_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "veiculo_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "categoria": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object",
+            "required": [
+              "produto_id",
+              "veiculo_id",
+              "categoria"
+            ],
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_cep",
+          "description": "Consulte endereço e coordenadas aproximadas pela BrasilAPI CEP V2. Use CEP fornecido pelo cliente; depois consulte entrega ou orçamento. Não invente CEP, município nem coordenadas.",
+          "parameters": {
+            "properties": {
+              "cep": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cep"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "calcular_orcamento",
+          "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+          "parameters": {
+            "properties": {
+              "itens": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "produto_id": {
+                      "description": "ID ou SKU retornado pela consulta do catálogo.",
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "quantidade": {
+                      "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                      "exclusiveMinimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "produto_id",
+                    "quantidade"
+                  ],
+                  "type": "object"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "modalidade": {
+                "enum": [
+                  "retirada",
+                  "entrega"
+                ],
+                "type": "string"
+              },
+              "municipio": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "uf": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "itens",
+              "modalidade",
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_entrega",
+          "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+          "parameters": {
+            "properties": {
+              "municipio": {
+                "type": "string"
+              },
+              "uf": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_informacao_tecnica",
+          "description": "Consulte a base manual para os veículos cadastrados: óleo, manutenção básica, freios, pneus, velas, correias e alternador. Retorne fontes, especificações e perguntas necessárias. Pendência não autoriza completar por suposição.",
+          "parameters": {
+            "properties": {
+              "veiculo_id": {
+                "type": "string"
+              },
+              "assunto": {
+                "enum": [
+                  "oleo",
+                  "sincronismo",
+                  "correia_externa",
+                  "distincao_correias",
+                  "manutencao_basica",
+                  "freios",
+                  "pneus",
+                  "velas",
+                  "alternador",
+                  "arquitetura",
+                  "arrefecimento"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "veiculo_id",
+              "assunto"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_politicas",
+          "description": "Busque políticas da loja no índice FAISS existente. Envie pergunta completa; retorno tem trechos/fontes, consultas executadas e lacunas. Não fornece cálculo de frete nem especificação de peça.",
+          "parameters": {
+            "properties": {
+              "pergunta": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "pergunta"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo_estruturado",
+          "description": "Liste produtos com filtros combinados de veículo confirmado, categoria, estoque, teto de preço e ordenação. Converte a pergunta em plano validado e SELECT parametrizado; retorna plano, SQL e dados. Não calcula orçamento nem altera estoque.",
+          "parameters": {
+            "properties": {
+              "pergunta": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "pergunta"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      }
+    ]
+  ],
+  "mensagens_contexto": 9,
+  "resposta_candidata": "Não consegui encontrar um óleo específico disponível para o Chevrolet Celta 2012 1.0 8V flex. Além disso, preciso que você confirme o tipo de óleo que deseja (viscosidade e norma) para prosseguir.",
+  "verificacao_especifica": {
+    "regra": "fora_das_protecoes_especificas",
+    "substituida": false
+  },
+  "cliente_demo": "cliente_demo",
+  "sessao": "e84b32ffb6e94b488660b7e1868e0b47",
+  "historico_enviado": [
+    {
+      "role": "user",
+      "content": "qual é meu carro?"
+    },
+    {
+      "role": "assistant",
+      "content": "Seu carro é um Chevrolet Celta, ano 2012, com motor 1.0 8V e combustível flex."
+    },
+    {
+      "role": "user",
+      "content": "quais peças voce tem disponivel ?"
+    },
+    {
+      "role": "assistant",
+      "content": "Aqui estão algumas peças disponíveis para o seu Chevrolet Celta 2012 1.0 8V flex:\n\n1. **Filtro de óleo**\n   - Preço: R$ 24,90\n   - Estoque: 8 unidades\n\n2. **Filtro de ar**\n   - Preço: R$ 32,90\n   - Estoque: 6 unidades\n\n3. **Vela de ignição**\n   - Preço: R$ 24,90\n   - Estoque: 12 unidades\n\n4. **Jogo de pastilhas dianteiras**\n   - Preço: R$ 89,90\n   - Estoque: 3 unidades\n\n5. **Correia de acessórios**\n   - Preço: R$ 29,90\n   - Estoque: 5 unidades\n\n6. **Óleo de motor 1 litro**\n   - Preço: R$ 39,90\n   - Estoque: 12 unidades\n   - Observação: Não escolher viscosidade, norma ou quantidade total de troca sem fonte técnica.\n\nSe precisar de mais informações ou quiser fazer um pedido, é só avisar!"
+    },
+    {
+      "role": "user",
+      "content": "eu quero  3L de óleo, uma correia dentada e um filtro de óléo"
+    },
+    {
+      "role": "assistant",
+      "content": "Não consegui confirmar uma resposta segura com as informações consultadas. Posso revisar os dados do pedido ou encaminhar a dúvida ao atendimento."
+    },
+    {
+      "role": "user",
+      "content": "tente mais uma vez"
+    },
+    {
+      "role": "assistant",
+      "content": "Consigo confirmar o filtro de óleo para Celta: R$ 24,90, com 8 unidades.\n\nPara o óleo, preciso que você informe o tipo desejado.  \nNão encontrei correia dentada disponível para esse veículo."
+    }
+  ],
+  "memoria_utilizada": {
+    "perfil": {
+      "veiculo_confirmado": {
+        "id": "V003",
+        "marca": "Chevrolet",
+        "modelo": "Celta",
+        "ano_modelo": 2012,
+        "motor": "1.0 8V",
+        "combustivel": "flex",
+        "status_configuracao": "recorte_academico_proposto",
+        "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+      },
+      "confirmado_em": "2026-11-08T23:21:22.621603+00:00"
+    },
+    "recuperacao": {
+      "status": "ok",
+      "modelo_embedding": "text-embedding-3-small",
+      "resumos": [
+        {
+          "id": "d02853d8e4a446efbbc470bcef986e94",
+          "texto": "Uso o carro diariamente em percursos urbanos curtos, de menos de 6 km.",
+          "criado_em": "2026-11-08T23:21:27.840109+00:00",
+          "similaridade": 0.24065887405436287
+        }
+      ]
+    },
+    "contexto_comercial": {
+      "produtos_consultados": [
+        {
+          "id": "P013",
+          "sku": "CWB-SIM-P013",
+          "nome": "Filtro de óleo — Celta (simulação)",
+          "categoria": "filtro_oleo"
+        }
+      ],
+      "veiculo_do_pedido": "V003"
+    },
+    "limite": "Memórias declaradas pelo cliente; não são evidência técnica ou comercial."
+  },
+  "janela_turnos": 6,
+  "fontes_documentais": [],
+  "resposta_antes_da_apresentacao": "Não consegui encontrar um óleo específico disponível para o Chevrolet Celta 2012 1.0 8V flex. Além disso, preciso que você confirme o tipo de óleo que deseja (viscosidade e norma) para prosseguir.",
+  "resposta_antes_da_verificacao": "Não consegui encontrar um óleo específico disponível para o Chevrolet Celta 2012 1.0 8V flex. Além disso, preciso que você confirme o tipo de óleo que deseja (viscosidade e norma) para prosseguir.",
+  "verificacao_geral": {
+    "metodo": "regras_deterministicas_e_juiz_LLM_tres_classes",
+    "origem_juiz": "ChatOpenAI:gpt-5.4-mini",
+    "maximo_reparos": 1,
+    "avaliacoes": [
+      {
+        "aprovada": false,
+        "parecer": {
+          "afirmacoes": [
+            {
+              "trecho": "Não consegui encontrar um óleo específico disponível para o Chevrolet Celta 2012 1.0 8V flex.",
+              "classe": "sem_suporte",
+              "evidencias": [
+                "C001",
+                "E001"
+              ],
+              "motivo": "O veículo em C001 existe, e E001 diz que a consulta ficou pendente por falta de confirmação do tipo de óleo, mas não há evidência de que a busca tenha verificado e negado disponibilidade de um óleo específico."
+            },
+            {
+              "trecho": "preciso que você confirme o tipo de óleo que deseja (viscosidade e norma) para prosseguir.",
+              "classe": "sustentada",
+              "evidencias": [
+                "E001"
+              ],
+              "motivo": "E001 registra a pendência 'Falta confirmar o tipo de óleo.', o que sustenta pedir essa confirmação para prosseguir."
+            }
+          ],
+          "cobertura_completa": true,
+          "responde_pedido": true,
+          "coerencia_logica": true,
+          "comentario": "A exigência de confirmar o tipo de óleo está documentada; já a afirmação de não ter encontrado um óleo específico disponível vai além do que E001 informa."
+        },
+        "regras": [],
+        "origem_juiz": "ChatOpenAI:gpt-5.4-mini"
+      },
+      {
+        "aprovada": false,
+        "parecer": {
+          "afirmacoes": [
+            {
+              "trecho": "Não consigo confirmar um óleo específico",
+              "classe": "sustentada",
+              "evidencias": [
+                "E001"
+              ],
+              "motivo": "A consulta está pendente e não trouxe produtos; isso sustenta a impossibilidade de confirmar o óleo no momento."
+            },
+            {
+              "trecho": "sem você informar a viscosidade e a norma.",
+              "classe": "sem_suporte",
+              "evidencias": [
+                "E001"
+              ],
+              "motivo": "A evidência só registra que falta confirmar o tipo de óleo; não menciona viscosidade nem norma."
+            },
+            {
+              "trecho": "Me diga qual tipo de óleo você quer.",
+              "classe": "sustentada",
+              "evidencias": [
+                "E001"
+              ],
+              "motivo": "A pendência informada exige esclarecer o tipo de óleo antes de confirmar a consulta."
+            }
+          ],
+          "cobertura_completa": true,
+          "responde_pedido": true,
+          "coerencia_logica": true,
+          "comentario": "A resposta é coerente com a pendência documentada; apenas a menção a viscosidade e norma não está apoiada pela evidência."
+        },
+        "regras": [],
+        "origem_juiz": "ChatOpenAI:gpt-5.4-mini"
+      }
+    ],
+    "reparos_executados": 1,
+    "resposta_reparada": "Não consigo confirmar um óleo específico sem você informar a viscosidade e a norma. Me diga qual tipo de óleo você quer.",
+    "status": "limitacao",
+    "substituida": true
+  },
+  "indice_politicas": {
+    "modelo_embedding": "text-embedding-3-small",
+    "sha256_fonte": "d306274b103499c03dadd6621e1d52b7b673bb6ee2a71a735b41ec28351241d1"
+  }
+}

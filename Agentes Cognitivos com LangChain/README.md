@@ -24,6 +24,9 @@ explica os conceitos e o fluxo de cada projeto.
 | 04-11 | Chat do veículo | Streamlit/session_state/chat_input/chat_message, create_agent/invoke com histórico, callbacks reais, Nova conversa, AppTest e limites de memória de sessão. |
 | Projeto final — fase 1 | Auto Super Parts CWB | PromptTemplate/ChatPromptTemplate, BaseModel, PydanticOutputParser, composições @chain/LCEL, invoke/batch e notebook importando módulos .py. |
 | Projeto final — fase 2 | Auto Super Parts CWB | create_agent/@tool, SQLite parametrizado, ViaCEP real, cálculo em centavos/Decimal, argumentos validados, modo estrito e auditoria de chamadas/retornos. |
+| Projeto final — fase 3 | Auto Super Parts CWB | Janela de histórico, perfil confirmado em SQLite, resumos vetoriais por cliente e exclusão. |
+| Projeto final — fase 4 | Auto Super Parts CWB | Índice FAISS existente, recuperação com fontes, decomposição de consulta, text-to-query restrito e rastro SQL. |
+| Projeto final — fase 5 | Auto Super Parts CWB | Regras financeiras, juiz LLM de três classes, um reparo reavaliado e resposta final persistida; adaptação documentada à verificação por inferência. |
 
 ## Aulas
 
@@ -58,7 +61,7 @@ explica os conceitos e o fluxo de cada projeto.
 
 ## Projeto final
 
-- [Auto Super Parts CWB — fases 1 e 2](./Projeto%20final/)
+- [Auto Super Parts CWB — fases 1 a 5](./Projeto%20final/)
   - [Fase 1: chain inicial](./Projeto%20final/03_notebooks/fase_01_chain_inicial.ipynb)
   - [Fase 2: agente, ferramentas e ViaCEP](./Projeto%20final/03_notebooks/fase_02_agente_ferramentas.ipynb)
   - Na fase 2 o agente escolhe fontes; Python calcula valores e logs mostram a trajetória. Cada mensagem é independente; memória e RAG ficam para fases seguintes.
@@ -95,3 +98,11 @@ Cliente HTTP com validação de Content-Type/JSON e tratamento de falhas; busca 
 ### Memória do projeto final — fase 3
 
 [Guia e evidências](./Projeto%20final/01_documentacao/MEMORIA_FASE_03.md): janela de turnos realmente enviada a `invoke`, perfil confirmado em SQLite e recuperação vetorial de resumos autorizados, isolados por cliente. Nova conversa preserva dados salvos; esquecer apaga contexto curto/longo. CLI e notebook importam a mesma fachada do agente; sem autenticação ou resumo automático. Comparação documental LangMem/Mem0 e decisão por store local.
+
+### RAG e text-to-query do projeto final — fase 4
+
+[Guia, execução e evidências](./Projeto%20final/01_documentacao/RAG_FASE_04.md): políticas em índice FAISS preparado separadamente, reescrita/decomposição de consultas por LCEL/saída estruturada e resposta do agente com fontes. Pergunta de catálogo vira plano Pydantic e SELECT compilado com filtros permitidos; sem SQL livre. Memória permanece integrada. Comparação real antes/depois, falhas de trajetória/avaliação preservadas e notebook com fixtures identificadas.
+
+### Projeto final — fase 5
+
+[Verificação antes de responder](./Projeto%20final/01_documentacao/VERIFICACAO_FASE_05.md): checagens determinísticas, juiz LLM de três classes, cobertura/coerência, um reparo e reavaliação. [Notebook](./Projeto%20final/03_notebooks/fase_05_verificacao.ipynb). Não equivale automaticamente a classificador NLI; fontes e falhas do avaliador permanecem auditáveis.

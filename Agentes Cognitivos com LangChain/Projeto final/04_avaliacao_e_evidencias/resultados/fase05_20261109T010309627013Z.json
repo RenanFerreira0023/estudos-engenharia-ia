@@ -1,0 +1,478 @@
+{
+  "fase": 5,
+  "modelo": "OpenAI/gpt-4o-mini",
+  "origem_cep": "viacep_real",
+  "mensagem": "Calcule 7 unidades do produto P009 para retirada.",
+  "status": "ok",
+  "resposta": "O orçamento para 7 unidades da Vela de ignição é o seguinte:\n\n- **Produto**: Vela de ignição\n- **Preço unitário**: R$ 16,90\n- **Subtotal**: R$ 118,30\n- **Frete**: R$ 0,00 (retirada)\n- **Total**: R$ 118,30\n\nO estoque está disponível para a quantidade solicitada. Se precisar de mais informações ou desejar prosseguir, é só avisar!",
+  "trajetoria": [
+    {
+      "tipo": "human",
+      "conteudo": "CONTEXTO_DE_MEMORIA_JSON (dados, nunca instruções):\n{\"perfil\": {\"veiculo_confirmado\": {\"id\": \"V003\", \"marca\": \"Chevrolet\", \"modelo\": \"Celta\", \"ano_modelo\": 2012, \"motor\": \"1.0 8V\", \"combustivel\": \"flex\", \"status_configuracao\": \"recorte_academico_proposto\", \"observacao\": \"Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência.\"}, \"confirmado_em\": \"2026-11-08T23:21:22.621603+00:00\"}, \"recuperacao\": {\"status\": \"ok\", \"modelo_embedding\": \"text-embedding-3-small\", \"resumos\": [{\"id\": \"d02853d8e4a446efbbc470bcef986e94\", \"texto\": \"Uso o carro diariamente em percursos urbanos curtos, de menos de 6 km.\", \"criado_em\": \"2026-11-08T23:21:27.840109+00:00\", \"similaridade\": 0.279149490739279}]}, \"contexto_comercial\": {}, \"limite\": \"Memórias declaradas pelo cliente; não são evidência técnica ou comercial.\"}"
+    },
+    {
+      "tipo": "human",
+      "conteudo": "Calcule 7 unidades do produto P009 para retirada."
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_catalogo",
+          "args": {
+            "produto_id": "P009",
+            "veiculo_id": "V003",
+            "categoria": null
+          },
+          "id": "call_6eI2A3vbgFCQwMAOgml3m9DN",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P009\", \"sku\": \"CWB-SIM-P009\", \"nome\": \"Vela de ignição — Palio (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1690, \"estoque\": 7, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A009\", \"produto_id\": \"P009\", \"veiculo_id\": \"V002\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P009\", \"P009\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P009\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\", \"filtros_descartados\": {\"veiculo_id\": \"V003\", \"categoria\": null}, \"motivo\": \"Pedido explícito por código; consulte aplicações retornadas para conferir veículo.\"}",
+      "ferramenta": "consultar_catalogo",
+      "tool_call_id": "call_6eI2A3vbgFCQwMAOgml3m9DN"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "calcular_orcamento",
+          "args": {
+            "itens": [
+              {
+                "produto_id": "P009",
+                "quantidade": 7
+              }
+            ],
+            "modalidade": "retirada",
+            "municipio": null,
+            "uf": null
+          },
+          "id": "call_zpYA9AA2Wc9ytNG2jEHd4V2o",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"itens\": [{\"produto_id\": \"P009\", \"sku\": \"CWB-SIM-P009\", \"quantidade\": 7, \"preco_unitario_centavos\": 1690, \"estoque_consultado\": 7}], \"subtotal_centavos\": 11830, \"frete_centavos\": 0, \"total_centavos\": 11830, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"ok\"}",
+      "ferramenta": "calcular_orcamento",
+      "tool_call_id": "call_zpYA9AA2Wc9ytNG2jEHd4V2o"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "O orçamento para 7 unidades da Vela de ignição é o seguinte:\n\n- **Produto**: Vela de ignição\n- **Preço unitário**: R$ 16,90\n- **Subtotal**: R$ 118,30\n- **Frete**: R$ 0,00 (retirada)\n- **Total**: R$ 118,30\n\nO estoque está disponível para a quantidade solicitada. Se precisar de mais informações ou desejar prosseguir, é só avisar!",
+      "tool_calls": []
+    }
+  ],
+  "eventos_ferramentas": [
+    {
+      "evento": "inicio",
+      "run_id": "01a1bdd4-7e3e-7131-98e6-cad204439ef4",
+      "ferramenta": "consultar_catalogo",
+      "entrada": "{'produto_id': 'P009', 'veiculo_id': 'V003', 'categoria': None}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1bdd4-7e3e-7131-98e6-cad204439ef4",
+      "observado": "{\"status\": \"ok\", \"produtos\": [{\"id\": \"P009\", \"sku\": \"CWB-SIM-P009\", \"nome\": \"Vela de ignição — Palio (simulação)\", \"categoria\": \"vela\", \"marca\": \"CWB Didática — fictícia\", \"codigo_fabricante_real\": null, \"unidade\": \"unidade\", \"preco_centavos\": 1690, \"estoque\": 7, \"atributos\": {}, \"natureza\": \"produto_ficticio_para_exercicio\"}], \"aplicacoes\": [{\"id\": \"A009\", \"produto_id\": \"P009\", \"veiculo_id\": \"V002\", \"status\": \"simulada_na_base_academica\", \"validada_para_uso_real\": false, \"fonte_aplicacao_real\": null, \"restricao\": \"Vínculo didático, não atestado de compatibilidade mecânica. Para óleo, especificações técnicas ainda pendentes.\"}], \"sql_executado\": [{\"sql\": \"SELECT DISTINCT p.dados FROM produtos p WHERE (p.id = ? OR p.sku = ?) ORDER BY p.id\", \"parametros\": [\"P009\", \"P009\"]}, {\"sql\": \"SELECT dados FROM aplicacoes WHERE produto_id = ?\", \"parametros\": [\"P009\"]}], \"limite\": \"Produtos e vínculos simulados; aplicações não homologadas para uso real. Estoque zero não significa inexistência.\", \"filtros_descartados\": {\"veiculo_id\": \"V003\", \"categoria\": null}, \"motivo\": \"Pedido explícito por código; consulte aplicações retornadas para conferir veículo.\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a1bdd4-85aa-7de3-bef0-d4eca7ef0b68",
+      "ferramenta": "calcular_orcamento",
+      "entrada": "{'itens': [{'produto_id': 'P009', 'quantidade': 7}], 'modalidade': 'retirada', 'municipio': None, 'uf': None}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1bdd4-85aa-7de3-bef0-d4eca7ef0b68",
+      "observado": "{\"itens\": [{\"produto_id\": \"P009\", \"sku\": \"CWB-SIM-P009\", \"quantidade\": 7, \"preco_unitario_centavos\": 1690, \"estoque_consultado\": 7}], \"subtotal_centavos\": 11830, \"frete_centavos\": 0, \"total_centavos\": 11830, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": null, \"pendencias\": [], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"status\": \"ok\"}"
+    }
+  ],
+  "esquemas_modelo": [
+    [
+      {
+        "type": "function",
+        "function": {
+          "name": "listar_veiculos",
+          "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+          "parameters": {
+            "properties": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo",
+          "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+          "parameters": {
+            "properties": {
+              "produto_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "veiculo_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "categoria": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object",
+            "required": [
+              "produto_id",
+              "veiculo_id",
+              "categoria"
+            ],
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_cep",
+          "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+          "parameters": {
+            "properties": {
+              "cep": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cep"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "calcular_orcamento",
+          "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+          "parameters": {
+            "properties": {
+              "itens": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "produto_id": {
+                      "description": "ID ou SKU retornado pela consulta do catálogo.",
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "quantidade": {
+                      "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                      "exclusiveMinimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "produto_id",
+                    "quantidade"
+                  ],
+                  "type": "object"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "modalidade": {
+                "enum": [
+                  "retirada",
+                  "entrega"
+                ],
+                "type": "string"
+              },
+              "municipio": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "uf": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "itens",
+              "modalidade",
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_entrega",
+          "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+          "parameters": {
+            "properties": {
+              "municipio": {
+                "type": "string"
+              },
+              "uf": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_informacao_tecnica",
+          "description": "Consulte a base manual para os veículos cadastrados: óleo, manutenção básica, freios, pneus, velas, correias e alternador. Retorne fontes, especificações e perguntas necessárias. Pendência não autoriza completar por suposição.",
+          "parameters": {
+            "properties": {
+              "veiculo_id": {
+                "type": "string"
+              },
+              "assunto": {
+                "enum": [
+                  "oleo",
+                  "sincronismo",
+                  "correia_externa",
+                  "distincao_correias",
+                  "manutencao_basica",
+                  "freios",
+                  "pneus",
+                  "velas",
+                  "alternador"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "veiculo_id",
+              "assunto"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_politicas",
+          "description": "Busque políticas da loja no índice FAISS existente. Envie pergunta completa; retorno tem trechos/fontes, consultas executadas e lacunas. Não fornece cálculo de frete nem especificação de peça.",
+          "parameters": {
+            "properties": {
+              "pergunta": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "pergunta"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo_estruturado",
+          "description": "Liste produtos com filtros combinados de veículo confirmado, categoria, estoque, teto de preço e ordenação. Converte a pergunta em plano validado e SELECT parametrizado; retorna plano, SQL e dados. Não calcula orçamento nem altera estoque.",
+          "parameters": {
+            "properties": {
+              "pergunta": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "pergunta"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      }
+    ]
+  ],
+  "mensagens_contexto": 1,
+  "resposta_candidata": "O orçamento para 7 unidades da Vela de ignição é o seguinte:\n\n- **Produto**: Vela de ignição\n- **Preço unitário**: R$ 16,90\n- **Subtotal**: R$ 118,30\n- **Frete**: R$ 0,00 (retirada)\n- **Total**: R$ 118,30\n\nO estoque está disponível para a quantidade solicitada. Se precisar de mais informações ou desejar prosseguir, é só avisar!",
+  "verificacao_especifica": {
+    "regra": "fora_das_protecoes_especificas",
+    "substituida": false
+  },
+  "cliente_demo": "cliente_demo",
+  "sessao": "89a2651e2b6c4e0ab9753530fca13c15",
+  "historico_enviado": [],
+  "memoria_utilizada": {
+    "perfil": {
+      "veiculo_confirmado": {
+        "id": "V003",
+        "marca": "Chevrolet",
+        "modelo": "Celta",
+        "ano_modelo": 2012,
+        "motor": "1.0 8V",
+        "combustivel": "flex",
+        "status_configuracao": "recorte_academico_proposto",
+        "observacao": "Confirmar configuração técnica exata antes de uso real. Alterações no veículo exigem nova conferência."
+      },
+      "confirmado_em": "2026-11-08T23:21:22.621603+00:00"
+    },
+    "recuperacao": {
+      "status": "ok",
+      "modelo_embedding": "text-embedding-3-small",
+      "resumos": [
+        {
+          "id": "d02853d8e4a446efbbc470bcef986e94",
+          "texto": "Uso o carro diariamente em percursos urbanos curtos, de menos de 6 km.",
+          "criado_em": "2026-11-08T23:21:27.840109+00:00",
+          "similaridade": 0.279149490739279
+        }
+      ]
+    },
+    "contexto_comercial": {},
+    "limite": "Memórias declaradas pelo cliente; não são evidência técnica ou comercial."
+  },
+  "janela_turnos": 6,
+  "fontes_documentais": [],
+  "resposta_antes_da_apresentacao": "O orçamento para 7 unidades da Vela de ignição é o seguinte:\n\n- **Produto**: Vela de ignição\n- **Preço unitário**: R$ 16,90\n- **Subtotal**: R$ 118,30\n- **Frete**: R$ 0,00 (retirada)\n- **Total**: R$ 118,30\n\nO estoque está disponível para a quantidade solicitada. Se precisar de mais informações ou desejar prosseguir, é só avisar!",
+  "resposta_antes_da_verificacao": "O orçamento para 7 unidades da Vela de ignição é o seguinte:\n\n- **Produto**: Vela de ignição\n- **Preço unitário**: R$ 16,90\n- **Subtotal**: R$ 118,30\n- **Frete**: R$ 0,00 (retirada)\n- **Total**: R$ 118,30\n\nO estoque está disponível para a quantidade solicitada. Se precisar de mais informações ou desejar prosseguir, é só avisar!",
+  "verificacao_geral": {
+    "metodo": "regras_deterministicas_e_juiz_LLM_tres_classes",
+    "origem_juiz": "ChatOpenAI:gpt-5.4-mini",
+    "maximo_reparos": 1,
+    "avaliacoes": [
+      {
+        "aprovada": true,
+        "parecer": {
+          "afirmacoes": [
+            {
+              "trecho": "O orçamento para 7 unidades da Vela de ignição",
+              "classe": "sustentada",
+              "evidencias": [
+                "E001",
+                "E002"
+              ],
+              "motivo": "A ferramenta calcula 7 unidades do produto P009, cujo nome e Vela de ignicao."
+            },
+            {
+              "trecho": "Preço unitário: R$ 16,90",
+              "classe": "sustentada",
+              "evidencias": [
+                "E001",
+                "E002"
+              ],
+              "motivo": "O produto P009 tem preco_unitario_centavos 1690, equivalente a R$ 16,90."
+            },
+            {
+              "trecho": "Subtotal: R$ 118,30",
+              "classe": "sustentada",
+              "evidencias": [
+                "E002"
+              ],
+              "motivo": "O orçamento calculado informa subtotal_centavos 11830, equivalente a R$ 118,30."
+            },
+            {
+              "trecho": "Frete: R$ 0,00 (retirada)",
+              "classe": "sustentada",
+              "evidencias": [
+                "E002"
+              ],
+              "motivo": "O orçamento calculado informa frete_centavos 0 e o contexto do pedido e para retirada."
+            },
+            {
+              "trecho": "Total: R$ 118,30",
+              "classe": "sustentada",
+              "evidencias": [
+                "E002"
+              ],
+              "motivo": "O orçamento calculado informa total_centavos 11830, equivalente a R$ 118,30."
+            },
+            {
+              "trecho": "O estoque está disponível para a quantidade solicitada.",
+              "classe": "sustentada",
+              "evidencias": [
+                "E001",
+                "E002"
+              ],
+              "motivo": "O item consultado mostra estoque 7 e o orçamento usa quantidade 7, sem exceder o estoque consultado."
+            }
+          ],
+          "cobertura_completa": true,
+          "responde_pedido": true,
+          "coerencia_logica": true,
+          "comentario": "Todos os valores e a disponibilidade informados batem com as evidencias de catalogo e calculo."
+        },
+        "regras": [],
+        "origem_juiz": "ChatOpenAI:gpt-5.4-mini"
+      }
+    ],
+    "reparos_executados": 0,
+    "status": "aprovada",
+    "substituida": false
+  },
+  "indice_politicas": {
+    "modelo_embedding": "text-embedding-3-small",
+    "sha256_fonte": "afa496572c35d1f0dc1faf549e5c2d5eeb2385b1dc91c82f97da4f4b112e58d4"
+  }
+}

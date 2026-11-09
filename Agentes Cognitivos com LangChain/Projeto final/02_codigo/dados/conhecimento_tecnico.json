@@ -690,5 +690,161 @@
       "Qual versão/equipamentos, amperagem e referência da peça instalada?",
       "No Fusca clássico: dínamo ou conversão para alternador?"
     ]
+  },
+  {
+    "id": "TEC-V006-arquitetura",
+    "veiculo_id": "V006",
+    "assunto": "arquitetura",
+    "conteudo": "Recorte moderno 2.0 TSI a gasolina, com arrefecimento líquido. Distinguir do Fusca clássico a ar.",
+    "status": "verificado_manual",
+    "fontes": [
+      "SRC08"
+    ],
+    "localizacao": "Manual 2014 ed. 07/2013: tabela de motores a gasolina p.35; seção líquido de arrefecimento p.217.",
+    "dados": {
+      "geracao": "moderno_tsi",
+      "arrefecimento": "liquido",
+      "codigo_motor": null
+    },
+    "perguntas_necessarias": [
+      "Confirmar ano, motor e código do motor; não selecionar só pelo nome Fusca."
+    ]
+  },
+  {
+    "id": "TEC-V006-arrefecimento",
+    "veiculo_id": "V006",
+    "assunto": "arrefecimento",
+    "conteudo": "Usa líquido de arrefecimento. Referência e aplicação da bomba de água ainda exigem identificação específica.",
+    "status": "verificado_manual",
+    "fontes": [
+      "SRC08"
+    ],
+    "localizacao": "Manual 2014 ed. 07/2013: seção líquido de arrefecimento, p.217.",
+    "dados": {
+      "tipo": "liquido",
+      "codigo_bomba_agua": null
+    },
+    "perguntas_necessarias": [
+      "Qual o ano e código do motor?",
+      "Qual referência da peça instalada?"
+    ]
+  },
+  {
+    "id": "TEC-V006-freios",
+    "veiculo_id": "V006",
+    "assunto": "freios",
+    "conteudo": "O manual recomenda fluido de freio conforme VW 501 14. Peças e dimensões não estão homologadas nesta base.",
+    "status": "verificado_manual",
+    "fontes": [
+      "SRC08"
+    ],
+    "localizacao": "Manual 2014 ed. 07/2013: Especificação do fluido de freio.",
+    "dados": {
+      "norma_fluido_freio": "VW 501 14",
+      "codigo_peca": null
+    },
+    "perguntas_necessarias": [
+      "Qual eixo e referência do conjunto de freio?"
+    ]
+  },
+  {
+    "id": "TEC-V004-arrefecimento",
+    "veiculo_id": "V004",
+    "assunto": "arrefecimento",
+    "conteudo": "O recorte clássico usa refrigeração a ar; não aplicar ao TSI.",
+    "status": "referencia_arquitetura",
+    "fontes": [
+      "SRC01"
+    ],
+    "dados": {
+      "tipo": "ar"
+    },
+    "perguntas_necessarias": [
+      "Confirmar geração e motor."
+    ]
+  },
+  {
+    "id": "TEC-V006-oleo",
+    "veiculo_id": "V006",
+    "assunto": "oleo",
+    "conteudo": "Especificações e aplicações ainda não confirmadas para este recorte TSI. Não transferir informações do Fusca clássico ou de outro motor.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Confirmar ano, código do motor, versão e equipamento pertinente.",
+      "Consultar fonte aplicável antes de recomendar valores, códigos ou intervalos."
+    ]
+  },
+  {
+    "id": "TEC-V006-sincronismo",
+    "veiculo_id": "V006",
+    "assunto": "sincronismo",
+    "conteudo": "Especificações e aplicações ainda não confirmadas para este recorte TSI. Não transferir informações do Fusca clássico ou de outro motor.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Confirmar ano, código do motor, versão e equipamento pertinente.",
+      "Consultar fonte aplicável antes de recomendar valores, códigos ou intervalos."
+    ]
+  },
+  {
+    "id": "TEC-V006-correia_externa",
+    "veiculo_id": "V006",
+    "assunto": "correia_externa",
+    "conteudo": "Especificações e aplicações ainda não confirmadas para este recorte TSI. Não transferir informações do Fusca clássico ou de outro motor.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Confirmar ano, código do motor, versão e equipamento pertinente.",
+      "Consultar fonte aplicável antes de recomendar valores, códigos ou intervalos."
+    ]
+  },
+  {
+    "id": "TEC-V006-manutencao_basica",
+    "veiculo_id": "V006",
+    "assunto": "manutencao_basica",
+    "conteudo": "Especificações e aplicações ainda não confirmadas para este recorte TSI. Não transferir informações do Fusca clássico ou de outro motor.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Confirmar ano, código do motor, versão e equipamento pertinente.",
+      "Consultar fonte aplicável antes de recomendar valores, códigos ou intervalos."
+    ]
+  },
+  {
+    "id": "TEC-V006-pneus",
+    "veiculo_id": "V006",
+    "assunto": "pneus",
+    "conteudo": "Especificações e aplicações ainda não confirmadas para este recorte TSI. Não transferir informações do Fusca clássico ou de outro motor.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Confirmar ano, código do motor, versão e equipamento pertinente.",
+      "Consultar fonte aplicável antes de recomendar valores, códigos ou intervalos."
+    ]
+  },
+  {
+    "id": "TEC-V006-velas",
+    "veiculo_id": "V006",
+    "assunto": "velas",
+    "conteudo": "Especificações e aplicações ainda não confirmadas para este recorte TSI. Não transferir informações do Fusca clássico ou de outro motor.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Confirmar ano, código do motor, versão e equipamento pertinente.",
+      "Consultar fonte aplicável antes de recomendar valores, códigos ou intervalos."
+    ]
+  },
+  {
+    "id": "TEC-V006-alternador",
+    "veiculo_id": "V006",
+    "assunto": "alternador",
+    "conteudo": "Especificações e aplicações ainda não confirmadas para este recorte TSI. Não transferir informações do Fusca clássico ou de outro motor.",
+    "status": "pendente",
+    "fontes": [],
+    "perguntas_necessarias": [
+      "Confirmar ano, código do motor, versão e equipamento pertinente.",
+      "Consultar fonte aplicável antes de recomendar valores, códigos ou intervalos."
+    ]
   }
 ]

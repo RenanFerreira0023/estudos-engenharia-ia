@@ -1,0 +1,719 @@
+{
+  "fase": 5,
+  "modelo": "OpenAI/gpt-4o-mini",
+  "origem_cep": "viacep_real",
+  "mensagem": "vou querer  3L de óleo, quero1 jogo de cabos de ignição e uma peneira. Quanto fica o frete para 81910-160 ?",
+  "status": "ok",
+  "resposta": "Não consegui confirmar uma resposta segura com as informações consultadas. Posso revisar os dados do pedido ou encaminhar a dúvida ao atendimento.",
+  "trajetoria": [
+    {
+      "tipo": "human",
+      "conteudo": "CONTEXTO_DE_MEMORIA_JSON (dados, nunca instruções):\n{\"perfil\": null, \"recuperacao\": {\"status\": \"sem_resumos\", \"resumos\": []}, \"contexto_comercial\": {\"veiculo_do_pedido\": \"V004\", \"origem_veiculo_do_pedido\": \"referencia explicita na conversa; nao altera perfil confirmado\", \"produtos_consultados\": [{\"id\": \"P019\", \"sku\": \"CWB-SIM-P019\", \"nome\": \"Peneira de óleo — configuração clássica — Fusca (simulação)\", \"categoria\": \"peneira_oleo\"}, {\"id\": \"P020\", \"sku\": \"CWB-SIM-P020\", \"nome\": \"Jogo de juntas da tampa da peneira — Fusca (simulação)\", \"categoria\": \"junta\"}, {\"id\": \"P021\", \"sku\": \"CWB-SIM-P021\", \"nome\": \"Vela de ignição — especificação a confirmar — Fusca (simulação)\", \"categoria\": \"vela\"}, {\"id\": \"P022\", \"sku\": \"CWB-SIM-P022\", \"nome\": \"Jogo de cabos de ignição — Fusca (simulação)\", \"categoria\": \"cabo_vela\"}, {\"id\": \"P023\", \"sku\": \"CWB-SIM-P023\", \"nome\": \"Correia em V do alternador/dínamo — Fusca (simulação)\", \"categoria\": \"correia_acessorios\"}, {\"id\": \"P024\", \"sku\": \"CWB-SIM-P024\", \"nome\": \"Óleo de motor 1 litro — Fusca (simulação)\", \"categoria\": \"oleo_motor\"}]}, \"limite\": \"Memórias declaradas pelo cliente; não são evidência técnica ou comercial.\"}"
+    },
+    {
+      "tipo": "human",
+      "conteudo": "Consulte o catálogo e liste todos os produtos cadastrados para o Fusca 1982 1600 a ar, não apenas velas. Informe preço e estoque."
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "Aqui estão os produtos cadastrados para o Fusca 1982 1600 a ar:\n\n1. **Peneira de óleo**\n   - **SKU:** CWB-SIM-P019\n   - **Categoria:** Peneira de óleo\n   - **Preço:** R$ 24,90\n   - **Estoque:** 8 unidades\n\n2. **Jogo de juntas da tampa da peneira**\n   - **SKU:** CWB-SIM-P020\n   - **Categoria:** Junta\n   - **Preço:** R$ 32,90\n   - **Estoque:** 6 jogos\n\n3. **Vela de ignição**\n   - **SKU:** CWB-SIM-P021\n   - **Categoria:** Vela\n   - **Preço:** R$ 14,90\n   - **Estoque:** 0 unidades (sem estoque)\n\n4. **Jogo de cabos de ignição**\n   - **SKU:** CWB-SIM-P022\n   - **Categoria:** Cabo de vela\n   - **Preço:** R$ 89,90\n   - **Estoque:** 3 jogos\n\n5. **Correia em V do alternador/dínamo**\n   - **SKU:** CWB-SIM-P023\n   - **Categoria:** Correia de acessórios\n   - **Preço:** R$ 29,90\n   - **Estoque:** 0 unidades (sem estoque)\n\n6. **Óleo de motor 1 litro**\n   - **SKU:** CWB-SIM-P024\n   - **Categoria:** Óleo de motor\n   - **Preço:** R$ 39,90\n   - **Estoque:** 12 litros\n\n**Observações:**\n- A vela de ignição e a correia em V do alternador/dínamo estão sem estoque.\n- O óleo de motor possui especificações pendentes, portanto, não é recomendável escolher viscosidade ou norma sem uma fonte técnica.\n\nSe precisar de mais informações ou de um orçamento, é só avisar!",
+      "tool_calls": []
+    },
+    {
+      "tipo": "human",
+      "conteudo": "vou querer  3L de óleo, quero1 jogo de cabos de ignição e uma peneira. Quanto fica o frete para 81910-160 ?"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_cep",
+          "args": {
+            "cep": "81910160"
+          },
+          "id": "call_zDyZaFTjrDsHldA6Q0e02iRc",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"origem\": \"viacep_real\", \"cep\": \"81910160\", \"endereco\": {\"cep\": \"81910-160\", \"logradouro\": \"Rua Segismundo Maiewski Filho\", \"complemento\": \"\", \"bairro\": \"Sítio Cercado\", \"localidade\": \"Curitiba\", \"uf\": \"PR\", \"ibge\": \"4106902\"}, \"tentativa_http_real\": true, \"url\": \"https://viacep.com.br/ws/81910160/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}",
+      "ferramenta": "consultar_cep",
+      "tool_call_id": "call_zDyZaFTjrDsHldA6Q0e02iRc"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "consultar_entrega",
+          "args": {
+            "municipio": "Curitiba",
+            "uf": "PR"
+          },
+          "id": "call_sHpnGN63UPIbqWTiSxYV3GVM",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"frete_centavos\": 0, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": 0, \"pendencias\": [\"Prazo local ainda não definido.\", \"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"fontes_regras\": [\"loja_regras.json\", \"distancias_simuladas.json\"], \"status\": \"parcial\"}",
+      "ferramenta": "consultar_entrega",
+      "tool_call_id": "call_sHpnGN63UPIbqWTiSxYV3GVM"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "",
+      "tool_calls": [
+        {
+          "name": "calcular_orcamento",
+          "args": {
+            "itens": [
+              {
+                "produto_id": "P024",
+                "quantidade": 3
+              },
+              {
+                "produto_id": "P022",
+                "quantidade": 1
+              },
+              {
+                "produto_id": "P019",
+                "quantidade": 1
+              }
+            ],
+            "modalidade": "entrega",
+            "municipio": "Curitiba",
+            "uf": "PR"
+          },
+          "id": "call_rRC7Duyc8fq91FGdX7JHKdOn",
+          "type": "tool_call"
+        }
+      ]
+    },
+    {
+      "tipo": "tool",
+      "conteudo": "{\"itens\": [{\"produto_id\": \"P024\", \"sku\": \"CWB-SIM-P024\", \"quantidade\": 3, \"preco_unitario_centavos\": 3990, \"estoque_consultado\": 12}, {\"produto_id\": \"P022\", \"sku\": \"CWB-SIM-P022\", \"quantidade\": 1, \"preco_unitario_centavos\": 8990, \"estoque_consultado\": 3}, {\"produto_id\": \"P019\", \"sku\": \"CWB-SIM-P019\", \"quantidade\": 1, \"preco_unitario_centavos\": 2490, \"estoque_consultado\": 8}], \"subtotal_centavos\": 23450, \"frete_centavos\": 0, \"total_centavos\": 23450, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": 0, \"pendencias\": [\"Prazo local ainda não definido.\", \"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"fontes_regras\": [\"loja_regras.json\", \"distancias_simuladas.json\"], \"status\": \"parcial\"}",
+      "ferramenta": "calcular_orcamento",
+      "tool_call_id": "call_rRC7Duyc8fq91FGdX7JHKdOn"
+    },
+    {
+      "tipo": "ai",
+      "conteudo": "Aqui está o orçamento para os itens solicitados:\n\n1. **Óleo de motor (3 litros)**\n   - **Preço unitário:** R$ 39,90\n   - **Total:** R$ 119,70\n\n2. **Jogo de cabos de ignição (1 unidade)**\n   - **Preço unitário:** R$ 89,90\n   - **Total:** R$ 89,90\n\n3. **Peneira de óleo (1 unidade)**\n   - **Preço unitário:** R$ 24,90\n   - **Total:** R$ 24,90\n\n**Subtotal:** R$ 234,50  \n**Frete:** R$ 0,00  \n**Total:** R$ 234,50  \n\n**Observações:**\n- O frete é gratuito para a entrega em Curitiba.\n- O prazo de entrega ainda não está definido, portanto, não posso prometer uma data específica.\n\nSe precisar de mais alguma informação ou quiser prosseguir com o pedido, é só avisar!",
+      "tool_calls": []
+    }
+  ],
+  "eventos_ferramentas": [
+    {
+      "evento": "inicio",
+      "run_id": "01a1be29-4165-73d2-9376-0b4338863d7d",
+      "ferramenta": "consultar_cep",
+      "entrada": "{'cep': '81910160'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1be29-4165-73d2-9376-0b4338863d7d",
+      "observado": "{\"origem\": \"viacep_real\", \"cep\": \"81910160\", \"endereco\": {\"cep\": \"81910-160\", \"logradouro\": \"Rua Segismundo Maiewski Filho\", \"complemento\": \"\", \"bairro\": \"Sítio Cercado\", \"localidade\": \"Curitiba\", \"uf\": \"PR\", \"ibge\": \"4106902\"}, \"tentativa_http_real\": true, \"url\": \"https://viacep.com.br/ws/81910160/json/\", \"codigo_http\": 200, \"status\": \"ok\", \"limite\": \"ViaCEP informa endereço; não fornece distância, frete ou prazo.\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a1be29-4739-7252-a998-d999c20e2547",
+      "ferramenta": "consultar_entrega",
+      "entrada": "{'municipio': 'Curitiba', 'uf': 'PR'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1be29-4739-7252-a998-d999c20e2547",
+      "observado": "{\"frete_centavos\": 0, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": 0, \"pendencias\": [\"Prazo local ainda não definido.\", \"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"fontes_regras\": [\"loja_regras.json\", \"distancias_simuladas.json\"], \"status\": \"parcial\"}"
+    },
+    {
+      "evento": "inicio",
+      "run_id": "01a1be29-4e38-78d0-86f0-f7ccbd9712f4",
+      "ferramenta": "calcular_orcamento",
+      "entrada": "{'itens': [{'produto_id': 'P024', 'quantidade': 3}, {'produto_id': 'P022', 'quantidade': 1}, {'produto_id': 'P019', 'quantidade': 1}], 'modalidade': 'entrega', 'municipio': 'Curitiba', 'uf': 'PR'}"
+    },
+    {
+      "evento": "retorno",
+      "run_id": "01a1be29-4e38-78d0-86f0-f7ccbd9712f4",
+      "observado": "{\"itens\": [{\"produto_id\": \"P024\", \"sku\": \"CWB-SIM-P024\", \"quantidade\": 3, \"preco_unitario_centavos\": 3990, \"estoque_consultado\": 12}, {\"produto_id\": \"P022\", \"sku\": \"CWB-SIM-P022\", \"quantidade\": 1, \"preco_unitario_centavos\": 8990, \"estoque_consultado\": 3}, {\"produto_id\": \"P019\", \"sku\": \"CWB-SIM-P019\", \"quantidade\": 1, \"preco_unitario_centavos\": 2490, \"estoque_consultado\": 8}], \"subtotal_centavos\": 23450, \"frete_centavos\": 0, \"total_centavos\": 23450, \"prazo_dias_uteis\": null, \"distancia_km_simulada\": 0, \"pendencias\": [\"Prazo local ainda não definido.\", \"Marco inicial da contagem do prazo pendente; não prometer data de calendário.\"], \"natureza\": \"orcamento_academico_simulado\", \"reserva_efetuada\": false, \"fontes_regras\": [\"loja_regras.json\", \"distancias_simuladas.json\"], \"status\": \"parcial\"}"
+    }
+  ],
+  "esquemas_modelo": [
+    [
+      {
+        "type": "function",
+        "function": {
+          "name": "listar_veiculos",
+          "description": "Liste configurações acadêmicas propostas e IDs para identificar o veículo sem inventar sua versão.",
+          "parameters": {
+            "properties": {},
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo",
+          "description": "Consulte produto por ID/SKU ou aplicações por veículo confirmado. Categorias incluem vela, filtro_oleo, filtro_ar, pastilha, correia_acessorios, oleo_motor. Retorne dados simulados e SQL parametrizado executado.",
+          "parameters": {
+            "properties": {
+              "produto_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "veiculo_id": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "categoria": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "type": "object",
+            "required": [
+              "produto_id",
+              "veiculo_id",
+              "categoria"
+            ],
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_cep",
+          "description": "Valide CEP e consulte endereço pelo cliente ViaCEP configurado. Não fornece frete/distância; origem real ou teste está explícita no retorno.",
+          "parameters": {
+            "properties": {
+              "cep": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "cep"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "calcular_orcamento",
+          "description": "Calcule orçamento informativo com preços/estoque do banco. Informe IDs e quantidades; na entrega use município/UF do endereço consultado. Não reserve estoque nem aceite preço externo.",
+          "parameters": {
+            "properties": {
+              "itens": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "produto_id": {
+                      "description": "ID ou SKU retornado pela consulta do catálogo.",
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "quantidade": {
+                      "description": "Unidades inteiras positivas explicitamente solicitadas.",
+                      "exclusiveMinimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "produto_id",
+                    "quantidade"
+                  ],
+                  "type": "object"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "modalidade": {
+                "enum": [
+                  "retirada",
+                  "entrega"
+                ],
+                "type": "string"
+              },
+              "municipio": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "uf": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              }
+            },
+            "required": [
+              "itens",
+              "modalidade",
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_entrega",
+          "description": "Consulte frete e prazo da loja sem produtos. Use município e UF efetivamente retornados por consultar_cep.",
+          "parameters": {
+            "properties": {
+              "municipio": {
+                "type": "string"
+              },
+              "uf": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "municipio",
+              "uf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_informacao_tecnica",
+          "description": "Consulte a base manual para os veículos cadastrados: óleo, manutenção básica, freios, pneus, velas, correias e alternador. Retorne fontes, especificações e perguntas necessárias. Pendência não autoriza completar por suposição.",
+          "parameters": {
+            "properties": {
+              "veiculo_id": {
+                "type": "string"
+              },
+              "assunto": {
+                "enum": [
+                  "oleo",
+                  "sincronismo",
+                  "correia_externa",
+                  "distincao_correias",
+                  "manutencao_basica",
+                  "freios",
+                  "pneus",
+                  "velas",
+                  "alternador",
+                  "arquitetura",
+                  "arrefecimento"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "veiculo_id",
+              "assunto"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_politicas",
+          "description": "Busque políticas da loja no índice FAISS existente. Envie pergunta completa; retorno tem trechos/fontes, consultas executadas e lacunas. Não fornece cálculo de frete nem especificação de peça.",
+          "parameters": {
+            "properties": {
+              "pergunta": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "pergunta"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "consultar_catalogo_estruturado",
+          "description": "Liste produtos com filtros combinados de veículo confirmado, categoria, estoque, teto de preço e ordenação. Converte a pergunta em plano validado e SELECT parametrizado; retorna plano, SQL e dados. Não calcula orçamento nem altera estoque.",
+          "parameters": {
+            "properties": {
+              "pergunta": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "pergunta"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      }
+    ]
+  ],
+  "mensagens_contexto": 3,
+  "resposta_candidata": "Aqui está o orçamento para os itens solicitados:\n\n1. **Óleo de motor (3 litros)**\n   - **Preço unitário:** R$ 39,90\n   - **Total:** R$ 119,70\n\n2. **Jogo de cabos de ignição (1 unidade)**\n   - **Preço unitário:** R$ 89,90\n   - **Total:** R$ 89,90\n\n3. **Peneira de óleo (1 unidade)**\n   - **Preço unitário:** R$ 24,90\n   - **Total:** R$ 24,90\n\n**Subtotal:** R$ 234,50  \n**Frete:** R$ 0,00  \n**Total:** R$ 234,50  \n\n**Observações:**\n- O frete é gratuito para a entrega em Curitiba.\n- O prazo de entrega ainda não está definido, portanto, não posso prometer uma data específica.\n\nSe precisar de mais alguma informação ou quiser prosseguir com o pedido, é só avisar!",
+  "verificacao_especifica": {
+    "regra": "fora_das_protecoes_especificas",
+    "substituida": false
+  },
+  "cliente_demo": "teste_catalogo",
+  "sessao": "ef1196c65ff245f6ab19453c12aba8d8",
+  "historico_enviado": [
+    {
+      "role": "user",
+      "content": "Consulte o catálogo e liste todos os produtos cadastrados para o Fusca 1982 1600 a ar, não apenas velas. Informe preço e estoque."
+    },
+    {
+      "role": "assistant",
+      "content": "Aqui estão os produtos cadastrados para o Fusca 1982 1600 a ar:\n\n1. **Peneira de óleo**\n   - **SKU:** CWB-SIM-P019\n   - **Categoria:** Peneira de óleo\n   - **Preço:** R$ 24,90\n   - **Estoque:** 8 unidades\n\n2. **Jogo de juntas da tampa da peneira**\n   - **SKU:** CWB-SIM-P020\n   - **Categoria:** Junta\n   - **Preço:** R$ 32,90\n   - **Estoque:** 6 jogos\n\n3. **Vela de ignição**\n   - **SKU:** CWB-SIM-P021\n   - **Categoria:** Vela\n   - **Preço:** R$ 14,90\n   - **Estoque:** 0 unidades (sem estoque)\n\n4. **Jogo de cabos de ignição**\n   - **SKU:** CWB-SIM-P022\n   - **Categoria:** Cabo de vela\n   - **Preço:** R$ 89,90\n   - **Estoque:** 3 jogos\n\n5. **Correia em V do alternador/dínamo**\n   - **SKU:** CWB-SIM-P023\n   - **Categoria:** Correia de acessórios\n   - **Preço:** R$ 29,90\n   - **Estoque:** 0 unidades (sem estoque)\n\n6. **Óleo de motor 1 litro**\n   - **SKU:** CWB-SIM-P024\n   - **Categoria:** Óleo de motor\n   - **Preço:** R$ 39,90\n   - **Estoque:** 12 litros\n\n**Observações:**\n- A vela de ignição e a correia em V do alternador/dínamo estão sem estoque.\n- O óleo de motor possui especificações pendentes, portanto, não é recomendável escolher viscosidade ou norma sem uma fonte técnica.\n\nSe precisar de mais informações ou de um orçamento, é só avisar!"
+    }
+  ],
+  "memoria_utilizada": {
+    "perfil": null,
+    "recuperacao": {
+      "status": "sem_resumos",
+      "resumos": []
+    },
+    "contexto_comercial": {
+      "veiculo_do_pedido": "V004",
+      "origem_veiculo_do_pedido": "referencia explicita na conversa; nao altera perfil confirmado",
+      "produtos_consultados": [
+        {
+          "id": "P019",
+          "sku": "CWB-SIM-P019",
+          "nome": "Peneira de óleo — configuração clássica — Fusca (simulação)",
+          "categoria": "peneira_oleo"
+        },
+        {
+          "id": "P020",
+          "sku": "CWB-SIM-P020",
+          "nome": "Jogo de juntas da tampa da peneira — Fusca (simulação)",
+          "categoria": "junta"
+        },
+        {
+          "id": "P021",
+          "sku": "CWB-SIM-P021",
+          "nome": "Vela de ignição — especificação a confirmar — Fusca (simulação)",
+          "categoria": "vela"
+        },
+        {
+          "id": "P022",
+          "sku": "CWB-SIM-P022",
+          "nome": "Jogo de cabos de ignição — Fusca (simulação)",
+          "categoria": "cabo_vela"
+        },
+        {
+          "id": "P023",
+          "sku": "CWB-SIM-P023",
+          "nome": "Correia em V do alternador/dínamo — Fusca (simulação)",
+          "categoria": "correia_acessorios"
+        },
+        {
+          "id": "P024",
+          "sku": "CWB-SIM-P024",
+          "nome": "Óleo de motor 1 litro — Fusca (simulação)",
+          "categoria": "oleo_motor"
+        }
+      ]
+    },
+    "limite": "Memórias declaradas pelo cliente; não são evidência técnica ou comercial."
+  },
+  "janela_turnos": 6,
+  "fontes_documentais": [],
+  "resposta_antes_da_apresentacao": "Aqui está o orçamento para os itens solicitados:\n\n1. **Óleo de motor (3 litros)**\n   - **Preço unitário:** R$ 39,90\n   - **Total:** R$ 119,70\n\n2. **Jogo de cabos de ignição (1 unidade)**\n   - **Preço unitário:** R$ 89,90\n   - **Total:** R$ 89,90\n\n3. **Peneira de óleo (1 unidade)**\n   - **Preço unitário:** R$ 24,90\n   - **Total:** R$ 24,90\n\n**Subtotal:** R$ 234,50  \n**Frete:** R$ 0,00  \n**Total:** R$ 234,50  \n\n**Observações:**\n- O frete é gratuito para a entrega em Curitiba.\n- O prazo de entrega ainda não está definido, portanto, não posso prometer uma data específica.\n\nSe precisar de mais alguma informação ou quiser prosseguir com o pedido, é só avisar!",
+  "resposta_antes_da_verificacao": "Aqui está o orçamento para os itens solicitados:\n\n1. **Óleo de motor (3 litros)**\n   - **Preço unitário:** R$ 39,90\n   - **Total:** R$ 119,70\n\n2. **Jogo de cabos de ignição (1 unidade)**\n   - **Preço unitário:** R$ 89,90\n   - **Total:** R$ 89,90\n\n3. **Peneira de óleo (1 unidade)**\n   - **Preço unitário:** R$ 24,90\n   - **Total:** R$ 24,90\n\n**Subtotal:** R$ 234,50  \n**Frete:** R$ 0,00  \n**Total:** R$ 234,50  \n\n**Observações:**\n- O frete é gratuito para a entrega em Curitiba.\n- O prazo de entrega ainda não está definido, portanto, não posso prometer uma data específica.\n\nSe precisar de mais alguma informação ou quiser prosseguir com o pedido, é só avisar!",
+  "verificacao_geral": {
+    "metodo": "regras_deterministicas_e_juiz_LLM_tres_classes",
+    "origem_juiz": "ChatOpenAI:gpt-5.4-mini",
+    "maximo_reparos": 1,
+    "avaliacoes": [
+      {
+        "aprovada": false,
+        "parecer": {
+          "afirmacoes": [
+            {
+              "trecho": "Aqui está o orçamento para os itens solicitados:",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "O calculo de orcamento foi fornecido em E003 para os itens pedidos."
+            },
+            {
+              "trecho": "Óleo de motor (3 litros)",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 traz P024 com quantidade 3."
+            },
+            {
+              "trecho": "Preço unitário: R$ 39,90",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 informa preco unitario_centavos 3990 para P024."
+            },
+            {
+              "trecho": "Total: R$ 119,70",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 informa 3 unidades de P024 a R$ 39,90 cada, o que totaliza R$ 119,70."
+            },
+            {
+              "trecho": "Jogo de cabos de ignição (1 unidade)",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 traz P022 com quantidade 1."
+            },
+            {
+              "trecho": "Preço unitário: R$ 89,90",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 informa preco unitario_centavos 8990 para P022."
+            },
+            {
+              "trecho": "Total: R$ 89,90",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 informa 1 unidade de P022 a R$ 89,90, totalizando R$ 89,90."
+            },
+            {
+              "trecho": "Peneira de óleo (1 unidade)",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 traz P019 com quantidade 1."
+            },
+            {
+              "trecho": "Preço unitário: R$ 24,90",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 informa preco unitario_centavos 2490 para P019."
+            },
+            {
+              "trecho": "Total: R$ 24,90",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 informa 1 unidade de P019 a R$ 24,90, totalizando R$ 24,90."
+            },
+            {
+              "trecho": "Subtotal: R$ 234,50",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 informa subtotal_centavos 23450."
+            },
+            {
+              "trecho": "Frete: R$ 0,00",
+              "classe": "sustentada",
+              "evidencias": [
+                "E002",
+                "E003"
+              ],
+              "motivo": "E002 e E003 informam frete_centavos 0."
+            },
+            {
+              "trecho": "O frete é gratuito para a entrega em Curitiba.",
+              "classe": "sustentada",
+              "evidencias": [
+                "E001",
+                "E002"
+              ],
+              "motivo": "E001 identifica o CEP 81910-160 em Curitiba e E002 informa frete zero; a isencao do frete para essa entrega esta apoiada pelos dados."
+            },
+            {
+              "trecho": "O prazo de entrega ainda não está definido,",
+              "classe": "sustentada",
+              "evidencias": [
+                "E002",
+                "E003"
+              ],
+              "motivo": "E002 e E003 indicam prazo_dias_uteis null e pendencia de prazo."
+            },
+            {
+              "trecho": "não posso prometer uma data específica.",
+              "classe": "sustentada",
+              "evidencias": [
+                "E002",
+                "E003"
+              ],
+              "motivo": "As evidencias registram que o marco inicial e o prazo estao pendentes, entao nao ha base para prometer data."
+            }
+          ],
+          "cobertura_completa": true,
+          "responde_pedido": true,
+          "coerencia_logica": true,
+          "comentario": "O orçamento e o frete estao de acordo com E002/E003; o prazo segue sem definicao nas evidencias."
+        },
+        "regras": [
+          {
+            "regra": "valor_sem_evidencia",
+            "trecho": "R$ 119,70"
+          },
+          {
+            "regra": "valor_diverge_do_orcamento",
+            "trecho": "Total:** R$ 119,70",
+            "esperado_centavos": 23450
+          },
+          {
+            "regra": "valor_diverge_do_orcamento",
+            "trecho": "Total:** R$ 89,90",
+            "esperado_centavos": 23450
+          },
+          {
+            "regra": "valor_diverge_do_orcamento",
+            "trecho": "Total:** R$ 24,90",
+            "esperado_centavos": 23450
+          }
+        ],
+        "origem_juiz": "ChatOpenAI:gpt-5.4-mini"
+      },
+      {
+        "aprovada": false,
+        "parecer": {
+          "afirmacoes": [
+            {
+              "trecho": "Para o CEP 81910-160, o frete fica em R$ 0,00.",
+              "classe": "sustentada",
+              "evidencias": [
+                "E001",
+                "E002"
+              ],
+              "motivo": "O CEP 81910-160 aparece na consulta de endereco e o retorno de entrega informa frete_centavos: 0."
+            },
+            {
+              "trecho": "Óleo 3 L: R$ 119,70",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "Em E003, 3 unidades de P024 a 3990 centavos cada somam 11970 centavos."
+            },
+            {
+              "trecho": "Jogo de cabos de ignição: R$ 89,90",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "Em E003, P022 tem preco_unitario_centavos de 8990 para quantidade 1."
+            },
+            {
+              "trecho": "Peneira de óleo: R$ 24,90",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "Em E003, P019 tem preco_unitario_centavos de 2490 para quantidade 1."
+            },
+            {
+              "trecho": "Total: R$ 234,50",
+              "classe": "sustentada",
+              "evidencias": [
+                "E003"
+              ],
+              "motivo": "E003 informa total_centavos de 23450, que equivale a R$ 234,50."
+            },
+            {
+              "trecho": "O prazo ainda não está definido.",
+              "classe": "sustentada",
+              "evidencias": [
+                "E002",
+                "E003"
+              ],
+              "motivo": "Ambos os retornos trazem prazo_dias_uteis nulo e pendencias indicando que o prazo local ainda não foi definido."
+            }
+          ],
+          "cobertura_completa": true,
+          "responde_pedido": true,
+          "coerencia_logica": true,
+          "comentario": "Os valores e o frete batem com as evidencias; o prazo indefinido tambem e sustentado pelos retornos parciais."
+        },
+        "regras": [
+          {
+            "regra": "valor_sem_evidencia",
+            "trecho": "R$ 119,70"
+          }
+        ],
+        "origem_juiz": "ChatOpenAI:gpt-5.4-mini"
+      }
+    ],
+    "reparos_executados": 1,
+    "resposta_reparada": "Para o CEP 81910-160, o frete fica em **R$ 0,00**.\n\nResumo do pedido:\n- Óleo 3 L: **R$ 119,70**\n- Jogo de cabos de ignição: **R$ 89,90**\n- Peneira de óleo: **R$ 24,90**\n\n**Total: R$ 234,50**  \nO prazo ainda não está definido.",
+    "status": "limitacao",
+    "substituida": true
+  },
+  "indice_politicas": {
+    "modelo_embedding": "text-embedding-3-small",
+    "sha256_fonte": "945cb1379065a650aef3acd4f5a88f129b99718ad6f71c47140664e2366538b4"
+  }
+}

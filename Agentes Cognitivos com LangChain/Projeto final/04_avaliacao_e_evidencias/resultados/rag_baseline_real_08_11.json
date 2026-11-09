@@ -1,0 +1,129 @@
+{
+  "modo": "embeddings reais; baseline k=1 sem reescrita",
+  "manifesto_indice": {
+    "schema_version": 1,
+    "modelo_embedding": "text-embedding-3-small",
+    "origem_embedding": "API real OpenAI",
+    "criado_em": "2026-11-08T23:30:09.598639+00:00",
+    "fonte": "politicas_loja.txt",
+    "sha256_fonte": "afa496572c35d1f0dc1faf549e5c2d5eeb2385b1dc91c82f97da4f4b112e58d4",
+    "sha256_indice": "a0e1dc98476ad21d762334ffe24b0d5ff226662741555cfa6b1244ab9a01aff7",
+    "dimensao": 1536,
+    "quantidade": 4,
+    "documentos": [
+      {
+        "id": "POL-01",
+        "fonte": "politicas_loja.txt",
+        "secao": "Pagamento",
+        "texto": "Pagamento: site somente Pix antecipado. Balcão Pix ou dinheiro, inclusive retirada. Sem cartão ou parcelamento. Entrega exige pagamento antecipado pelo site; não pagar ao entregador.",
+        "estado": "documentado"
+      },
+      {
+        "id": "POL-02",
+        "fonte": "politicas_loja.txt",
+        "secao": "Entrega",
+        "texto": "Entrega: Curitiba/PR tem frete grátis; prazo local ainda não definido. Fora de Curitiba, transportadora com valor proporcional de R$ 8,85 por 200 km usando tabela de distâncias simuladas. Prazo externo de dois dias úteis por faixa de 100 km, arredondando para cima. Marco inicial ainda não definido. Cidade fora da tabela exige consulta ao atendimento.",
+        "estado": "documentado"
+      },
+      {
+        "id": "POL-03",
+        "fonte": "politicas_loja.txt",
+        "secao": "Troca e garantia",
+        "texto": "Troca e garantia: políticas ainda não cadastradas. Não inventar prazos ou condições. Encaminhar ao atendimento.",
+        "estado": "pendente"
+      },
+      {
+        "id": "POL-04",
+        "fonte": "politicas_loja.txt",
+        "secao": "Limites do orçamento",
+        "texto": "Orçamento não confirma compra nem reserva estoque. Todos os produtos e condições são de simulação acadêmica.",
+        "estado": "documentado"
+      }
+    ]
+  },
+  "casos": [
+    {
+      "pergunta": "Posso pagar ao entregador?",
+      "ids_necessarios": [
+        "POL-01"
+      ],
+      "ids_observados": [
+        "POL-01"
+      ],
+      "cobertura_completa": true,
+      "documentos": [
+        {
+          "id": "POL-01",
+          "fonte": "politicas_loja.txt",
+          "secao": "Pagamento",
+          "texto": "Pagamento: site somente Pix antecipado. Balcão Pix ou dinheiro, inclusive retirada. Sem cartão ou parcelamento. Entrega exige pagamento antecipado pelo site; não pagar ao entregador.",
+          "estado": "documentado",
+          "similaridade": 0.6395819187164307
+        }
+      ]
+    },
+    {
+      "pergunta": "Posso pagar com cartão em três vezes e tenho frete grátis em Curitiba?",
+      "ids_necessarios": [
+        "POL-01",
+        "POL-02"
+      ],
+      "ids_observados": [
+        "POL-02"
+      ],
+      "cobertura_completa": false,
+      "documentos": [
+        {
+          "id": "POL-02",
+          "fonte": "politicas_loja.txt",
+          "secao": "Entrega",
+          "texto": "Entrega: Curitiba/PR tem frete grátis; prazo local ainda não definido. Fora de Curitiba, transportadora com valor proporcional de R$ 8,85 por 200 km usando tabela de distâncias simuladas. Prazo externo de dois dias úteis por faixa de 100 km, arredondando para cima. Marco inicial ainda não definido. Cidade fora da tabela exige consulta ao atendimento.",
+          "estado": "documentado",
+          "similaridade": 0.6288877725601196
+        }
+      ]
+    },
+    {
+      "pergunta": "Se eu fizer orçamento já fica reservado? E posso pagar no cartão?",
+      "ids_necessarios": [
+        "POL-04",
+        "POL-01"
+      ],
+      "ids_observados": [
+        "POL-01"
+      ],
+      "cobertura_completa": false,
+      "documentos": [
+        {
+          "id": "POL-01",
+          "fonte": "politicas_loja.txt",
+          "secao": "Pagamento",
+          "texto": "Pagamento: site somente Pix antecipado. Balcão Pix ou dinheiro, inclusive retirada. Sem cartão ou parcelamento. Entrega exige pagamento antecipado pelo site; não pagar ao entregador.",
+          "estado": "documentado",
+          "similaridade": 0.5575388669967651
+        }
+      ]
+    },
+    {
+      "pergunta": "Qual o prazo para trocar e o prazo de entrega em Curitiba?",
+      "ids_necessarios": [
+        "POL-03",
+        "POL-02"
+      ],
+      "ids_observados": [
+        "POL-02"
+      ],
+      "cobertura_completa": false,
+      "documentos": [
+        {
+          "id": "POL-02",
+          "fonte": "politicas_loja.txt",
+          "secao": "Entrega",
+          "texto": "Entrega: Curitiba/PR tem frete grátis; prazo local ainda não definido. Fora de Curitiba, transportadora com valor proporcional de R$ 8,85 por 200 km usando tabela de distâncias simuladas. Prazo externo de dois dias úteis por faixa de 100 km, arredondando para cima. Marco inicial ainda não definido. Cidade fora da tabela exige consulta ao atendimento.",
+          "estado": "documentado",
+          "similaridade": 0.6331327557563782
+        }
+      ]
+    }
+  ]
+}

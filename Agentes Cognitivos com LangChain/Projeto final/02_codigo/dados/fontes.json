@@ -48,6 +48,15 @@
       "consultado_em": "2026-11-08",
       "suporta": "Especificações e manutenção das configurações cobertas. Seções consultadas: 10-10, 10-13, 11-9, 11-11 e 11-15.",
       "limite": "Não valida produtos fictícios ou alterações no veículo. Distinguir motores, condições de uso e equipamentos. Campos ambíguos permanecem pendentes."
+    },
+    {
+      "id": "SRC08",
+      "tipo": "manual_oficial_fabricante",
+      "url": "https://www.vw.com.br/idhub/content/dam/onehub_pkw/importers/br/literatura-de-bordo/manual-fusca/manual-fusca-my-2014-edicao-072013/141.5B1.B5C_66_2_FUSCA_MANUAL_INSTRUCOES.pdf",
+      "titulo": "Manual de instruções Fusca 2014 — edição 07/2013, Volkswagen Brasil",
+      "consultado_em": "2026-11-08",
+      "suporta": "Tabela de motores a gasolina 2.0 TSI e distinção do sistema com líquido de arrefecimento. Referência de fluido de freio VW 501 14.",
+      "limite": "Manual abrange várias versões e códigos de motor. Confirmar identificação; não determina aplicação de produtos locais, viscosidade/capacidade ou intervalos específicos por si só."
     }
   ]
 }

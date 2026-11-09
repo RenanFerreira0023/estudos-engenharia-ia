@@ -4,6 +4,7 @@ import re
 
 from .configuracao import localizar_projeto
 from .orcamento_fase02 import normalizar
+from .referencia_veiculo import conferir_referencia
 
 
 # CONSULTA DOCUMENTAL ESTRUTURADA: usa os registros já cadastrados, sem RAG ou pesquisa externa.
@@ -97,7 +98,14 @@ def conferir_tipo_catalogo(mensagem, categoria, retorno):
 
 # REGRAS DE RESPOSTA ESPECÍFICAS: não são NLI nem um verificador semântico geral.
 # Bloqueiam as duas falhas observadas mesmo se o modelo ignorar as instruções do prompt.
-def conferir_resposta(mensagem, mensagens, candidata):
+def conferir_resposta(mensagem, mensagens, candidata, catalogo=None):
+    # CLARIFICAÇÃO tem prioridade sobre a proteção técnica: não apagar a pergunta sobre geração.
+    if catalogo is not None and (pede_especificacao_oleo(mensagem) or pede_correia_dentada(mensagem)):
+        referencia = conferir_referencia(catalogo, mensagem)
+        if referencia['erro'] and referencia['erro']['status'] == 'veiculo_ambiguo':
+            return ('Seu Fusca é o clássico a ar ou o TSI? Informe ano e motor, ou o ID do veículo.',
+                    {'regra':'esclarecer_geracao_antes_da_especificacao','substituida':True,
+                     'consulta_tecnica_executada':any(getattr(m, 'type', None)=='tool' and getattr(m, 'name', None)=='consultar_informacao_tecnica' for m in mensagens)})
     tecnicas = []
     for msg in mensagens:
         if getattr(msg, "type", None) == "tool" and msg.name == "consultar_informacao_tecnica":

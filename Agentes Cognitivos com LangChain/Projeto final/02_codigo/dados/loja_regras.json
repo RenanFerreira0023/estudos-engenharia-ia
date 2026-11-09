@@ -7,8 +7,13 @@
     "localizacao_ficticia": "Museu Oscar Niemeyer",
     "municipio": "Curitiba",
     "uf": "PR",
-    "endereco_postal": null,
-    "vinculo_com_museu": false
+    "endereco_postal": "Rua Marechal Hermes, 999, Curitiba/PR, 80530-230",
+    "vinculo_com_museu": false,
+    "coordenadas": {
+      "latitude": -25.4102283,
+      "longitude": -49.2661342
+    },
+    "fonte_coordenadas": "https://cadastro.museus.gov.br/museus/museu-oscar-niemeyer-mon/"
   },
   "frete": {
     "curitiba_pr_centavos": 0,
@@ -19,8 +24,10 @@
       "arredondamento": "decimal_HALF_UP_para_centavo",
       "formula": "Decimal(distancia_km) * 885 / 200; arredondar para centavos inteiros"
     },
-    "cidade_sem_distancia": "nao_cotar_encaminhar_atendimento",
-    "retirada_centavos": 0
+    "cidade_sem_distancia": "consultar_brasilapi_cep_v2_sem_fallback_tabela",
+    "retirada_centavos": 0,
+    "metodo_distancia": "haversine_linha_reta_coordenadas_cep",
+    "limite": "Estimativa por distância em linha reta; não usa distância de estradas. Curitiba/PR continua grátis por município, sem novo limite de raio."
   },
   "prazo": {
     "externo": {
@@ -51,14 +58,46 @@
     "parcelamento": false
   },
   "politicas_pendentes": {
-    "troca": null,
-    "garantia": null,
-    "reserva_estoque": null
+    "reserva_estoque": null,
+    "frete_devolucao": null,
+    "prazo_avaliacao_garantia": null
   },
   "limites": [
     "Não processar pagamentos nem concluir pedidos.",
     "Não diagnosticar defeitos por sintomas.",
     "Não criar site de vendas ou WhatsApp.",
     "Não inventar compatibilidade, óleo, política ou distância."
-  ]
+  ],
+  "garantia": {
+    "prazo_dias": 30,
+    "tipo_dias": "corridos",
+    "inicio_contagem": "recebimento_na_entrega_ou_retirada",
+    "cobertura": "defeitos_de_fabricacao_confirmados_em_avaliacao",
+    "exclusoes": [
+      "desgaste_natural",
+      "mau_uso",
+      "instalacao_inadequada"
+    ],
+    "aprovacao_automatica": false
+  },
+  "troca": {
+    "prazo_dias": 7,
+    "tipo_dias": "corridos",
+    "inicio_contagem": "recebimento_na_entrega_ou_retirada",
+    "motivos": [
+      "preferencia",
+      "compra_incorreta"
+    ],
+    "requisitos": [
+      "peca_sem_uso",
+      "sem_instalacao",
+      "embalagem_original",
+      "acessorios_completos",
+      "comprovante_de_compra"
+    ],
+    "solicitacao": "informar_peca_e_motivo_ao_atendimento",
+    "aprovacao_automatica": false,
+    "peca_usada_ou_instalada": "nao_elegivel_a_troca_por_preferencia",
+    "garantia_avaliada_separadamente": true
+  }
 }

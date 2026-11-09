@@ -326,3 +326,11 @@ Cliente HTTP com validação de Content-Type/JSON e tratamento de falhas; busca 
 ### Memória do projeto final — fase 3
 
 [Guia e evidências](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final/01_documentacao/MEMORIA_FASE_03.md): janela de turnos realmente enviada a `invoke`, perfil confirmado em SQLite e recuperação vetorial de resumos autorizados, isolados por cliente. Nova conversa preserva dados salvos; esquecer apaga contexto curto/longo. CLI e notebook importam a mesma fachada do agente; sem autenticação ou resumo automático. Comparação documental LangMem/Mem0 e decisão por store local.
+
+### RAG e text-to-query do projeto final — fase 4
+
+[Guia, execução e evidências](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final/01_documentacao/RAG_FASE_04.md): políticas em índice FAISS preparado separadamente, reescrita/decomposição de consultas por LCEL/saída estruturada e resposta do agente com fontes. Pergunta de catálogo vira plano Pydantic e SELECT compilado com filtros permitidos; sem SQL livre. Memória permanece integrada. Comparação real antes/depois, falhas de trajetória/avaliação preservadas e notebook com fixtures identificadas.
+
+### Projeto final — verificação por evidências
+
+[Auto Super Parts: fase 5](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final/01_documentacao/VERIFICACAO_FASE_05.md). Regras em Python conferem valores e um juiz LLM classifica sustentação, contradição e falta de suporte. O ciclo permite um reparo, reavalia e grava somente a resposta final. A avaliação separa fixtures locais de chamadas reais; falhas do juiz são preservadas. É uma adaptação por LLM da verificação por inferência, sem alegar classificador NLI especializado.

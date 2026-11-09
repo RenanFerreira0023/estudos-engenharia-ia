@@ -1,6 +1,8 @@
 # Auto Super Parts CWB — Projeto de disciplina
 
-Renan · Agentes Cognitivos com LangChain · Fases 1 e 2 · 02/11/2026
+> Implementação ativa atualizada: BrasilAPI CEP V2 substitui ViaCEP; Python calcula distância aproximada em linha reta por Haversine. Sem conta/chave. [Funcionamento, testes e limites](./04_avaliacao_e_evidencias/resultados/BRASILAPI_DISTANCIA_09_11.md). Menções anteriores a ViaCEP/tabela de cidades documentam versões passadas.
+
+Renan · Agentes Cognitivos com LangChain · Fases 1–4 · revisão de 08/11/2026
 
 ## Comece aqui
 1. Leia 01_documentacao/definicao_projeto.html para entender o problema e as regras.
@@ -9,7 +11,7 @@ Renan · Agentes Cognitivos com LangChain · Fases 1 e 2 · 02/11/2026
 
 O projeto tem a **fase 1 (chain inicial)** e a **fase 2 (agente com ferramentas)**:
 extração em JSON validado; consultas ao catálogo, orçamento determinístico e ViaCEP.
-A fase 3 agora oferece memória em uma fachada separada, com CLI e notebook; fases 4–5 continuam pendentes. Cada mensagem da CLI antiga da fase 2 permanece independente.
+A fase 3 oferece memória por cliente; a fase 4 integra RAG de políticas e text-to-query restrito. A integração/avaliação final da fase 5 continua pendente. Cada mensagem da CLI antiga da fase 2 permanece independente.
 Os documentos HTML são a arquitetura inicial e foram preservados como referência;
 as decisões desta implementação estão identificadas como propostas no CSV.
 
@@ -18,7 +20,7 @@ as decisões desta implementação estão identificadas como propostas no CSV.
 |---|---|
 | 01_documentacao | Definição do problema, decisões, matriz de requisitos e futuro PDF técnico. |
 | 02_codigo | Módulos das fases 1 e 2 em src/auto_super_parts; testes da fase 1 em tests e verificação da fase 2 em verificar_fase02.py. |
-| 03_notebooks | Fases 1–3 importam os .py; fase 3 executada com fixtures identificadas; fases 4–5 permanecem pendentes. |
+| 03_notebooks | Fases 1–4 importam os .py; fases 3/4 executadas com fixtures identificadas; fase 5 permanece pendente. |
 | 04_avaliacao_e_evidencias | Expectativas separadas de testes locais, simulações e chamadas reais. Falhas históricas preservadas. LangSmith permanece pendente. |
 | 05_demonstracao | Orientações para o futuro vídeo e seu link. |
 
@@ -360,3 +362,107 @@ python -B 02_codigo/executar_notebook.py --fase 3 --modo simulado
 Use `/veiculos`, `/veiculo V003`, `/guardar Uso urbano com percursos curtos`, `/nova`, `/cliente outro_cliente`, `/perfil` e `/esquecer`. O último apaga perfil/resumos/histórico apenas do cliente selecionado. A identidade é de demonstração, sem login real. O banco da CLI fica em `02_codigo/estado_local` e não entra no Git/ZIP; a demonstração usa banco temporário.
 
 [Evidências e limites](./04_avaliacao_e_evidencias/resultados/MEMORIA_08_11.md): 96 testes locais (78 + 18), seis situações com modelo/embeddings reais e leitura do banco por processo separado. Notebook da fase 3 executado em kernel novo com fixtures; isso não é compreensão por LLM. O próximo incremento continua sendo RAG/text-to-query, seguido de verificação, Streamlit e avaliação.
+
+## Fase 4 — políticas com fontes e filtros do catálogo
+
+[Guia de execução e arquitetura](./01_documentacao/RAG_FASE_04.md). O atendimento mantém a memória e acrescenta `consultar_politicas` e `consultar_catalogo_estruturado`, com fonte documental e plano/SQL observáveis. FAISS carrega o índice real já preparado. Perguntas compostas são decompostas; a ferramenta não inventa troca/garantia/horário ausentes.
+
+```powershell
+python -B 02_codigo/src/auto_super_parts/atendimento_rag.py --cliente cliente_demo
+python -B 02_codigo/executar_notebook.py --fase 4 --modo simulado
+python -B 02_codigo/validar_rag.py --real
+```
+
+O índice acompanha o incremento; para prepará-lo novamente se fonte/modelo mudar, use `python -B 02_codigo/preparar_politicas.py --real`. Não há indexação automática por pergunta. Chave no mesmo `.env` local do projeto; requisitos fixados incluem FAISS/numpy já existentes no ambiente de teste.
+
+Teste: `Posso pagar ao entregador?`; `Posso pagar com cartão em três vezes e tenho frete grátis em Curitiba?`; `Qual o prazo de garantia?`; `Liste as velas com estoque até R$ 20,00, da mais barata para a mais cara.` A lista global não exige veículo e não confirma aplicação.
+
+[Resultados e falhas reais preservadas](./04_avaliacao_e_evidencias/resultados/RAG_08_11.md): 118 testes locais, quatro comparações de recuperação, consulta estruturada real e seis atendimentos na rodada final. A primeira versão do avaliador de listagem deu falso positivo e foi corrigida. Notebook executado em modo simulado; LangSmith e verificador geral ainda pendentes. A detecção de política por middleware é delimitada e não substitui avaliação semântica.
+
+### Dados variados para testar os filtros
+
+As velas agora permitem conferir filtros e ordem: P003 (Gol), R$ 18,50, estoque 16; P009 (Palio), R$ 16,90, estoque 7; P015 (Celta), R$ 24,90, estoque 12; P021 (Fusca, especificacao a confirmar), R$ 14,90, estoque 0.
+
+Reinicie a CLI para recarregar. Com preco ate R$ 20, estoque disponivel e ordem crescente, o resultado esperado e P009 e P003. P015 fica fora pelo preco e P021 pelo estoque. Evidencias anteriores mantem os valores da epoca; a alteracao nao confirma compatibilidade mecanica.
+
+### Variações de nomes nas categorias
+
+A consulta do catálogo normaliza acentos, caixa, espaços e sinônimos cadastrados: por exemplo, `velas de ignição` vira `vela`, `filtros de óleo` vira `filtro_oleo` e `pastilhas de freio` vira `pastilha`. O mesmo mecanismo cobre as dez categorias comerciais reconhecidas; não cria produtos. Termos genéricos como `filtro` ou `correia` não são convertidos para um tipo específico. A busca continua parametrizada e mantém a distinção entre correia dentada e de acessórios.
+
+Regressão local: reproduzir `consultar_catalogo(veiculo_id="V002", categoria="velas")` deve encontrar P009; solicitar 8 unidades para retirada deve retornar `pendencia_estoque` (saldo 7), sem reserva. Isso testa as ferramentas; o atendimento com LLM deve ser repetido manualmente.
+
+### Continuação do orçamento e veículo salvo
+
+O contexto comercial mantém IDs e o último pedido observado nas ferramentas por cliente/sessão, separado do perfil confirmado. O veículo informado na conversa tem prioridade para esse pedido; isso não altera o perfil salvo. Na continuação (por exemplo, `pode ser` após oferta de 7 unidades), o agente recebe produto, modalidade e saldo anterior como contexto e precisa consultar/calcular novamente. Nenhum preço é guardado como fonte atual. Nova conversa inicia contexto comercial vazio e `/esquecer` também o apaga.
+
+Pedidos diretos por código, sem pergunta de aplicação ou veículo, consultam o produto sem filtros adicionais herdados do perfil. As aplicações continuam no retorno; localizar um código não confirma compatibilidade mecânica.
+
+### Registro dos desafios observados
+
+Veja [problemas, alternativas, decisoes e evidencias de 08/11](./01_documentacao/DESAFIOS_E_DECISOES_08_11.md) e o [registro central de decisoes](./01_documentacao/registro_decisoes.csv), atualizado com D31 a D34. Inclui filtros, nomes de categorias, continuacao do orcamento e prioridade do veiculo da conversa.
+
+## Fase 5 — verificar antes de responder
+
+[Arquitetura, comandos e limites](./01_documentacao/VERIFICACAO_FASE_05.md). O novo atendimento_verificado.py reutiliza RAG e memória, acrescenta checagens financeiras e juiz LLM com sustentação/contradição/sem suporte. Um reparo no máximo, seguido de novo julgamento; falha termina em limitação segura. A resposta final é verificada antes de entrar no histórico.
+
+```powershell
+python -B 02_codigo/src/auto_super_parts/atendimento_verificado.py
+python -B 02_codigo/validar_verificacao.py
+python -B 02_codigo/validar_verificacao.py --real
+python -B 02_codigo/executar_notebook.py --fase 5 --modo simulado
+```
+
+[Notebook demonstrativo](./03_notebooks/fase_05_verificacao.ipynb) e [evidências e erros do juiz](./04_avaliacao_e_evidencias/resultados/VERIFICACAO_08_11.md). Fixtures locais não geram notas semânticas fictícias; a injeção de candidata inválida está identificada. A abordagem usa juiz LLM, não classificador NLI especializado. Interface e LangSmith continuam pendentes.
+
+## Política atualizada — garantia
+
+Decisão de Renan em 08/11/2026: as peças têm **30 dias de garantia**. A política de troca e demais condições continuam sem definição; o prazo de garantia não confirma troca após 30 dias. Texto documental e JSON são sincronizados e o índice deve ser preparado novamente. Reinicie o atendimento após a atualização.
+
+As fixtures manuais de garantia desconhecida continuam úteis para testar ausência de suporte, mas representam um cenário de teste, não esta política vigente. Evidências antigas e seus julgamentos foram preservados.
+
+### Correcao da verificacao de teto de preco
+
+O teto da busca e distinguido do preco das pecas quando aparece como filtro confirmado no plano executado. [Diagnostico, alternativas e evidencias antes/depois](./04_avaliacao_e_evidencias/resultados/FILTRO_PRECO_VERIFICACAO_08_11.md). A listagem ate R$ 20 foi repetida com API: aprovada, zero reparos; 123 testes locais passaram.
+
+## Política fictícia vigente — troca e garantia
+
+Regras criadas a pedido de Renan: garantia de 30 dias corridos a partir do recebimento/retirada para defeito de fabricação confirmado em avaliação; troca por preferência ou compra incorreta em até 7 dias corridos, com peça sem uso/instalação, embalagem original, acessórios e comprovante. Depois de 7 dias, defeito ainda pode seguir para avaliação dentro dos 30 dias de garantia. Mau uso, desgaste natural e instalação inadequada não entram na cobertura definida.
+
+O atendimento recebe a solicitação e avalia; não existe aprovação automática pelo assistente. Frete da devolução e prazo de avaliação são confirmados pelo atendimento. Fonte ativa: politicas_loja.txt V3 e loja_regras.json. As seções anteriores descrevem o histórico; esta versão substitui a indicação antiga de troca sem regra.
+
+### Referencia de veiculo e tipo de codigo
+
+Uma consulta que menciona Fusca nao pode retornar Celta por causa do perfil salvo. Um V004 explicitamente informado e referencia de veiculo, nao codigo de produto. A referencia efetivamente consultada e preservada no contexto; pedido ambiguo requer esclarecimento. [Antes/depois, testes e limites](./04_avaliacao_e_evidencias/resultados/REFERENCIA_VEICULO_08_11.md).
+
+## Fusca classico e Fusca TSI na base
+
+V004: Fusca 1982 1600 a ar. V006: Fusca 2014 2.0 TSI gasolina, recorte tecnico sem produtos comerciais associados. Ao perguntar apenas Fusca sobre pecas/especificacoes, o controlador pede ano/motor ou ID; status identificacao_pendente indica pergunta de dados faltantes, sem modelo ou juiz executado.
+
+Depois de identificar TSI 2014, referencias como nele ficam na sessao, sem alterar o perfil permanente. Nao usar P021 do classico como aplicacao do TSI. [Fonte, campos pendentes, decisoes e testes](./04_avaliacao_e_evidencias/resultados/FUSCA_TSI_08_11.md).
+
+Teste: Quanto custa a vela do Fusca? Depois informe: E o Fusca TSI 2014 2.0 gasolina. Como ele e refrigerado?
+
+
+## Listagem de produtos cadastrados
+
+Perguntas de inventário consultam a ferramenta no turno atual. Para listar tudo, categoria é opcional; "correias" reúne os tipos de correia para busca, sem equivalência técnica. A resposta mostra os recortes realmente cadastrados, inclusive quando o pedido diz "todos os anos".
+
+[Testes e limitações observadas](./04_avaliacao_e_evidencias/resultados/INVENTARIO_08_11.md): 150 testes locais e três listagens com API real, com ajuste adicional do prompt no caso Palio. O juiz ainda pode bloquear esclarecimentos necessários; pendência D51.
+
+
+## Totais por item no orçamento
+
+O verificador deriva quantidade × preço unitário em centavos a partir do retorno de `calcular_orcamento`. Totais de itens em blocos numerados e rótulos explícitos são separados do subtotal, frete e total geral. O juiz continua conferindo associação dos produtos e demais afirmações. [Falha observada, correção e testes](./04_avaliacao_e_evidencias/resultados/TOTAIS_ITENS_08_11.md).
+
+
+## Pedido com vários produtos
+
+O plano estruturado aceita uma categoria ou lista de categorias permitidas. Python compila `IN` parametrizado; o agente envia os produtos e quantidades para `calcular_orcamento`. [Caso correia e filtro do Celta, testes e limites](./04_avaliacao_e_evidencias/resultados/MULTIPLOS_PRODUTOS_09_11.md).
+
+
+## Endereço e distância sem cadastro externo
+
+Execute atendimento_verificado.py e pergunte: Quanto fica o frete para o CEP 01002-020? A BrasilAPI localiza o CEP; Python usa as coordenadas para aplicar a taxa da loja à distância em linha reta. Curitiba/PR continua grátis por município. CEP sem coordenadas deixa o frete externo pendente. A distância não é percurso pelas ruas nem localização exata do imóvel. As consultas HTTP têm identificação e cache de sucesso por instância.
+
+
+Validação da BrasilAPI: 175 testes locais passaram. API real para CEP 01002-020: cerca de 337.238 km em linha reta, frete R$ 14,92; filtro e correia do Celta somaram R$ 54,80 e totalizaram R$ 69,72 com entrega. Os valores dependem das coordenadas retornadas; não são distâncias rodoviárias. Reindexação V4 concluída e evidências preservadas.

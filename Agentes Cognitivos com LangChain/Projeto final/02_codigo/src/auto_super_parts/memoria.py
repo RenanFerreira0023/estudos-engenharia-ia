@@ -52,6 +52,8 @@ class MemoriaSQLite:
             CREATE TABLE IF NOT EXISTS turnos (
                 id INTEGER PRIMARY KEY, sessao TEXT NOT NULL REFERENCES sessoes(id),
                 pergunta TEXT NOT NULL, resposta TEXT NOT NULL, criado_em TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS contextos_atendimento (
+                sessao TEXT PRIMARY KEY REFERENCES sessoes(id), dados TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS perfis (
                 cliente TEXT PRIMARY KEY, veiculo TEXT NOT NULL, confirmado_em TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS resumos (
@@ -92,6 +94,19 @@ class MemoriaSQLite:
             self._validar_sessao(cliente,sessao)
             self.conexao.execute('INSERT INTO turnos(sessao,pergunta,resposta,criado_em) VALUES (?,?,?,?)',
                                  (sessao,pergunta,resposta,agora()))
+
+    # ESTADO POR SESSÃO: guarda IDs observados nas ferramentas, nunca preços como fonte atual.
+    def contexto_atendimento(self, cliente, sessao):
+        with self.trava:
+            self._validar_sessao(cliente, sessao)
+            r = self.conexao.execute('SELECT dados FROM contextos_atendimento WHERE sessao=?', (sessao,)).fetchone()
+        return json.loads(r['dados']) if r else {}
+
+    def guardar_contexto_atendimento(self, cliente, sessao, dados):
+        with self.trava, self.conexao:
+            self._validar_sessao(cliente, sessao)
+            self.conexao.execute('INSERT INTO contextos_atendimento VALUES (?,?) ON CONFLICT(sessao) DO UPDATE SET dados=excluded.dados',
+                                 (sessao, json.dumps(dados, ensure_ascii=False)))
 
     def confirmar_veiculo(self, cliente, veiculo):
         identidade(cliente)
@@ -155,6 +170,7 @@ class MemoriaSQLite:
         with self.trava, self.conexao:
             # EXCLUSÃO também limpa contexto curto para não ressuscitar informação apagada.
             self.conexao.execute('DELETE FROM turnos WHERE sessao IN (SELECT id FROM sessoes WHERE cliente=?)',(cliente,))
+            self.conexao.execute('DELETE FROM contextos_atendimento WHERE sessao IN (SELECT id FROM sessoes WHERE cliente=?)',(cliente,))
             self.conexao.execute('DELETE FROM perfis WHERE cliente=?',(cliente,))
             self.conexao.execute('DELETE FROM resumos WHERE cliente=?',(cliente,))
 
