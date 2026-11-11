@@ -1,5 +1,7 @@
 # Andamento nas cinco fases do trabalho
 
+**11/11/2026 — financeiro operacional inicial:** migração SQLite v10 separa orçamento proposto/aceito, parcelas e pagamento informado/confirmado. O menu 12 mostra relatório no console e exige confirmação explícita antes de aceitar orçamento ou confirmar recebimento. O agente ganhou leitura financeira com permissão no serviço. [Fluxo e limites](financeiro_console.md). Excel foi adiado; reteste manual no terminal e com agente ainda pendente.
+
 **11/11/2026 — falha real de ranking RAG:** pergunta sobre onde foi dito que o saldo do Gama não podia ser calculado trouxe M0023, que apenas pergunta pelo saldo, antes de M0024, que explica a impossibilidade. Reordenação condicional por tipo de enunciado colocou M0024 primeiro no reteste com embeddings reais, preservando posição e similaridade vetorial. O agente reformulou a busca, recebeu M0024 primeiro e citou a explicação de Carla. [Diagnóstico e antes/depois](../evidencias/fase4_falha_ranking_gama.json).
 
 **11/11/2026 — reteste real de text-to-query aprovado:** pergunta “quantas mensagens de Bruno mencionam orçamento e Alfa?”; rota `consulta`; ferramentas `listar_corpora_acessiveis` e `consultar_mensagens_estruturado`; plano `contagem`, `autor=Bruno`, termos `orçamento` e `Alfa`; `SELECT COUNT(*)` parametrizado retornou **1**. A resposta informou 1, agora sustentada pela contagem exaustiva dos filtros. [Registro](../evidencias/fase4_text_to_query_reteste_manual.json).
@@ -84,3 +86,6 @@ Novas regras do professor devem ser comparadas com o plano antes de alterar a ma
 
 
 Incremento atual da fase 2: [revisão persistente](revisao_persistente.md) e [notebook 03](../notebooks/03_revisao_persistente.ipynb). 72 testes locais passaram. A numeração dos três notebooks não equivale a três fases concluídas; 01/02 são fase 1 e 03 inicia a fase 2.
+# Incremento atual — interface, finanças e avaliação
+
+O Streamlit já abre as abas de conversa, fontes, revisão, agenda e financeiro usando o SQLite existente. O financeiro aceita revisão com histórico e reversão auditada. O verificador combina regras determinísticas e juiz opcional por API antes de salvar a resposta. Há seis casos de avaliação fictícios; fixtures locais e testes unitários passaram. Ainda falta teste manual do fluxo visual e execução real do experimento LangSmith. Excel, PDF e vídeo permanecem pendentes. Veja [o guia do incremento](fase5_interface_verificacao_avaliacao.md).

@@ -12,6 +12,8 @@ Esta revisão incorpora as decisões mais recentes de Renan: várias pessoas da 
 
 **O primeiro fluxo vertical a implementar:** identificar usuário → localizar/cadastrar cliente → consultar disponibilidade do atendente → confirmar endereço quando for visita → confirmar proposta → gravar com autoria e histórico. Depois evoluir financeiro, relatórios e avaliação sem perder a matriz da disciplina.
 
+**Estado do incremento atual:** revisão financeira auditada, interface Streamlit local, verificação de respostas e avaliador com fixtures/execução API foram codificados. O relatório é textual na interface/console; Excel segue adiado. Falta revisão manual do fluxo completo, execução de experimento LangSmith com credenciais próprias, relatório final e vídeo. Ver [guia do incremento](docs/fase5_interface_verificacao_avaliacao.md).
+
 **Três demonstrações simples para Renan:**
 
 1. Ana pede “cliente Alfa amanhã às 14h, por uma hora”: o sistema consulta a agenda de Ana e confirma a proposta.
@@ -541,6 +543,8 @@ Proposta de abas:
 **Pronto quando:** fatos e fontes são localizados; dados exaustivos vêm de consultas apropriadas; falha real foi analisada.
 
 ### Fase 5 — integração, verificação, interface, Excel e avaliação
+
+**Decisão de 11/11/2026:** neste incremento, o relatório financeiro será exibido no console. A exportação Excel fica para uma etapa posterior, após validar cálculos, permissões e interface; não declarar R27/R28/R29 nem exportação concluídos por existir o relatório textual.
 
 - Consolidar um único agente com histórico, ferramentas e verificador dentro do fluxo.
 - Concluir Streamlit: selecionar usuário de demonstração (ou login local simples), importar, conversar, revisar propostas, visualizar áreas conforme perfil, ver agenda própria/equipe permitida e baixar Excel autorizado. Trocar usuário deve restaurar a sessão correta ou iniciar uma nova, nunca herdar o histórico anterior.

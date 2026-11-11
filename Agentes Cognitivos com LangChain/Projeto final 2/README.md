@@ -1,8 +1,17 @@
 # Secretária IA — Projeto final 2
 
+### Interface e avaliação em desenvolvimento
+
+Execute `python -m streamlit run app.py` nesta pasta para testar conversa, fontes, revisão, agenda e financeiro na interface local. `python avaliar.py --modo fixture` mostra seis casos manuais identificados; `--modo api` executa o agente real em banco temporário, e `--langsmith` publica somente casos fictícios se houver credenciais. A resposta do agente passa por verificação antes de ser salva. [Guia e limites](docs/fase5_interface_verificacao_avaliacao.md) · [Bateria de testes](docs/roteiro_testes_incremento_1a4.md). A exportação Excel, a execução real de avaliação no LangSmith, o PDF e o vídeo continuam pendentes.
+
 [Revisão do enunciado e da aula 08](docs/revisao_enunciado_aula08.md): aderência, lacunas, quatro entregáveis e prioridades para concluir a disciplina.
 
 > **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, projetos, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. A memória por sessão usa janela curta e recortes antigos recuperados por FAISS/embeddings, com fallback lexical; preferências confirmadas são guardadas por usuário no SQLite. O índice FAISS de mensagens com fontes da fase 4 tem preparação explícita no menu 11 e ferramenta de consulta no agente. A consulta estruturada de mensagens usa plano tipado e SQL parametrizado. As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+
+### Financeiro no console e no Streamlit
+
+O menu **12 Financeiro** registra orçamento proposto/aceito, parcelas previstas e pagamento informado/confirmado. A opção financeira 1 exibe o [relatório simples no terminal](docs/financeiro_console.md); a ferramenta `consultar_financeiro_projeto` permite ao agente ler saldo somente para perfis autorizados. Excel foi adiado por decisão do usuário.
+O [notebook 13](notebooks/13_financeiro_confirmado.ipynb) executa o ciclo em banco temporário com dados fictícios e mostra como o saldo muda somente após confirmar o pagamento.
 
 ### Consulta estruturada de mensagens — fase 4
 
@@ -34,7 +43,7 @@ O [notebook 05b](notebooks/05b_orquestracao_agente.ipynb) mostra o prompt PTCF, 
 
 No menu **9**, o agente retoma a última conversa ativa do mesmo usuário após fechar e reabrir o programa. Cada pergunta e resposta concluída é gravada como um turno; as seis interações mais recentes são enviadas ao próximo `invoke`. `/voltar` mantém a conversa e `/nova` começa uma conversa vazia. A sessão antiga permanece no banco para auditoria, mas não entra no contexto da nova. Ana, Bruno e Carla têm históricos separados. O [notebook 06](notebooks/06_memoria_conversacional.ipynb) demonstra persistência, janela e isolamento com respostas locais escritas para teste, sem atribuí-las a um LLM.
 
-**Teste com API:** Renan confirmou que, após `/nova`, o agente pediu o cliente sem reutilizar o histórico anterior. Informou Alfa, encerrou o programa, reabriu com o mesmo usuário e banco, viu o mesmo ID de sessão e recebeu `Alfa Serviços` ao perguntar qual cliente mencionara. O registro está em [execuções e falhas](docs/execucoes_e_falhas.md). Para reproduzir, diga `Estou falando do cliente Alfa.`, saia com `/voltar`, encerre com `0`, reabra com o mesmo `--usuario` e `--banco`, entre no menu 9 e pergunte `Qual cliente mencionei?`. Esta etapa ainda não implementa resumo nem recuperação vetorial; Streamlit usará o mesmo serviço de memória quando a interface for construída.
+**Teste com API da etapa inicial:** Renan confirmou que, após `/nova`, o agente pediu o cliente sem reutilizar o histórico anterior. Informou Alfa, encerrou o programa, reabriu com o mesmo usuário e banco, viu o mesmo ID de sessão e recebeu `Alfa Serviços` ao perguntar qual cliente mencionara. O registro está em [execuções e falhas](docs/execucoes_e_falhas.md). Para reproduzir, diga `Estou falando do cliente Alfa.`, saia com `/voltar`, encerre com `0`, reabra com o mesmo `--usuario` e `--banco`, entre no menu 9 e pergunte `Qual cliente mencionei?`. As etapas posteriores acrescentaram recortes e recuperação vetorial; a interface atual usa o mesmo SQLite e o mesmo serviço de memória.
 
 ### Projetos e fontes da conversa — opção 10
 

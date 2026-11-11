@@ -113,7 +113,7 @@ class AgendaTest(unittest.TestCase):
         with Banco(caminho) as novo:
             linha=novo.con.execute('SELECT nome,origem_cadastro FROM clientes').fetchone()
             self.assertEqual(tuple(linha),('Empresa Antiga','origem_nao_registrada'))
-            self.assertEqual(novo.con.execute('PRAGMA user_version').fetchone()[0],9)
+            self.assertEqual(novo.con.execute('PRAGMA user_version').fetchone()[0],11)
 
 
 if __name__ == '__main__':

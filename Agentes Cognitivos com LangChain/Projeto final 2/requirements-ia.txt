@@ -4,3 +4,5 @@ langchain-openai==1.7.0
 pydantic==2.14.0
 python-dotenv==1.2.4
 faiss-cpu==1.15.1
+streamlit==1.67.0
+langsmith==0.14.12

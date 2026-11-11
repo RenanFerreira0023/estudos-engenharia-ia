@@ -66,7 +66,7 @@ class Banco:
         versao=self.con.execute('PRAGMA user_version').fetchone()[0]
         if versao==0:
             self.con.executescript(ESQUEMA)
-        elif versao not in (1,2,3,4,5,6,7,8,9):
+        elif versao not in (1,2,3,4,5,6,7,8,9,10,11):
             self.con.close()
             raise ValueError('Versão de banco não suportada por este incremento.')
         if self.con.execute('PRAGMA user_version').fetchone()[0]==1:
@@ -136,6 +136,24 @@ class Banco:
             from .migracao_preferencias import ESQUEMA_PREFERENCIAS
             try:
                 self.con.executescript(ESQUEMA_PREFERENCIAS)
+            except BaseException:
+                if self.con.in_transaction:
+                    self.con.execute('ROLLBACK')
+                self.con.close()
+                raise
+        if self.con.execute('PRAGMA user_version').fetchone()[0]==9:
+            from .migracao_financeiro import ESQUEMA_FINANCEIRO
+            try:
+                self.con.executescript(ESQUEMA_FINANCEIRO)
+            except BaseException:
+                if self.con.in_transaction:
+                    self.con.execute('ROLLBACK')
+                self.con.close()
+                raise
+        if self.con.execute('PRAGMA user_version').fetchone()[0]==10:
+            from .migracao_revisoes_financeiras import ESQUEMA_REVISOES_FINANCEIRAS
+            try:
+                self.con.executescript(ESQUEMA_REVISOES_FINANCEIRAS)
             except BaseException:
                 if self.con.in_transaction:
                     self.con.execute('ROLLBACK')

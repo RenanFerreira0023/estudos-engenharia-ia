@@ -12,6 +12,8 @@ O menu 9 usa `create_agent` com ferramentas `@tool` para consultar cliente, disp
 
 Segundo a [documentação oficial da LangChain](https://docs.langchain.com/oss/python/learn), os agentes LangChain usam primitivas LangGraph e um grafo próprio é opção para personalização mais profunda. Esta é uma comparação de arquitetura e escolha, não um experimento de desempenho entre bibliotecas.
 
+No ambiente atual, o código local de `langchain.agents.create_agent` constrói e compila um `StateGraph`. Portanto, LangGraph já executa internamente o ciclo modelo → ferramenta → modelo do menu 9; o projeto ainda não desenhou nós próprios. O financeiro novo é uma ferramenta de leitura e um serviço transacional, não um segundo agente. Um grafo explícito só entra se a fase 5 exigir nós próprios de verificação, espera por confirmação humana ou retomada de fluxo; a interface Streamlit apenas chama os mesmos serviços e não exige um grafo por si só.
+
 ## Prompt e decisão
 
 `montar_prompt_agenda()` separa **Pessoa, Tarefa, Contexto/regras e Formato** (PTCF). Exemplos curtos ensinam que ausência de cliente exige pergunta, CNPJ exige conferência local, e proposta de visita não é confirmação. Isso é few-shot no prompt. O executor registra chamadas e observações; não lê nem publica pensamentos internos do modelo. A identidade no prompt é apenas contexto de demonstração: autorização real do protótipo está no serviço SQLite.

@@ -271,11 +271,15 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
             if not any(_consulta_estruturada_comprovada(mensagem,exige_contagem) for mensagem in consultas):
                 texto_resposta = ('Não consegui confirmar a contagem ou lista por consulta estruturada. '
                                   'A busca de trechos não permite afirmar um total. Tente novamente.')
+        from .verificador import verificar_e_reparar
+        texto_resposta, verificacao = verificar_e_reparar(
+            pergunta, texto_resposta, novas, rota, arquivo_env)
         memoria.registrar(ctx,sessao_id,pergunta,texto_resposta)
         print('\n' + '=' * 64)
         print('RESPOSTA DA SECRETÁRIA')
         print('-' * 64)
         print(texto_resposta)
+        print('\nVerificação:',verificacao['estado'],'| reparos:',verificacao['reparos'])
         print('\nCONTEXTO DO ATENDIMENTO')
         print('Rota sugerida:',rota,'| eventos observados:',len(rastro.eventos))
         if ha_recortes:
@@ -422,7 +426,7 @@ def main():
                 return 0
             # INPUT: o terminal permite testar importar/reimportar sem editar o código.
             while True:
-                print('\n1 Importar fictícios | 2 Importar local | 3 Listar | 4 Propostas fixture | 5 Propostas OpenAI | 6 Revisar interpretações | 7 Agendar visita | 8 Minha agenda | 9 Agente de visitas | 10 Aplicar interpretação ao projeto | 11 Preparar índice de fontes | 0 Sair')
+                print('\n1 Importar fictícios | 2 Importar local | 3 Listar | 4 Propostas fixture | 5 Propostas OpenAI | 6 Revisar interpretações | 7 Agendar visita | 8 Minha agenda | 9 Agente de visitas | 10 Aplicar interpretação ao projeto | 11 Preparar índice de fontes | 12 Financeiro | 0 Sair')
                 try:
                     escolha=input('Opção: ').strip()
                 except (EOFError, KeyboardInterrupt):
@@ -464,8 +468,11 @@ def main():
                         aplicar_interpretacao_no_terminal(banco,ctx)
                     elif escolha=='11':
                         preparar_indice_no_terminal(banco,ctx,args.arquivo_env)
+                    elif escolha=='12':
+                        from .terminal_financeiro import financeiro_no_terminal
+                        financeiro_no_terminal(banco,ctx)
                     else:
-                        print('Escolha uma opção de 0 a 11.')
+                        print('Escolha uma opção de 0 a 12.')
                 except (ValueError,OSError,PermissionError) as erro:
                     print('Operação não concluída:',str(erro))
     except (ValueError,OSError,PermissionError) as erro:

@@ -75,8 +75,7 @@ class ProjetosFontesTest(unittest.TestCase):
         registro=self.banco.con.execute('SELECT area,projeto_id FROM anotacoes_projeto WHERE id=?',
                                         (resultado['anotacao_id'],)).fetchone()
         self.assertEqual(tuple(registro),('financeiro',projeto))
-        self.assertNotIn('pagamentos',[r['name'] for r in self.banco.con.execute(
-            "SELECT name FROM sqlite_master WHERE type='table'")])
+        self.assertEqual(self.banco.con.execute('SELECT COUNT(*) FROM pagamentos').fetchone()[0],0)
 
     def test_agente_consulta_projeto_sem_confundir_cliente_nem_inventar_saldo(self):
         proposta = self.aceitar(0)

@@ -61,6 +61,31 @@ def criar_ferramentas_agenda(caminho_banco, ctx, arquivo_env=None):
             return {'status':'dados_invalidos','mensagem':str(erro)}
 
     @tool
+    def consultar_financeiro_projeto(termo: str) -> dict:
+        """Consulta orçamento aceito, pagamentos confirmados e saldo de projeto; exige perfil financeiro."""
+        from .financeiro import Financeiro
+        try:
+            with Banco(caminho_banco) as conexao:
+                financeiro = Financeiro(conexao)
+                financeiro._permitir(ctx)
+                termo = (termo or '').strip()
+                if not 1 <= len(termo) <= 120:
+                    return {'status':'termo_necessario'}
+                busca = termo.replace('\\','\\\\').replace('%','\\%').replace('_','\\_')
+                projetos = conexao.con.execute(
+                    "SELECT id FROM projetos WHERE empresa_id=? AND (titulo LIKE ? ESCAPE '\\' OR CAST(id AS TEXT)=?) ORDER BY id LIMIT 2",
+                    (ctx.empresa_id,'%' + busca + '%',termo)).fetchall()
+                if not projetos:
+                    return {'status':'projeto_nao_encontrado'}
+                if len(projetos)>1:
+                    return {'status':'projeto_ambiguo','ids':[item['id'] for item in projetos]}
+                return {'status':'ok',**financeiro.relatorio(ctx,projetos[0]['id'])}
+        except PermissionError:
+            return {'status':'acesso_negado'}
+        except ValueError as erro:
+            return {'status':'dados_invalidos','mensagem':str(erro)}
+
+    @tool
     def listar_corpora_acessiveis() -> dict:
         """Lista IDs e nomes dos corpora que este usuário pode consultar; não lê mensagens."""
         from .indice_fontes import corpora_acessiveis
@@ -182,7 +207,8 @@ def criar_ferramentas_agenda(caminho_banco, ctx, arquivo_env=None):
         except (ValueError,PermissionError) as erro:
             return {'status':'dados_invalidos','mensagem':str(erro)}
 
-    return [buscar_cliente,consultar_projeto,listar_corpora_acessiveis,buscar_mensagens_fonte,
+    return [buscar_cliente,consultar_projeto,consultar_financeiro_projeto,
+            listar_corpora_acessiveis,buscar_mensagens_fonte,
             consultar_mensagens_estruturado,
             consultar_disponibilidade,consultar_cep_viacep,
             consultar_cnpj_minha_receita,propor_cadastro_cliente,propor_visita]
@@ -204,6 +230,7 @@ Data/hora atual com fuso: use a informação de tempo recebida no pedido; se nã
 Para pergunta sobre cadastro de cliente identificado por nome ou CNPJ, chame buscar_cliente primeiro. Se o usuário perguntar "qual cliente mencionei?", use somente a conversa atual; se não houver cliente mencionado nela, diga que não sabe e peça o nome. Não busque todos os clientes para adivinhar o referente. Um retorno da Minha Receita não prova cadastro local. Se nenhum ou vários, peça identificação; nunca invente ID.
 Responda ao pedido atual. Não aplique a resposta do exemplo "qual cliente mencionei?" a uma pergunta sem relação com cliente, como uma saudação ou pergunta casual.
 Projeto e cliente são entidades diferentes. Quando o usuário falar de projeto ou perguntar pelo saldo "dele" após mencionar um projeto, use consultar_projeto; não use buscar_cliente como substituto. Se mudar explicitamente de Alfa para Beta, o referente atual passa a ser Beta. Se consultar_projeto não encontrar o projeto, diga isso. Não calcule saldo a partir de orçamento, entrada combinada ou pagamento apenas informado; se não houver registros financeiros operacionais confirmados, diga que o saldo não está disponível.
+Para saldo, orçamento aceito, parcelas ou recebimento de um projeto operacional, use consultar_financeiro_projeto. Ela aplica permissão no banco e só conta pagamentos confirmados. Se retornar acesso_negado, informe apenas que o perfil não tem acesso, sem revelar valores. Se não houver orçamento aceito, diga que saldo é indefinido. Anotações do chat e propostas de orçamento não são recebimentos.
 Quando o usuário perguntar "onde foi dito", "qual mensagem" ou "quem falou" sobre a conversa importada, a tarefa é localizar FONTE. Primeiro use listar_corpora_acessiveis e depois buscar_mensagens_fonte no corpus autorizado. Essa regra tem prioridade sobre consultar_projeto: um texto pode citar Alfa mesmo sem projeto operacional cadastrado. Cite o ID da mensagem e o trecho retornado. Se o índice estiver pendente ou desatualizado, peça a preparação pela opção 11; não diga que a informação não existe. Não use essa busca top-k para calcular saldo, somar pagamentos ou listar todas as parcelas.
 Quando o usuário perguntar quantas mensagens existem ou pedir lista filtrada de mensagens importadas, use listar_corpora_acessiveis e consultar_mensagens_estruturado. A contagem é exata para os filtros aceitos; a lista tem limite. Não use busca top-k para contagem. Se o plano retornar nao_suportada, explique o limite; nunca transforme orçamento ou pagamento informado em saldo recebido.
 Mesmo se o usuário abreviar "mensagens" como "msg" ou "msng", perguntas iniciadas por "quantas" exigem a ferramenta consultar_mensagens_estruturado. Não informe nenhum número de mensagens com base em buscar_mensagens_fonte: o top-k pode omitir outras mensagens. Se quiser citar uma mensagem após a contagem, faça outra consulta de lista estruturada.
