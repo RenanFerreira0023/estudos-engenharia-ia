@@ -16,7 +16,7 @@ def identificar_rota(dados):
     anteriores = dados.get('anteriores', [])
     if re.search(r'\b(visita|visitar|agendar|agenda|horario|remarcar|disponibilidade)\b', pergunta):
         rota = 'visita'
-    elif re.search(r'\b(cliente|cnpj|cadastrar|cadastro|empresa)\b', pergunta):
+    elif re.search(r'\b(cliente|cleinte|cnpj|cadastrar|cadastro|empresa)\b', pergunta):
         rota = 'cliente'
     elif anteriores and len(pergunta.split()) <= 8:
         ultima = _normalizar(anteriores[-1]['pergunta'])

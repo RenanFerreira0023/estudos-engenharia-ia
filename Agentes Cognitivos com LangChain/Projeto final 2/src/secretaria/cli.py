@@ -150,10 +150,15 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
         anteriores = memoria.ultimos(ctx,sessao_id)
         rota = roteador_pedido.invoke({'pergunta':pergunta,'anteriores':anteriores})['rota']
         historico = memoria.mensagens(ctx,sessao_id)
+        # RECUPERAÇÃO: somente recortes antigos da conversa atual com palavras em comum.
+        # O texto é rotulado como fala anterior, nunca como cadastro confirmado.
+        recuperados = memoria.buscar_resumos(ctx,sessao_id,pergunta)
+        contexto_antigo = (' Trechos antigos da conversa, não confirmados: '
+                           + json.dumps(recuperados,ensure_ascii=False) + '.') if recuperados else ''
         # CALLBACK + INVOKE: os eventos mostram modelo/ferramenta sem guardar conteúdo no log.
         rastro = RastroAgente()
         try:
-            resposta = agente.invoke({'messages':historico+[{'role':'user','content':f'Agora: {agora}. Rota sugerida: {rota}. Pedido: {pergunta}'}]},
+            resposta = agente.invoke({'messages':historico+[{'role':'user','content':f'Agora: {agora}. Rota sugerida: {rota}.{contexto_antigo} Pedido: {pergunta}'}]},
                                     {'recursion_limit':12,'callbacks':[rastro]})
         except AuthenticationError:
             print('A chave OPENAI_API_KEY foi recusada ou expirou. Gere outra chave e atualize o .env; nenhum agendamento foi confirmado.')
@@ -174,6 +179,8 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
         ultima = resposta['messages'][-1]
         memoria.registrar(ctx,sessao_id,pergunta,str(ultima.content))
         print('Rota sugerida:',rota,'| eventos observados:',len(rastro.eventos))
+        if recuperados:
+            print('Recortes antigos recuperados dos turnos:',[item['turno_id'] for item in recuperados])
         print('Secretária:',ultima.content)
         for mensagem in novas:
             for chamada in getattr(mensagem,'tool_calls',[]):

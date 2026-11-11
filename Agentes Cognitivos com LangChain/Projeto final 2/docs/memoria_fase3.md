@@ -1,0 +1,13 @@
+# Fase 3 — janela, recortes antigos e recuperação
+
+O menu 9 envia ao agente as **seis interações mais recentes** da conversa atual. O SQLite guarda o histórico completo por `(empresa_id, usuario_id, sessao_id)`, inclusive após reiniciar o programa. `/nova` cria outra sessão; os turnos da anterior não entram no novo contexto.
+
+Ao registrar um turno, o serviço grava em `resumos_turnos_agente` um **resumo extrativo** para cada turno que saiu da janela: a fala do usuário (até 500 caracteres) e o ID do turno original. A resposta do modelo é descartada desse recorte para não transformar uma resposta possivelmente errada em fato lembrado. O texto original continua em `turnos_agente`; portanto, o recorte não substitui a fonte. Não há segunda chamada de LLM nem inferência semântica nessa etapa.
+
+Antes de `invoke`, `buscar_resumos()` compara palavras da pergunta com os 500 recortes mais recentes **da mesma sessão e usuário**, ordena por correspondência e recência, e entrega no máximo dois. O agente recebe esses textos rotulados como falas antigas **não confirmadas**. Dados operacionais, como cadastro e agenda, ainda exigem ferramentas. Busca por palavras pode perder paráfrases, e o limite de 500 recortes pode omitir fatos muito antigos; FAISS e seu diagnóstico específico pertencem à fase 4.
+
+Um [teste real](../evidencias/fase3_falha_lexical_cleinte.json) mostrou a limitação: `cleinte alfa` no turno antigo não correspondia a `cliente` na pergunta. A busca foi ajustada para aceitar palavras longas muito parecidas, dando prioridade a correspondências exatas. No reteste real, o agente retomou a sessão, recuperou o turno 9 e respondeu `Alfa` à pergunta sobre a conversa, sem chamar ferramenta. A correção reduz erros de digitação, mas pode trazer falsos candidatos e não resolve paráfrases semânticas.
+
+Na taxonomia CoALA aplicada aqui, os seis turnos são contexto de trabalho; os recortes de conversa são memória episódica do que o usuário disse, sem validação; cadastros e projetos confirmados no SQLite são fatos estruturados, não resumos de chat; regras de confirmação ficam no serviço e no prompt como comportamento procedural. Esta classificação descreve o protótipo, não afirma que toda memória cognitiva da fase 3 esteja pronta.
+
+O [notebook 07](../notebooks/07_resumos_recuperacao.ipynb) usa fixture local para mostrar que uma menção a Alfa sai da janela, reaparece como recorte relevante e não vaza para Bruno ou para `/nova`. O teste de integração local verifica que o recorte entra no pedido enviado ao agente. **Ainda falta observar uma resposta real do LLM após mais de seis turnos.**

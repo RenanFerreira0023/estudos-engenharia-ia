@@ -9,6 +9,72 @@ from secretaria.memoria import MemoriaConversas
 
 
 class TestMemoriaConversas(unittest.TestCase):
+    def test_resumo_extrativo_recupera_fala_antiga_sem_vazar_sessao(self):
+        with tempfile.TemporaryDirectory() as pasta:
+            caminho = Path(pasta) / 'resumos.sqlite3'
+            ana, bruno = Contexto('demo', 'ana'), Contexto('demo', 'bruno')
+            with Banco(caminho) as banco:
+                banco.preparar_demo()
+                memoria = MemoriaConversas(banco)
+                sessao = memoria.iniciar(ana)
+                memoria.registrar(ana, sessao, 'Estou falando do cliente Alfa.', 'Entendi.')
+                for numero in range(6):
+                    memoria.registrar(ana, sessao, f'Assunto {numero}', 'Resposta sem fato novo.')
+                self.assertEqual(len(memoria.ultimos(ana, sessao)), 6)
+                self.assertEqual(memoria.buscar_resumos(ana, sessao, 'Qual cliente mencionei?')[0]
+                                 ['resumo_extrativo'], 'Estou falando do cliente Alfa.')
+                self.assertEqual(memoria.buscar_resumos(ana, sessao, 'Qual orçamento mencionei?'), [])
+                with self.assertRaises(PermissionError):
+                    memoria.buscar_resumos(bruno, sessao, 'Qual cliente mencionei?')
+            with Banco(caminho) as banco:
+                memoria = MemoriaConversas(banco)
+                self.assertEqual(len(memoria.buscar_resumos(ana, sessao, 'Qual cliente?')), 1)
+                memoria.encerrar(ana, sessao)
+                nova = memoria.iniciar(ana)
+                self.assertEqual(memoria.buscar_resumos(ana, nova, 'Qual cliente?'), [])
+
+    def test_recupera_cliente_com_letras_trocadas_sem_aceitar_termo_distante(self):
+        with tempfile.TemporaryDirectory() as pasta:
+            with Banco(Path(pasta) / 'tipos.sqlite3') as banco:
+                banco.preparar_demo()
+                memoria = MemoriaConversas(banco)
+                ctx = Contexto('demo', 'ana')
+                sessao = memoria.iniciar(ctx)
+                memoria.registrar(ctx, sessao, 'Estou falando do cleinte alfa', 'Entendi.')
+                for numero in range(6):
+                    memoria.registrar(ctx, sessao, f'Oi {numero}', 'Olá.')
+                achados = memoria.buscar_resumos(ctx, sessao, 'Qual cliente eu mencionei agora pouco?')
+                self.assertEqual(achados[0]['resumo_extrativo'], 'Estou falando do cleinte alfa')
+                self.assertEqual(achados[0]['tipo_correspondencia'], 'aproximada')
+                self.assertEqual(memoria.buscar_resumos(ctx, sessao, 'Qual orçamento?'), [])
+
+    def test_terminal_injeta_recorte_antigo_apos_janela(self):
+        from langchain_core.messages import AIMessage
+        from secretaria.cli import conversar_sobre_visita
+
+        class AgenteLocal:
+            def __init__(self):
+                self.entradas = []
+
+            def invoke(self, dados, _config):
+                self.entradas.append(dados['messages'])
+                return {'messages': dados['messages'] + [AIMessage(content='Resposta local')]}
+
+        with tempfile.TemporaryDirectory() as pasta:
+            caminho = Path(pasta) / 'chat.sqlite3'
+            with Banco(caminho) as banco:
+                banco.preparar_demo()
+                agente = AgenteLocal()
+                perguntas = ['Estou falando do cliente Alfa.'] + [f'Assunto {n}' for n in range(6)]
+                perguntas += ['Qual cliente mencionei?', '/voltar']
+                with patch('secretaria.agente_agenda.criar_agente_agenda', return_value=agente), \
+                     patch('builtins.input', side_effect=perguntas):
+                    conversar_sobre_visita(banco, Contexto('demo', 'ana'))
+                entrada = agente.entradas[-1]
+                self.assertEqual(len(entrada), 13)
+                self.assertNotIn('Alfa', str(entrada[:-1]))
+                self.assertIn('Alfa', entrada[-1]['content'])
+
     def test_reabrir_janela_e_isolamento(self):
         with tempfile.TemporaryDirectory() as pasta:
             caminho = Path(pasta) / 'teste.sqlite3'

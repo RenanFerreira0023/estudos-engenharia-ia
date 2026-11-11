@@ -50,6 +50,7 @@ class RoteamentoObservabilidadeTest(unittest.TestCase):
     def test_rotas_e_seguimento_curto(self):
         self.assertEqual(roteador_pedido.invoke({'pergunta':'Agende visita para Alfa'})['rota'],'visita')
         self.assertEqual(roteador_pedido.invoke({'pergunta':'O CNPJ está cadastrado?'})['rota'],'cliente')
+        self.assertEqual(roteador_pedido.invoke({'pergunta':'Estou falando do cleinte Alfa'})['rota'],'cliente')
         self.assertEqual(roteador_pedido.invoke({'pergunta':'Olá'})['rota'],'geral')
         atual = roteador_pedido.invoke({'pergunta':'Às 15h',
                                         'anteriores':[{'pergunta':'Agende visita para Alfa'}]})

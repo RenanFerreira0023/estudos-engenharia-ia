@@ -1,0 +1,33 @@
+{
+  "data": "2026-11-11",
+  "origem": "teste real enviado por Renan; recorte original conferido no SQLite privado",
+  "sessao_id": "690a4e8581cb4d9e8e9ffbd977752ca3",
+  "turno_fonte": 9,
+  "trecho_antigo": "Estou falando do cleinte alfa",
+  "pergunta": "qual cliente eu mencionei agora pouco?",
+  "antes": {
+    "tecnica": "sobreposicao_exata_de_palavras",
+    "recortes_recuperados": 0,
+    "resposta_observada": "Ainda não sei qual cliente você mencionou nesta conversa. Pode informar o nome?",
+    "diagnostico": "cleinte e cliente diferem por troca de letras; a busca exata não reconheceu o termo"
+  },
+  "correcao": {
+    "tecnica": "correspondencia_lexical_aproximada_com_limiar_e_preferencia_por_exata",
+    "roteamento": "cleinte agora classificado como cliente",
+    "mesma_consulta_local_apos_correcao": [
+      {"turno_id": 9, "resumo_extrativo": "Estou falando do cleinte alfa", "tipo_correspondencia": "aproximada"}
+    ],
+    "suite_local": "106 testes passaram",
+    "reteste_da_resposta_real": {
+      "pergunta": "qual cliente eu falei agora pouco com vc?",
+      "sessao_retomada": "690a4e8581cb4d9e8e9ffbd977752ca3",
+      "rota_sugerida": "cliente",
+      "eventos_observados": 2,
+      "turnos_recuperados": [9],
+      "resposta": "Você mencionou o cliente Alfa anteriormente na conversa.",
+      "ferramentas_observadas": [],
+      "conclusao": "A fala antiga foi recuperada e usada para responder à pergunta sobre a própria conversa."
+    }
+  },
+  "limite": "A correspondência aproximada pode associar palavras parecidas sem o mesmo significado; não equivale a busca semântica nem valida cadastro."
+}

@@ -2,7 +2,11 @@
 
 [Revisão do enunciado e da aula 08](docs/revisao_enunciado_aula08.md): aderência, lacunas, quatro entregáveis e prioridades para concluir a disciplina.
 
-> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. A memória conversacional curta persiste por usuário e sessão no SQLite; prompt PTCF, rota leve e callback local foram acrescentados. **103 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. A memória por sessão usa janela curta e recortes antigos recuperados por palavras; prompt PTCF, rota leve e callback local também estão presentes. **106 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+
+### Recortes antigos — complemento da fase 3
+
+Quando a conversa passa de seis turnos, o SQLite v8 guarda um recorte extrativo da fala do usuário que saiu da janela. Perguntas relacionadas recuperam até dois recortes da mesma sessão; o agente recebe esses textos como contexto **não confirmado**. O [notebook 07](notebooks/07_resumos_recuperacao.ipynb) e o [guia de memória](docs/memoria_fase3.md) explicam o fluxo e seus limites. Um [teste real](evidencias/fase3_falha_lexical_cleinte.json) mostrou que `cleinte` impedia recuperar `cliente`; após a correção, o agente retomou a sessão, recuperou o turno 9 e respondeu `Alfa`. Essa busca usa palavras, não FAISS nem embeddings.
 
 ### Orquestração observável — complemento da fase 2
 

@@ -178,7 +178,7 @@ class FilaRevisaoTest(unittest.TestCase):
         con.execute('DROP TABLE propostas_revisao')
         con.execute('PRAGMA user_version=1');con.commit();con.close()
         with Banco(caminho) as novo:
-            self.assertEqual(novo.con.execute('PRAGMA user_version').fetchone()[0],7)
+            self.assertEqual(novo.con.execute('PRAGMA user_version').fetchone()[0],8)
             self.assertEqual(novo.listar(self.ctx,c),fontes_antes)
             self.assertEqual(novo.contar(self.ctx,c),40)
             self.assertEqual(novo.importar(self.ctx,c,RAIZ/'dados/ficticios/conversa_empresa.txt')['novas'],0)

@@ -109,9 +109,11 @@ Cliente HTTP com validação de Content-Type/JSON e tratamento de falhas; busca 
 
 ## Projeto atual — Secretária IA
 
-[Projeto final 2](./Projeto%20final%202/) substitui autopeças como direção da entrega acadêmica. Já há importação TXT/ZIP, extração de propostas, revisão persistente, visitas com agente, cadastro PJ por confirmação, projetos/anotações com mensagens-fonte e memória curta por sessão no SQLite. Prompt PTCF, rota leve e callbacks locais integram o menu 9; 103 testes locais passaram. Financeiro operacional, RAG, relatórios e avaliação final ainda estão pendentes. Conceitos previstos e matriz dos 29 itens estão no [plano](./Projeto%20final%202/PLANO_PROJETO_SECRETARIA_IA.md).
+[Projeto final 2](./Projeto%20final%202/) substitui autopeças como direção da entrega acadêmica. Já há importação TXT/ZIP, extração de propostas, revisão persistente, visitas com agente, cadastro PJ por confirmação, projetos/anotações com mensagens-fonte e memória por sessão no SQLite com janela e recortes antigos. Prompt PTCF, rota leve e callbacks locais integram o menu 9; 106 testes locais passaram. Financeiro operacional, RAG, relatórios e avaliação final ainda estão pendentes. Conceitos previstos e matriz dos 29 itens estão no [plano](./Projeto%20final%202/PLANO_PROJETO_SECRETARIA_IA.md).
 
 [Orquestração da fase 2](./Projeto%20final%202/docs/fase2_orquestracao.md) · [notebook 05b](./Projeto%20final%202/notebooks/05b_orquestracao_agente.ipynb): `create_agent`, PTCF/few-shot, rota com `RunnableLambda` e callback de eventos; fixture local não é chamada real de LLM. [Memória da fase 3](./Projeto%20final%202/notebooks/06_memoria_conversacional.ipynb): turnos SQLite, janela curta e retomada após reinício observada manualmente.
+
+[Recortes antigos da fase 3](./Projeto%20final%202/notebooks/07_resumos_recuperacao.ipynb) · [guia](./Projeto%20final%202/docs/memoria_fase3.md): resumo extrativo e busca lexical por sessão; FAISS e resposta real do agente após conversa longa ainda pendentes.
 
 As fases e conceitos de autopeças listados acima são histórico de um projeto descontinuado. Seus testes não validam a nova aplicação.
 
