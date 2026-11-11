@@ -1,0 +1,190 @@
+{
+  "status": "parcial",
+  "origem": "api_real",
+  "estilo": "lcel",
+  "modelo": "gpt-4o-mini",
+  "empresa_id": "demo",
+  "usuario_id": "ana",
+  "corpus_id": 1,
+  "fuso": "America/Sao_Paulo",
+  "criado_em": "2026-11-10T02:02:18.907946+00:00",
+  "mensagens_no_snapshot": 40,
+  "mensagens_em_lotes_concluidos": 8,
+  "lotes": [
+    {
+      "lote_id": 1,
+      "mensagens_foco": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "contexto_vizinho": [
+        9
+      ],
+      "status": "erro",
+      "tipo_erro": "OutputParserException",
+      "motivo": "Lote não concluído; revise configuração, conexão ou contrato."
+    },
+    {
+      "lote_id": 2,
+      "mensagens_foco": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "contexto_vizinho": [
+        8,
+        17
+      ],
+      "status": "erro",
+      "tipo_erro": "OutputParserException",
+      "motivo": "Lote não concluído; revise configuração, conexão ou contrato."
+    },
+    {
+      "lote_id": 3,
+      "mensagens_foco": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "contexto_vizinho": [
+        16,
+        25
+      ],
+      "status": "erro",
+      "tipo_erro": "OutputParserException",
+      "motivo": "Lote não concluído; revise configuração, conexão ou contrato."
+    },
+    {
+      "lote_id": 4,
+      "mensagens_foco": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "contexto_vizinho": [
+        24,
+        33
+      ],
+      "status": "ok",
+      "observacoes": [
+        "A referência dessa correção precisa ser revisada antes de substituir a visita."
+      ],
+      "propostas_retornadas": 3
+    },
+    {
+      "lote_id": 5,
+      "mensagens_foco": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "contexto_vizinho": [
+        32
+      ],
+      "status": "erro",
+      "tipo_erro": "OutputParserException",
+      "motivo": "Lote não concluído; revise configuração, conexão ou contrato."
+    }
+  ],
+  "propostas": [
+    {
+      "area": "agenda",
+      "projeto": "Visita Gama",
+      "natureza": "pendencia",
+      "resumo": "Visita Gama em 13/11/2026 às 15h, duração de uma hora.",
+      "financeiro": null,
+      "agenda": {
+        "tipo": "visita",
+        "inicio_em": "2026-11-13T15:00:00-03:00",
+        "fim_em": "2026-11-13T16:00:00-03:00",
+        "atendente_nome": "Ana",
+        "local": "Gama"
+      },
+      "fontes": [
+        {
+          "mensagem_id": 29,
+          "trecho": "Visita Gama em 13/11/2026 às 15h, duração de uma hora."
+        }
+      ],
+      "pendencias": [],
+      "status": "aguardando_revisao",
+      "lote_id": 4
+    },
+    {
+      "area": "agenda",
+      "projeto": "Visita Alfa",
+      "natureza": "pendencia",
+      "resumo": "Carla pediu uma visita Alfa em 11/11/2026, das 10h30 às 11h30, para mim.",
+      "financeiro": null,
+      "agenda": {
+        "tipo": "visita",
+        "inicio_em": "2026-11-11T10:30:00-03:00",
+        "fim_em": "2026-11-11T11:30:00-03:00",
+        "atendente_nome": "Ana",
+        "local": "Alfa"
+      },
+      "fontes": [
+        {
+          "mensagem_id": 32,
+          "trecho": "Carla pediu uma visita Alfa em 11/11/2026, das 10h30 às 11h30, para mim."
+        }
+      ],
+      "pendencias": [],
+      "status": "aguardando_revisao",
+      "lote_id": 4
+    },
+    {
+      "area": "agenda",
+      "projeto": "Visita Gama",
+      "natureza": "cancelamento",
+      "resumo": "Visita Gama em 13/11/2026 às 16h, duração de uma hora.",
+      "financeiro": null,
+      "agenda": {
+        "tipo": "visita",
+        "inicio_em": "2026-11-13T16:00:00-03:00",
+        "fim_em": "2026-11-13T17:00:00-03:00",
+        "atendente_nome": "Ana",
+        "local": "Gama"
+      },
+      "fontes": [
+        {
+          "mensagem_id": 30,
+          "trecho": "Visita Gama em 13/11/2026 às 16h, duração de uma hora."
+        }
+      ],
+      "pendencias": [
+        "Conferir conflito antes de confirmar."
+      ],
+      "status": "aguardando_revisao",
+      "lote_id": 4
+    }
+  ],
+  "gravacoes_operacionais": 0,
+  "limite": "Completa indica cobertura dos lotes, não acerto semântico. Fontes e números validados não provam toda interpretação; propostas exigem revisão. Duplicação semântica entre lotes ainda pode ocorrer."
+}

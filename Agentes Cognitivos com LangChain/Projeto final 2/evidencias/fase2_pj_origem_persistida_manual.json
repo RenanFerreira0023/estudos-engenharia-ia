@@ -1,0 +1,17 @@
+{
+  "origem": "saida_do_terminal_compartilhada_pelo_usuario_e_consulta_SQL_local_em_2026-11-10",
+  "cenario": "Cadastro PJ confirmado apos consulta real da Minha Receita no banco isolado",
+  "cnpj_publico_de_exemplo": "33683111000280",
+  "cliente_id": 1,
+  "dados_salvos": {
+    "nome": "SERVICO FEDERAL DE PROCESSAMENTO DE DADOS (SERPRO)",
+    "nome_fantasia": "REGIONAL BRASILIA-DF",
+    "origem_cadastro": "minha_receita_real",
+    "consultado_cnpj_em": "2026-11-11T01:05:40.347312+00:00"
+  },
+  "confirmacao_cadastro": "s no menu 7",
+  "limites": [
+    "Consulta SQL foi feita apos confirmacao do cadastro e antes de concluir uma nova visita.",
+    "Cadastro ocorreu pelo fluxo guiado; agente apenas consultou o CNPJ."
+  ]
+}

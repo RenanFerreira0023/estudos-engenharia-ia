@@ -1,0 +1,94 @@
+{
+  "tipo": "fixture_manual_de_regressao_sem_llm",
+  "objetivo": "Uma proposta com ID repetido não elimina proposta válida do mesmo lote.",
+  "resultado": {
+    "status": "parcial",
+    "origem": "fixture_manual",
+    "estilo": "lcel",
+    "modelo": "fixture_manual_sem_llm",
+    "empresa_id": "demo",
+    "usuario_id": "ana",
+    "corpus_id": 1,
+    "fuso": "America/Sao_Paulo",
+    "criado_em": "2026-11-10T02:30:00.186948+00:00",
+    "mensagens_no_snapshot": 1,
+    "mensagens_em_lotes_concluidos": 0,
+    "lotes": [
+      {
+        "lote_id": 1,
+        "mensagens_foco": [
+          1
+        ],
+        "contexto_vizinho": [],
+        "status": "parcial",
+        "observacoes": [],
+        "propostas_retornadas": 2,
+        "propostas_com_fontes_validas": 1,
+        "propostas_rejeitadas": [
+          {
+            "numero_proposta": 2,
+            "tipo_erro": "FonteInvalida",
+            "motivo": "IDs de fontes repetidos na proposta.",
+            "proposta": {
+              "area": "financeiro",
+              "projeto": "X",
+              "natureza": "previsto",
+              "resumo": "Orçamento informado.",
+              "financeiro": {
+                "tipo": "orcamento_proposto",
+                "valor_centavos": 1000000,
+                "percentual": "30",
+                "data_referencia": null
+              },
+              "agenda": null,
+              "fontes": [
+                {
+                  "mensagem_id": 1,
+                  "trecho": "Orçamento X: R$ 10.000,00. Entrada de 30%."
+                },
+                {
+                  "mensagem_id": 1,
+                  "trecho": "Orçamento X: R$ 10.000,00. Entrada de 30%."
+                }
+              ],
+              "pendencias": []
+            },
+            "status": "rejeitada_por_fonte"
+          }
+        ],
+        "tipo_erro": "FonteInvalida",
+        "motivo": "Há propostas rejeitadas por fonte; as demais foram preservadas."
+      }
+    ],
+    "propostas": [
+      {
+        "area": "financeiro",
+        "projeto": "X",
+        "natureza": "previsto",
+        "resumo": "Orçamento informado.",
+        "financeiro": {
+          "tipo": "orcamento_proposto",
+          "valor_centavos": 1000000,
+          "percentual": "30",
+          "data_referencia": null
+        },
+        "agenda": null,
+        "fontes": [
+          {
+            "mensagem_id": 1,
+            "trecho": "Orçamento X: R$ 10.000,00. Entrada de 30%."
+          }
+        ],
+        "pendencias": [],
+        "status": "aguardando_revisao",
+        "lote_id": 1
+      }
+    ],
+    "propostas_rejeitadas_por_fonte": 1,
+    "edicoes_para_revisao": [],
+    "gravacoes_operacionais": 0,
+    "limite": "Completa indica cobertura dos lotes, não acerto semântico. Fontes e números validados não provam toda interpretação; propostas exigem revisão. Duplicação semântica entre lotes ainda pode ocorrer."
+  },
+  "testes_locais": 54,
+  "gravacoes_operacionais": 0
+}

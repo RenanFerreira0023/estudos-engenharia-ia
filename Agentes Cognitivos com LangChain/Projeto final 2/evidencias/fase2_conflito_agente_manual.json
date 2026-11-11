@@ -1,0 +1,9 @@
+{
+  "origem": "saida_do_terminal_compartilhada_pelo_usuario_em_2026-11-10",
+  "cenario": "Bruno solicita nova visita ao cliente Alfa em 2026-11-12 14:30-15:30 America/Sao_Paulo",
+  "ferramentas_observadas": ["buscar_cliente", "consultar_disponibilidade"],
+  "sem_conflito_registrado": false,
+  "propor_visita_chamada": false,
+  "resultado": "agente pediu outro horario ou data",
+  "limite": "Uma observacao manual; nao substitui avaliacao de multiplos casos."
+}

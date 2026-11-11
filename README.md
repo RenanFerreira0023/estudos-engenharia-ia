@@ -334,3 +334,11 @@ Cliente HTTP com validação de Content-Type/JSON e tratamento de falhas; busca 
 ### Projeto final — verificação por evidências
 
 [Auto Super Parts: fase 5](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final/01_documentacao/VERIFICACAO_FASE_05.md). Regras em Python conferem valores e um juiz LLM classifica sustentação, contradição e falta de suporte. O ciclo permite um reparo, reavalia e grava somente a resposta final. A avaliação separa fixtures locais de chamadas reais; falhas do juiz são preservadas. É uma adaptação por LLM da verificação por inferência, sem alegar classificador NLI especializado.
+
+## Projeto de disciplina atual
+
+- [Secretária IA — Projeto final 2](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final%202/): projeto acadêmico atual; importação TXT/ZIP/SQLite, propostas com fontes, revisão persistente e visitas com agente, APIs externas e confirmação humana implementados. Os testes locais passaram (85 testes). Cadastro PJ completo pelo chat, vínculo com projetos/fontes, memória e relatórios continuam pendentes.
+- [Auto Super Parts CWB](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final/): descontinuado em 09/11/2026; código, decisões e evidências preservados como histórico.
+
+
+Secretária IA: [revisão persistente (início da fase 2)](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final%202/docs/revisao_persistente.md) e [notebook executado](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final%202/notebooks/03_revisao_persistente.ipynb). Decisão humana aceita/corrige/rejeita interpretações; não cria pagamentos/agenda. 72 testes locais.

@@ -1,6 +1,8 @@
 # Auto Super Parts CWB — Projeto de disciplina
 
-> Implementação ativa atualizada: BrasilAPI CEP V2 substitui ViaCEP; Python calcula distância aproximada em linha reta por Haversine. Sem conta/chave. [Funcionamento, testes e limites](./04_avaliacao_e_evidencias/resultados/BRASILAPI_DISTANCIA_09_11.md). Menções anteriores a ViaCEP/tabela de cidades documentam versões passadas.
+> **DESCONTINUADO em 09/11/2026.** Preservado como histórico de estudo, com código, decisões e evidências. A entrega passa a seguir [Secretária IA — Projeto final 2](../Projeto%20final%202/). Nenhuma validação deste projeto é transferida automaticamente ao novo.
+
+> Última implementação do histórico: BrasilAPI CEP V2 substitui ViaCEP; Python calcula distância aproximada em linha reta por Haversine. Sem conta/chave. [Funcionamento, testes e limites](./04_avaliacao_e_evidencias/resultados/BRASILAPI_DISTANCIA_09_11.md). Menções anteriores a ViaCEP/tabela de cidades documentam versões passadas.
 
 Renan · Agentes Cognitivos com LangChain · Fases 1–4 · revisão de 08/11/2026
 

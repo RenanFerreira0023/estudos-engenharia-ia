@@ -1,0 +1,16 @@
+{
+  "origem": "saida_do_terminal_compartilhada_pelo_usuario_em_2026-11-10_e_consulta_SQL_local",
+  "cenario": "Agente consulta CNPJ publico em banco novo isolado",
+  "ferramentas_observadas": ["consultar_cnpj_minha_receita"],
+  "retorno_ferramenta": {
+    "status": "nao_cadastrado",
+    "api_externa_chamada": true,
+    "origem_cadastro_externo": "minha_receita_real"
+  },
+  "resposta_distinguiu_api_de_cadastro_local": true,
+  "banco_apos_consulta": {"clientes": 0, "propostas_visita": 0},
+  "limites": [
+    "Uma execucao manual, sem avaliacao sistematica de trajetoria.",
+    "O agente ainda nao tem ferramenta de proposta/confirmacao de cadastro PJ; esse fluxo exige menu guiado."
+  ]
+}

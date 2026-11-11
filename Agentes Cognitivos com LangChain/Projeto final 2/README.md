@@ -1,0 +1,195 @@
+# Secretária IA — Projeto final 2
+
+> **Estado atual:** importação com fontes, extração de propostas, revisão persistente e fluxo de visitas no SQLite estão implementados. O agente de visitas consulta clientes, disponibilidade, ViaCEP e Minha Receita e cria propostas; a confirmação ocorre no terminal. Os testes automatizados locais passaram (85 testes). O cadastro PJ pelo agente ainda depende do menu 7 para gravar o cliente. As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+
+## Fluxo de visitas — fase 2 em andamento
+
+Migração v4: novos cadastros PJ do menu 7 guardam nome fantasia, origem (`minha_receita_real` ou manual) e instante de consulta. Registros feitos antes dessa migração recebem `origem_nao_registrada`; o sistema não deduz retroativamente que a API foi usada. A consulta externa foi observada no agente e documentada em [evidências](evidencias/fase2_cnpj_novo_agente_manual.json); ela não grava o cliente automaticamente.
+
+O menu **7** testa cadastro/localização de cliente, disponibilidade, proposta de visita e confirmação explícita. O menu **8** mostra a agenda do usuário de demonstração. O menu **9** usa `create_agent` e ferramentas `buscar_cliente`, `consultar_disponibilidade`, `consultar_cep_viacep`, `consultar_cnpj_minha_receita` e `propor_visita`; lê `OPENAI_API_KEY` do ambiente, do `.env` deste projeto ou do `.env` na raiz do repositório (nessa ordem). `--arquivo-env` seleciona um arquivo explícito. No chat, `/confirmar ID` grava a proposta do usuário atual; `/voltar` retorna ao menu. As ferramentas do agente não têm confirmação implícita.
+
+Para testar sem API, execute `python executar.py`, selecione **7**, informe um cliente fictício e uma data futura no formato `AAAA-MM-DD HH:MM` (horário de São Paulo), duração e endereço. A proposta aparece antes da pergunta de confirmação. Depois, veja a opção **8**. Um segundo compromisso sobreposto para o mesmo atendente é recusado; um horário adjacente ou outro atendente pode ser proposto. Reinicie com `python executar.py --usuario bruno` para ver a agenda de Bruno na opção 8. A agenda não precisa abrir o corpus de mensagens privado de Ana. O menu 7 permite CEP vazio para endereço informado manualmente; se houver CEP, tenta ViaCEP real e identifica falha. Não use dados reais da equipe nesse teste.
+
+**Evidência local:** testes cobrem confirmação idempotente, conflito surgido após a proposta, intervalos adjacentes, agendas separadas e autorização por usuário. Os testes de CEP/CNPJ usam fixtures marcadas como locais. Ainda faltam execução real do agente/API, cadastro PJ completo, vínculo com projetos/fontes importadas, memória persistente, relatórios e demais etapas do plano. A migração v3 adiciona clientes e agenda; não transforma aceite na fila de interpretações em agendamento.
+
+Protótipo acadêmico para organizar conversas. Autopeças foi descontinuado e preservado como histórico.
+[Plano](./PLANO_PROJETO_SECRETARIA_IA.md) · [Decisões](./docs/decisoes.md) · [Execuções/falhas](./docs/execucoes_e_falhas.md) · [Matriz](./docs/matriz_requisitos.md).
+
+## Novidade: fila de revisão persistente (início da fase 2)
+
+Gere uma análise na opção 4 ou 5 e entre na **opção 6** para aceitar, corrigir ou rejeitar interpretações.
+A decisão e seu comentário permanecem no SQLite ao reabrir o programa; fontes e histórico são preservados.
+Aceitar aqui ainda não cria pagamentos ou compromissos.
+[Roteiro e limites](docs/revisao_persistente.md) · [Notebook 03](notebooks/03_revisao_persistente.ipynb).
+Validação atual: 72 testes locais; seis células do notebook executadas, sem nova chamada de API.
+O banco existente migra automaticamente de v1 para v2, preservando fontes.
+
+## Marco 1 implementado
+
+TXT/ZIP -> parser local -> fontes e mensagens no SQLite -> consulta e reimportação.
+São 40 mensagens fictícias, gabarito, terminal interativo e [notebook executado](./notebooks/01_importacao_sqlite.ipynb).
+Marco 1 isolado continua sem API; o marco 2 abaixo acrescenta uma chain opcional. Ainda não há agente com ferramentas.
+
+## Como testar
+
+Na raiz deste projeto, com Python 3.12 (testado: 3.12.6), execute:
+
+    python -m pip install -r requirements.txt
+    python executar.py
+
+Escolha 1: esperado 40 mensagens novas, zero rejeições e um aviso de possível edição.
+Escolha 1 novamente: zero novas, 40 mensagens preservadas. Escolha 3 para listar e 0 para sair.
+
+Modo não interativo:
+
+    python executar.py --arquivo "dados/ficticios/conversa_empresa.txt" --listar
+    python -m unittest discover -s tests -p test_importacao.py -v
+
+O banco padrão dados/privados/secretaria.sqlite3 é criado automaticamente e persiste entre execuções.
+Sem servidor ou conta. O caminho padrão parte da pasta do projeto; argumentos relativos de arquivo/banco usam a pasta atual.
+Para arquivo próprio, --corpus é obrigatório; no menu será solicitado um nome separado da demonstração:
+
+    python executar.py --arquivo "caminho/exportacao.zip" --corpus "Equipe local"
+
+Ana é a administradora fictícia padrão. --usuario bruno ou --usuario carla selecionam identidades de demonstração,
+sem autenticação real. Use outro --corpus ao trocar usuário: o corpus bruto é privado do importador, com acesso
+do administrador. Permissões completas sobre financeiro, RAG e relatórios ainda não estão implementadas.
+
+## Notebook para o professor
+
+    python -m pip install -r requirements-notebook.txt
+
+Abra notebooks/01_importacao_sqlite.ipynb no VS Code/Jupyter, escolha o kernel do ambiente e execute todas as células.
+O notebook localiza o projeto sem caminho pessoal, cria banco temporário, importa TXT, reabre o banco,
+reimporta e testa ZIP. Esperado: 40 mensagens, zero novas na repetição e duas ocorrências legítimas idênticas.
+
+Usa os mesmos módulos do terminal. Banco temporário não comprova conservação após reiniciar o runtime.
+A persistência entre conexões é testada; o CLI mantém banco em disco. Não houve instalação em ambiente limpo;
+as dependências registram versões do ambiente testado.
+
+## Conceitos e limites
+
+- Parsing: iOS e Android com ano de quatro dígitos, multilinha, avisos, edição, remoção e mídia omitida.
+  Datas relativas dentro do texto ainda não são interpretadas. Fuso America/Sao_Paulo é premissa configurada;
+  horários ambíguos por horário de verão e anos curtos são rejeitados com motivo e fonte.
+- SQLite: migração inicial, FKs compostas, parâmetros e transação BEGIN IMMEDIATE. Autoria da importação vem
+  do contexto, não do autor do WhatsApp. Há empresas, usuários, corpora, lotes, mensagens, fontes e avisos.
+  Clientes/projetos/financeiro/agenda operacional ainda não têm tabelas neste incremento.
+- Idempotência: hash do TXT no corpus evita repetir lote, inclusive dentro de ZIP. Sobreposições com
+  mesma mensagem reutilizam registros por data/autor/texto/ocorrência. Sem IDs nativos, repetições
+  indistinguíveis em exportações parciais geram aviso. Edição sinalizada preserva versões e candidatas.
+- CRLF/LF: normalização só no texto lógico. Conteúdo original e linhas ficam preservados nas fontes.
+  O texto original decodificado também fica no SQLite local. Originais não são alterados.
+- ZIP: leitura em memória, sem extrair anexos; TXT até 2 MiB e ZIP/conteúdo descompactado até 20 MiB.
+  Caminhos inseguros, vários TXT sem seleção clara, links e arquivos inválidos são rejeitados.
+
+SQLite e FAISS serão complementares: SQLite guarda fontes e registros exatos; FAISS fará busca semântica.
+Top-k não é base para somar todas as parcelas. FAISS ainda não foi implementado no projeto novo.
+
+## Verificação realizada
+
+22 testes locais passaram. Notebook executou cinco células de código sem erro.
+[Resumo estruturado](./evidencias/marco1_importacao.json). O backup real disponível ao final tinha 322 entradas;
+importação local sem rejeição e zero novas na repetição. A inspeção anterior de 161 cabeçalhos descrevia
+outra versão inspecionada. Somente contagens/tipos foram guardados em evidência pública.
+
+Não transferimos os testes de autopeças. Guardar uma mensagem de prompt injection como texto comprova somente
+o comportamento do importador; não é avaliação de resistência de um agente LLM.
+
+## Dados e próximos passos
+
+_chat.txt e dados/privados são ignorados no Git. O original contém dados internos/credencial: não enviar
+a modelos externos nem publicar no Git, LangSmith ou ZIP de entrega. Notebook/demonstração usam corpus fictício.
+
+Marco 2 acrescenta a chain de propostas descrita abaixo. Próximo incremento: revisão/confirmacao e gravação operacional. Cadastro de
+clientes/projetos/agenda/financeiro, memória, FAISS, Minha Receita, ViaCEP, Streamlit, Excel, verificador e
+avaliação continuam planejados. Nomes do arquivo não são identidades autenticadas.
+
+## Marco 2 — analisar a demonstração
+
+Instale as dependências opcionais de IA:
+
+    python -m pip install -r requirements-ia.txt
+    python executar.py
+
+Menu **4**: apresenta oito propostas manuais da fixture, com fontes; cobertura esperada 40/40.
+Esse modo testa interface/contrato, não compreensão de LLM.
+Menu **5**: usa OpenAI gpt-4o-mini. Configure OPENAI_API_KEY no ambiente ou no .env deste projeto,
+seguindo .env.example. Também pode indicar um arquivo explicitamente:
+
+    python executar.py --arquivo-env "caminho/.env"
+
+Não existe herança automática de chave de outro projeto. Nunca colocar chave no notebook ou Git.
+Ambas as opções analisam somente os dados fictícios; o backup real não é enviado a serviços externos.
+Corpora com importações de outro arquivo são bloqueados antes de enviar dados.
+
+Alternativas não interativas (caminhos relativos à pasta atual):
+
+    python executar.py --analisar fixture
+    python executar.py --analisar fixture --estilo imperativa
+    python executar.py --analisar api --arquivo-env "caminho/.env"
+    python -m unittest discover -s tests -v
+
+As propostas têm ID/trecho das mensagens, valor em centavos quando escrito, natureza e pendências.
+Não houve confirmação de projetos/pagamentos/agendamentos no banco: a saída aguarda revisão humana.
+Artefatos ficam em dados/privados/analises. Cobertura completa significa lotes concluídos,
+não acerto de todas as interpretações nem extração de todos os fatos possíveis.
+
+[Notebook 02](./notebooks/02_extracao_estruturada.ipynb) usa o mesmo código e é offline por padrão.
+requirements-notebook.txt inclui agora as dependências de IA para rodar os dois notebooks sem chave.
+[Contrato, dados e limites](./docs/primeira_chain.md). 40 testes locais passaram; notebooks 01/02
+executaram sem erro. APIs de negócio, FAISS, agente, Streamlit, Excel e LangSmith continuam planejados.
+
+
+## Fechamento da validação do marco 2
+
+40 testes locais passaram após os ajustes; notebook 02 executado novamente, seis células sem erro.
+A fixture manual produziu oito propostas com cobertura de 40/40 mensagens; não executa LLM.
+
+Foram preservadas três execuções reais com gpt-4o-mini, somente com as 40 mensagens fictícias:
+- marco2_api_real_20261110T020146555304Z.json: parcial, 8/40 mensagens, três propostas.
+- marco2_api_real_20261110T021210978750Z.json: parcial, 24/40 mensagens, sete propostas.
+- marco2_api_real_20261110T021400551051Z.json: parcial, 32/40 mensagens, onze propostas.
+
+Os arquivos estão em evidencias/. São observações de execução, não taxas de qualidade.
+O último lote rejeitado citou percentual sem o correspondente trecho literal. Não foi aprovado nem apagado.
+Zero gravações operacionais nas três execuções. Datas dos nomes de arquivo estão em UTC.
+
+F003: o primeiro retorno real misturou área projeto com objeto financeiro e foi rejeitado pelo parser.
+A geração passou a usar JSON Schema estrito com três contratos de área separados; Pydantic continua validando
+as regras locais. Horário sem fuso e valor sem fonte também foram observados na segunda execução;
+o prompt recebeu instruções explícitas de offset e de não calcular valores nesta etapa.
+A terceira execução ainda foi parcial. Não há reparo automático nem garantia de extração completa.
+
+Revisão manual assistida do último artefato:
+- Recebimento Alfa de R$ 2.000,00 mantém pagamento_informado e cita as mensagens 37/38: coerente com o relato,
+  sem tratar conversa como comprovante.
+- Cancelamento Beta cita a mensagem 35, mas deixou projeto=null: exige revisão de completude.
+- Conflito de agenda contém horários que não aparecem nos trechos citados dessa proposta:
+  a verificação atual não valida toda associação de datas/contexto.
+Esta é revisão do assistente, não avaliação humana de Renan nem nota de juiz LLM.
+Próximo passo: fortalecer rastreabilidade semântica e revisão/confirmacão transacional antes de aplicar propostas.
+
+
+## Revisão de cancelamentos e mensagens editadas
+
+A execução enviada por Renan concluiu 40/40 mensagens e gerou 17 propostas, mas classificou
+o cancelamento Beta como correção sem projeto e não exibiu claramente a visita Gama editada.
+A regra local reconhece apenas pedido explícito no início do trecho, como
+Cancelar reunião Beta de 12/11/2026, sem interrogação. Corrige natureza/projeto,
+preserva os valores anteriores em ajustes_revisao e exige vincular/confirmar antes de aplicar.
+Perguntas, negações e nomes conflitantes não são convertidos por essa regra.
+
+Toda mensagem marcada como editada é exibida separadamente, com seu texto literal.
+Outros textos do mesmo autor/instante são apenas candidatos ao vínculo, nunca versões comprovadas.
+Assim, o exemplo Gama mostra 15h e 16h sem escolher horário ou alterar compromisso.
+O prompt também orienta o modelo, mas a apresentação das edições independe de sua resposta.
+
+47 testes passaram (sete regressões novas). Reprocessamento local da análise real já salva:
+17 propostas preservadas; cancelamento Beta corrigido; edição M0030 e candidato M0029 exibidos.
+Não houve nova chamada de LLM para essa evidência. Zero gravações operacionais.
+Arquivo: evidencias/marco2_revisao_cancelamento_edicao.json.
+Reexecute a opção 4 para ver o aviso da edição; a opção 5 faz uma nova chamada real e pode variar.
+
+
+Andamento: [cinco fases do trabalho](docs/andamento_fases.md). A fase 1 segue em validação; 54 testes locais passaram. Propostas com fonte inválida são registradas separadamente, preservando as válidas do mesmo lote sem aprovar a execução parcial. Detalhes e evidência em [primeira chain](docs/primeira_chain.md).

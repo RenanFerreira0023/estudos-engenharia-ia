@@ -1,0 +1,6 @@
+_chat.txt
+.env
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+dados/privados/

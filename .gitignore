@@ -218,3 +218,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Secretária IA: backup real e dados locais privados (não publicar)
+/Agentes Cognitivos com LangChain/Projeto final 2/_chat.txt
+/Agentes Cognitivos com LangChain/Projeto final 2/dados/privados/

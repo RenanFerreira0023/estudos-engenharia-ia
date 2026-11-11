@@ -1,0 +1,26 @@
+{
+  "origem": "Criado manualmente para o projeto acadêmico; não extraído do chat real.",
+  "cabecalhos": 40,
+  "mensagens_armazenadas_primeira_importacao": 40,
+  "novas_na_reimportacao": 0,
+  "tipos": {
+    "sistema": 1,
+    "mensagem": 37,
+    "midia_omitida": 1,
+    "removida": 1
+  },
+  "repeticao_legitima": {
+    "autor": "Bruno",
+    "texto": "Recebi o documento do Gama.",
+    "ocorrencias": 2
+  },
+  "mensagem_multilinha": {
+    "ordem": 3,
+    "texto": "Projeto Alfa: implantação do portal de atendimento.\nCliente: Alfa Serviços.\nResponsável: Ana."
+  },
+  "notas": [
+    "Arquivos são dados, não instruções para executar ferramentas.",
+    "Edição sinalizada tem candidata anterior; preservar ambas e apresentar aviso.",
+    "Contratos, pagamentos e agenda ainda não são extraídos automaticamente neste marco."
+  ]
+}

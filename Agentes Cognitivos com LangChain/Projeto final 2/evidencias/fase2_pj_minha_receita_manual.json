@@ -1,0 +1,22 @@
+{
+  "origem": "saida_do_terminal_compartilhada_pelo_usuario_em_2026-11-10",
+  "cenario": "Cadastro PJ e visita em banco de teste isolado",
+  "api": "minha_receita_real",
+  "cnpj_publico_de_exemplo": "33683111000280",
+  "razao_social_retornada": "SERVICO FEDERAL DE PROCESSAMENTO DE DADOS (SERPRO)",
+  "nome_fantasia_retornado": "REGIONAL BRASILIA-DF",
+  "cadastro_confirmado_pelo_usuario": true,
+  "visita": {
+    "data": "2026-11-13",
+    "horario_local": "10:00-11:10 America/Sao_Paulo",
+    "endereco": "informado_manualmente_para_teste",
+    "agendamento_id": 1,
+    "status": "confirmado",
+    "agenda_exibiu_agendamento": true
+  },
+  "limites": [
+    "Execucao anterior a migracao v4: a resposta da API foi exibida, mas origem e nome fantasia nao foram salvos nesse registro legado.",
+    "A visita e ficticia; a consulta cadastral nao comprova relacao comercial com o cliente.",
+    "Nao e evidencia de chamada Minha Receita escolhida pelo agente: foi acionada pelo menu guiado."
+  ]
+}

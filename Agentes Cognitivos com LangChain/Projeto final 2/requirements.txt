@@ -1,0 +1,2 @@
+# Biblioteca padrão no núcleo. tzdata fornece fusos IANA no Windows.
+tzdata==2026.6

@@ -1,5 +1,7 @@
 # Plano de ação — Auto Super Parts CWB
 
+> **PLANO DESCONTINUADO — 09/11/2026.** Preservado para estudo. O plano vigente é [Secretária IA](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final%202/PLANO_PROJETO_SECRETARIA_IA.md). Não continuar autopeças nem reaproveitar regras do domínio por padrão.
+
 > Instruções para a IA programadora. Revisão de escopo de 08/11/2026: base manual e manutenção básica.
 > Continue o projeto existente. Não recomece do zero, não duplique a implementação e não declare requisitos atendidos sem evidência.
 

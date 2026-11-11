@@ -1,0 +1,40 @@
+{
+  "marco": 1,
+  "origem": "execuções locais; sem LLM/API externa",
+  "testes": {
+    "total": 22,
+    "passaram": 22,
+    "falhas": 0
+  },
+  "notebook": {
+    "arquivo": "notebooks/01_importacao_sqlite.ipynb",
+    "celulas_codigo_executadas": 5,
+    "erros": 0
+  },
+  "ficticio": {
+    "mensagens": 40,
+    "novas_na_reimportacao": 0,
+    "gabarito": "dados/ficticios/gabarito_importacao.json"
+  },
+  "real_somente_metadados": {
+    "origem": "backup real local; sem envio a API ou reprodução de conteúdo",
+    "lidas": 322,
+    "novas": 322,
+    "rejeicoes": 0,
+    "tipos": {
+      "sistema": 2,
+      "mensagem": 278,
+      "midia_omitida": 42
+    },
+    "avisos": 0,
+    "novas_na_reimportacao": 0,
+    "total_no_banco": 322
+  },
+  "limites": [
+    "Sem chain/agente",
+    "Sem interpretação empresarial",
+    "Sem FAISS/APIs/LangSmith",
+    "Sem autenticação real"
+  ],
+  "persistencia": "Reabertura do mesmo SQLite testada; pasta temporária do notebook não persiste após reset do runtime."
+}

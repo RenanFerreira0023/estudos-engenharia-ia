@@ -1,0 +1,17 @@
+{
+  "origem": "saida_do_terminal_compartilhada_pelo_usuario_em_2026-11-10",
+  "pergunta": "O cliente com CNPJ 33683111000280 já está cadastrado?",
+  "ferramentas_observadas": ["consultar_cnpj_minha_receita"],
+  "retorno": {
+    "status": "ja_cadastrado",
+    "origem": "banco_local",
+    "api_externa_chamada": false,
+    "cliente_id": 1,
+    "origem_cadastro_legado": "origem_nao_registrada"
+  },
+  "avaliacao": {
+    "consulta_externa_desnecessaria_evitar": "passou: nenhuma chamada HTTP externa",
+    "afirmacao_de_cadastro_baseada_no_banco": "passou",
+    "buscar_cliente_como_primeira_ferramenta": "nao observado: o modelo chamou diretamente consultar_cnpj_minha_receita, que faz a checagem local internamente"
+  }
+}

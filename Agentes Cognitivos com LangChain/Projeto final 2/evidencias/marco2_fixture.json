@@ -1,0 +1,308 @@
+{
+  "status": "completa",
+  "origem": "fixture_manual",
+  "estilo": "lcel",
+  "modelo": "fixture_manual_sem_llm",
+  "empresa_id": "demo",
+  "usuario_id": "ana",
+  "corpus_id": 1,
+  "fuso": "America/Sao_Paulo",
+  "criado_em": "2026-11-10T01:58:23.159615+00:00",
+  "mensagens_no_snapshot": 40,
+  "mensagens_em_lotes_concluidos": 40,
+  "lotes": [
+    {
+      "lote_id": 1,
+      "mensagens_foco": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "contexto_vizinho": [
+        9
+      ],
+      "status": "ok",
+      "observacoes": [
+        "Fixture manual; não demonstra interpretação por LLM."
+      ],
+      "propostas_retornadas": 4
+    },
+    {
+      "lote_id": 2,
+      "mensagens_foco": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "contexto_vizinho": [
+        8,
+        17
+      ],
+      "status": "ok",
+      "observacoes": [
+        "Fixture manual; não demonstra interpretação por LLM."
+      ],
+      "propostas_retornadas": 3
+    },
+    {
+      "lote_id": 3,
+      "mensagens_foco": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "contexto_vizinho": [
+        16,
+        25
+      ],
+      "status": "ok",
+      "observacoes": [
+        "Fixture manual; não demonstra interpretação por LLM."
+      ],
+      "propostas_retornadas": 1
+    },
+    {
+      "lote_id": 4,
+      "mensagens_foco": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "contexto_vizinho": [
+        24,
+        33
+      ],
+      "status": "ok",
+      "observacoes": [
+        "Fixture manual; não demonstra interpretação por LLM."
+      ],
+      "propostas_retornadas": 0
+    },
+    {
+      "lote_id": 5,
+      "mensagens_foco": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "contexto_vizinho": [
+        32
+      ],
+      "status": "ok",
+      "observacoes": [
+        "Fixture manual; não demonstra interpretação por LLM."
+      ],
+      "propostas_retornadas": 0
+    }
+  ],
+  "propostas": [
+    {
+      "area": "projeto",
+      "projeto": "Alfa",
+      "natureza": "relato",
+      "resumo": "Implantação do portal; responsável informado Ana.",
+      "financeiro": null,
+      "agenda": null,
+      "fontes": [
+        {
+          "mensagem_id": 3,
+          "trecho": "Projeto Alfa: implantação do portal de atendimento.\nCliente: Alfa Serviços.\nResponsável: Ana."
+        }
+      ],
+      "pendencias": [],
+      "status": "aguardando_revisao",
+      "lote_id": 1
+    },
+    {
+      "area": "financeiro",
+      "projeto": "Alfa",
+      "natureza": "previsto",
+      "resumo": "Orçamento Alfa informado em R$ 10.000,00.",
+      "financeiro": {
+        "tipo": "orcamento_proposto",
+        "valor_centavos": 1000000,
+        "percentual": null,
+        "data_referencia": null
+      },
+      "agenda": null,
+      "fontes": [
+        {
+          "mensagem_id": 4,
+          "trecho": "Orçamento Alfa: R$ 10.000,00. Entrada combinada de 30%; restante em 20/11/2026."
+        }
+      ],
+      "pendencias": [],
+      "status": "aguardando_revisao",
+      "lote_id": 1
+    },
+    {
+      "area": "financeiro",
+      "projeto": "Alfa",
+      "natureza": "previsto",
+      "resumo": "Entrada combinada de 30%; não comprova pagamento.",
+      "financeiro": {
+        "tipo": "condicao_prevista",
+        "valor_centavos": null,
+        "percentual": "30",
+        "data_referencia": null
+      },
+      "agenda": null,
+      "fontes": [
+        {
+          "mensagem_id": 4,
+          "trecho": "Orçamento Alfa: R$ 10.000,00. Entrada combinada de 30%; restante em 20/11/2026."
+        }
+      ],
+      "pendencias": [],
+      "status": "aguardando_revisao",
+      "lote_id": 1
+    },
+    {
+      "area": "agenda",
+      "projeto": "Alfa",
+      "natureza": "confirmacao",
+      "resumo": "Visita Alfa confirmada na conversa; local ainda pendente.",
+      "financeiro": null,
+      "agenda": {
+        "tipo": "visita",
+        "inicio_em": "2026-11-10T14:00:00-03:00",
+        "fim_em": "2026-11-10T15:00:00-03:00",
+        "atendente_nome": "Ana",
+        "local": null
+      },
+      "fontes": [
+        {
+          "mensagem_id": 8,
+          "trecho": "Confirmo visita Alfa em 10/11/2026, das 14h às 15h, comigo como atendente. Endereço ainda será informado."
+        }
+      ],
+      "pendencias": [
+        "Confirmar endereço e mapear atendente."
+      ],
+      "status": "aguardando_revisao",
+      "lote_id": 1
+    },
+    {
+      "area": "financeiro",
+      "projeto": "Alfa",
+      "natureza": "relato",
+      "resumo": "Recebimento de R$ 3.000,00 informado, sujeito a revisão.",
+      "financeiro": {
+        "tipo": "pagamento_informado",
+        "valor_centavos": 300000,
+        "percentual": null,
+        "data_referencia": "2026-11-09"
+      },
+      "agenda": null,
+      "fontes": [
+        {
+          "mensagem_id": 9,
+          "trecho": "Foi informado o recebimento de R$ 3.000,00 do Alfa hoje. Conferir antes de registrar."
+        }
+      ],
+      "pendencias": [
+        "Conferir relato antes de registrar; não é comprovação bancária."
+      ],
+      "status": "aguardando_revisao",
+      "lote_id": 2
+    },
+    {
+      "area": "agenda",
+      "projeto": "Alfa",
+      "natureza": "correcao",
+      "resumo": "Proposta de remarcar visita Alfa para 11/11, das 10h às 11h.",
+      "financeiro": null,
+      "agenda": {
+        "tipo": "visita",
+        "inicio_em": "2026-11-11T10:00:00-03:00",
+        "fim_em": "2026-11-11T11:00:00-03:00",
+        "atendente_nome": null,
+        "local": null
+      },
+      "fontes": [
+        {
+          "mensagem_id": 13,
+          "trecho": "Remarcar a visita Alfa: de 10/11 às 14h para 11/11/2026, das 10h às 11h."
+        }
+      ],
+      "pendencias": [
+        "Vincular ao compromisso anterior antes de aplicar."
+      ],
+      "status": "aguardando_revisao",
+      "lote_id": 2
+    },
+    {
+      "area": "financeiro",
+      "projeto": "Beta",
+      "natureza": "previsto",
+      "resumo": "Orçamento Beta proposto, sem aceite confirmado.",
+      "financeiro": {
+        "tipo": "orcamento_proposto",
+        "valor_centavos": 400000,
+        "percentual": null,
+        "data_referencia": null
+      },
+      "agenda": null,
+      "fontes": [
+        {
+          "mensagem_id": 14,
+          "trecho": "Projeto Beta: manutenção do site. Responsável: Carla. Orçamento proposto R$ 4.000,00."
+        }
+      ],
+      "pendencias": [],
+      "status": "aguardando_revisao",
+      "lote_id": 2
+    },
+    {
+      "area": "financeiro",
+      "projeto": "Gama",
+      "natureza": "pendencia",
+      "resumo": "Gama sem total definido: saldo não calculável.",
+      "financeiro": {
+        "tipo": "saldo_indefinido",
+        "valor_centavos": null,
+        "percentual": null,
+        "data_referencia": null
+      },
+      "agenda": null,
+      "fontes": [
+        {
+          "mensagem_id": 20,
+          "trecho": "Projeto Gama: revisão do processo de suporte. Responsável: Bruno. Total ainda não definido."
+        }
+      ],
+      "pendencias": [
+        "Informar contrato e valor total."
+      ],
+      "status": "aguardando_revisao",
+      "lote_id": 3
+    }
+  ],
+  "gravacoes_operacionais": 0,
+  "limite": "Completa indica cobertura dos lotes, não acerto semântico. Fontes e números validados não provam toda interpretação; propostas exigem revisão. Duplicação semântica entre lotes ainda pode ocorrer."
+}

@@ -1,0 +1,11 @@
+{
+  "tipo": "integracao_local_com_fixture_manual_sem_llm",
+  "testes_unitarios_integracao": 72,
+  "notebook": "03_revisao_persistente.ipynb",
+  "celulas_codigo_sem_erro": 6,
+  "terminal_opcao4_opcao6": "interpretação aceita com comentário explícito",
+  "cli_sem_pacotes_ia": "inicia e encerra com -S e PYTHONTZPATH apontando aos arquivos tzdata requeridos",
+  "llm_executado": false,
+  "gravacoes_operacionais": 0,
+  "limite": "Revisão de interpretação; não comprova agente, gravação operacional, APIs de negócio ou autenticação."
+}

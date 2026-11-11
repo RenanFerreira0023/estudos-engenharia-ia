@@ -106,3 +106,28 @@ Cliente HTTP com validação de Content-Type/JSON e tratamento de falhas; busca 
 ### Projeto final — fase 5
 
 [Verificação antes de responder](./Projeto%20final/01_documentacao/VERIFICACAO_FASE_05.md): checagens determinísticas, juiz LLM de três classes, cobertura/coerência, um reparo e reavaliação. [Notebook](./Projeto%20final/03_notebooks/fase_05_verificacao.ipynb). Não equivale automaticamente a classificador NLI; fontes e falhas do avaliador permanecem auditáveis.
+
+## Projeto atual — Secretária IA
+
+[Projeto final 2](./Projeto%20final%202/) substitui autopeças como direção da entrega acadêmica. Já há importação TXT/ZIP, extração de propostas, revisão persistente e fluxo de visitas com agente e SQLite. Foram aprovados 85 testes locais. Cadastro PJ completo pelo chat, vínculo operacional com projetos e fontes, memória persistente, relatórios e avaliação final ainda estão pendentes. Conceitos previstos e matriz dos 29 itens estão no [plano](./Projeto%20final%202/PLANO_PROJETO_SECRETARIA_IA.md).
+
+As fases e conceitos de autopeças listados acima são histórico de um projeto descontinuado. Seus testes não validam a nova aplicação.
+
+### Projeto final 2 — marco 1
+
+[Notebook de importação e SQLite](./Projeto%20final%202/notebooks/01_importacao_sqlite.ipynb):
+parser determinístico, fontes por linha, transações e idempotência por arquivo/mensagem/ocorrência.
+[Como executar](./Projeto%20final%202/README.md). Não há LLM ou FAISS neste marco; importação não é extração semântica.
+
+
+### Projeto final 2 — primeira chain de propostas
+
+[Notebook 02](./Projeto%20final%202/notebooks/02_extracao_estruturada.ipynb):
+ChatPromptTemplate, PydanticOutputParser, LCEL/@chain, invoke/batch/stream de objeto completo,
+fontes e cobertura por lote. Modos fixture e OpenAI separados; ainda sem agente ou gravação operacional.
+[Contratos e limites](./Projeto%20final%202/docs/primeira_chain.md).
+
+
+### Projeto final 2 — revisão persistente (início da fase 2)
+
+[Serviço e roteiro](./Projeto%20final%202/docs/revisao_persistente.md) · [Notebook 03](./Projeto%20final%202/notebooks/03_revisao_persistente.ipynb). SQLite v2 mantém fila, versão, autoria e histórico de decisões; confirmação da interpretação é separada da gravação operacional. Testes incluem rejeição, correção, isolamento e concorrência por versão. 72 testes locais; seis células executadas sem API. Agente/ferramentas/APIs permanecem pendentes.

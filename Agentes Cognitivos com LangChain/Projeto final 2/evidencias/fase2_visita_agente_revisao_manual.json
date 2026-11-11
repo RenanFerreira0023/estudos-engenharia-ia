@@ -1,0 +1,28 @@
+{
+  "origem": "saida_do_terminal_compartilhada_pelo_usuario_em_2026-11-10",
+  "cenario": "Bruno agenda visita ficticia ao cliente Alfa em 2026-11-11 das 14h as 15h",
+  "ferramentas_observadas": [
+    "buscar_cliente",
+    "consultar_disponibilidade",
+    "consultar_cep_viacep",
+    "propor_visita"
+  ],
+  "observacoes": {
+    "cliente_id": 1,
+    "atendente_id": "bruno",
+    "cep_consultado": "01001000",
+    "consulta_disponibilidade": "sem_conflito_registrado",
+    "proposta_id": 4,
+    "proposta_estado_inicial": "pendente",
+    "confirmacao_explicita": "/confirmar 4",
+    "agendamento_id": 4,
+    "agendamento_estado": "confirmado",
+    "agenda_bruno_mostrou_id_4": true
+  },
+  "limites": [
+    "A proposta 4 foi criada por processo antigo e nao preservou o CEP no endereco_snapshot_json.",
+    "O agente pediu numero novamente apesar de o usuario ter informado s/n; o usuario respondeu 546.",
+    "Sem conflito registrado nao comprova disponibilidade fora do sistema.",
+    "Evidencia manual de uma execucao; nao e avaliacao LangSmith nem taxa de acerto."
+  ]
+}

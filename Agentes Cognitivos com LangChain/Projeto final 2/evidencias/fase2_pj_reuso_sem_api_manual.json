@@ -1,0 +1,14 @@
+{
+  "origem": "saida_do_terminal_compartilhada_pelo_usuario_em_2026-11-10",
+  "cenario": "Reconsulta ao CNPJ apos cadastro PJ confirmado no banco isolado",
+  "ferramentas_observadas": ["consultar_cnpj_minha_receita"],
+  "retorno": {
+    "status": "ja_cadastrado",
+    "origem": "banco_local",
+    "api_externa_chamada": false,
+    "cliente_id": 1,
+    "nome_fantasia_persistido": "REGIONAL BRASILIA-DF",
+    "origem_cadastro_persistida": "minha_receita_real"
+  },
+  "avaliacao": "Reuso do cadastro local e ausencia de nova chamada HTTP externa observados; o modelo ainda escolheu diretamente a ferramenta de CNPJ."
+}

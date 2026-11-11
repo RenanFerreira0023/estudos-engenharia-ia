@@ -1,0 +1,13 @@
+{
+  "origem": "saida_do_terminal_compartilhada_pelo_usuario_em_2026-11-10",
+  "pergunta": "O cliente com CNPJ 33683111000280 já está cadastrado?",
+  "esperado": "buscar_cliente no SQLite; não consultar API externa se já cadastrado",
+  "observado": {
+    "ferramentas": ["consultar_cnpj_minha_receita"],
+    "api_externa_chamada": true,
+    "resposta_afirmou_cadastro_local_sem_evidencia_do_banco": true
+  },
+  "causa": "A ferramenta externa não verificava a base local e o prompt não impunha evidência local para afirmar cadastro.",
+  "correcao": "Ferramenta consulta SQLite antes da API e retorna status distinto ja_cadastrado/nao_cadastrado; prompt orienta buscar_cliente primeiro.",
+  "validacao": "Dois testes locais: CNPJ existente não chama API; CNPJ ausente consulta fixture mas não cadastra. Nova execução real do agente ainda pendente."
+}

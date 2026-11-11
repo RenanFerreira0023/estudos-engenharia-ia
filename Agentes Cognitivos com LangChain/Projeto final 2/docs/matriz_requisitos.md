@@ -1,0 +1,48 @@
+# Matriz de requisitos após marco 2
+
+Importação/SQLite e chain de propostas estão implementadas; agente ainda não. Não atribuir testes de autopeças à nova aplicação.
+
+| ID | Item da rubrica | Estado |
+|---|---|---|
+| R01 | O aluno estruturou a anatomia e a arquitetura cognitiva do agente, classificando seu tipo e nível de maturidade agêntica? | Planejado |
+| R02 | O aluno projetou uma arquitetura de planejamento e memória aumentada para o agente? | Planejado |
+| R03 | O aluno construiu templates de prompt reutilizáveis com PromptTemplate ou ChatPromptTemplate? | Implementado; testes/notebook locais, API testada com resultado parcial. |
+| R04 | O aluno implementou um output parser para gerar saída estruturada em JSON a partir da chain? | Implementado; testes/notebook locais, API testada com resultado parcial. |
+| R05 | O aluno aplicou a interface Runnable (invoke, batch, stream) e implementou composição imperativa com o decorador @chain? | Demonstrado com fixture: invoke/batch/@chain e stream de objeto completo; não tokens. |
+| R06 | O aluno implementou a composição declarativa da chain com LCEL e justificou a escolha entre composição imperativa e declarativa? | Implementado; testes/notebook locais, API testada com resultado parcial. |
+| R07 | O aluno comparou orquestradores de agentes autônomos e justificou a escolha do LangChain para o problema? | Planejado |
+| R08 | O aluno construiu um agente com ferramentas e memória e implementou o padrão ReAct com initialize_agent? | Planejado |
+| R09 | O aluno construiu chains sequenciais ou paralelas e implementou roteamento dinâmico com RouterChain? | Planejado |
+| R10 | O aluno integrou pelo menos uma API externa como ferramenta do agente via function calling? | Planejado |
+| R11 | O aluno estruturou o prompt do agente com o framework PTCF e aplicou few-shot learning e chain-of-thought? | Planejado |
+| R12 | O aluno implementou os componentes de confiabilidade do agente (output parsers com tratamento de erros, memória configurada na chain, ferramenta de busca semântica com FAISS e callbacks de logging), justificando as escolhas técnicas? | Planejado |
+| R13 | O aluno diferenciou memória de curto e longo prazo para o agente com base na taxonomia CoALA? | Planejado |
+| R14 | O aluno gerenciou janelas de contexto combinando sliding window ou sumarização com busca vetorial? | Planejado |
+| R15 | O aluno comparou ferramentas especializadas de memória por arquitetura e caso de uso? | Planejado |
+| R16 | O aluno construiu um chatbot conversacional com ConversationBufferMemory? | Planejado |
+| R17 | O aluno estruturou fluxos de conversação com reconhecimento de intenção e extração de entidades? | Parcial: propostas por área/natureza/entidades; fluxo conversacional ainda não. |
+| R18 | O aluno validou, com evidência de uma conversa real, que o agente manteve contexto e decompôs consultas complexas em diálogos multi-turno? | Planejado |
+| R19 | O aluno estruturou ferramentas do agente diferenciando funções hardcoded de funções semânticas? | Planejado |
+| R20 | O aluno integrou o agente a APIs internas ou externas conforme o tipo de uso de cada uma? | Planejado |
+| R21 | O aluno implementou o padrão text-to-query para consultar dados estruturados? | Planejado |
+| R22 | O aluno construiu um agente de recuperação usando um índice FAISS existente? | Planejado |
+| R23 | O aluno diagnosticou uma falha real de recuperação a partir dos documentos-fonte retornados e justificou a técnica de correção aplicada? | Planejado |
+| R24 | O aluno construiu um mecanismo de verificação de consistência factual e coerência lógica das respostas do agente? | Planejado |
+| R25 | O aluno consolidou um agente único integrando ferramentas de RAG, SQL ou API sob um mesmo executor? | Planejado |
+| R26 | O aluno construiu o executor do agente com create_openai_tools_agent e AgentExecutor? | Planejado |
+| R27 | O aluno integrou o histórico de conversa ao agente com RunnableWithMessageHistory? | Planejado |
+| R28 | O aluno integrou o agente completo a uma interface Streamlit? | Planejado |
+| R29 | O aluno avaliou a qualidade das respostas e a trajetória de chamadas de ferramentas do agente com o LangSmith, justificando as conclusões a partir das métricas obtidas? | Planejado |
+
+Base implementada: [evidência do marco 1](../evidencias/marco1_importacao.json) e [notebook](../notebooks/01_importacao_sqlite.ipynb). Não equivalem a cumprimento dos requisitos de LLM/memória/RAG/avaliação.
+
+Marco 2: [chain e limites](./primeira_chain.md), [notebook](../notebooks/02_extracao_estruturada.ipynb) e [fixture](../evidencias/marco2_fixture.json). A API de geração já foi executada com dados fictícios, inclusive uma execução enviada por Renan com 40/40 mensagens; isso não comprova avaliação semântica, agente com ferramentas ou APIs de negócio.
+
+
+D013 — Contratos separados por área, JSON Schema na geração e validação local mantida. As três chamadas reais ficaram parciais (8/40, 24/40 e 32/40 mensagens). Falhas e revisão assistida documentadas em docs/execucoes_e_falhas.md. Não equivale a avaliação semântica completa, agente pronto ou integração das APIs de negócio. A confirmação/gravação operacional e FAISS continuam pendentes.
+
+
+Controle de evolução: [cinco fases](andamento_fases.md). Última validação local: 54 testes; fontes por proposta e rejeições explícitas ainda pertencem ao ajuste da fase 1.
+
+
+Fase 2 iniciada com [fila de revisão](revisao_persistente.md): autoria, versões, permissões restritas e histórico no serviço. Não satisfaz por si só os itens de agente, chamadas de ferramentas, memória conversacional ou verificador semântico. 72 testes locais; notebook 03 executado sem API. Estado das fases em andamento_fases.md.
