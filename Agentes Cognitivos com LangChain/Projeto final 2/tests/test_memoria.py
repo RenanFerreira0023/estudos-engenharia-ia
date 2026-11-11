@@ -5,10 +5,61 @@ from pathlib import Path
 from unittest.mock import patch
 
 from secretaria.banco import Banco, Contexto
-from secretaria.memoria import MemoriaConversas
+from secretaria.memoria import MemoriaConversas, pede_contexto_antigo
 
 
 class TestMemoriaConversas(unittest.TestCase):
+    def test_recuperacao_so_para_pedido_dependente_do_contexto(self):
+        self.assertTrue(pede_contexto_antigo('Qual empresa mencionei no começo?'))
+        self.assertTrue(pede_contexto_antigo('E o saldo dele?'))
+        self.assertFalse(pede_contexto_antigo('Oi, tudo bem?'))
+        self.assertFalse(pede_contexto_antigo('Quanto é 340 + 600?'))
+
+    def test_faiss_recupera_recorte_semantico_com_escopo_e_reinicio(self):
+        class EmbeddingsFixture:
+            chamadas = 0
+
+            def _vetor(self, texto):
+                texto = texto.lower()
+                return [1.0 if 'cliente' in texto or 'empresa' in texto else 0.0,
+                        1.0 if 'orcamento' in texto or 'orçamento' in texto else 0.0,
+                        0.1]
+
+            def embed_documents(self, textos):
+                self.chamadas += 1
+                return [self._vetor(texto) for texto in textos]
+
+            def embed_query(self, texto):
+                return self._vetor(texto)
+
+        with tempfile.TemporaryDirectory() as pasta:
+            caminho = Path(pasta) / 'vetores.sqlite3'
+            ana, bruno = Contexto('demo','ana'), Contexto('demo','bruno')
+            fixture = EmbeddingsFixture()
+            with Banco(caminho) as banco:
+                banco.preparar_demo()
+                memoria = MemoriaConversas(banco)
+                sessao = memoria.iniciar(ana)
+                memoria.registrar(ana,sessao,'O cliente é Alfa.','Entendi.')
+                memoria.registrar(ana,sessao,'O orçamento é Beta.','Entendi.')
+                for numero in range(6):
+                    memoria.registrar(ana,sessao,f'Assunto {numero}','Entendi.')
+                resultado = memoria.buscar_resumos_vetoriais(
+                    ana,sessao,'Qual empresa foi citada?',fixture,limite=1)
+                self.assertEqual(resultado[0]['resumo_extrativo'],'O cliente é Alfa.')
+                self.assertEqual(resultado[0]['estrategia'],'faiss_embeddings')
+                memoria.buscar_resumos_vetoriais(ana,sessao,'Qual empresa?',fixture,limite=1)
+                self.assertEqual(fixture.chamadas,1)
+                with self.assertRaises(PermissionError):
+                    memoria.buscar_resumos_vetoriais(bruno,sessao,'Qual empresa?',fixture)
+            with Banco(caminho) as banco:
+                memoria = MemoriaConversas(banco)
+                self.assertEqual(memoria.buscar_resumos_vetoriais(
+                    ana,sessao,'Qual empresa?',fixture,limite=1)[0]['turno_id'],1)
+                nova = memoria.iniciar(ana)
+                self.assertEqual(memoria.buscar_resumos_vetoriais(
+                    ana,nova,'Qual empresa?',fixture),[])
+
     def test_resumo_extrativo_recupera_fala_antiga_sem_vazar_sessao(self):
         with tempfile.TemporaryDirectory() as pasta:
             caminho = Path(pasta) / 'resumos.sqlite3'

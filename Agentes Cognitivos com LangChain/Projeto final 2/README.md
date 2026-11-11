@@ -2,11 +2,19 @@
 
 [Revisão do enunciado e da aula 08](docs/revisao_enunciado_aula08.md): aderência, lacunas, quatro entregáveis e prioridades para concluir a disciplina.
 
-> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, projetos, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. A memória por sessão usa janela curta e recortes antigos recuperados por palavras; preferências confirmadas são guardadas por usuário no SQLite. Prompt PTCF, rota leve e callback local também estão presentes. **109 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, projetos, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. A memória por sessão usa janela curta e recortes antigos recuperados por FAISS/embeddings, com fallback lexical; preferências confirmadas são guardadas por usuário no SQLite. O primeiro índice FAISS de mensagens com fontes da fase 4 está implementado como serviço separado. **112 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+
+### Índice de fontes — início da fase 4
+
+O [notebook 10](notebooks/10_indice_fontes_faiss.ipynb) prepara um índice FAISS com mensagens fictícias e vetores de fixture. A busca posterior carrega esse índice, verifica versão do corpus e autorização, e retorna o trecho original com ID de fonte. [Decisões e limites](docs/indice_fontes_fase4.md). A ferramenta ainda não está integrada ao agente; não houve teste semântico real desse índice.
+
+### Recuperação vetorial da memória — fase 3
+
+Após seis turnos, quando a pergunta depende do contexto antigo, o menu 9 filtra recortes no SQLite por empresa, usuário e sessão; só então cria um índice FAISS temporário e usa embeddings OpenAI para escolher até dois. O [notebook 09](notebooks/09_recuperacao_vetorial_memoria.ipynb) executa o mesmo método com vetores de fixture, sem API. [Reteste real](evidencias/fase3_faiss_reteste_manual.json) recuperou Alfa; o filtro posterior para evitar recuperação numa saudação ainda precisa de reteste real. Se a API falhar, o terminal sinaliza fallback para a busca lexical. O FAISS das mensagens importadas com fontes continua reservado à fase 4.
 
 ### Preferências confirmadas — fase 3
 
-No menu 9, `/lembrar estilo=detalhado` grava uma preferência pessoal explícita; `/memorias` mostra o valor atual e `/esquecer-memoria estilo` o remove. O valor persiste após `/nova` e reinício, mas não passa a outro usuário. O [notebook 08](notebooks/08_preferencias_confirmadas.ipynb) demonstra isso sem API; o [guia](docs/memoria_fase3.md) compara LangMem e Mem0. A fase 3 ainda depende de recuperação vetorial relevante e teste contextual de troca de projeto.
+No menu 9, `/lembrar estilo=detalhado` grava uma preferência pessoal explícita; `/memorias` mostra o valor atual e `/esquecer-memoria estilo` o remove. O valor persiste após `/nova` e reinício, mas não passa a outro usuário. O [notebook 08](notebooks/08_preferencias_confirmadas.ipynb) demonstra isso sem API; o [guia](docs/memoria_fase3.md) compara LangMem e Mem0. A fase 3 ainda depende do reteste real dos embeddings após a janela.
 
 ### Recortes antigos — complemento da fase 3
 

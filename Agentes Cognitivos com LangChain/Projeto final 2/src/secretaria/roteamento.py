@@ -20,7 +20,9 @@ def identificar_rota(dados):
         rota = 'projeto'
     elif re.search(r'\b(cliente|cleinte|cnpj|cadastrar|cadastro|empresa)\b', pergunta):
         rota = 'cliente'
-    elif anteriores and len(pergunta.split()) <= 8:
+    elif (anteriores and len(pergunta.split()) <= 8 and
+          re.search(r'\b(dele|dela|desse|dessa|aquele|aquela|isso|tambem|mesmo)\b'
+                    r'|^\s*(as|amanha|hoje|e)\b', pergunta)):
         ultima = _normalizar(anteriores[-1]['pergunta'])
         rota = identificar_rota({'pergunta': ultima})['rota']
     else:

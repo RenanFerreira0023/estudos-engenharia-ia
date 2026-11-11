@@ -137,6 +137,7 @@ Preferências confirmadas por comando explícito valem só para o usuário atual
 Se trechos antigos e mensagens recentes se contradisserem, considere a correção mais recente; se houver ambiguidade, peça esclarecimento.
 Data/hora atual com fuso: use a informação de tempo recebida no pedido; se não houver, peça data absoluta.
 Para pergunta sobre cadastro de cliente identificado por nome ou CNPJ, chame buscar_cliente primeiro. Se o usuário perguntar "qual cliente mencionei?", use somente a conversa atual; se não houver cliente mencionado nela, diga que não sabe e peça o nome. Não busque todos os clientes para adivinhar o referente. Um retorno da Minha Receita não prova cadastro local. Se nenhum ou vários, peça identificação; nunca invente ID.
+Responda ao pedido atual. Não aplique a resposta do exemplo "qual cliente mencionei?" a uma pergunta sem relação com cliente, como uma saudação ou pergunta casual.
 Projeto e cliente são entidades diferentes. Quando o usuário falar de projeto ou perguntar pelo saldo "dele" após mencionar um projeto, use consultar_projeto; não use buscar_cliente como substituto. Se mudar explicitamente de Alfa para Beta, o referente atual passa a ser Beta. Se consultar_projeto não encontrar o projeto, diga isso. Não calcule saldo a partir de orçamento, entrada combinada ou pagamento apenas informado; se não houver registros financeiros operacionais confirmados, diga que o saldo não está disponível.
 Só consulte Minha Receita para CNPJ que não existe no banco. A ferramenta de CNPJ verifica isso novamente e devolve status ja_cadastrado ou nao_cadastrado. Responda "cadastrado" apenas quando o banco local confirmar.
 Se o usuário pedir cadastro de um CNPJ novo, consulte-o e chame propor_cadastro_cliente com o consulta_id retornado. Mostre razão social, CNPJ, nome fantasia e proposta_id. A consulta e a proposta não criam cliente. Oriente o usuário a confirmar com /confirmar-cliente ID; você não tem ferramenta de confirmação.
@@ -157,11 +158,8 @@ Resposta: solicitar data absoluta ou dados obrigatórios ausentes antes de propo
 Responda em português claro e curto por padrão. Se houver preferência confirmada de idioma ou estilo, aplique-a apenas à forma da resposta. Diga o que foi encontrado, o que falta e, se houver proposta, seu ID e estado. Não exponha raciocínio interno; chamadas e retornos de ferramenta são registrados pelo executor para auditoria.'''
 
 
-def criar_agente_agenda(banco, ctx, arquivo_env=None):
+def obter_chave_api(arquivo_env=None):
     from dotenv import dotenv_values
-    from langchain.agents import create_agent
-    from langchain_openai import ChatOpenAI
-
     chave = os.environ.get('OPENAI_API_KEY')
     if not chave:
         if arquivo_env:
@@ -176,6 +174,14 @@ def criar_agente_agenda(banco, ctx, arquivo_env=None):
                     break
     if not chave:
         raise ValueError('Configure OPENAI_API_KEY no ambiente ou .env deste projeto.')
+    return chave
+
+
+def criar_agente_agenda(banco, ctx, arquivo_env=None):
+    from langchain.agents import create_agent
+    from langchain_openai import ChatOpenAI
+
+    chave = obter_chave_api(arquivo_env)
 
     # CHATOPENAI + CREATE_AGENT: o modelo decide quando chamar @tool.
     # Serviços Python validam identidade, escopo e gravação; o prompt não concede permissões.

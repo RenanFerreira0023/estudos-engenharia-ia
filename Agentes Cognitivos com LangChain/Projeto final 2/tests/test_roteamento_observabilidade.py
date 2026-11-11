@@ -55,6 +55,11 @@ class RoteamentoObservabilidadeTest(unittest.TestCase):
         atual = roteador_pedido.invoke({'pergunta':'Às 15h',
                                         'anteriores':[{'pergunta':'Agende visita para Alfa'}]})
         self.assertEqual(atual['rota'],'visita')
+        anteriores = [{'pergunta':'Qual cliente mencionei?'}]
+        self.assertEqual(roteador_pedido.invoke(
+            {'pergunta':'Oi tudo bem?', 'anteriores':anteriores})['rota'],'geral')
+        self.assertEqual(roteador_pedido.invoke(
+            {'pergunta':'Você gosta de café?', 'anteriores':anteriores})['rota'],'geral')
 
     def test_callback_registra_eventos_sem_conteudo(self):
         rastro = RastroAgente()

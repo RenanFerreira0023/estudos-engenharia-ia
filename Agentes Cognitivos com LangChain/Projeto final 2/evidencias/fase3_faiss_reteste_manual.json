@@ -1,0 +1,35 @@
+{
+  "origem": "Saída do terminal enviada por Renan nesta conversa em 11/11/2026; resumo manual",
+  "sessao_id": "cfc77fd1e57d4cec956f2799a451db3d",
+  "pergunta_inicial": "Estou falando do cliente alfa ok",
+  "turnos_intermediarios": 7,
+  "pergunta_final": "Qual empresa mencionei no começo da conversa?",
+  "estrategia_exibida": "FAISS + embeddings",
+  "turnos_recuperados": [31],
+  "resposta_final": "Você mencionou o cliente Alfa no início da conversa.",
+  "ferramentas_na_pergunta_final": [],
+  "resultado": "A recuperação vetorial real localizou o turno antigo e a resposta identificou Alfa.",
+  "falhas_adicionais_observadas": [
+    "Pergunta casual sobre café recebeu resposta de exemplo sobre cliente, sem atender ao pedido atual.",
+    "Uma saudação recebeu recuperação FAISS do turno 31, apesar de não depender de contexto antigo."
+  ],
+  "ajuste_posterior": "A busca de recortes antigos passou a ocorrer somente para perguntas que dependem do contexto; o prompt foi esclarecido para perguntas casuais.",
+  "reteste_posterior": {
+    "origem": "Saída de terminal enviada por Renan em 11/11/2026 na mesma sessão",
+    "saudacao": {
+      "pergunta": "Oi tudo bem ?",
+      "resposta": "Olá! Estou bem, obrigada. Como posso ajudar você hoje?",
+      "recuperacao": "não solicitada para este pedido",
+      "rota": "cliente"
+    },
+    "pergunta_casual_com_erros": {
+      "pergunta": "vpce gpsta de café?",
+      "resposta": "Desculpe, não entendi sua pergunta. Poderia reformular ou fornecer mais detalhes sobre o que você precisa?",
+      "recuperacao": "não solicitada para este pedido",
+      "rota": "geral"
+    },
+    "conclusao": "O filtro de recuperação desnecessária funcionou nas duas perguntas; a saudação herdou indevidamente a rota cliente. A resposta sobre café não voltou ao exemplo de cliente, mas não compreendeu os erros de digitação."
+  },
+  "ajuste_apos_reteste": "Roteamento só herda a rota anterior para seguimentos curtos com referência explícita ou fragmento temporal; teste local passou, reteste real pendente.",
+  "limite": "Não mede robustez do modelo a erros de digitação nem prova que todas as perguntas casuais serão compreendidas."
+}

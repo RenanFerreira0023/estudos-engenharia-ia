@@ -102,13 +102,14 @@ def agendar_no_terminal(banco, ctx):
 def conversar_sobre_visita(banco, ctx, arquivo_env=None):
     from datetime import datetime
     from zoneinfo import ZoneInfo
-    from openai import APIConnectionError, AuthenticationError, RateLimitError
-    from .agente_agenda import criar_agente_agenda
-    from .memoria import MemoriaConversas
+    from openai import APIConnectionError, AuthenticationError, RateLimitError, OpenAIError
+    from .agente_agenda import criar_agente_agenda, obter_chave_api
+    from .memoria import MemoriaConversas, pede_contexto_antigo
     from .preferencias import PreferenciasUsuario
     from .observabilidade import RastroAgente
     from .roteamento import roteador_pedido
     agente = None
+    embeddings = None
     memoria = MemoriaConversas(banco)
     preferencias = PreferenciasUsuario(banco)
     sessao_id = memoria.ultima_ativa(ctx) or memoria.iniciar(ctx)
@@ -173,9 +174,27 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
         anteriores = memoria.ultimos(ctx,sessao_id)
         rota = roteador_pedido.invoke({'pergunta':pergunta,'anteriores':anteriores})['rota']
         historico = memoria.mensagens(ctx,sessao_id)
-        # RECUPERAÇÃO: somente recortes antigos da conversa atual com palavras em comum.
-        # O texto é rotulado como fala anterior, nunca como cadastro confirmado.
-        recuperados = memoria.buscar_resumos(ctx,sessao_id,pergunta)
+        # RECUPERAÇÃO: o SQLite limita a sessão/usuário antes da busca FAISS.
+        # Embeddings da OpenAI recebem apenas recortes antigos que já seriam enviados ao chat.
+        # Se a API falhar, a busca lexical local mantém a conversa funcional.
+        ha_recortes = memoria.banco.con.execute(
+            'SELECT 1 FROM resumos_turnos_agente WHERE sessao_id=? AND empresa_id=? AND usuario_id=? LIMIT 1',
+            (sessao_id,ctx.empresa_id,ctx.usuario_id)).fetchone() is not None
+        recuperados = []
+        estrategia_recuperacao = 'não solicitada para este pedido'
+        if ha_recortes and pede_contexto_antigo(pergunta):
+            try:
+                if embeddings is None:
+                    from langchain_openai import OpenAIEmbeddings
+                    embeddings = OpenAIEmbeddings(model='text-embedding-3-small',
+                                                   api_key=obter_chave_api(arquivo_env),
+                                                   max_retries=0,timeout=20)
+                recuperados = memoria.buscar_resumos_vetoriais(ctx,sessao_id,pergunta,embeddings)
+                estrategia_recuperacao = 'FAISS + embeddings' if recuperados else 'FAISS sem resultado'
+            except (OpenAIError,ImportError,ValueError) as erro:
+                recuperados = memoria.buscar_resumos(ctx,sessao_id,pergunta)
+                estrategia_recuperacao = 'busca lexical local (falha na busca vetorial)'
+                print('Aviso: busca vetorial indisponível:',type(erro).__name__)
         contexto_antigo = (' Trechos antigos da conversa, não confirmados: '
                            + json.dumps(recuperados,ensure_ascii=False) + '.') if recuperados else ''
         # MEMÓRIA CONFIRMADA: preferências enumeradas são do usuário atual e sobrevivem a /nova.
@@ -210,6 +229,8 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
         print(ultima.content)
         print('\nCONTEXTO DO ATENDIMENTO')
         print('Rota sugerida:',rota,'| eventos observados:',len(rastro.eventos))
+        if ha_recortes:
+            print('Recuperação:',estrategia_recuperacao)
         if recuperados:
             print('Recortes antigos recuperados dos turnos:',[item['turno_id'] for item in recuperados])
         chamadas = sum(len(getattr(mensagem,'tool_calls',[])) for mensagem in novas)

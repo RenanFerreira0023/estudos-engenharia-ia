@@ -11,6 +11,15 @@ _PALAVRAS_VAZIAS = {'a','as','o','os','de','do','da','dos','das','e','em','um','
                    'mencionei','falei','disse','sobre','tem','estou'}
 
 
+def pede_contexto_antigo(pergunta):
+    """Evita trazer recortes em cumprimentos e pedidos independentes."""
+    texto = ''.join(c for c in unicodedata.normalize('NFKD', pergunta.lower())
+                    if not unicodedata.combining(c))
+    return bool(re.search(
+        r'\b(mencionei|falei|disse|lembra|lembrar|antes|anterior|antigo|antiga|'
+        r'comeco|inicio|dele|dela|desse|dessa|daquele|daquela)\b', texto))
+
+
 def _termos(texto):
     simples = ''.join(c for c in unicodedata.normalize('NFKD', texto.lower())
                       if not unicodedata.combining(c))
@@ -39,6 +48,8 @@ def _pontuar_termos(pergunta, resumo):
 class MemoriaConversas:
     def __init__(self, banco):
         self.banco = banco
+        # Cache apenas em RAM durante o processo; os recortes originais persistem no SQLite.
+        self._vetores = {}
 
     def _sessao(self, ctx, sessao_id):
         self.banco._usuario(ctx)
@@ -141,6 +152,52 @@ class MemoriaConversas:
                  'pontuacao_lexical': pontos,
                  'tipo_correspondencia': 'aproximada' if aproximados else 'exata'}
                 for pontos, aproximados, turno_id, resumo in pontuados[:limite]]
+
+    def buscar_resumos_vetoriais(self, ctx, sessao_id, pergunta, embeddings, limite=2,
+                                 similaridade_minima=0.35):
+        """FAISS sobre recortes da sessão autorizada; embeddings são injetados para teste offline."""
+        import faiss
+        import numpy as np
+
+        self._sessao(ctx, sessao_id)
+        if type(limite) is not int or not 1 <= limite <= 5:
+            raise ValueError('Limite de resumos deve ser de 1 a 5.')
+        if not isinstance(pergunta, str) or not pergunta.strip():
+            return []
+        # ESCOPO: filtrar no SQLite antes de construir o índice evita resultados de outro usuário.
+        linhas = self.banco.con.execute(
+            '''SELECT turno_id,resumo FROM resumos_turnos_agente
+               WHERE sessao_id=? AND empresa_id=? AND usuario_id=? ORDER BY turno_id DESC LIMIT 500''',
+            (sessao_id, ctx.empresa_id, ctx.usuario_id),
+        ).fetchall()
+        if not linhas:
+            return []
+        faltantes = [linha for linha in linhas if (ctx.empresa_id,ctx.usuario_id,sessao_id,
+                                                    linha['turno_id'],linha['resumo']) not in self._vetores]
+        if faltantes:
+            novos = embeddings.embed_documents([linha['resumo'] for linha in faltantes])
+            if len(novos) != len(faltantes):
+                raise ValueError('Embedding retornou quantidade inesperada de vetores.')
+            for linha, vetor in zip(faltantes, novos):
+                chave = (ctx.empresa_id,ctx.usuario_id,sessao_id,linha['turno_id'],linha['resumo'])
+                self._vetores[chave] = vetor
+        matriz = np.asarray([self._vetores[(ctx.empresa_id,ctx.usuario_id,sessao_id,
+                                           linha['turno_id'],linha['resumo'])] for linha in linhas],
+                            dtype='float32')
+        consulta = np.asarray([embeddings.embed_query(pergunta)],dtype='float32')
+        if matriz.ndim != 2 or consulta.ndim != 2 or matriz.shape[1] != consulta.shape[1]:
+            raise ValueError('Dimensões dos embeddings incompatíveis.')
+        faiss.normalize_L2(matriz)
+        faiss.normalize_L2(consulta)
+        indice = faiss.IndexFlatIP(matriz.shape[1])
+        indice.add(matriz)
+        escores, posicoes = indice.search(consulta,min(limite,len(linhas)))
+        return [{'turno_id':linhas[int(posicao)]['turno_id'],
+                 'resumo_extrativo':linhas[int(posicao)]['resumo'],
+                 'similaridade':round(float(escore),4),
+                 'estrategia':'faiss_embeddings'}
+                for escore,posicao in zip(escores[0],posicoes[0])
+                if posicao >= 0 and escore >= similaridade_minima]
 
     def ultimos(self, ctx, sessao_id, limite=6):
         self._sessao(ctx, sessao_id)
