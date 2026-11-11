@@ -72,7 +72,7 @@ def criar_ferramentas_agenda(caminho_banco, ctx, arquivo_env=None):
         """Busca trechos no índice FAISS já preparado; fornece IDs de fonte, não soma valores."""
         from openai import OpenAIError
         from langchain_openai import OpenAIEmbeddings
-        from .indice_fontes import IndiceFontes, pasta_indice_do_banco
+        from .indice_fontes import IndiceFontes, pasta_indice_do_banco, reordenar_fontes_afirmativas
         try:
             with Banco(caminho_banco) as conexao:
                 indice = IndiceFontes(conexao,pasta_indice_do_banco(conexao))
@@ -90,9 +90,11 @@ def criar_ferramentas_agenda(caminho_banco, ctx, arquivo_env=None):
                                                max_retries=0,timeout=30)
                 achados = indice.buscar(ctx,corpus_id,pergunta,embeddings,
                                        'text-embedding-3-small',limite=3)
+                achados, criterio = reordenar_fontes_afirmativas(pergunta,achados)
                 return {'status':'ok','fontes':[{**item,
                     'texto':item['texto'][:1200],
                     'texto_truncado':len(item['texto'])>1200} for item in achados],
+                    'criterio_ordenacao':criterio,
                     'limite':'Busca top-k localiza trechos; não comprova saldo ou soma exaustiva.'}
         except PermissionError:
             return {'status':'acesso_negado'}

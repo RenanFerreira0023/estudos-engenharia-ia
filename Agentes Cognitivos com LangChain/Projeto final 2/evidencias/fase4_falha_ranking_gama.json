@@ -1,0 +1,26 @@
+{
+  "origem": "consulta real ao indice FAISS do corpus ficticio em 11/11/2026, com text-embedding-3-small",
+  "pergunta": "Onde foi dito que o saldo do Gama não pode ser calculado?",
+  "resultado_vetorial_antes": [
+    {"posicao": 1, "mensagem_id": 23, "similaridade": 0.8093, "texto": "Qual seria o saldo do Gama?"},
+    {"posicao": 2, "mensagem_id": 24, "similaridade": 0.5637, "texto": "Sem total contratado, não é possível calcular o saldo."},
+    {"posicao": 3, "mensagem_id": 22, "similaridade": 0.5049, "texto": "Recebi o documento do Gama."}
+  ],
+  "diagnostico": "A mensagem 23 compartilha saldo e Gama com a pergunta, mas é outra pergunta; não sustenta a afirmação. A mensagem 24 fornece a explicação, porém ficou em segundo.",
+  "correcao": "Para pedidos explícitos por onde foi dito que uma afirmação é verdadeira, reordenar os candidatos top-k, colocando mensagens declarativas antes das interrogativas; preservar similaridade e posição vetorial originais.",
+  "resultado_reteste": [
+    {"posicao_final": 1, "mensagem_id": 24, "posicao_vetorial": 2},
+    {"posicao_final": 2, "mensagem_id": 22, "posicao_vetorial": 3},
+    {"posicao_final": 3, "mensagem_id": 23, "posicao_vetorial": 1}
+  ],
+  "reteste_agente_real": {
+    "pergunta_enviada": "Onde foi dito que o saldo do Gama não pode ser calculado?",
+    "ferramentas": ["listar_corpora_acessiveis", "buscar_mensagens_fonte"],
+    "consulta_reformulada_pelo_agente": "saldo do Gama não pode ser calculado",
+    "criterio_ordenacao": "afirmacao_antes_de_pergunta",
+    "ids_retorno": [24, 25, 23],
+    "posicoes_vetoriais_retorno": [2, 3, 1],
+    "resposta": "Foi dito que 'sem total contratado, não é possível calcular o saldo' na mensagem de Carla, enviada em 09 de novembro de 2026, às 11:23."
+  },
+  "limite": "A regra prioriza forma declarativa; não verifica sozinha o conteúdo da afirmação. Não altera o índice nem torna a busca exaustiva."
+}

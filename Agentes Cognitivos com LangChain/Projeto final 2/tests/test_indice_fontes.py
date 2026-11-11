@@ -7,7 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from secretaria.banco import Banco, Contexto
-from secretaria.indice_fontes import IndiceFontes, pasta_indice_do_banco
+from secretaria.indice_fontes import IndiceFontes, pasta_indice_do_banco, reordenar_fontes_afirmativas
 from secretaria.agente_agenda import criar_ferramentas_agenda
 
 
@@ -29,6 +29,25 @@ class EmbeddingsFixture:
 
 
 class IndiceFontesTest(unittest.TestCase):
+    def test_pergunta_nao_substitui_afirmacao_como_fonte(self):
+        candidatos = [
+            {'mensagem_id':23,'texto':'Qual seria o saldo do Gama?','similaridade':0.8093},
+            {'mensagem_id':24,'texto':'Sem total contratado, não é possível calcular o saldo.','similaridade':0.5637},
+            {'mensagem_id':22,'texto':'Recebi o documento do Gama.','similaridade':0.5049},
+        ]
+        corrigidos, criterio = reordenar_fontes_afirmativas(
+            'Onde foi dito que o saldo do Gama não pode ser calculado?', candidatos)
+        self.assertEqual(criterio,'afirmacao_antes_de_pergunta')
+        self.assertEqual(corrigidos[0]['mensagem_id'],24)
+        self.assertEqual(corrigidos[0]['posicao_vetorial'],2)
+        originais, criterio = reordenar_fontes_afirmativas('Qual seria o saldo do Gama?',candidatos)
+        self.assertEqual(criterio,'afirmacao_antes_de_pergunta')
+        self.assertEqual(originais[0]['mensagem_id'],24)
+        perguntas, criterio = reordenar_fontes_afirmativas(
+            'Onde foi feita a pergunta sobre o saldo do Gama?',candidatos)
+        self.assertEqual(criterio,'similaridade_vetorial')
+        self.assertEqual(perguntas[0]['mensagem_id'],23)
+
     def test_menu_prepara_indice_apos_confirmacao(self):
         from secretaria.cli import preparar_indice_no_terminal
         with tempfile.TemporaryDirectory() as pasta:

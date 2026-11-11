@@ -1,5 +1,7 @@
 # Andamento nas cinco fases do trabalho
 
+**11/11/2026 — falha real de ranking RAG:** pergunta sobre onde foi dito que o saldo do Gama não podia ser calculado trouxe M0023, que apenas pergunta pelo saldo, antes de M0024, que explica a impossibilidade. Reordenação condicional por tipo de enunciado colocou M0024 primeiro no reteste com embeddings reais, preservando posição e similaridade vetorial. O agente reformulou a busca, recebeu M0024 primeiro e citou a explicação de Carla. [Diagnóstico e antes/depois](../evidencias/fase4_falha_ranking_gama.json).
+
 **11/11/2026 — reteste real de text-to-query aprovado:** pergunta “quantas mensagens de Bruno mencionam orçamento e Alfa?”; rota `consulta`; ferramentas `listar_corpora_acessiveis` e `consultar_mensagens_estruturado`; plano `contagem`, `autor=Bruno`, termos `orçamento` e `Alfa`; `SELECT COUNT(*)` parametrizado retornou **1**. A resposta informou 1, agora sustentada pela contagem exaustiva dos filtros. [Registro](../evidencias/fase4_text_to_query_reteste_manual.json).
 
 **11/11/2026 — teste inicial de text-to-query:** Renan perguntou “Quantas msng o bruno mencionam orçamento e alfa?”. O agente respondeu 1 usando apenas `buscar_mensagens_fonte` (top-k); portanto, o número não estava comprovado por contagem exaustiva, mesmo coincidindo com a fixture. A rota agora reconhece a abreviação e o terminal bloqueia respostas de contagem sem retorno `COUNT(*)` da ferramenta estruturada.
@@ -33,15 +35,15 @@
 Teste manual completo enviado por Renan: para CNPJ novo, o agente chamou `consultar_cnpj_minha_receita` (retorno `nao_cadastrado`, `api_externa_chamada=true`, `consulta_id=1`) e `propor_cadastro_cliente` (proposta #1 pendente). `/confirmar-cliente 1` devolveu `confirmada` com `cliente_id=1`; a repetição devolveu `ja_confirmada` com o mesmo ID. Na pergunta posterior, `buscar_cliente` encontrou o cadastro PJ local com origem `minha_receita_real` e nome fantasia, sem chamada externa nesse turno. [Evidência](../evidencias/fase2_cadastro_pj_reteste_manual.json). A chamada HTTP é reportada pela ferramenta na saída do terminal, sem log de rede independente; auditoria foi verificada em teste local.
 
 Referência: [plano, seção 13](../PLANO_PROJETO_SECRETARIA_IA.md) e [matriz dos 29 itens](matriz_requisitos.md).
-As cinco fases são incrementos do mesmo projeto. Os dois notebooks atuais são demonstrações da fase 1,
-não duas fases concluídas. A etapa 0 é preparação; não é uma sexta fase da entrega.
+As cinco fases são incrementos do mesmo projeto. Os notebooks são demonstrações dos incrementos,
+não prova isolada de conclusão de uma fase. A etapa 0 é preparação; não é uma sexta fase da entrega.
 
 | Fase | Conteúdo | Estado atual | Próxima evidência |
 |---|---|---|---|
 | 1 | Importação e chain estruturada | Em validação: importação, contratos, LCEL/@chain e fontes implementados; 54 testes e notebook 02 executado. Sem declarar todos os itens da fase concluídos. | Revisar cobertura de candidatos cliente/projeto e documentação de anatomia/maturidade/decomposição; consolidar casos reais e limites. |
 | 2 | Agente, ferramentas e gravação confiável | Em andamento: fila de revisão, visitas, cadastro PJ e projetos/anotações com fontes e confirmação separada. | Teste manual da opção 10; registros financeiros operacionais e integração completa. |
-| 3 | Contexto e persistência entre sessões | Planejada. SQLite das fontes não comprova memória conversacional. | Diálogo multi-turno, reinício e isolamento. |
-| 4 | RAG, text-to-query e diagnóstico | Planejada. FAISS ainda não implementado. | Consultas com fontes e falha de recuperação analisada. |
+| 3 | Contexto e persistência entre sessões | Parcial: sessão, janela, recuperação de recortes antigos e preferências confirmadas demonstradas. | Consolidar evidências e limites de memória. |
+| 4 | RAG, text-to-query e diagnóstico | Implementados: FAISS com fontes, contagem SQL e diagnóstico antes/depois de ranking no corpus fictício. | Observar resposta final do agente para Gama e consolidar avaliação sistemática. |
 | 5 | Integração, verificação, interface, Excel e avaliação | Planejada. | Agente integrado, Streamlit, relatórios e avaliação LangSmith. |
 
 Atualização de 10/11/2026: fase 2 ganhou fluxo local de visita (migração v3, proposta, confirmação transacional, agenda por atendente e auditoria), menu 7/8 e agente opcional com ferramentas no menu 9. O campo de atendente aceita ID ou nome completo sem diferenciar maiúsculas. Os 79 testes locais passaram. Nenhuma chamada real ao agente, ViaCEP ou Minha Receita foi comprovada neste incremento; a fase permanece em andamento. A fila de interpretações continua separada da agenda operacional.

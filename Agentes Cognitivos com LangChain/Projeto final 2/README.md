@@ -8,6 +8,8 @@
 
 O [notebook 11](notebooks/11_text_to_query_mensagens.ipynb) demonstra pergunta, plano tipado de fixture, SQL parametrizado e resultado. No menu 9, o agente pode usar `consultar_mensagens_estruturado` para contagens e listas filtradas. [Limites e teste](docs/consulta_estruturada_fase4.md).
 
+O [notebook 12](notebooks/12_diagnostico_ranking_rag.ipynb) reproduz o diagnóstico de uma falha real de ranking com a evidência salva: a mensagem que apenas pergunta pelo saldo do Gama ficou acima da mensagem que explica por que ele não é calculável. O reteste colocou a explicação em primeiro lugar, preservando os escores originais.
+
 ### Índice de fontes — início da fase 4
 
 O [notebook 10](notebooks/10_indice_fontes_faiss.ipynb) prepara um índice FAISS com mensagens fictícias e vetores de fixture. A busca posterior carrega esse índice, verifica versão do corpus e autorização, e retorna o trecho original com ID de fonte. O menu 11 prepara o índice do corpus escolhido com confirmação antes da API; no menu 9, `buscar_mensagens_fonte` usa somente o índice existente. Renan observou a preparação real de 40 mensagens. Na [primeira tentativa](evidencias/fase4_falha_busca_fonte_manual.json), o agente deixou de buscar a fonte; no reteste chamou a ferramenta, recebeu M0004 em primeiro lugar e citou corretamente o orçamento de Alfa. [Decisões e limites](docs/indice_fontes_fase4.md).

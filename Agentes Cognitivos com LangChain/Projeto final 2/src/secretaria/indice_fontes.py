@@ -3,6 +3,27 @@ from hashlib import sha256
 import json
 import os
 from pathlib import Path
+import re
+import unicodedata
+
+
+def reordenar_fontes_afirmativas(pergunta, achados):
+    """Em pedido de uma afirmação, coloca respostas declarativas antes de perguntas."""
+    normalizada = ''.join(c for c in unicodedata.normalize('NFKD', pergunta.lower())
+                          if not unicodedata.combining(c))
+    pede_pergunta_original = bool(re.search(r'\b(pergunta|perguntou|questionou|duvida)\b', normalizada))
+    pede_afirmacao = not pede_pergunta_original and bool(achados) and (
+        bool(re.search(r'\b(onde foi dito|onde foi mencionado|qual mensagem (?:afirma|explica|diz))\b',
+                       normalizada))
+        or (achados[0]['texto'].strip().endswith('?')
+            and any(not item['texto'].strip().endswith('?') for item in achados[1:])))
+    com_posicao = [{**item, 'posicao_vetorial': posicao}
+                   for posicao, item in enumerate(achados, start=1)]
+    if not pede_afirmacao:
+        return com_posicao, 'similaridade_vetorial'
+    # A posição original continua visível para comparar o antes e depois.
+    ordenados = sorted(com_posicao, key=lambda item: item['texto'].strip().endswith('?'))
+    return ordenados, 'afirmacao_antes_de_pergunta'
 
 
 def _versao(mensagens):

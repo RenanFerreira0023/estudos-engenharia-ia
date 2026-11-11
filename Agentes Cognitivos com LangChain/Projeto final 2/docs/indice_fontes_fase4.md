@@ -8,7 +8,13 @@ O [notebook 10](../notebooks/10_indice_fontes_faiss.ipynb) usa apenas a conversa
 
 O menu **11 Preparar índice de fontes** lista corpora acessíveis e solicita o ID. Antes de enviar textos à OpenAI, pede confirmação explícita; cancelar não chama a API. Os arquivos ficam em `dados/privados/indices/` em uma subpasta identificada pelo caminho do banco, para evitar mistura entre bancos de teste. O menu **9** ganhou `listar_corpora_acessiveis` e `buscar_mensagens_fonte`; esta última usa o índice existente e devolve até três trechos com ID de mensagem, data, autor, texto e similaridade. Se o índice não existir ou estiver desatualizado, devolve estado específico; não reindexa durante a pergunta. O serviço revalida o acesso ao corpus antes de carregar o índice, e o teste local confirma que Bruno não lê o corpus privado de Ana.
 
-A preparação e a busca reais com embeddings OpenAI foram observadas para o corpus fictício. Ainda faltam consulta estruturada para dados exaustivos e análise de uma falha real de **recuperação/ranking**. A busca top-k serve para localizar trechos; não calcula saldo ou soma pagamentos.
+A preparação e a busca reais com embeddings OpenAI foram observadas para o corpus fictício. A consulta estruturada e a análise de ranking foram implementadas depois deste primeiro incremento. A busca top-k serve para localizar trechos; não calcula saldo ou soma pagamentos.
+
+## Falha real de ranking: pergunta versus explicação
+
+Com a pergunta “Onde foi dito que o saldo do Gama não pode ser calculado?”, a busca real retornou M0023 (“Qual seria o saldo do Gama?”) na posição 1 com similaridade 0,8093; M0024 (“Sem total contratado, não é possível calcular o saldo.”) veio na posição 2 com 0,5637. A primeira mensagem compartilha palavras da pergunta, mas não sustenta a afirmação. [Registro antes/depois](../evidencias/fase4_falha_ranking_gama.json).
+
+O serviço agora reordena os três candidatos quando o pedido é por uma afirmação ou quando o primeiro candidato é uma pergunta e há uma resposta declarativa entre os demais. Pedidos que procuram uma pergunta original mantêm a ordem vetorial. Mensagens declarativas passam à frente de mensagens terminadas em `?`, mantendo o escore e a posição vetorial originais no retorno. No reteste real, o agente reformulou a consulta para “saldo do Gama não pode ser calculado”, recebeu M0024 primeiro e citou a explicação de Carla. Esse ajuste não comprova por si só que uma mensagem declarativa é relevante; o agente ainda precisa conferir o texto antes de responder.
 
 ## Falha real de seleção da ferramenta
 
