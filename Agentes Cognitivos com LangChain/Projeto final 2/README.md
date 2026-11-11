@@ -2,11 +2,11 @@
 
 [Revisão do enunciado e da aula 08](docs/revisao_enunciado_aula08.md): aderência, lacunas, quatro entregáveis e prioridades para concluir a disciplina.
 
-> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, projetos, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. A memória por sessão usa janela curta e recortes antigos recuperados por FAISS/embeddings, com fallback lexical; preferências confirmadas são guardadas por usuário no SQLite. O primeiro índice FAISS de mensagens com fontes da fase 4 está implementado como serviço separado. **112 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, projetos, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. A memória por sessão usa janela curta e recortes antigos recuperados por FAISS/embeddings, com fallback lexical; preferências confirmadas são guardadas por usuário no SQLite. O índice FAISS de mensagens com fontes da fase 4 tem preparação explícita no menu 11 e ferramenta de consulta no agente. **116 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
 
 ### Índice de fontes — início da fase 4
 
-O [notebook 10](notebooks/10_indice_fontes_faiss.ipynb) prepara um índice FAISS com mensagens fictícias e vetores de fixture. A busca posterior carrega esse índice, verifica versão do corpus e autorização, e retorna o trecho original com ID de fonte. [Decisões e limites](docs/indice_fontes_fase4.md). A ferramenta ainda não está integrada ao agente; não houve teste semântico real desse índice.
+O [notebook 10](notebooks/10_indice_fontes_faiss.ipynb) prepara um índice FAISS com mensagens fictícias e vetores de fixture. A busca posterior carrega esse índice, verifica versão do corpus e autorização, e retorna o trecho original com ID de fonte. O menu 11 prepara o índice do corpus escolhido com confirmação antes da API; no menu 9, `buscar_mensagens_fonte` usa somente o índice existente. Renan observou a preparação real de 40 mensagens. Na [primeira tentativa](evidencias/fase4_falha_busca_fonte_manual.json), o agente deixou de buscar a fonte; no reteste chamou a ferramenta, recebeu M0004 em primeiro lugar e citou corretamente o orçamento de Alfa. [Decisões e limites](docs/indice_fontes_fase4.md).
 
 ### Recuperação vetorial da memória — fase 3
 

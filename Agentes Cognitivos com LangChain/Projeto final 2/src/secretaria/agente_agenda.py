@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 
-def criar_ferramentas_agenda(caminho_banco, ctx):
+def criar_ferramentas_agenda(caminho_banco, ctx, arquivo_env=None):
     """Cada chamada usa conexão própria: LangGraph pode executar @tool em outra thread."""
     from langchain_core.tools import tool
     from .banco import Banco
@@ -59,6 +59,47 @@ def criar_ferramentas_agenda(caminho_banco, ctx):
                         'limite':'Anotações de orçamento ou pagamento informado não comprovam saldo recebido. Não há livro financeiro operacional nesta ferramenta.'}
         except ValueError as erro:
             return {'status':'dados_invalidos','mensagem':str(erro)}
+
+    @tool
+    def listar_corpora_acessiveis() -> dict:
+        """Lista IDs e nomes dos corpora que este usuário pode consultar; não lê mensagens."""
+        from .indice_fontes import corpora_acessiveis
+        with Banco(caminho_banco) as conexao:
+            return {'status':'ok','corpora':corpora_acessiveis(conexao,ctx)}
+
+    @tool
+    def buscar_mensagens_fonte(corpus_id: int, pergunta: str) -> dict:
+        """Busca trechos no índice FAISS já preparado; fornece IDs de fonte, não soma valores."""
+        from openai import OpenAIError
+        from langchain_openai import OpenAIEmbeddings
+        from .indice_fontes import IndiceFontes, pasta_indice_do_banco
+        try:
+            with Banco(caminho_banco) as conexao:
+                indice = IndiceFontes(conexao,pasta_indice_do_banco(conexao))
+                conexao._corpus(ctx,corpus_id)
+                arquivo_indice, arquivo_manifesto = indice._arquivos(corpus_id)
+                if not arquivo_indice.is_file() or not arquivo_manifesto.is_file():
+                    return {'status':'indice_pendente',
+                            'mensagem':'Prepare este corpus pela opção 11 antes de buscar fontes.'}
+                try:
+                    chave = obter_chave_api(arquivo_env)
+                except ValueError:
+                    return {'status':'api_nao_configurada'}
+                embeddings = OpenAIEmbeddings(model='text-embedding-3-small',
+                                               api_key=chave,
+                                               max_retries=0,timeout=30)
+                achados = indice.buscar(ctx,corpus_id,pergunta,embeddings,
+                                       'text-embedding-3-small',limite=3)
+                return {'status':'ok','fontes':[{**item,
+                    'texto':item['texto'][:1200],
+                    'texto_truncado':len(item['texto'])>1200} for item in achados],
+                    'limite':'Busca top-k localiza trechos; não comprova saldo ou soma exaustiva.'}
+        except PermissionError:
+            return {'status':'acesso_negado'}
+        except ValueError as erro:
+            return {'status':'indice_desatualizado_ou_consulta_invalida','mensagem':str(erro)}
+        except OpenAIError as erro:
+            return {'status':'falha_api_embeddings','tipo':type(erro).__name__}
 
     @tool
     def consultar_disponibilidade(inicio_iso: str, fim_iso: str, atendente_id: str = '') -> dict:
@@ -119,7 +160,8 @@ def criar_ferramentas_agenda(caminho_banco, ctx):
         except (ValueError,PermissionError) as erro:
             return {'status':'dados_invalidos','mensagem':str(erro)}
 
-    return [buscar_cliente,consultar_projeto,consultar_disponibilidade,consultar_cep_viacep,
+    return [buscar_cliente,consultar_projeto,listar_corpora_acessiveis,buscar_mensagens_fonte,
+            consultar_disponibilidade,consultar_cep_viacep,
             consultar_cnpj_minha_receita,propor_cadastro_cliente,propor_visita]
 
 
@@ -139,6 +181,7 @@ Data/hora atual com fuso: use a informação de tempo recebida no pedido; se nã
 Para pergunta sobre cadastro de cliente identificado por nome ou CNPJ, chame buscar_cliente primeiro. Se o usuário perguntar "qual cliente mencionei?", use somente a conversa atual; se não houver cliente mencionado nela, diga que não sabe e peça o nome. Não busque todos os clientes para adivinhar o referente. Um retorno da Minha Receita não prova cadastro local. Se nenhum ou vários, peça identificação; nunca invente ID.
 Responda ao pedido atual. Não aplique a resposta do exemplo "qual cliente mencionei?" a uma pergunta sem relação com cliente, como uma saudação ou pergunta casual.
 Projeto e cliente são entidades diferentes. Quando o usuário falar de projeto ou perguntar pelo saldo "dele" após mencionar um projeto, use consultar_projeto; não use buscar_cliente como substituto. Se mudar explicitamente de Alfa para Beta, o referente atual passa a ser Beta. Se consultar_projeto não encontrar o projeto, diga isso. Não calcule saldo a partir de orçamento, entrada combinada ou pagamento apenas informado; se não houver registros financeiros operacionais confirmados, diga que o saldo não está disponível.
+Quando o usuário perguntar "onde foi dito", "qual mensagem" ou "quem falou" sobre a conversa importada, a tarefa é localizar FONTE. Primeiro use listar_corpora_acessiveis e depois buscar_mensagens_fonte no corpus autorizado. Essa regra tem prioridade sobre consultar_projeto: um texto pode citar Alfa mesmo sem projeto operacional cadastrado. Cite o ID da mensagem e o trecho retornado. Se o índice estiver pendente ou desatualizado, peça a preparação pela opção 11; não diga que a informação não existe. Não use essa busca top-k para calcular saldo, somar pagamentos ou listar todas as parcelas.
 Só consulte Minha Receita para CNPJ que não existe no banco. A ferramenta de CNPJ verifica isso novamente e devolve status ja_cadastrado ou nao_cadastrado. Responda "cadastrado" apenas quando o banco local confirmar.
 Se o usuário pedir cadastro de um CNPJ novo, consulte-o e chame propor_cadastro_cliente com o consulta_id retornado. Mostre razão social, CNPJ, nome fantasia e proposta_id. A consulta e a proposta não criam cliente. Oriente o usuário a confirmar com /confirmar-cliente ID; você não tem ferramenta de confirmação.
 Se o pedido não citar outro atendente, use {usuario_id}; não peça seu ID. Consulte disponibilidade antes de propor. Peça duração, tipo/local e endereço completo.
@@ -152,6 +195,8 @@ Usuário: "Qual cliente mencionei?" sem cliente na conversa atual.
 Resposta: "Ainda não sei qual cliente você mencionou nesta conversa. Pode informar o nome?"
 Usuário: "O CNPJ 33683111000280 está cadastrado?"
 Ação: consultar cadastro local pela ferramenta; somente responder "cadastrado" se a ferramenta confirmar.
+Usuário: "Onde foi dito o orçamento do projeto Alfa?"
+Ação: listar_corpora_acessiveis e buscar_mensagens_fonte; citar mensagem e trecho. Não chamar consultar_projeto para substituir a busca na conversa.
 Usuário: "Agende uma visita ao cliente Alfa amanhã às 14h."
 Resposta: solicitar data absoluta ou dados obrigatórios ausentes antes de propor; não dizer que foi confirmado.
 [FORMATO]
@@ -187,5 +232,5 @@ def criar_agente_agenda(banco, ctx, arquivo_env=None):
     # Serviços Python validam identidade, escopo e gravação; o prompt não concede permissões.
     modelo = ChatOpenAI(model='gpt-4o-mini',api_key=chave,temperature=0,max_retries=0,timeout=45)
     sistema = montar_prompt_agenda(ctx.usuario_id)
-    return create_agent(modelo,criar_ferramentas_agenda(banco.caminho,ctx),
+    return create_agent(modelo,criar_ferramentas_agenda(banco.caminho,ctx,arquivo_env),
                         system_prompt=sistema)

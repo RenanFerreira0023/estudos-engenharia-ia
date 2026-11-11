@@ -1,0 +1,21 @@
+{
+  "origem": "Saída de terminal enviada por Renan nesta conversa em 11/11/2026; resumo manual",
+  "preparo": {"corpus_id": 1, "nome": "Demonstração fictícia", "mensagens": 40, "versao_prefixo": "c91959596d26", "estado": "preparado"},
+  "pergunta": "onde foi dito o orçamento do projeto alfa?",
+  "rota_antes": "projeto",
+  "ferramentas_observadas": ["listar_corpora_acessiveis", "consultar_projeto"],
+  "ferramenta_necessaria_ausente": "buscar_mensagens_fonte",
+  "resposta_observada": "Não encontrei informações sobre o projeto Alfa. Além disso, não há registros de orçamento ou pagamento que comprovem saldo recebido.",
+  "diagnostico": "O agente tratou uma pergunta de fonte histórica como consulta ao cadastro operacional de projeto. A inexistência de projeto cadastrado não prova ausência da mensagem no corpus.",
+  "problema_de_apresentacao": "Chamadas paralelas eram impressas antes dos retornos, sem associação visual por ID; isso tornava os retornos ambíguos.",
+  "ajustes_posteriores": ["Rota fonte tem prioridade sobre projeto para 'onde foi dito' e expressões semelhantes.", "Prompt instrui a usar listar_corpora_acessiveis e buscar_mensagens_fonte antes de concluir.", "Terminal associa cada retorno ao ID da chamada correspondente."],
+  "reteste_real": {
+    "pergunta": "Onde foi dito o orçamento do projeto Alfa?",
+    "rota": "fonte",
+    "ferramentas_observadas": ["listar_corpora_acessiveis", "consultar_projeto", "buscar_mensagens_fonte"],
+    "resultado_da_busca": {"primeira_mensagem_id": 4, "similaridade": 0.6968, "autor": "Bruno", "trecho": "Orçamento Alfa: R$ 10.000,00. Entrada combinada de 30%; restante em 20/11/2026."},
+    "resposta": "Citou Bruno, 09/11/2026, o trecho do orçamento e a mensagem ID 4, sem afirmar pagamento.",
+    "limite": "O agente ainda chamou consultar_projeto sem necessidade; a pontuação de similaridade não equivale a probabilidade de verdade."
+  },
+  "validacao": "Rota e busca de fonte observadas em execução real; logs parearam chamadas e retornos. Esta foi falha de seleção de ferramenta, não falha do ranking vetorial."
+}

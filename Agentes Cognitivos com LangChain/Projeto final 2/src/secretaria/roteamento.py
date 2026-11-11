@@ -14,7 +14,9 @@ def identificar_rota(dados):
     """A pergunta atual prevalece; seguimentos curtos herdam a rota recente."""
     pergunta = _normalizar(dados['pergunta'])
     anteriores = dados.get('anteriores', [])
-    if re.search(r'\b(visita|visitar|agendar|agenda|horario|remarcar|disponibilidade)\b', pergunta):
+    if re.search(r'\b(onde foi dito|em qual mensagem|qual mensagem|quem falou|onde esta escrito)\b', pergunta):
+        rota = 'fonte'
+    elif re.search(r'\b(visita|visitar|agendar|agenda|horario|remarcar|disponibilidade)\b', pergunta):
         rota = 'visita'
     elif re.search(r'\b(projeto|projetos|saldo|orcamento|orcamentos)\b', pergunta):
         rota = 'projeto'

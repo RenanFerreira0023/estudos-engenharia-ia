@@ -1,10 +1,14 @@
 """Índice de fontes: preparo separado da busca, versão e permissão."""
 import tempfile
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
+from unittest.mock import patch
 
 from secretaria.banco import Banco, Contexto
-from secretaria.indice_fontes import IndiceFontes
+from secretaria.indice_fontes import IndiceFontes, pasta_indice_do_banco
+from secretaria.agente_agenda import criar_ferramentas_agenda
 
 
 class EmbeddingsFixture:
@@ -25,6 +29,67 @@ class EmbeddingsFixture:
 
 
 class IndiceFontesTest(unittest.TestCase):
+    def test_menu_prepara_indice_apos_confirmacao(self):
+        from secretaria.cli import preparar_indice_no_terminal
+        with tempfile.TemporaryDirectory() as pasta:
+            with Banco(Path(pasta)/'dados.sqlite3') as banco:
+                banco.preparar_demo()
+                ana = Contexto('demo','ana')
+                corpus = banco.selecionar_corpus(ana,'Conversa fictícia')
+                banco.importar(ana,corpus,Path(__file__).resolve().parents[1] /
+                              'dados/ficticios/conversa_empresa.txt')
+                fixture = EmbeddingsFixture()
+                with patch('builtins.input',side_effect=[str(corpus),'s']), \
+                     patch('secretaria.agente_agenda.obter_chave_api',return_value='fixture'), \
+                     patch('langchain_openai.OpenAIEmbeddings',return_value=fixture), \
+                     redirect_stdout(StringIO()) as saida:
+                    preparar_indice_no_terminal(banco,ana,None)
+                self.assertIn('Índice: preparado',saida.getvalue())
+                self.assertEqual(fixture.chamadas,1)
+                self.assertTrue(IndiceFontes(banco,pasta_indice_do_banco(banco))
+                                .buscar(ana,corpus,'Alfa',fixture,'text-embedding-3-small'))
+
+    def test_menu_cancela_antes_de_enviar_textos(self):
+        from secretaria.cli import preparar_indice_no_terminal
+        with tempfile.TemporaryDirectory() as pasta:
+            with Banco(Path(pasta)/'dados.sqlite3') as banco:
+                banco.preparar_demo()
+                ana = Contexto('demo','ana')
+                corpus = banco.selecionar_corpus(ana,'Conversa fictícia')
+                with patch('builtins.input',side_effect=[str(corpus),'n']), \
+                     patch('langchain_openai.OpenAIEmbeddings') as embeddings, \
+                     redirect_stdout(StringIO()) as saida:
+                    preparar_indice_no_terminal(banco,ana,None)
+                embeddings.assert_not_called()
+                self.assertIn('nenhum texto enviado',saida.getvalue())
+
+    def test_ferramenta_carrega_indice_preparado_e_bloqueia_outro_usuario(self):
+        with tempfile.TemporaryDirectory() as pasta:
+            caminho = Path(pasta) / 'dados.sqlite3'
+            ana, bruno = Contexto('demo','ana'), Contexto('demo','bruno')
+            with Banco(caminho) as banco:
+                banco.preparar_demo()
+                corpus = banco.selecionar_corpus(ana,'Conversa fictícia')
+                banco.importar(ana,corpus,Path(__file__).resolve().parents[1] /
+                              'dados/ficticios/conversa_empresa.txt')
+                fixture = EmbeddingsFixture()
+                ferramentas_ana = {f.name:f for f in criar_ferramentas_agenda(caminho,ana)}
+                ferramentas_bruno = {f.name:f for f in criar_ferramentas_agenda(caminho,bruno)}
+                self.assertEqual(ferramentas_bruno['listar_corpora_acessiveis'].invoke({})['corpora'],[])
+                self.assertEqual(ferramentas_ana['listar_corpora_acessiveis'].invoke({})['corpora'][0]['id'],corpus)
+                self.assertEqual(ferramentas_ana['buscar_mensagens_fonte'].invoke(
+                    {'corpus_id':corpus,'pergunta':'Alfa'})['status'],'indice_pendente')
+                IndiceFontes(banco,pasta_indice_do_banco(banco)).preparar(
+                    ana,corpus,fixture,'text-embedding-3-small')
+                with patch('secretaria.agente_agenda.obter_chave_api',return_value='fixture'), \
+                     patch('langchain_openai.OpenAIEmbeddings',return_value=fixture):
+                    resposta = ferramentas_ana['buscar_mensagens_fonte'].invoke(
+                        {'corpus_id':corpus,'pergunta':'Alfa'})
+                self.assertEqual(resposta['status'],'ok')
+                self.assertIn('Alfa',resposta['fontes'][0]['texto'])
+                self.assertEqual(ferramentas_bruno['buscar_mensagens_fonte'].invoke(
+                    {'corpus_id':corpus,'pergunta':'Alfa'})['status'],'acesso_negado')
+
     def test_preparo_busca_escopo_e_versao(self):
         with tempfile.TemporaryDirectory() as pasta:
             caminho = Path(pasta) / 'dados.sqlite3'

@@ -2,20 +2,38 @@
 import json
 import tempfile
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
 from unittest.mock import patch
 from uuid import uuid4
 
 from langchain.agents import create_agent
-from langchain_core.messages import AIMessage
+from langchain_core.messages import AIMessage, ToolMessage
 from langchain_core.language_models.fake_chat_models import FakeListChatModel
 from secretaria.banco import Banco, Contexto
-from secretaria.cli import conversar_sobre_visita
+from secretaria.cli import conversar_sobre_visita, exibir_ferramentas_do_turno
 from secretaria.observabilidade import RastroAgente
 from secretaria.roteamento import roteador_pedido
 
 
 class RoteamentoObservabilidadeTest(unittest.TestCase):
+    def test_log_associa_retornos_a_chamadas_paralelas(self):
+        chamada = AIMessage(content='',tool_calls=[
+            {'name':'listar_corpora_acessiveis','args':{},'id':'c1'},
+            {'name':'consultar_projeto','args':{'termo':'Alfa'},'id':'c2'}])
+        mensagens = [chamada,
+                     ToolMessage(content='{"status":"projeto_nao_encontrado"}',tool_call_id='c2'),
+                     ToolMessage(content='{"status":"ok"}',tool_call_id='c1')]
+        with redirect_stdout(StringIO()) as saida:
+            exibir_ferramentas_do_turno(mensagens)
+        texto = saida.getvalue()
+        primeiro = texto.index('CHAMADA: listar_corpora_acessiveis')
+        segundo = texto.index('CHAMADA: consultar_projeto')
+        self.assertLess(primeiro,texto.index('STATUS: OK'))
+        self.assertLess(texto.index('STATUS: OK'),segundo)
+        self.assertGreater(texto.index('STATUS: PROJETO_NAO_ENCONTRADO'),segundo)
+
     def test_create_agent_emite_callback_de_modelo_sem_api(self):
         rastro = RastroAgente()
         agente = create_agent(FakeListChatModel(responses=['Olá']), [])
@@ -52,6 +70,8 @@ class RoteamentoObservabilidadeTest(unittest.TestCase):
         self.assertEqual(roteador_pedido.invoke({'pergunta':'O CNPJ está cadastrado?'})['rota'],'cliente')
         self.assertEqual(roteador_pedido.invoke({'pergunta':'Estou falando do cleinte Alfa'})['rota'],'cliente')
         self.assertEqual(roteador_pedido.invoke({'pergunta':'Olá'})['rota'],'geral')
+        self.assertEqual(roteador_pedido.invoke(
+            {'pergunta':'Onde foi dito o orçamento do projeto Alfa?'})['rota'],'fonte')
         atual = roteador_pedido.invoke({'pergunta':'Às 15h',
                                         'anteriores':[{'pergunta':'Agende visita para Alfa'}]})
         self.assertEqual(atual['rota'],'visita')

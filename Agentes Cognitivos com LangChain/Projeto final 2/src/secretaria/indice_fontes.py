@@ -14,6 +14,26 @@ def _versao(mensagens):
     return digest.hexdigest()
 
 
+def pasta_indice_do_banco(banco):
+    """Separa índices de bancos de teste que estão na mesma pasta privada."""
+    identificador = sha256(str(banco.caminho.resolve()).encode('utf-8')).hexdigest()[:12]
+    return banco.caminho.parent / 'indices' / identificador
+
+
+def corpora_acessiveis(banco, ctx):
+    usuario = banco._usuario(ctx)
+    if usuario['perfil'] == 'administrador':
+        linhas = banco.con.execute(
+            'SELECT id,nome,criado_por FROM corpora WHERE empresa_id=? ORDER BY id',
+            (ctx.empresa_id,))
+    else:
+        linhas = banco.con.execute(
+            '''SELECT id,nome,criado_por FROM corpora
+               WHERE empresa_id=? AND criado_por=? ORDER BY id''',
+            (ctx.empresa_id,ctx.usuario_id))
+    return [dict(linha) for linha in linhas]
+
+
 class IndiceFontes:
     def __init__(self, banco, pasta):
         self.banco = banco

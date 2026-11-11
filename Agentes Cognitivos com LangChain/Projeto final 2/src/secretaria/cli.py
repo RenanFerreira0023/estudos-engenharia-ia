@@ -19,6 +19,31 @@ def exibir_conceitos_estudados():
     print('[estudo] Usuário de demonstração identifica o importador; isso não é autenticação real.')
 
 
+def exibir_ferramentas_do_turno(mensagens):
+    """Associa cada retorno ao ID da chamada, inclusive quando o agente chama em paralelo."""
+    chamadas = [chamada for mensagem in mensagens
+                for chamada in getattr(mensagem,'tool_calls',[])]
+    retornos = {mensagem.tool_call_id: mensagem for mensagem in mensagens
+                if getattr(mensagem,'type',None)=='tool'}
+    print('\nFERRAMENTAS CONSULTADAS')
+    if not chamadas:
+        print('Nenhuma ferramenta chamada neste turno.')
+    for chamada in chamadas:
+        print('\nCHAMADA:',chamada['name'])
+        print('Argumentos:',json.dumps(chamada['args'],ensure_ascii=False))
+        retorno_mensagem = retornos.get(chamada.get('id'))
+        if retorno_mensagem is None:
+            print('RETORNO: não registrado')
+            continue
+        try:
+            retorno = json.loads(retorno_mensagem.content)
+        except (TypeError,ValueError):
+            retorno = None
+        if isinstance(retorno,dict) and retorno.get('status'):
+            print('STATUS:',str(retorno['status']).upper())
+        print('Retorno:',retorno_mensagem.content)
+
+
 def agendar_no_terminal(banco, ctx):
     from datetime import datetime, timedelta
     from zoneinfo import ZoneInfo
@@ -230,25 +255,10 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
         print('\nCONTEXTO DO ATENDIMENTO')
         print('Rota sugerida:',rota,'| eventos observados:',len(rastro.eventos))
         if ha_recortes:
-            print('Recuperação:',estrategia_recuperacao)
+            print('Memória antiga do chat:',estrategia_recuperacao)
         if recuperados:
             print('Recortes antigos recuperados dos turnos:',[item['turno_id'] for item in recuperados])
-        chamadas = sum(len(getattr(mensagem,'tool_calls',[])) for mensagem in novas)
-        print('\nFERRAMENTAS CONSULTADAS')
-        if not chamadas:
-            print('Nenhuma ferramenta chamada neste turno.')
-        for mensagem in novas:
-            for chamada in getattr(mensagem,'tool_calls',[]):
-                print('\nCHAMADA:',chamada['name'])
-                print('Argumentos:',json.dumps(chamada['args'],ensure_ascii=False))
-            if getattr(mensagem,'type',None)=='tool':
-                try:
-                    retorno = json.loads(mensagem.content)
-                except (TypeError,ValueError):
-                    retorno = None
-                if isinstance(retorno,dict) and retorno.get('status'):
-                    print('STATUS:',str(retorno['status']).upper())
-                print('Retorno:',mensagem.content)
+        exibir_ferramentas_do_turno(novas)
         print('=' * 64 + '\n')
 
 
@@ -322,6 +332,39 @@ def executar_analise(banco,ctx,modo,estilo,arquivo_env,raiz):
     print('Fila de revisão:',fila['novas'],'novas propostas; use a opção 6 para revisar.')
     return resultado
 
+
+def preparar_indice_no_terminal(banco,ctx,arquivo_env):
+    """Indexação explícita: nunca envia corpus privado à API durante uma pergunta."""
+    from openai import OpenAIError
+    from .agente_agenda import obter_chave_api
+    from .indice_fontes import IndiceFontes, corpora_acessiveis, pasta_indice_do_banco
+
+    corpora = corpora_acessiveis(banco,ctx)
+    if not corpora:
+        print('Nenhum corpus acessível. Importe a conversa fictícia pela opção 1 ou um arquivo pela opção 2.')
+        return
+    print('CORPORA ACESSÍVEIS')
+    for corpus in corpora:
+        print(f"#{corpus['id']} | {corpus['nome']} | importador: {corpus['criado_por']}")
+    corpus_id = int(input('ID do corpus a indexar (Enter cancela): ').strip() or '0')
+    if corpus_id == 0:
+        return
+    banco._corpus(ctx,corpus_id)
+    if input('Enviar textos deste corpus à OpenAI para gerar embeddings? [s/N] ').strip().lower() != 's':
+        print('Preparação cancelada; nenhum texto enviado.')
+        return
+    try:
+        from langchain_openai import OpenAIEmbeddings
+        embeddings = OpenAIEmbeddings(model='text-embedding-3-small',
+                                       api_key=obter_chave_api(arquivo_env),
+                                       max_retries=0,timeout=45)
+        resultado = IndiceFontes(banco,pasta_indice_do_banco(banco)).preparar(
+            ctx,corpus_id,embeddings,'text-embedding-3-small')
+        print('Índice:',resultado['estado'],'| mensagens:',resultado['mensagens'],
+              '| versão:',resultado['versao_corpus'][:12])
+    except OpenAIError as erro:
+        print('Indexação não concluída pela API:',type(erro).__name__)
+
 def main():
     raiz=localizar_projeto()
     parser=argparse.ArgumentParser(description=__doc__)
@@ -355,7 +398,7 @@ def main():
                 return 0
             # INPUT: o terminal permite testar importar/reimportar sem editar o código.
             while True:
-                print('\n1 Importar fictícios | 2 Importar local | 3 Listar | 4 Propostas fixture | 5 Propostas OpenAI | 6 Revisar interpretações | 7 Agendar visita | 8 Minha agenda | 9 Agente de visitas | 10 Aplicar interpretação ao projeto | 0 Sair')
+                print('\n1 Importar fictícios | 2 Importar local | 3 Listar | 4 Propostas fixture | 5 Propostas OpenAI | 6 Revisar interpretações | 7 Agendar visita | 8 Minha agenda | 9 Agente de visitas | 10 Aplicar interpretação ao projeto | 11 Preparar índice de fontes | 0 Sair')
                 try:
                     escolha=input('Opção: ').strip()
                 except (EOFError, KeyboardInterrupt):
@@ -395,8 +438,10 @@ def main():
                         conversar_sobre_visita(banco,ctx,args.arquivo_env)
                     elif escolha=='10':
                         aplicar_interpretacao_no_terminal(banco,ctx)
+                    elif escolha=='11':
+                        preparar_indice_no_terminal(banco,ctx,args.arquivo_env)
                     else:
-                        print('Escolha uma opção de 0 a 10.')
+                        print('Escolha uma opção de 0 a 11.')
                 except (ValueError,OSError,PermissionError) as erro:
                     print('Operação não concluída:',str(erro))
     except (ValueError,OSError,PermissionError) as erro:
