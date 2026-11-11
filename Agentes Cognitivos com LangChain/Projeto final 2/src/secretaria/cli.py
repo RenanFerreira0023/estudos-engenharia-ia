@@ -154,6 +154,40 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
                 print('Retorno da ferramenta:',mensagem.content)
 
 
+def aplicar_interpretacao_no_terminal(banco, ctx):
+    """Prévia e segunda confirmação: aceitar a interpretação não grava projeto."""
+    from .fila_revisao import FilaRevisao
+    from .projetos_fontes import ProjetosFontes
+
+    fila=FilaRevisao(banco)
+    servico=ProjetosFontes(banco)
+    aceitas=[p for p in fila.listar(ctx) if p['estado']=='aceita']
+    if not aceitas:
+        print('Nenhuma interpretação aceita para este usuário. Use a opção 6 primeiro.')
+        return
+    for p in aceitas:
+        print(f"#{p['id']} | {p['dados']['area']} | {p['dados']['projeto']} | v{p['versao']}")
+    proposta_id=int(input('ID da interpretação aceita (Enter volta): ').strip() or '0')
+    if not proposta_id:
+        return
+    proposta=fila.obter(ctx,proposta_id)
+    if proposta['dados']['area']=='projeto':
+        texto=input('ID do cliente, se já cadastrado (Enter deixa vínculo pendente): ').strip()
+        cliente_id=int(texto) if texto else None
+        projeto_id=None
+    else:
+        projeto_id=int(input('ID do projeto existente: ').strip())
+        cliente_id=None
+    previa=servico.prever(ctx,proposta_id,projeto_id,cliente_id)
+    print(json.dumps(previa,ensure_ascii=False,indent=2))
+    if input('Confirmar gravação desta interpretação com estas fontes? [s/N] ').strip().lower()!='s':
+        print('Nada foi gravado.')
+        return
+    resultado=servico.confirmar(ctx,proposta_id,previa['versao'],projeto_id,cliente_id)
+    print(json.dumps(resultado,ensure_ascii=False,indent=2))
+    print('Fontes vinculadas:',json.dumps(servico.fontes(ctx,resultado['anotacao_id']),ensure_ascii=False,indent=2))
+
+
 def exibir_resultado(banco,ctx,corpus,arquivo,listar=False):
     resultado=banco.importar(ctx,corpus,arquivo)
     print(json.dumps(resultado,ensure_ascii=False,indent=2))
@@ -223,7 +257,7 @@ def main():
                 return 0
             # INPUT: o terminal permite testar importar/reimportar sem editar o código.
             while True:
-                print('\n1 Importar fictícios | 2 Importar local | 3 Listar | 4 Propostas fixture | 5 Propostas OpenAI | 6 Revisar interpretações | 7 Agendar visita | 8 Minha agenda | 9 Agente de visitas | 0 Sair')
+                print('\n1 Importar fictícios | 2 Importar local | 3 Listar | 4 Propostas fixture | 5 Propostas OpenAI | 6 Revisar interpretações | 7 Agendar visita | 8 Minha agenda | 9 Agente de visitas | 10 Aplicar interpretação ao projeto | 0 Sair')
                 try:
                     escolha=input('Opção: ').strip()
                 except EOFError:
@@ -261,8 +295,10 @@ def main():
                         print(json.dumps(Agenda(banco).listar_agenda(ctx),ensure_ascii=False,indent=2))
                     elif escolha=='9':
                         conversar_sobre_visita(banco,ctx,args.arquivo_env)
+                    elif escolha=='10':
+                        aplicar_interpretacao_no_terminal(banco,ctx)
                     else:
-                        print('Escolha uma opção de 0 a 9.')
+                        print('Escolha uma opção de 0 a 10.')
                 except (ValueError,OSError,PermissionError) as erro:
                     print('Operação não concluída:',str(erro))
     except (ValueError,OSError,PermissionError) as erro:

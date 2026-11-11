@@ -136,13 +136,13 @@ class FilaRevisaoTest(unittest.TestCase):
             with self.assertRaises(ValueError):self.f.decidir(self.ctx,self.id,1,'aceitar',comentario)
         with self.assertRaises(ValueError):self.f.decidir(self.ctx,self.id,1,'apagar','Teste')
 
-    def test_aceite_com_pendencia_nao_cria_tabelas_operacionais(self):
+    def test_aceite_com_pendencia_nao_cria_registros_operacionais(self):
         agenda=next(p for p in self.f.listar(self.ctx) if p['dados']['area']=='agenda')
         self.assertTrue(agenda['dados']['pendencias'])
         self.f.decidir(self.ctx,agenda['id'],1,'aceitar','Interpretação correta; local ainda pendente.')
         self.assertEqual(self.b.con.execute('SELECT COUNT(*) FROM agendamentos').fetchone()[0],0)
-        tabelas={r[0] for r in self.b.con.execute("SELECT name FROM sqlite_master WHERE type='table'")}
-        self.assertFalse(tabelas.intersection({'pagamentos','projetos'}))
+        self.assertEqual(self.b.con.execute('SELECT COUNT(*) FROM projetos').fetchone()[0],0)
+        self.assertEqual(self.b.con.execute('SELECT COUNT(*) FROM anotacoes_projeto').fetchone()[0],0)
 
     def test_terminal_aceita_somente_apos_acao_e_comentario(self):
         out=io.StringIO()
@@ -164,6 +164,9 @@ class FilaRevisaoTest(unittest.TestCase):
             antigo.importar(self.ctx,c,RAIZ/'dados/ficticios/conversa_empresa.txt')
             fontes_antes=antigo.listar(self.ctx,c)
         con=sqlite3.connect(caminho)
+        con.execute('DROP TABLE fontes_anotacao')
+        con.execute('DROP TABLE anotacoes_projeto')
+        con.execute('DROP TABLE projetos')
         con.execute('DROP TABLE auditoria_clientes')
         con.execute('DROP TABLE propostas_cliente')
         con.execute('DROP TABLE consultas_cnpj')
@@ -175,7 +178,7 @@ class FilaRevisaoTest(unittest.TestCase):
         con.execute('DROP TABLE propostas_revisao')
         con.execute('PRAGMA user_version=1');con.commit();con.close()
         with Banco(caminho) as novo:
-            self.assertEqual(novo.con.execute('PRAGMA user_version').fetchone()[0],5)
+            self.assertEqual(novo.con.execute('PRAGMA user_version').fetchone()[0],6)
             self.assertEqual(novo.listar(self.ctx,c),fontes_antes)
             self.assertEqual(novo.contar(self.ctx,c),40)
             self.assertEqual(novo.importar(self.ctx,c,RAIZ/'dados/ficticios/conversa_empresa.txt')['novas'],0)

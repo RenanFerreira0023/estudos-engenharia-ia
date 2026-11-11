@@ -109,7 +109,7 @@ Cliente HTTP com validação de Content-Type/JSON e tratamento de falhas; busca 
 
 ## Projeto atual — Secretária IA
 
-[Projeto final 2](./Projeto%20final%202/) substitui autopeças como direção da entrega acadêmica. Já há importação TXT/ZIP, extração de propostas, revisão persistente e fluxo de visitas com agente e SQLite. Foram aprovados 85 testes locais. Cadastro PJ completo pelo chat, vínculo operacional com projetos e fontes, memória persistente, relatórios e avaliação final ainda estão pendentes. Conceitos previstos e matriz dos 29 itens estão no [plano](./Projeto%20final%202/PLANO_PROJETO_SECRETARIA_IA.md).
+[Projeto final 2](./Projeto%20final%202/) substitui autopeças como direção da entrega acadêmica. Já há importação TXT/ZIP, extração de propostas, revisão persistente, visitas com agente, cadastro PJ por confirmação e projetos/anotações com mensagens-fonte no SQLite. Foram aprovados 95 testes locais. Financeiro operacional, memória persistente, relatórios e avaliação final ainda estão pendentes. Conceitos previstos e matriz dos 29 itens estão no [plano](./Projeto%20final%202/PLANO_PROJETO_SECRETARIA_IA.md).
 
 As fases e conceitos de autopeças listados acima são histórico de um projeto descontinuado. Seus testes não validam a nova aplicação.
 

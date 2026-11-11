@@ -1,6 +1,12 @@
 # Secretária IA — Projeto final 2
 
-> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas e cadastro PJ por proposta estão implementados. O agente consulta clientes, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. **90 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. **95 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+
+### Projetos e fontes da conversa — opção 10
+
+Após importar os dados fictícios (**1**), gerar propostas (**4**) e aceitar interpretações na fila (**6**), use **10 Aplicar interpretação ao projeto**. Para uma interpretação da área `projeto`, o sistema mostra prévia e fontes e pede confirmação separada para criar o projeto. O ID de cliente é opcional; sem ele, o vínculo com cliente fica pendente, sem inferir pelo texto. Para uma interpretação financeira ou de agenda, informe explicitamente o ID de um projeto existente com o mesmo nome; o sistema grava uma **anotação com fontes**, não um pagamento ou agendamento. Repetir a confirmação devolve o mesmo registro.
+
+O [notebook 05](notebooks/05_projetos_fontes.ipynb) demonstra o fluxo com dados fictícios e fixture local, inclusive persistência após reabrir o SQLite. As fontes são FKs para as mensagens importadas e só podem ser lidas por usuário autorizado ao corpus. Ainda falta testar a opção 10 manualmente e implementar os registros financeiros operacionais.
 
 ### Cadastro PJ pelo agente
 

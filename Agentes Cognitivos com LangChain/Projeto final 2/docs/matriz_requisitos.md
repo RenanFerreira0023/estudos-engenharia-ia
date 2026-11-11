@@ -1,6 +1,6 @@
 # Matriz de requisitos — atualização da fase 2
 
-Importação/SQLite, chain de propostas, revisão persistente e agente de visitas com ferramentas estão implementados. Cadastro PJ por proposta e confirmação humana foi acrescentado; a trajetória completa desse fluxo foi observada manualmente e registrada em [evidência](../evidencias/fase2_cadastro_pj_reteste_manual.json). Não atribuir testes de autopeças à nova aplicação.
+Importação/SQLite, chain de propostas, revisão persistente e agente de visitas com ferramentas estão implementados. Cadastro PJ por proposta e confirmação humana foi observado manualmente em [evidência](../evidencias/fase2_cadastro_pj_reteste_manual.json). Projetos e anotações com FKs para mensagens-fonte foram implementados com confirmação separada e fixture local no [notebook 05](../notebooks/05_projetos_fontes.ipynb); isso não equivale a ledger financeiro ou fase 2 completa. Não atribuir testes de autopeças à nova aplicação.
 
 | ID | Item da rubrica | Estado |
 |---|---|---|

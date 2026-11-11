@@ -99,6 +99,9 @@ class AgendaTest(unittest.TestCase):
             legado.preparar_demo()
             Agenda(legado).cadastrar_cliente(self.ana,'Empresa Antiga','PJ','33683111000280')
         con=sqlite3.connect(caminho)
+        con.execute('DROP TABLE fontes_anotacao')
+        con.execute('DROP TABLE anotacoes_projeto')
+        con.execute('DROP TABLE projetos')
         con.execute('DROP TABLE auditoria_clientes')
         con.execute('DROP TABLE propostas_cliente')
         con.execute('DROP TABLE consultas_cnpj')
@@ -110,7 +113,7 @@ class AgendaTest(unittest.TestCase):
         with Banco(caminho) as novo:
             linha=novo.con.execute('SELECT nome,origem_cadastro FROM clientes').fetchone()
             self.assertEqual(tuple(linha),('Empresa Antiga','origem_nao_registrada'))
-            self.assertEqual(novo.con.execute('PRAGMA user_version').fetchone()[0],5)
+            self.assertEqual(novo.con.execute('PRAGMA user_version').fetchone()[0],6)
 
 
 if __name__ == '__main__':

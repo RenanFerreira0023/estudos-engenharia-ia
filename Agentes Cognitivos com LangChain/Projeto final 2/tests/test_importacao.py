@@ -137,7 +137,7 @@ class BancoTest(unittest.TestCase):
         with Banco(self.db) as outro:
             self.assertEqual(outro.contar(self.ctx,self.corpus),1)
             self.assertEqual(outro.con.execute('PRAGMA foreign_keys').fetchone()[0],1)
-            self.assertEqual(outro.con.execute('PRAGMA user_version').fetchone()[0],5)
+            self.assertEqual(outro.con.execute('PRAGMA user_version').fetchone()[0],6)
 
     def test_corpus_nomes_sao_locais_e_usuarios_nao_se_passam_por_outros(self):
         with self.banco.transacao():

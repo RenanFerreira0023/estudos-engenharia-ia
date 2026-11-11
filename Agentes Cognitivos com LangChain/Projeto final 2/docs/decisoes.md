@@ -100,4 +100,8 @@ D017 — Primeiro fluxo vertical de visita: migração v3 cria clientes, propost
 
 # Cadastro PJ conduzido pelo agente — 10/11/2026
 
-Consulta externa, proposta e cadastro confirmado são estados distintos. A consulta ao CNPJ salva um snapshot mínimo com origem e autoria; a ferramenta de proposta aceita apenas o `consulta_id` do usuário atual. O modelo não recebe ferramenta de confirmação. `/confirmar-cliente ID` executa transação com rechecagem de prazo e duplicidade, grava a origem da consulta e registra auditoria. O menu 7 permanece como fluxo guiado. Notebook 04 usa fixture identificada; a trajetória real completa deste incremento ainda precisa ser observada.
+Consulta externa, proposta e cadastro confirmado são estados distintos. A consulta ao CNPJ salva um snapshot mínimo com origem e autoria; a ferramenta de proposta aceita apenas o `consulta_id` do usuário atual. O modelo não recebe ferramenta de confirmação. `/confirmar-cliente ID` executa transação com rechecagem de prazo e duplicidade, grava a origem da consulta e registra auditoria. O menu 7 permanece como fluxo guiado. Notebook 04 usa fixture identificada; a trajetória real completa deste incremento foi [observada manualmente](../evidencias/fase2_cadastro_pj_reteste_manual.json).
+
+## Projeto e mensagens-fonte — fase 2
+
+Uma interpretação aceita continua sendo apenas interpretação. A opção 10 mostra projeto, resumo e fontes e pede confirmação separada antes de criar projeto/anotação. O vínculo com cliente exige ID explícito; nome mencionado no WhatsApp não é tratado como FK confiável. Anotações financeiras e de agenda preservam a evidência, mas não criam pagamentos nem reservam horários. FKs ligam anotações às mensagens originais e a transação revalida escopo e versão. Notebook 05 usa somente fixture fictícia.
