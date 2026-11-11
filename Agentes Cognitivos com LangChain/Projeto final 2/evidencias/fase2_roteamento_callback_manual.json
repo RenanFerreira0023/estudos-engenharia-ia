@@ -1,0 +1,29 @@
+{
+  "data": "2026-11-11",
+  "origem": "saída real do menu 9 enviada por Renan e rastro local conferido",
+  "pergunta": "O cliente alfa esta cadastrado aqui?",
+  "sessao_id": "f934cd9fece5417291bc3b675fde251e",
+  "rota_sugerida": "cliente",
+  "ferramentas_observadas": ["buscar_cliente"],
+  "retorno_relevante": {
+    "id": 1,
+    "nome": "Alfa Serviços",
+    "tipo_pessoa": "PF",
+    "cnpj": null
+  },
+  "resposta_observada": "O cliente Alfa Serviços está cadastrado, mas não possui CNPJ registrado.",
+  "callback": {
+    "eventos": 6,
+    "sequencia": [
+      "modelo_iniciado",
+      "modelo_concluido",
+      "ferramenta_iniciada:buscar_cliente",
+      "ferramenta_concluida",
+      "modelo_iniciado",
+      "modelo_concluido"
+    ],
+    "arquivo_privado_conferido": "dados/privados/rastros_agente.jsonl",
+    "conteudo_de_pergunta_e_resposta_no_rastro": false
+  },
+  "conclusao": "Rota, chamada de ferramenta e callback observados neste caso; não é avaliação sistemática da qualidade do agente."
+}

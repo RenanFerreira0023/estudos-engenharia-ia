@@ -105,6 +105,8 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
     from openai import APIConnectionError, AuthenticationError, RateLimitError
     from .agente_agenda import criar_agente_agenda
     from .memoria import MemoriaConversas
+    from .observabilidade import RastroAgente
+    from .roteamento import roteador_pedido
     agente = criar_agente_agenda(banco,ctx,arquivo_env)
     memoria = MemoriaConversas(banco)
     sessao_id = memoria.ultima_ativa(ctx) or memoria.iniciar(ctx)
@@ -143,9 +145,16 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
         if not pergunta:
             continue
         agora = datetime.now(ZoneInfo('America/Sao_Paulo')).isoformat()
+        # ROUTER + MEMÓRIA: a rota orienta o pedido; a janela fornece contexto recente.
+        # Nenhuma das duas substitui as validações das ferramentas do agente.
+        anteriores = memoria.ultimos(ctx,sessao_id)
+        rota = roteador_pedido.invoke({'pergunta':pergunta,'anteriores':anteriores})['rota']
+        historico = memoria.mensagens(ctx,sessao_id)
+        # CALLBACK + INVOKE: os eventos mostram modelo/ferramenta sem guardar conteúdo no log.
+        rastro = RastroAgente()
         try:
-            resposta = agente.invoke({'messages':memoria.mensagens(ctx,sessao_id)+[{'role':'user','content':f'Agora: {agora}. Pedido: {pergunta}'}]},
-                                    {'recursion_limit':12})
+            resposta = agente.invoke({'messages':historico+[{'role':'user','content':f'Agora: {agora}. Rota sugerida: {rota}. Pedido: {pergunta}'}]},
+                                    {'recursion_limit':12,'callbacks':[rastro]})
         except AuthenticationError:
             print('A chave OPENAI_API_KEY foi recusada ou expirou. Gere outra chave e atualize o .env; nenhum agendamento foi confirmado.')
             return
@@ -155,9 +164,16 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
         except APIConnectionError:
             print('Não foi possível conectar à API OpenAI. Confira a conexão e tente novamente; nenhum agendamento foi confirmado.')
             return
-        novas = resposta['messages'][len(memoria.mensagens(ctx,sessao_id)):]
+        finally:
+            try:
+                rastro.salvar(banco.caminho.parent/'rastros_agente.jsonl',sessao_id=sessao_id,
+                             usuario_id=ctx.usuario_id,rota=rota)
+            except OSError:
+                print('Aviso: não foi possível salvar o rastro de eventos deste atendimento.')
+        novas = resposta['messages'][len(historico):]
         ultima = resposta['messages'][-1]
         memoria.registrar(ctx,sessao_id,pergunta,str(ultima.content))
+        print('Rota sugerida:',rota,'| eventos observados:',len(rastro.eventos))
         print('Secretária:',ultima.content)
         for mensagem in novas:
             for chamada in getattr(mensagem,'tool_calls',[]):

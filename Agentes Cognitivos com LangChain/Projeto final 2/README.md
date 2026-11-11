@@ -2,7 +2,11 @@
 
 [Revisão do enunciado e da aula 08](docs/revisao_enunciado_aula08.md): aderência, lacunas, quatro entregáveis e prioridades para concluir a disciplina.
 
-> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. A memória conversacional curta agora persiste por usuário e sessão no SQLite. **99 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. A memória conversacional curta persiste por usuário e sessão no SQLite; prompt PTCF, rota leve e callback local foram acrescentados. **103 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+
+### Orquestração observável — complemento da fase 2
+
+O [notebook 05b](notebooks/05b_orquestracao_agente.ipynb) mostra o prompt PTCF, exemplos few-shot, roteamento `visita`/`cliente`/`geral` e callback sem API. O [guia de orquestração](docs/fase2_orquestracao.md) compara a chain fixa, `create_agent` e um grafo LangGraph explícito, e explica as adaptações às classes antigas da rubrica. No menu 9, cada resposta agora exibe rota sugerida e quantidade de eventos; os metadados do callback são guardados em `dados/privados/rastros_agente.jsonl`, sem copiar pergunta, argumentos ou resposta. [Um turno real com cliente Alfa](evidencias/fase2_roteamento_callback_manual.json) confirmou rota, ferramenta e seis eventos; FAISS e avaliação permanecem pendentes.
 
 ### Memória conversacional — início da fase 3
 

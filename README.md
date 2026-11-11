@@ -337,7 +337,7 @@ Cliente HTTP com validação de Content-Type/JSON e tratamento de falhas; busca 
 
 ## Projeto de disciplina atual
 
-- [Secretária IA — Projeto final 2](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final%202/): projeto acadêmico atual; importação TXT/ZIP/SQLite, propostas com fontes, revisão persistente, visitas com agente, cadastro PJ e projetos/anotações com mensagens-fonte implementados. Os testes locais passaram (95 testes). Financeiro operacional, memória e relatórios continuam pendentes.
+- [Secretária IA — Projeto final 2](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final%202/): projeto acadêmico atual; importação TXT/ZIP/SQLite, propostas com fontes, revisão persistente, visitas com agente, cadastro PJ, projetos/anotações com fontes e memória curta persistente. Prompt PTCF, roteamento leve e callbacks locais adicionados; 103 testes locais passaram. RAG, financeiro operacional, relatórios e avaliação continuam pendentes.
 - [Auto Super Parts CWB](./Agentes%20Cognitivos%20com%20LangChain/Projeto%20final/): descontinuado em 09/11/2026; código, decisões e evidências preservados como histórico.
 
 
