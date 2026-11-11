@@ -1,6 +1,14 @@
 # Secretária IA — Projeto final 2
 
-> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. **95 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+[Revisão do enunciado e da aula 08](docs/revisao_enunciado_aula08.md): aderência, lacunas, quatro entregáveis e prioridades para concluir a disciplina.
+
+> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. A memória conversacional curta agora persiste por usuário e sessão no SQLite. **99 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+
+### Memória conversacional — início da fase 3
+
+No menu **9**, o agente retoma a última conversa ativa do mesmo usuário após fechar e reabrir o programa. Cada pergunta e resposta concluída é gravada como um turno; as seis interações mais recentes são enviadas ao próximo `invoke`. `/voltar` mantém a conversa e `/nova` começa uma conversa vazia. A sessão antiga permanece no banco para auditoria, mas não entra no contexto da nova. Ana, Bruno e Carla têm históricos separados. O [notebook 06](notebooks/06_memoria_conversacional.ipynb) demonstra persistência, janela e isolamento com respostas locais escritas para teste, sem atribuí-las a um LLM.
+
+**Teste com API:** Renan confirmou que, após `/nova`, o agente pediu o cliente sem reutilizar o histórico anterior. Informou Alfa, encerrou o programa, reabriu com o mesmo usuário e banco, viu o mesmo ID de sessão e recebeu `Alfa Serviços` ao perguntar qual cliente mencionara. O registro está em [execuções e falhas](docs/execucoes_e_falhas.md). Para reproduzir, diga `Estou falando do cliente Alfa.`, saia com `/voltar`, encerre com `0`, reabra com o mesmo `--usuario` e `--banco`, entre no menu 9 e pergunte `Qual cliente mencionei?`. Esta etapa ainda não implementa resumo nem recuperação vetorial; Streamlit usará o mesmo serviço de memória quando a interface for construída.
 
 ### Projetos e fontes da conversa — opção 10
 

@@ -13,6 +13,15 @@ from secretaria.agente_agenda import criar_ferramentas_agenda
 
 
 class FerramentasThreadTest(unittest.TestCase):
+    def test_busca_sem_termo_devolve_pedido_de_identificacao(self):
+        with tempfile.TemporaryDirectory() as pasta:
+            caminho=Path(pasta)/'agenda.sqlite3'
+            with Banco(caminho) as banco:
+                banco.preparar_demo()
+            ferramentas={f.name:f for f in criar_ferramentas_agenda(caminho,Contexto('demo','ana'))}
+            resposta=ferramentas['buscar_cliente'].invoke({'termo':''})
+            self.assertEqual(resposta['status'],'termo_necessario')
+
     def test_busca_e_disponibilidade_em_thread(self):
         with tempfile.TemporaryDirectory() as pasta:
             caminho=Path(pasta)/'agenda.sqlite3'

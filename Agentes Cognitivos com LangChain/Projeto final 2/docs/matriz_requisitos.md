@@ -11,7 +11,7 @@ Importação/SQLite, chain de propostas, revisão persistente e agente de visita
 | R05 | O aluno aplicou a interface Runnable (invoke, batch, stream) e implementou composição imperativa com o decorador @chain? | Demonstrado com fixture: invoke/batch/@chain e stream de objeto completo; não tokens. |
 | R06 | O aluno implementou a composição declarativa da chain com LCEL e justificou a escolha entre composição imperativa e declarativa? | Implementado; testes/notebook locais, API testada com resultado parcial. |
 | R07 | O aluno comparou orquestradores de agentes autônomos e justificou a escolha do LangChain para o problema? | Planejado |
-| R08 | O aluno construiu um agente com ferramentas e memória e implementou o padrão ReAct com initialize_agent? | Parcial: agente com ferramentas usa `create_agent`; memória persistente e implementação literal com `initialize_agent` não demonstradas. |
+| R08 | O aluno construiu um agente com ferramentas e memória e implementou o padrão ReAct com initialize_agent? | Parcial: `create_agent` usa ferramentas e recebe janela de turnos persistidos; falta evidência real do diálogo e justificar equivalência ao método legado. |
 | R09 | O aluno construiu chains sequenciais ou paralelas e implementou roteamento dinâmico com RouterChain? | Planejado |
 | R10 | O aluno integrou pelo menos uma API externa como ferramenta do agente via function calling? | Implementado: ViaCEP e Minha Receita como ferramentas; chamadas reais e trajetórias manuais registradas. |
 | R11 | O aluno estruturou o prompt do agente com o framework PTCF e aplicou few-shot learning e chain-of-thought? | Planejado |
@@ -19,7 +19,7 @@ Importação/SQLite, chain de propostas, revisão persistente e agente de visita
 | R13 | O aluno diferenciou memória de curto e longo prazo para o agente com base na taxonomia CoALA? | Planejado |
 | R14 | O aluno gerenciou janelas de contexto combinando sliding window ou sumarização com busca vetorial? | Planejado |
 | R15 | O aluno comparou ferramentas especializadas de memória por arquitetura e caso de uso? | Planejado |
-| R16 | O aluno construiu um chatbot conversacional com ConversationBufferMemory? | Planejado |
+| R16 | O aluno construiu um chatbot conversacional com ConversationBufferMemory? | Parcial: buffer equivalente de turnos em SQLite alimenta `invoke`; reteste real mostrou retomada após reinício. Falta documentar equivalência à classe legada e ampliar a evidência de diálogo. |
 | R17 | O aluno estruturou fluxos de conversação com reconhecimento de intenção e extração de entidades? | Parcial: propostas por área/natureza/entidades; fluxo conversacional ainda não. |
 | R18 | O aluno validou, com evidência de uma conversa real, que o agente manteve contexto e decompôs consultas complexas em diálogos multi-turno? | Planejado |
 | R19 | O aluno estruturou ferramentas do agente diferenciando funções hardcoded de funções semânticas? | Planejado |

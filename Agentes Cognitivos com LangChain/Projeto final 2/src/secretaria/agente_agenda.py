@@ -13,10 +13,13 @@ def criar_ferramentas_agenda(caminho_banco, ctx):
 
     # @TOOL: leitura exata no SQLite antes de qualquer consulta externa ou proposta.
     @tool
-    def buscar_cliente(termo: str) -> list[dict]:
+    def buscar_cliente(termo: str) -> list[dict] | dict:
         """Busca clientes existentes por nome ou CNPJ na empresa do usuário atual."""
-        with Banco(caminho_banco) as conexao:
-            return Agenda(conexao).buscar_cliente(ctx,termo)
+        try:
+            with Banco(caminho_banco) as conexao:
+                return Agenda(conexao).buscar_cliente(ctx,termo)
+        except ValueError as erro:
+            return {'status':'termo_necessario','mensagem':str(erro)}
 
     @tool
     def consultar_disponibilidade(inicio_iso: str, fim_iso: str, atendente_id: str = '') -> dict:
@@ -105,7 +108,7 @@ def criar_agente_agenda(banco, ctx, arquivo_env=None):
     modelo = ChatOpenAI(model='gpt-4o-mini',api_key=chave,temperature=0,max_retries=0,timeout=45)
     sistema = f'''Você é a secretária acadêmica da empresa demo. Usuário atual e atendente padrão: {ctx.usuario_id}.
 Data/hora atual com fuso: use a informação de tempo recebida no pedido; se não houver, peça data absoluta.
-Para qualquer pergunta sobre cliente já cadastrado, chame buscar_cliente primeiro. Um retorno da Minha Receita não prova cadastro local. Se nenhum ou vários, peça identificação; nunca invente ID.
+Para pergunta sobre cadastro de cliente identificado por nome ou CNPJ, chame buscar_cliente primeiro. Se o usuário perguntar "qual cliente mencionei?", use somente a conversa atual; se não houver cliente mencionado nela, diga que não sabe e peça o nome. Não busque todos os clientes para adivinhar o referente. Um retorno da Minha Receita não prova cadastro local. Se nenhum ou vários, peça identificação; nunca invente ID.
 Só consulte Minha Receita para CNPJ que não existe no banco. A ferramenta de CNPJ verifica isso novamente e devolve status ja_cadastrado ou nao_cadastrado. Responda "cadastrado" apenas quando o banco local confirmar.
 Se o usuário pedir cadastro de um CNPJ novo, consulte-o e chame propor_cadastro_cliente com o consulta_id retornado. Mostre razão social, CNPJ, nome fantasia e proposta_id. A consulta e a proposta não criam cliente. Oriente o usuário a confirmar com /confirmar-cliente ID; você não tem ferramenta de confirmação.
 Se o pedido não citar outro atendente, use {ctx.usuario_id}; não peça seu ID. Consulte disponibilidade antes de propor. Peça duração, tipo/local e endereço completo.

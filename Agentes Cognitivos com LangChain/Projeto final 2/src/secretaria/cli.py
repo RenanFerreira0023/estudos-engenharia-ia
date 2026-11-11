@@ -104,13 +104,25 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
     from zoneinfo import ZoneInfo
     from openai import APIConnectionError, AuthenticationError, RateLimitError
     from .agente_agenda import criar_agente_agenda
+    from .memoria import MemoriaConversas
     agente = criar_agente_agenda(banco,ctx,arquivo_env)
-    historico = []
-    print('Agente com ferramentas. /voltar encerra; /confirmar ID confirma visita; /confirmar-cliente ID confirma cadastro PJ.')
+    memoria = MemoriaConversas(banco)
+    sessao_id = memoria.ultima_ativa(ctx) or memoria.iniciar(ctx)
+    print('Agente com ferramentas. Conversa:',sessao_id)
+    print('/nova inicia outra conversa; /voltar sai mantendo a atual; /confirmar ID confirma visita; /confirmar-cliente ID confirma cadastro PJ.')
     while True:
-        pergunta = input('Você: ').strip()
+        try:
+            pergunta = input('Você: ').strip()
+        except (EOFError, KeyboardInterrupt):
+            print('\nConversa preservada. Use a opção 9 para retomá-la.')
+            return
         if pergunta == '/voltar':
             return
+        if pergunta == '/nova':
+            memoria.encerrar(ctx,sessao_id)
+            sessao_id = memoria.iniciar(ctx)
+            print('Nova conversa:',sessao_id)
+            continue
         if pergunta.startswith('/confirmar-cliente '):
             from .agenda import Agenda
             try:
@@ -132,7 +144,7 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
             continue
         agora = datetime.now(ZoneInfo('America/Sao_Paulo')).isoformat()
         try:
-            resposta = agente.invoke({'messages':historico+[{'role':'user','content':f'Agora: {agora}. Pedido: {pergunta}'}]},
+            resposta = agente.invoke({'messages':memoria.mensagens(ctx,sessao_id)+[{'role':'user','content':f'Agora: {agora}. Pedido: {pergunta}'}]},
                                     {'recursion_limit':12})
         except AuthenticationError:
             print('A chave OPENAI_API_KEY foi recusada ou expirou. Gere outra chave e atualize o .env; nenhum agendamento foi confirmado.')
@@ -143,9 +155,9 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
         except APIConnectionError:
             print('Não foi possível conectar à API OpenAI. Confira a conexão e tente novamente; nenhum agendamento foi confirmado.')
             return
-        novas = resposta['messages'][len(historico):]
-        historico = resposta['messages']
+        novas = resposta['messages'][len(memoria.mensagens(ctx,sessao_id)):]
         ultima = resposta['messages'][-1]
+        memoria.registrar(ctx,sessao_id,pergunta,str(ultima.content))
         print('Secretária:',ultima.content)
         for mensagem in novas:
             for chamada in getattr(mensagem,'tool_calls',[]):
@@ -260,7 +272,7 @@ def main():
                 print('\n1 Importar fictícios | 2 Importar local | 3 Listar | 4 Propostas fixture | 5 Propostas OpenAI | 6 Revisar interpretações | 7 Agendar visita | 8 Minha agenda | 9 Agente de visitas | 10 Aplicar interpretação ao projeto | 0 Sair')
                 try:
                     escolha=input('Opção: ').strip()
-                except EOFError:
+                except (EOFError, KeyboardInterrupt):
                     return 0
                 if escolha in ('0','/sair'):
                     return 0
