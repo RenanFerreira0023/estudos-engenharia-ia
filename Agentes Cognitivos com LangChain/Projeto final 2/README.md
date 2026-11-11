@@ -6,7 +6,7 @@
 
 Na opção **9**, peça: `Cadastre o CNPJ 33683111000280 se ainda não estiver no banco.` A ferramenta consulta o banco antes da API. Para CNPJ novo, a consulta externa salva um registro de revisão e o agente pode criar uma proposta pendente; **não cria cliente**. Confira razão social, CNPJ e nome fantasia mostrados. Para gravar, digite `/confirmar-cliente ID` usando o ID da proposta. Repetir o comando devolve o mesmo cliente; uma proposta de outro usuário ou expirada é recusada. `/confirmar ID` continua reservado para visitas.
 
-O [notebook 04](notebooks/04_cadastro_pj_agente.ipynb) demonstra consulta, proposta, confirmação, persistência e auditoria com fixture local identificada; não afirma chamada real à API ou ao LLM. O menu 7 continua disponível para cadastro guiado. O teste da trajetória completa do agente após este ajuste ainda depende de execução manual com chave válida.
+O [notebook 04](notebooks/04_cadastro_pj_agente.ipynb) demonstra consulta, proposta, confirmação, persistência e auditoria com fixture local identificada; não afirma chamada real à API ou ao LLM. O menu 7 continua disponível para cadastro guiado. A [trajetória real do agente](evidencias/fase2_cadastro_pj_reteste_manual.json) foi observada manualmente; o retorno da ferramenta reportou chamada à API externa.
 
 ## Fluxo de visitas — fase 2 em andamento
 

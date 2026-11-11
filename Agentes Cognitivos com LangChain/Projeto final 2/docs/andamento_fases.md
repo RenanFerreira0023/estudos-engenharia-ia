@@ -2,6 +2,8 @@
 
 **Atualização do cadastro PJ — fase 2:** migração SQLite v5 guarda consultas de CNPJ, propostas pendentes e auditoria de confirmação. A ferramenta do agente retorna `consulta_id` para CNPJ novo; `propor_cadastro_cliente` só aceita uma consulta do usuário atual. O comando `/confirmar-cliente ID` relê a proposta sob transação, verifica prazo e CNPJ novamente, grava o cliente uma vez e preserva origem e nome fantasia. Há [notebook com fixture local](../notebooks/04_cadastro_pj_agente.ipynb), executado localmente, e 90 testes automatizados passaram; ainda falta observar a trajetória completa do agente real após esta mudança. Cadastro não equivale à conclusão da fase 2: vínculo com projetos e fontes segue pendente.
 
+Teste manual completo enviado por Renan: para CNPJ novo, o agente chamou `consultar_cnpj_minha_receita` (retorno `nao_cadastrado`, `api_externa_chamada=true`, `consulta_id=1`) e `propor_cadastro_cliente` (proposta #1 pendente). `/confirmar-cliente 1` devolveu `confirmada` com `cliente_id=1`; a repetição devolveu `ja_confirmada` com o mesmo ID. Na pergunta posterior, `buscar_cliente` encontrou o cadastro PJ local com origem `minha_receita_real` e nome fantasia, sem chamada externa nesse turno. [Evidência](../evidencias/fase2_cadastro_pj_reteste_manual.json). A chamada HTTP é reportada pela ferramenta na saída do terminal, sem log de rede independente; auditoria foi verificada em teste local.
+
 Referência: [plano, seção 13](../PLANO_PROJETO_SECRETARIA_IA.md) e [matriz dos 29 itens](matriz_requisitos.md).
 As cinco fases são incrementos do mesmo projeto. Os dois notebooks atuais são demonstrações da fase 1,
 não duas fases concluídas. A etapa 0 é preparação; não é uma sexta fase da entrega.

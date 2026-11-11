@@ -1,0 +1,34 @@
+{
+  "origem": "saida de terminal enviada pelo usuario; teste manual real",
+  "cenario": "consulta externa, proposta, confirmacao, repeticao e busca local",
+  "primeiro_pedido": "Cadastre o CNPJ 33683111000280 se ainda não estiver no banco.",
+  "primeiro_turno": {
+    "ferramentas_observadas": ["consultar_cnpj_minha_receita", "propor_cadastro_cliente"],
+    "retorno_consulta": {
+      "status": "nao_cadastrado",
+      "api_externa_chamada_reportada": true,
+      "consulta_id": 1,
+      "origem_reportada": "minha_receita_real"
+    },
+    "retorno_proposta": {"proposta_id": 1, "estado": "pendente", "consulta_id_usado": 1}
+  },
+  "primeira_confirmacao": {"comando": "/confirmar-cliente 1", "cliente_id": 1, "estado": "confirmada"},
+  "comando_repetido": "/confirmar-cliente 1",
+  "resultado_repeticao": {"cliente_id": 1, "estado": "ja_confirmada"},
+  "pergunta_seguinte": "O CNPJ 33683111000280 já está cadastrado aqui?",
+  "ferramentas_observadas_neste_turno": ["buscar_cliente"],
+  "cliente_retornado": {
+    "id": 1,
+    "tipo_pessoa": "PJ",
+    "cnpj": "33683111000280",
+    "origem_cadastro": "minha_receita_real",
+    "nome_fantasia_presente": true
+  },
+  "conclusoes": [
+    "A ferramenta de CNPJ reportou consulta externa e retornou dados públicos; o agente criou proposta pendente com o consulta_id recebido.",
+    "A primeira confirmação retornou cliente_id 1 e estado confirmada.",
+    "Repetir a confirmação devolveu o mesmo ID de cliente e estado ja_confirmada.",
+    "A pergunta posterior consultou o banco local via buscar_cliente; nenhuma chamada externa aparece neste turno."
+  ],
+  "limite": "Evidência baseada na saída do terminal enviada pelo usuário. api_externa_chamada=true é o retorno da ferramenta, não um log HTTP independente. A auditoria foi verificada nos testes locais, não nesta saída."
+}
