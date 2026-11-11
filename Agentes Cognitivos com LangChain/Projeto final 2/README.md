@@ -2,7 +2,11 @@
 
 [Revisão do enunciado e da aula 08](docs/revisao_enunciado_aula08.md): aderência, lacunas, quatro entregáveis e prioridades para concluir a disciplina.
 
-> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. A memória por sessão usa janela curta e recortes antigos recuperados por palavras; prompt PTCF, rota leve e callback local também estão presentes. **106 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, projetos, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. A memória por sessão usa janela curta e recortes antigos recuperados por palavras; preferências confirmadas são guardadas por usuário no SQLite. Prompt PTCF, rota leve e callback local também estão presentes. **109 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+
+### Preferências confirmadas — fase 3
+
+No menu 9, `/lembrar estilo=detalhado` grava uma preferência pessoal explícita; `/memorias` mostra o valor atual e `/esquecer-memoria estilo` o remove. O valor persiste após `/nova` e reinício, mas não passa a outro usuário. O [notebook 08](notebooks/08_preferencias_confirmadas.ipynb) demonstra isso sem API; o [guia](docs/memoria_fase3.md) compara LangMem e Mem0. A fase 3 ainda depende de recuperação vetorial relevante e teste contextual de troca de projeto.
 
 ### Recortes antigos — complemento da fase 3
 

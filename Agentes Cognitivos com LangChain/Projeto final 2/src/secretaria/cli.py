@@ -105,13 +105,16 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
     from openai import APIConnectionError, AuthenticationError, RateLimitError
     from .agente_agenda import criar_agente_agenda
     from .memoria import MemoriaConversas
+    from .preferencias import PreferenciasUsuario
     from .observabilidade import RastroAgente
     from .roteamento import roteador_pedido
-    agente = criar_agente_agenda(banco,ctx,arquivo_env)
+    agente = None
     memoria = MemoriaConversas(banco)
+    preferencias = PreferenciasUsuario(banco)
     sessao_id = memoria.ultima_ativa(ctx) or memoria.iniciar(ctx)
     print('Agente com ferramentas. Conversa:',sessao_id)
-    print('/nova inicia outra conversa; /voltar sai mantendo a atual; /confirmar ID confirma visita; /confirmar-cliente ID confirma cadastro PJ.')
+    print('/nova inicia outra conversa; /lembrar estilo=curto; /memorias lista; /esquecer-memoria estilo apaga; /voltar sai.')
+    print('/confirmar ID confirma visita; /confirmar-cliente ID confirma cadastro PJ.')
     while True:
         try:
             pergunta = input('Você: ').strip()
@@ -124,6 +127,23 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
             memoria.encerrar(ctx,sessao_id)
             sessao_id = memoria.iniciar(ctx)
             print('Nova conversa:',sessao_id)
+            continue
+        if pergunta == '/memorias':
+            print('Preferências confirmadas:',json.dumps(preferencias.listar(ctx),ensure_ascii=False))
+            continue
+        if pergunta.startswith('/lembrar '):
+            try:
+                chave, valor = pergunta[len('/lembrar '):].split('=',1)
+                print('Preferência:',preferencias.salvar(ctx,chave.strip(),valor.strip().lower()))
+            except (ValueError,PermissionError) as erro:
+                print('Preferência não salva:',erro)
+            continue
+        if pergunta.startswith('/esquecer-memoria '):
+            try:
+                chave = pergunta[len('/esquecer-memoria '):].strip()
+                print('Preferência:',preferencias.apagar(ctx,chave))
+            except (ValueError,PermissionError) as erro:
+                print('Preferência não apagada:',erro)
             continue
         if pergunta.startswith('/confirmar-cliente '):
             from .agenda import Agenda
@@ -144,6 +164,9 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
             continue
         if not pergunta:
             continue
+        if agente is None:
+            # CREATE_AGENT é adiado: comandos locais de memória funcionam sem chave de API.
+            agente = criar_agente_agenda(banco,ctx,arquivo_env)
         agora = datetime.now(ZoneInfo('America/Sao_Paulo')).isoformat()
         # ROUTER + MEMÓRIA: a rota orienta o pedido; a janela fornece contexto recente.
         # Nenhuma das duas substitui as validações das ferramentas do agente.
@@ -155,10 +178,13 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
         recuperados = memoria.buscar_resumos(ctx,sessao_id,pergunta)
         contexto_antigo = (' Trechos antigos da conversa, não confirmados: '
                            + json.dumps(recuperados,ensure_ascii=False) + '.') if recuperados else ''
+        # MEMÓRIA CONFIRMADA: preferências enumeradas são do usuário atual e sobrevivem a /nova.
+        # Não entram como cadastro, agenda ou autorização operacional.
+        contexto_pessoal = json.dumps(preferencias.listar(ctx),ensure_ascii=False)
         # CALLBACK + INVOKE: os eventos mostram modelo/ferramenta sem guardar conteúdo no log.
         rastro = RastroAgente()
         try:
-            resposta = agente.invoke({'messages':historico+[{'role':'user','content':f'Agora: {agora}. Rota sugerida: {rota}.{contexto_antigo} Pedido: {pergunta}'}]},
+            resposta = agente.invoke({'messages':historico+[{'role':'user','content':f'Agora: {agora}. Rota sugerida: {rota}. Preferências confirmadas deste usuário: {contexto_pessoal}.{contexto_antigo} Pedido: {pergunta}'}]},
                                     {'recursion_limit':12,'callbacks':[rastro]})
         except AuthenticationError:
             print('A chave OPENAI_API_KEY foi recusada ou expirou. Gere outra chave e atualize o .env; nenhum agendamento foi confirmado.')
@@ -178,15 +204,31 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
         novas = resposta['messages'][len(historico):]
         ultima = resposta['messages'][-1]
         memoria.registrar(ctx,sessao_id,pergunta,str(ultima.content))
+        print('\n' + '=' * 64)
+        print('RESPOSTA DA SECRETÁRIA')
+        print('-' * 64)
+        print(ultima.content)
+        print('\nCONTEXTO DO ATENDIMENTO')
         print('Rota sugerida:',rota,'| eventos observados:',len(rastro.eventos))
         if recuperados:
             print('Recortes antigos recuperados dos turnos:',[item['turno_id'] for item in recuperados])
-        print('Secretária:',ultima.content)
+        chamadas = sum(len(getattr(mensagem,'tool_calls',[])) for mensagem in novas)
+        print('\nFERRAMENTAS CONSULTADAS')
+        if not chamadas:
+            print('Nenhuma ferramenta chamada neste turno.')
         for mensagem in novas:
             for chamada in getattr(mensagem,'tool_calls',[]):
-                print('Ferramenta chamada:',json.dumps({'nome':chamada['name'],'args':chamada['args']},ensure_ascii=False))
+                print('\nCHAMADA:',chamada['name'])
+                print('Argumentos:',json.dumps(chamada['args'],ensure_ascii=False))
             if getattr(mensagem,'type',None)=='tool':
-                print('Retorno da ferramenta:',mensagem.content)
+                try:
+                    retorno = json.loads(mensagem.content)
+                except (TypeError,ValueError):
+                    retorno = None
+                if isinstance(retorno,dict) and retorno.get('status'):
+                    print('STATUS:',str(retorno['status']).upper())
+                print('Retorno:',mensagem.content)
+        print('=' * 64 + '\n')
 
 
 def aplicar_interpretacao_no_terminal(banco, ctx):

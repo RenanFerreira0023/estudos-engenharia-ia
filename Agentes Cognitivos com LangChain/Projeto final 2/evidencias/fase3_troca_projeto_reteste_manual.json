@@ -1,0 +1,14 @@
+{
+  "origem": "Saída de terminal enviada por Renan nesta conversa em 11/11/2026; registro resumido manualmente",
+  "banco": "banco padrão dados/privados/secretaria.sqlite3",
+  "cenario": "Alfa, pergunta sobre saldo; nova conversa, Alfa, troca para Beta, pergunta sobre saldo",
+  "observacoes": [
+    {"pedido": "Estou falando do projeto Alfa.", "rota": "projeto", "ferramenta": "consultar_projeto", "termo": "Alfa", "status": "projeto_nao_encontrado"},
+    {"pedido": "qual o saldo dele?", "rota": "projeto", "ferramenta": "consultar_projeto", "termo": "Alfa", "status": "projeto_nao_encontrado"},
+    {"pedido": "agora estou falando do projeto beta", "rota": "projeto", "ferramenta": "consultar_projeto", "termo": "beta", "status": "projeto_nao_encontrado"},
+    {"pedido": "e o saldo dele?", "rota": "projeto", "ferramenta": "consultar_projeto", "termo": "Beta", "status": "projeto_nao_encontrado"}
+  ],
+  "checagem_local_posterior": "SELECT COUNT(*) FROM projetos no banco padrão retornou 0; somente leitura",
+  "conclusao": "A rota e o referente da pergunta de seguimento foram corrigidos; não há projeto operacional para verificar saldo ou consulta bem sucedida.",
+  "limite": "Não comprova recuperação vetorial, saldo financeiro ou isolamento após /nova sem reintroduzir o projeto."
+}

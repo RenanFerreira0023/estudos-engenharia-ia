@@ -14,6 +14,8 @@ from secretaria.extracao import analisar_snapshot
 from secretaria.fixtures_extracao import criar_modelo_fixture
 from secretaria.fila_revisao import FilaRevisao
 from secretaria.projetos_fontes import ProjetosFontes
+from secretaria.agente_agenda import criar_ferramentas_agenda
+from secretaria.roteamento import identificar_rota
 
 RAIZ=Path(__file__).resolve().parents[1]
 
@@ -75,6 +77,19 @@ class ProjetosFontesTest(unittest.TestCase):
         self.assertEqual(tuple(registro),('financeiro',projeto))
         self.assertNotIn('pagamentos',[r['name'] for r in self.banco.con.execute(
             "SELECT name FROM sqlite_master WHERE type='table'")])
+
+    def test_agente_consulta_projeto_sem_confundir_cliente_nem_inventar_saldo(self):
+        proposta = self.aceitar(0)
+        previa = self.servico.prever(self.ctx, proposta)
+        projeto = self.servico.confirmar(self.ctx, proposta, previa['versao'])['projeto_id']
+        ferramentas = {f.name:f for f in criar_ferramentas_agenda(self.banco.caminho,self.ctx)}
+        consulta = ferramentas['consultar_projeto'].invoke({'termo':'Alfa'})
+        self.assertEqual(consulta['projetos'][0]['id'], projeto)
+        self.assertIn('não comprovam saldo', consulta['limite'])
+        self.assertEqual(ferramentas['consultar_projeto'].invoke({'termo':'Beta'})['status'],
+                         'projeto_nao_encontrado')
+        self.assertEqual(identificar_rota({'pergunta':'Qual é o saldo dele?'})['rota'],'projeto')
+        self.assertEqual(identificar_rota({'pergunta':'Agora estou falando do projeto Beta.'})['rota'],'projeto')
 
     def test_pendente_rejeitada_e_usuario_errado_nao_aplicam(self):
         with self.assertRaisesRegex(ValueError,'aceita'):
