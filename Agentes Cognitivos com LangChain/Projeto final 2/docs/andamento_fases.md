@@ -1,5 +1,7 @@
 # Andamento nas cinco fases do trabalho
 
+**Atualização do cadastro PJ — fase 2:** migração SQLite v5 guarda consultas de CNPJ, propostas pendentes e auditoria de confirmação. A ferramenta do agente retorna `consulta_id` para CNPJ novo; `propor_cadastro_cliente` só aceita uma consulta do usuário atual. O comando `/confirmar-cliente ID` relê a proposta sob transação, verifica prazo e CNPJ novamente, grava o cliente uma vez e preserva origem e nome fantasia. Há [notebook com fixture local](../notebooks/04_cadastro_pj_agente.ipynb), executado localmente, e 90 testes automatizados passaram; ainda falta observar a trajetória completa do agente real após esta mudança. Cadastro não equivale à conclusão da fase 2: vínculo com projetos e fontes segue pendente.
+
 Referência: [plano, seção 13](../PLANO_PROJETO_SECRETARIA_IA.md) e [matriz dos 29 itens](matriz_requisitos.md).
 As cinco fases são incrementos do mesmo projeto. Os dois notebooks atuais são demonstrações da fase 1,
 não duas fases concluídas. A etapa 0 é preparação; não é uma sexta fase da entrega.

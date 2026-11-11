@@ -66,7 +66,7 @@ class Banco:
         versao=self.con.execute('PRAGMA user_version').fetchone()[0]
         if versao==0:
             self.con.executescript(ESQUEMA)
-        elif versao not in (1,2,3,4):
+        elif versao not in (1,2,3,4,5):
             self.con.close()
             raise ValueError('Versão de banco não suportada por este incremento.')
         if self.con.execute('PRAGMA user_version').fetchone()[0]==1:
@@ -91,6 +91,15 @@ class Banco:
             from .migracao_cliente_api import ESQUEMA_CLIENTE_API
             try:
                 self.con.executescript(ESQUEMA_CLIENTE_API)
+            except BaseException:
+                if self.con.in_transaction:
+                    self.con.execute('ROLLBACK')
+                self.con.close()
+                raise
+        if self.con.execute('PRAGMA user_version').fetchone()[0]==4:
+            from .migracao_cadastro_cliente import ESQUEMA_CADASTRO_CLIENTE
+            try:
+                self.con.executescript(ESQUEMA_CADASTRO_CLIENTE)
             except BaseException:
                 if self.con.in_transaction:
                     self.con.execute('ROLLBACK')

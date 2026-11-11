@@ -128,6 +128,104 @@ class Agenda:
                  nome_fantasia,origem,consultado_em))
             return cur.lastrowid
 
+    def registrar_consulta_cnpj(self, ctx, dados):
+        """Preserva a resposta externa; uma consulta ainda não é cadastro de cliente."""
+        self.banco._usuario(ctx)
+        if not isinstance(dados, dict) or dados.get('origem') not in ('minha_receita_real','fixture_local'):
+            raise ValueError('Origem da consulta PJ inválida.')
+        cnpj = str(dados.get('cnpj') or '')
+        razao = str(dados.get('razao_social') or '').strip()
+        if not re.fullmatch(r'\d{14}', cnpj) or not 2 <= len(razao) <= 120:
+            raise ValueError('Consulta PJ incompleta.')
+        snapshot = {chave: dados.get(chave) for chave in
+                    ('origem','cnpj','razao_social','nome_fantasia','municipio','uf','consultado_em')}
+        instante = str(dados.get('consultado_em') or agora_utc().isoformat())
+        with self.banco.transacao():
+            cur = self.banco.con.execute('''INSERT INTO consultas_cnpj
+                (empresa_id,usuario_id,cnpj,dados_json,consultado_em) VALUES (?,?,?,?,?)''',
+                (ctx.empresa_id,ctx.usuario_id,cnpj,json.dumps(snapshot,ensure_ascii=False),instante))
+            return cur.lastrowid
+
+    def propor_cadastro_cliente(self, ctx, consulta_id, agora=None):
+        """Cria proposta a partir de consulta salva pelo próprio usuário, sem criar cliente."""
+        self.banco._usuario(ctx)
+        agora = _instante(agora) if agora else agora_utc()
+        if type(consulta_id) is not int or consulta_id < 1:
+            raise ValueError('Informe o ID da consulta PJ.')
+        with self.banco.transacao():
+            consulta = self.banco.con.execute('''SELECT * FROM consultas_cnpj
+                WHERE empresa_id=? AND id=? AND usuario_id=?''',
+                (ctx.empresa_id,consulta_id,ctx.usuario_id)).fetchone()
+            if consulta is None:
+                raise PermissionError('Consulta PJ não pertence ao usuário atual.')
+            if _instante(consulta['consultado_em']) + timedelta(minutes=30) < agora:
+                raise ValueError('Consulta PJ expirada; consulte o CNPJ novamente.')
+            dados = json.loads(consulta['dados_json'])
+            existente = self.banco.con.execute('SELECT id FROM clientes WHERE empresa_id=? AND cnpj=?',
+                                               (ctx.empresa_id,consulta['cnpj'])).fetchone()
+            if existente:
+                return {'status':'ja_cadastrado','cliente_id':existente['id']}
+            anterior = self.banco.con.execute('''SELECT id FROM propostas_cliente
+                WHERE empresa_id=? AND solicitante_id=? AND consulta_id=? AND estado='pendente'
+                AND expira_em>=? ORDER BY id DESC LIMIT 1''',
+                (ctx.empresa_id,ctx.usuario_id,consulta_id,agora.isoformat())).fetchone()
+            if anterior:
+                proposta_id = anterior['id']
+            else:
+                cur = self.banco.con.execute('''INSERT INTO propostas_cliente
+                    (empresa_id,solicitante_id,consulta_id,estado,criada_em,expira_em)
+                    VALUES (?,?,?,'pendente',?,?)''',
+                    (ctx.empresa_id,ctx.usuario_id,consulta_id,agora.isoformat(),
+                     (agora+timedelta(minutes=30)).isoformat()))
+                proposta_id = cur.lastrowid
+        return {'proposta_id':proposta_id,'estado':'pendente','cnpj':dados['cnpj'],
+                'razao_social':dados['razao_social'],'nome_fantasia':dados.get('nome_fantasia') or '',
+                'origem':dados['origem'],
+                'aviso':f'Cliente ainda não cadastrado. Para gravar, digite /confirmar-cliente {proposta_id}.'}
+
+    def confirmar_cadastro_cliente(self, ctx, proposta_id, agora=None):
+        """Confirma uma vez, sob transação, com rechecagem de CNPJ e auditoria."""
+        self.banco._usuario(ctx)
+        agora = _instante(agora) if agora else agora_utc()
+        if type(proposta_id) is not int or proposta_id < 1:
+            raise ValueError('Informe o ID da proposta PJ.')
+        with self.banco.transacao():
+            proposta = self.banco.con.execute('''SELECT * FROM propostas_cliente
+                WHERE empresa_id=? AND id=?''',(ctx.empresa_id,proposta_id)).fetchone()
+            if proposta is None or proposta['solicitante_id'] != ctx.usuario_id:
+                raise PermissionError('Proposta PJ não pertence ao usuário atual.')
+            if proposta['estado'] == 'confirmada':
+                return {'cliente_id':proposta['cliente_id'],'estado':'ja_confirmada'}
+            if proposta['estado'] != 'pendente' or _instante(proposta['expira_em']) < agora:
+                raise ValueError('Proposta PJ expirada ou não confirmável; faça nova consulta.')
+            consulta = self.banco.con.execute('''SELECT * FROM consultas_cnpj
+                WHERE empresa_id=? AND id=? AND usuario_id=?''',
+                (ctx.empresa_id,proposta['consulta_id'],ctx.usuario_id)).fetchone()
+            if consulta is None:
+                raise PermissionError('Consulta PJ não pertence ao usuário atual.')
+            dados = json.loads(consulta['dados_json'])
+            existente = self.banco.con.execute('SELECT id FROM clientes WHERE empresa_id=? AND cnpj=?',
+                                               (ctx.empresa_id,consulta['cnpj'])).fetchone()
+            if existente:
+                self.banco.con.execute("UPDATE propostas_cliente SET estado='conflito' WHERE id=?",(proposta_id,))
+                return {'estado':'conflito','cliente_id':existente['id'],
+                        'aviso':'CNPJ já cadastrado por outro fluxo; nenhum cliente duplicado foi criado.'}
+            cur = self.banco.con.execute('''INSERT INTO clientes
+                (empresa_id,nome,tipo_pessoa,cnpj,criado_por,criado_em,nome_fantasia,origem_cadastro,consultado_cnpj_em)
+                VALUES (?,?,'PJ',?,?,?,?,?,?)''',
+                (ctx.empresa_id,dados['razao_social'],consulta['cnpj'],ctx.usuario_id,
+                 agora.isoformat(),dados.get('nome_fantasia') or None,dados['origem'],
+                 dados.get('consultado_em')))
+            self.banco.con.execute('''UPDATE propostas_cliente SET estado='confirmada',
+                confirmada_em=?,cliente_id=? WHERE id=?''',(agora.isoformat(),cur.lastrowid,proposta_id))
+            self.banco.con.execute('''INSERT INTO auditoria_clientes
+                (empresa_id,ator_id,proposta_id,cliente_id,operacao,dados_json,instante)
+                VALUES (?,?,?,?,'confirmar_cadastro',?,?)''',
+                (ctx.empresa_id,ctx.usuario_id,proposta_id,cur.lastrowid,
+                 json.dumps({'cnpj':consulta['cnpj'],'origem':dados['origem']},ensure_ascii=False),
+                 agora.isoformat()))
+            return {'cliente_id':cur.lastrowid,'estado':'confirmada'}
+
     def buscar_cliente(self, ctx, termo):
         self.banco._usuario(ctx)
         termo = (termo or '').strip()

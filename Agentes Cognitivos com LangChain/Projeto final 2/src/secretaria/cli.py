@@ -106,11 +106,21 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
     from .agente_agenda import criar_agente_agenda
     agente = criar_agente_agenda(banco,ctx,arquivo_env)
     historico = []
-    print('Agente com ferramentas. /voltar encerra; /confirmar ID grava uma proposta sua.')
+    print('Agente com ferramentas. /voltar encerra; /confirmar ID confirma visita; /confirmar-cliente ID confirma cadastro PJ.')
     while True:
         pergunta = input('Você: ').strip()
         if pergunta == '/voltar':
             return
+        if pergunta.startswith('/confirmar-cliente '):
+            from .agenda import Agenda
+            try:
+                partes=pergunta.split()
+                if len(partes)!=2:
+                    raise ValueError('Use /confirmar-cliente ID.')
+                print(Agenda(banco).confirmar_cadastro_cliente(ctx,int(partes[1])))
+            except (ValueError,PermissionError) as erro:
+                print('Cadastro não confirmado:',erro)
+            continue
         if pergunta.startswith('/confirmar '):
             from .agenda import Agenda
             try:

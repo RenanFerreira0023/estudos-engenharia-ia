@@ -1,6 +1,12 @@
 # Secretária IA — Projeto final 2
 
-> **Estado atual:** importação com fontes, extração de propostas, revisão persistente e fluxo de visitas no SQLite estão implementados. O agente de visitas consulta clientes, disponibilidade, ViaCEP e Minha Receita e cria propostas; a confirmação ocorre no terminal. Os testes automatizados locais passaram (85 testes). O cadastro PJ pelo agente ainda depende do menu 7 para gravar o cliente. As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas e cadastro PJ por proposta estão implementados. O agente consulta clientes, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. **90 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+
+### Cadastro PJ pelo agente
+
+Na opção **9**, peça: `Cadastre o CNPJ 33683111000280 se ainda não estiver no banco.` A ferramenta consulta o banco antes da API. Para CNPJ novo, a consulta externa salva um registro de revisão e o agente pode criar uma proposta pendente; **não cria cliente**. Confira razão social, CNPJ e nome fantasia mostrados. Para gravar, digite `/confirmar-cliente ID` usando o ID da proposta. Repetir o comando devolve o mesmo cliente; uma proposta de outro usuário ou expirada é recusada. `/confirmar ID` continua reservado para visitas.
+
+O [notebook 04](notebooks/04_cadastro_pj_agente.ipynb) demonstra consulta, proposta, confirmação, persistência e auditoria com fixture local identificada; não afirma chamada real à API ou ao LLM. O menu 7 continua disponível para cadastro guiado. O teste da trajetória completa do agente após este ajuste ainda depende de execução manual com chave válida.
 
 ## Fluxo de visitas — fase 2 em andamento
 

@@ -164,6 +164,9 @@ class FilaRevisaoTest(unittest.TestCase):
             antigo.importar(self.ctx,c,RAIZ/'dados/ficticios/conversa_empresa.txt')
             fontes_antes=antigo.listar(self.ctx,c)
         con=sqlite3.connect(caminho)
+        con.execute('DROP TABLE auditoria_clientes')
+        con.execute('DROP TABLE propostas_cliente')
+        con.execute('DROP TABLE consultas_cnpj')
         con.execute('DROP TABLE auditoria_agenda')
         con.execute('DROP TABLE agendamentos')
         con.execute('DROP TABLE propostas_visita')
@@ -172,7 +175,7 @@ class FilaRevisaoTest(unittest.TestCase):
         con.execute('DROP TABLE propostas_revisao')
         con.execute('PRAGMA user_version=1');con.commit();con.close()
         with Banco(caminho) as novo:
-            self.assertEqual(novo.con.execute('PRAGMA user_version').fetchone()[0],4)
+            self.assertEqual(novo.con.execute('PRAGMA user_version').fetchone()[0],5)
             self.assertEqual(novo.listar(self.ctx,c),fontes_antes)
             self.assertEqual(novo.contar(self.ctx,c),40)
             self.assertEqual(novo.importar(self.ctx,c,RAIZ/'dados/ficticios/conversa_empresa.txt')['novas'],0)

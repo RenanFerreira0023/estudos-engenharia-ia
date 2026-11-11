@@ -46,11 +46,22 @@ def criar_ferramentas_agenda(caminho_banco, ctx):
                 return {'status':'ja_cadastrado','origem':'banco_local','api_externa_chamada':False,
                         'cliente':existentes[0]}
             cadastro = consultar_cnpj(cnpj)
+            with Banco(caminho_banco) as conexao:
+                consulta_id = Agenda(conexao).registrar_consulta_cnpj(ctx,cadastro)
             return {'status':'nao_cadastrado','api_externa_chamada':True,
-                    'cadastro_externo_sugerido':cadastro,
-                    'aviso':'Consulta externa não cadastra cliente no SQLite.'}
+                    'consulta_id':consulta_id,'cadastro_externo_sugerido':cadastro,
+                    'aviso':'Consulta salva para revisão; cliente ainda não cadastrado.'}
         except ValueError as erro:
             return {'status':'falha','mensagem':str(erro)}
+
+    @tool
+    def propor_cadastro_cliente(consulta_id: int) -> dict:
+        """Propõe cadastro PJ da consulta salva do usuário atual; não grava cliente."""
+        try:
+            with Banco(caminho_banco) as conexao:
+                return Agenda(conexao).propor_cadastro_cliente(ctx,consulta_id)
+        except (ValueError,PermissionError) as erro:
+            return {'status':'dados_invalidos','mensagem':str(erro)}
 
     @tool
     def propor_visita(cliente_id: int, inicio_iso: str, fim_iso: str,
@@ -67,7 +78,7 @@ def criar_ferramentas_agenda(caminho_banco, ctx):
             return {'status':'dados_invalidos','mensagem':str(erro)}
 
     return [buscar_cliente,consultar_disponibilidade,consultar_cep_viacep,
-            consultar_cnpj_minha_receita,propor_visita]
+            consultar_cnpj_minha_receita,propor_cadastro_cliente,propor_visita]
 
 
 def criar_agente_agenda(banco, ctx, arquivo_env=None):
@@ -96,6 +107,7 @@ def criar_agente_agenda(banco, ctx, arquivo_env=None):
 Data/hora atual com fuso: use a informação de tempo recebida no pedido; se não houver, peça data absoluta.
 Para qualquer pergunta sobre cliente já cadastrado, chame buscar_cliente primeiro. Um retorno da Minha Receita não prova cadastro local. Se nenhum ou vários, peça identificação; nunca invente ID.
 Só consulte Minha Receita para CNPJ que não existe no banco. A ferramenta de CNPJ verifica isso novamente e devolve status ja_cadastrado ou nao_cadastrado. Responda "cadastrado" apenas quando o banco local confirmar.
+Se o usuário pedir cadastro de um CNPJ novo, consulte-o e chame propor_cadastro_cliente com o consulta_id retornado. Mostre razão social, CNPJ, nome fantasia e proposta_id. A consulta e a proposta não criam cliente. Oriente o usuário a confirmar com /confirmar-cliente ID; você não tem ferramenta de confirmação.
 Se o pedido não citar outro atendente, use {ctx.usuario_id}; não peça seu ID. Consulte disponibilidade antes de propor. Peça duração, tipo/local e endereço completo.
 Quando a consulta retornar sem_conflito_registrado=true, diga "não há compromisso registrado nesse intervalo"; não afirme disponibilidade garantida.
 Para endereço novo com CEP, consulte ViaCEP; ele não traz número. Use o número que o usuário informou antes ou depois da consulta. "s/n" significa sem número e é um valor válido quando confirmado pelo usuário; não peça o número novamente nesse caso. Inclua o CEP consultado na proposta.

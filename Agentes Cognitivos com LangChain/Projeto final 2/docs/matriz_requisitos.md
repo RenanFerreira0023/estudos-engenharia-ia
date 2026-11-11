@@ -1,6 +1,6 @@
-# Matriz de requisitos após marco 2
+# Matriz de requisitos — atualização da fase 2
 
-Importação/SQLite e chain de propostas estão implementadas; agente ainda não. Não atribuir testes de autopeças à nova aplicação.
+Importação/SQLite, chain de propostas, revisão persistente e agente de visitas com ferramentas estão implementados. Cadastro PJ por proposta e confirmação humana foi acrescentado; trajetória completa do agente após esse ajuste ainda requer teste manual. Não atribuir testes de autopeças à nova aplicação.
 
 | ID | Item da rubrica | Estado |
 |---|---|---|
@@ -11,9 +11,9 @@ Importação/SQLite e chain de propostas estão implementadas; agente ainda não
 | R05 | O aluno aplicou a interface Runnable (invoke, batch, stream) e implementou composição imperativa com o decorador @chain? | Demonstrado com fixture: invoke/batch/@chain e stream de objeto completo; não tokens. |
 | R06 | O aluno implementou a composição declarativa da chain com LCEL e justificou a escolha entre composição imperativa e declarativa? | Implementado; testes/notebook locais, API testada com resultado parcial. |
 | R07 | O aluno comparou orquestradores de agentes autônomos e justificou a escolha do LangChain para o problema? | Planejado |
-| R08 | O aluno construiu um agente com ferramentas e memória e implementou o padrão ReAct com initialize_agent? | Planejado |
+| R08 | O aluno construiu um agente com ferramentas e memória e implementou o padrão ReAct com initialize_agent? | Parcial: agente com ferramentas usa `create_agent`; memória persistente e implementação literal com `initialize_agent` não demonstradas. |
 | R09 | O aluno construiu chains sequenciais ou paralelas e implementou roteamento dinâmico com RouterChain? | Planejado |
-| R10 | O aluno integrou pelo menos uma API externa como ferramenta do agente via function calling? | Planejado |
+| R10 | O aluno integrou pelo menos uma API externa como ferramenta do agente via function calling? | Implementado: ViaCEP e Minha Receita como ferramentas; chamadas reais e trajetórias manuais registradas. |
 | R11 | O aluno estruturou o prompt do agente com o framework PTCF e aplicou few-shot learning e chain-of-thought? | Planejado |
 | R12 | O aluno implementou os componentes de confiabilidade do agente (output parsers com tratamento de erros, memória configurada na chain, ferramenta de busca semântica com FAISS e callbacks de logging), justificando as escolhas técnicas? | Planejado |
 | R13 | O aluno diferenciou memória de curto e longo prazo para o agente com base na taxonomia CoALA? | Planejado |
@@ -23,12 +23,12 @@ Importação/SQLite e chain de propostas estão implementadas; agente ainda não
 | R17 | O aluno estruturou fluxos de conversação com reconhecimento de intenção e extração de entidades? | Parcial: propostas por área/natureza/entidades; fluxo conversacional ainda não. |
 | R18 | O aluno validou, com evidência de uma conversa real, que o agente manteve contexto e decompôs consultas complexas em diálogos multi-turno? | Planejado |
 | R19 | O aluno estruturou ferramentas do agente diferenciando funções hardcoded de funções semânticas? | Planejado |
-| R20 | O aluno integrou o agente a APIs internas ou externas conforme o tipo de uso de cada uma? | Planejado |
+| R20 | O aluno integrou o agente a APIs internas ou externas conforme o tipo de uso de cada uma? | Parcial: SQLite, ViaCEP e Minha Receita no fluxo de visitas/clientes; outras áreas ainda pendentes. |
 | R21 | O aluno implementou o padrão text-to-query para consultar dados estruturados? | Planejado |
 | R22 | O aluno construiu um agente de recuperação usando um índice FAISS existente? | Planejado |
 | R23 | O aluno diagnosticou uma falha real de recuperação a partir dos documentos-fonte retornados e justificou a técnica de correção aplicada? | Planejado |
 | R24 | O aluno construiu um mecanismo de verificação de consistência factual e coerência lógica das respostas do agente? | Planejado |
-| R25 | O aluno consolidou um agente único integrando ferramentas de RAG, SQL ou API sob um mesmo executor? | Planejado |
+| R25 | O aluno consolidou um agente único integrando ferramentas de RAG, SQL ou API sob um mesmo executor? | Parcial: um agente reúne SQLite e APIs para visitas/clientes; RAG e financeiro ainda não integrados. |
 | R26 | O aluno construiu o executor do agente com create_openai_tools_agent e AgentExecutor? | Planejado |
 | R27 | O aluno integrou o histórico de conversa ao agente com RunnableWithMessageHistory? | Planejado |
 | R28 | O aluno integrou o agente completo a uma interface Streamlit? | Planejado |
