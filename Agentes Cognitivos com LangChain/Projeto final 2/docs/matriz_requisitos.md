@@ -24,7 +24,7 @@ Importação/SQLite, chain de propostas, revisão persistente e agente de visita
 | R18 | O aluno validou, com evidência de uma conversa real, que o agente manteve contexto e decompôs consultas complexas em diálogos multi-turno? | Planejado |
 | R19 | O aluno estruturou ferramentas do agente diferenciando funções hardcoded de funções semânticas? | Documentado: SQLite/regras e APIs são determinísticos; interpretação e escolha de ferramenta são do modelo. Ver [orquestração](fase2_orquestracao.md). |
 | R20 | O aluno integrou o agente a APIs internas ou externas conforme o tipo de uso de cada uma? | Parcial: SQLite, ViaCEP e Minha Receita no fluxo de visitas/clientes; outras áreas ainda pendentes. |
-| R21 | O aluno implementou o padrão text-to-query para consultar dados estruturados? | Planejado |
+| R21 | O aluno implementou o padrão text-to-query para consultar dados estruturados? | Implementado para mensagens importadas com plano tipado e SQL parametrizado; falta observar trajetória real do agente. [Guia](consulta_estruturada_fase4.md) |
 | R22 | O aluno construiu um agente de recuperação usando um índice FAISS existente? | Parcial com evidência real: menu 11 preparou índice separado de 40 mensagens; no [reteste](../evidencias/fase4_falha_busca_fonte_manual.json), o agente chamou `buscar_mensagens_fonte` e citou M0004 corretamente. A autorização e versão são revalidadas no serviço. Ainda falta avaliação sistemática e diagnóstico de falha real do ranking. |
 | R23 | O aluno diagnosticou uma falha real de recuperação a partir dos documentos-fonte retornados e justificou a técnica de correção aplicada? | Planejado |
 | R24 | O aluno construiu um mecanismo de verificação de consistência factual e coerência lógica das respostas do agente? | Planejado |

@@ -12,12 +12,21 @@ from langchain.agents import create_agent
 from langchain_core.messages import AIMessage, ToolMessage
 from langchain_core.language_models.fake_chat_models import FakeListChatModel
 from secretaria.banco import Banco, Contexto
-from secretaria.cli import conversar_sobre_visita, exibir_ferramentas_do_turno
+from secretaria.cli import conversar_sobre_visita, exibir_ferramentas_do_turno, _consulta_estruturada_comprovada
 from secretaria.observabilidade import RastroAgente
 from secretaria.roteamento import roteador_pedido
 
 
 class RoteamentoObservabilidadeTest(unittest.TestCase):
+    def test_contagem_exige_resultado_estruturado(self):
+        fonte = ToolMessage(content=json.dumps({'status':'ok','fontes':[{'mensagem_id':4}]}),
+                            tool_call_id='c1', name='buscar_mensagens_fonte')
+        contagem = ToolMessage(content=json.dumps({'status':'ok','plano':{'tipo':'contagem'},'total':1}),
+                               tool_call_id='c2', name='consultar_mensagens_estruturado')
+        self.assertFalse(_consulta_estruturada_comprovada(fonte,True))
+        self.assertTrue(_consulta_estruturada_comprovada(contagem,True))
+        self.assertTrue(_consulta_estruturada_comprovada(contagem,False))
+
     def test_log_associa_retornos_a_chamadas_paralelas(self):
         chamada = AIMessage(content='',tool_calls=[
             {'name':'listar_corpora_acessiveis','args':{},'id':'c1'},
@@ -72,6 +81,8 @@ class RoteamentoObservabilidadeTest(unittest.TestCase):
         self.assertEqual(roteador_pedido.invoke({'pergunta':'Olá'})['rota'],'geral')
         self.assertEqual(roteador_pedido.invoke(
             {'pergunta':'Onde foi dito o orçamento do projeto Alfa?'})['rota'],'fonte')
+        self.assertEqual(roteador_pedido.invoke(
+            {'pergunta':'Quantas msng o bruno mencionam orçamento e alfa?'})['rota'],'consulta')
         atual = roteador_pedido.invoke({'pergunta':'Às 15h',
                                         'anteriores':[{'pergunta':'Agende visita para Alfa'}]})
         self.assertEqual(atual['rota'],'visita')

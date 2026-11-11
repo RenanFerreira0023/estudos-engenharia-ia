@@ -44,6 +44,21 @@ def exibir_ferramentas_do_turno(mensagens):
         print('Retorno:',retorno_mensagem.content)
 
 
+def _consulta_estruturada_comprovada(mensagem, exige_contagem=False):
+    if getattr(mensagem,'type',None) != 'tool':
+        return False
+    try:
+        retorno = json.loads(mensagem.content)
+    except (TypeError,ValueError):
+        return False
+    if not isinstance(retorno,dict) or retorno.get('status') != 'ok':
+        return False
+    if exige_contagem:
+        return retorno.get('plano',{}).get('tipo') == 'contagem' and type(retorno.get('total')) is int
+    return (retorno.get('plano',{}).get('tipo') in ('contagem','lista')
+            and ('total' in retorno or 'mensagens' in retorno))
+
+
 def agendar_no_terminal(banco, ctx):
     from datetime import datetime, timedelta
     from zoneinfo import ZoneInfo
@@ -247,11 +262,20 @@ def conversar_sobre_visita(banco, ctx, arquivo_env=None):
                 print('Aviso: não foi possível salvar o rastro de eventos deste atendimento.')
         novas = resposta['messages'][len(historico):]
         ultima = resposta['messages'][-1]
-        memoria.registrar(ctx,sessao_id,pergunta,str(ultima.content))
+        texto_resposta = str(ultima.content)
+        if rota == 'consulta':
+            # Um resultado top-k não sustenta contagem. Exigir retorno estruturado bem-sucedido.
+            consultas = [mensagem for mensagem in novas
+                         if getattr(mensagem,'name',None)=='consultar_mensagens_estruturado']
+            exige_contagem = pergunta.lower().lstrip().startswith(('quantas ', 'quantos ', 'qtd '))
+            if not any(_consulta_estruturada_comprovada(mensagem,exige_contagem) for mensagem in consultas):
+                texto_resposta = ('Não consegui confirmar a contagem ou lista por consulta estruturada. '
+                                  'A busca de trechos não permite afirmar um total. Tente novamente.')
+        memoria.registrar(ctx,sessao_id,pergunta,texto_resposta)
         print('\n' + '=' * 64)
         print('RESPOSTA DA SECRETÁRIA')
         print('-' * 64)
-        print(ultima.content)
+        print(texto_resposta)
         print('\nCONTEXTO DO ATENDIMENTO')
         print('Rota sugerida:',rota,'| eventos observados:',len(rastro.eventos))
         if ha_recortes:

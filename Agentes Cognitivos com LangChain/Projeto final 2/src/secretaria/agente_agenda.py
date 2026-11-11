@@ -102,6 +102,26 @@ def criar_ferramentas_agenda(caminho_banco, ctx, arquivo_env=None):
             return {'status':'falha_api_embeddings','tipo':type(erro).__name__}
 
     @tool
+    def consultar_mensagens_estruturado(corpus_id: int, pergunta: str) -> dict:
+        """Conta ou lista mensagens filtradas com plano validado e SQL parametrizado; não calcula saldo."""
+        from openai import OpenAIError
+        from langchain_openai import ChatOpenAI
+        from .consulta_estruturada import planejar_consulta, executar_plano
+        try:
+            with Banco(caminho_banco) as conexao:
+                conexao._corpus(ctx, corpus_id)
+                modelo = ChatOpenAI(model='gpt-4o-mini', api_key=obter_chave_api(arquivo_env),
+                                   temperature=0, max_retries=0, timeout=45)
+                plano = planejar_consulta(pergunta, modelo)
+                return executar_plano(conexao, ctx, corpus_id, plano)
+        except PermissionError:
+            return {'status':'acesso_negado'}
+        except ValueError as erro:
+            return {'status':'consulta_invalida','mensagem':str(erro)}
+        except OpenAIError as erro:
+            return {'status':'falha_api_plano','tipo':type(erro).__name__}
+
+    @tool
     def consultar_disponibilidade(inicio_iso: str, fim_iso: str, atendente_id: str = '') -> dict:
         """Verifica conflitos para o usuário atual por padrão; informe outro ID só se solicitado explicitamente."""
         try:
@@ -161,6 +181,7 @@ def criar_ferramentas_agenda(caminho_banco, ctx, arquivo_env=None):
             return {'status':'dados_invalidos','mensagem':str(erro)}
 
     return [buscar_cliente,consultar_projeto,listar_corpora_acessiveis,buscar_mensagens_fonte,
+            consultar_mensagens_estruturado,
             consultar_disponibilidade,consultar_cep_viacep,
             consultar_cnpj_minha_receita,propor_cadastro_cliente,propor_visita]
 
@@ -182,6 +203,8 @@ Para pergunta sobre cadastro de cliente identificado por nome ou CNPJ, chame bus
 Responda ao pedido atual. Não aplique a resposta do exemplo "qual cliente mencionei?" a uma pergunta sem relação com cliente, como uma saudação ou pergunta casual.
 Projeto e cliente são entidades diferentes. Quando o usuário falar de projeto ou perguntar pelo saldo "dele" após mencionar um projeto, use consultar_projeto; não use buscar_cliente como substituto. Se mudar explicitamente de Alfa para Beta, o referente atual passa a ser Beta. Se consultar_projeto não encontrar o projeto, diga isso. Não calcule saldo a partir de orçamento, entrada combinada ou pagamento apenas informado; se não houver registros financeiros operacionais confirmados, diga que o saldo não está disponível.
 Quando o usuário perguntar "onde foi dito", "qual mensagem" ou "quem falou" sobre a conversa importada, a tarefa é localizar FONTE. Primeiro use listar_corpora_acessiveis e depois buscar_mensagens_fonte no corpus autorizado. Essa regra tem prioridade sobre consultar_projeto: um texto pode citar Alfa mesmo sem projeto operacional cadastrado. Cite o ID da mensagem e o trecho retornado. Se o índice estiver pendente ou desatualizado, peça a preparação pela opção 11; não diga que a informação não existe. Não use essa busca top-k para calcular saldo, somar pagamentos ou listar todas as parcelas.
+Quando o usuário perguntar quantas mensagens existem ou pedir lista filtrada de mensagens importadas, use listar_corpora_acessiveis e consultar_mensagens_estruturado. A contagem é exata para os filtros aceitos; a lista tem limite. Não use busca top-k para contagem. Se o plano retornar nao_suportada, explique o limite; nunca transforme orçamento ou pagamento informado em saldo recebido.
+Mesmo se o usuário abreviar "mensagens" como "msg" ou "msng", perguntas iniciadas por "quantas" exigem a ferramenta consultar_mensagens_estruturado. Não informe nenhum número de mensagens com base em buscar_mensagens_fonte: o top-k pode omitir outras mensagens. Se quiser citar uma mensagem após a contagem, faça outra consulta de lista estruturada.
 Só consulte Minha Receita para CNPJ que não existe no banco. A ferramenta de CNPJ verifica isso novamente e devolve status ja_cadastrado ou nao_cadastrado. Responda "cadastrado" apenas quando o banco local confirmar.
 Se o usuário pedir cadastro de um CNPJ novo, consulte-o e chame propor_cadastro_cliente com o consulta_id retornado. Mostre razão social, CNPJ, nome fantasia e proposta_id. A consulta e a proposta não criam cliente. Oriente o usuário a confirmar com /confirmar-cliente ID; você não tem ferramenta de confirmação.
 Se o pedido não citar outro atendente, use {usuario_id}; não peça seu ID. Consulte disponibilidade antes de propor. Peça duração, tipo/local e endereço completo.

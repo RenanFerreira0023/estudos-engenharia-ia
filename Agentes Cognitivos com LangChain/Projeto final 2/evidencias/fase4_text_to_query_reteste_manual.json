@@ -1,0 +1,16 @@
+{
+  "origem": "log de execução real enviado por Renan em 11/11/2026; transcrição resumida",
+  "pergunta": "quantas mensagens de Bruno mencionam orçamento e Alfa?",
+  "rota_observada": "consulta",
+  "ferramentas_observadas": ["listar_corpora_acessiveis", "consultar_mensagens_estruturado"],
+  "plano_observado": {
+    "tipo": "contagem",
+    "autor": "Bruno",
+    "termos": ["orçamento", "Alfa"]
+  },
+  "sql_observado": "SELECT COUNT(*) FROM mensagens_importadas WHERE empresa_id=? AND corpus_id=? AND LOWER(autor)=LOWER(?) AND LOWER(texto) LIKE LOWER(?) ESCAPE '\\' AND LOWER(texto) LIKE LOWER(?) ESCAPE '\\'",
+  "parametros_observados": ["demo", 1, "Bruno", "%orçamento%", "%Alfa%"],
+  "total_observado": 1,
+  "resposta_informou_total": 1,
+  "avaliacao": "contagem sustentada pelo SELECT parametrizado; corpus fictício de demonstração"
+}

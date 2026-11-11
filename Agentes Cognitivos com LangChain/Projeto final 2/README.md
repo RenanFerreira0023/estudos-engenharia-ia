@@ -2,7 +2,11 @@
 
 [Revisão do enunciado e da aula 08](docs/revisao_enunciado_aula08.md): aderência, lacunas, quatro entregáveis e prioridades para concluir a disciplina.
 
-> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, projetos, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. A memória por sessão usa janela curta e recortes antigos recuperados por FAISS/embeddings, com fallback lexical; preferências confirmadas são guardadas por usuário no SQLite. O índice FAISS de mensagens com fontes da fase 4 tem preparação explícita no menu 11 e ferramenta de consulta no agente. **116 testes locais passaram.** As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, projetos, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. A memória por sessão usa janela curta e recortes antigos recuperados por FAISS/embeddings, com fallback lexical; preferências confirmadas são guardadas por usuário no SQLite. O índice FAISS de mensagens com fontes da fase 4 tem preparação explícita no menu 11 e ferramenta de consulta no agente. A consulta estruturada de mensagens usa plano tipado e SQL parametrizado. As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+
+### Consulta estruturada de mensagens — fase 4
+
+O [notebook 11](notebooks/11_text_to_query_mensagens.ipynb) demonstra pergunta, plano tipado de fixture, SQL parametrizado e resultado. No menu 9, o agente pode usar `consultar_mensagens_estruturado` para contagens e listas filtradas. [Limites e teste](docs/consulta_estruturada_fase4.md).
 
 ### Índice de fontes — início da fase 4
 
