@@ -14,7 +14,7 @@ Secretária com IA para uma equipe de trabalho: lê o backup de uma conversa de 
 
 ## Como executar
 
-Nesta pasta, com o ambiente virtual ativo e `OPENAI_API_KEY` no `.env` (deste projeto ou da raiz do repositório):
+Nesta pasta, com Python 3.12 e um ambiente virtual ativo. Para o Streamlit, o terminal e a avaliação com API, copie `.env.example` para `.env` e preencha `OPENAI_API_KEY`; os notebooks e os testes não precisam de chave:
 
 ```powershell
 python -m pip install -r requirements-ia.txt
@@ -151,7 +151,7 @@ A entrega usa **cinco notebooks, um por fase**, na pasta `notebooks/`. Cada um c
 
 A pasta `notebooks/incrementos/` guarda os 15 notebooks criados ao longo do desenvolvimento, um por incremento. Eles são o histórico de onde vieram as células dos notebooks de fase e continuam executáveis.
 
-Abra um notebook de fase no VS Code/Jupyter, escolha o kernel do ambiente e execute todas as células.
+Abra um notebook de fase no VS Code/Jupyter, escolha o kernel do ambiente e execute as células **de cima para baixo, uma vez** (célula por célula ou "Run All"). Cada notebook é independente: cria o próprio banco temporário e não precisa de chave de API. Para repetir, reinicie o kernel ("Restart") antes, porque algumas células conferem resultados que mudam se rodarem duas vezes. Verificado em 12/11/2026 num ambiente Python novo, só com esta pasta e `requirements-notebook.txt`: os cinco notebooks e os 141 testes passaram.
 O notebook da fase 1 localiza o projeto sem caminho pessoal, cria banco temporário, importa TXT, reabre o banco,
 reimporta e testa ZIP. Esperado: 40 mensagens, zero novas na repetição e duas ocorrências legítimas idênticas.
 

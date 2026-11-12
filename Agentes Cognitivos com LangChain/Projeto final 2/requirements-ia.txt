@@ -1,4 +1,5 @@
 -r requirements.txt
+langchain==1.4.7
 langchain-core==1.7.0
 langchain-openai==1.7.0
 pydantic==2.14.0
