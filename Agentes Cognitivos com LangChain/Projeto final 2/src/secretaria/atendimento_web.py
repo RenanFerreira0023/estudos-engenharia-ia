@@ -33,7 +33,7 @@ def responder_turno(banco, ctx, sessao_id, pergunta, arquivo_env=None, agente=No
                       + json.dumps(recuperados, ensure_ascii=False) + '.') if recuperados else ''
     preferencias = json.dumps(PreferenciasUsuario(banco).listar(ctx), ensure_ascii=False)
     agora = datetime.now(ZoneInfo('America/Sao_Paulo')).isoformat()
-    agente = agente or criar_agente_agenda(banco, ctx, arquivo_env)
+    agente = agente or criar_agente_agenda(banco, ctx, arquivo_env, canal='web')
     rastro = RastroAgente()
     try:
         resposta = agente.invoke({'messages': historico + [{'role': 'user', 'content':

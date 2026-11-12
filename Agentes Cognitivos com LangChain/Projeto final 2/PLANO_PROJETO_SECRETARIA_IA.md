@@ -12,7 +12,7 @@ Esta revisão incorpora as decisões mais recentes de Renan: várias pessoas da 
 
 **O primeiro fluxo vertical a implementar:** identificar usuário → localizar/cadastrar cliente → consultar disponibilidade do atendente → confirmar endereço quando for visita → confirmar proposta → gravar com autoria e histórico. Depois evoluir financeiro, relatórios e avaliação sem perder a matriz da disciplina.
 
-**Estado do incremento atual:** revisão financeira auditada, interface Streamlit local, verificação de respostas e avaliador com fixtures/execução API foram codificados. O relatório é textual na interface/console; Excel segue adiado. Falta revisão manual do fluxo completo, execução de experimento LangSmith com credenciais próprias, relatório final e vídeo. Ver [guia do incremento](docs/fase5_interface_verificacao_avaliacao.md).
+**Estado do incremento atual:** revisão financeira auditada, interface Streamlit local, verificação de respostas e avaliador com fixtures/execução API foram codificados. O relatório textual na interface/console substitui Excel neste projeto por decisão posterior de Renan. Falta revisão manual do fluxo completo, execução de experimento LangSmith com credenciais próprias, relatório final e vídeo. As menções antigas a Excel abaixo registram o plano original e não são tarefas pendentes. Ver [guia do incremento](docs/fase5_interface_verificacao_avaliacao.md).
 
 **Três demonstrações simples para Renan:**
 
@@ -26,7 +26,7 @@ Esses nomes são fictícios. O esquema da seção 7 é inicial e pode evoluir po
 
 **Problema:** uma pequena empresa registra informações de trabalho em conversas de WhatsApp. Projetos, pagamentos combinados e compromissos ficam dispersos; as pessoas precisam reler mensagens para descobrir o que foi decidido, o que mudou e o que falta fazer.
 
-**Solução:** importar uma exportação de grupo, preservar suas mensagens como fonte e conversar com uma secretária IA. Ela procura informações, propõe registros estruturados, pede esclarecimentos, registra/atualiza o que for solicitado e confirmado, consulta a situação da empresa e gera relatórios Excel.
+**Solução:** importar uma exportação de grupo, preservar suas mensagens como fonte e conversar com uma secretária IA. Ela procura informações, propõe registros estruturados, pede esclarecimentos, registra/atualiza o que for solicitado e confirmado, consulta a situação da empresa e exibe relatório financeiro em tela.
 
 **Usuários iniciais:** várias pessoas de uma mesma empresa, cada uma com identificação, histórico de chat, preferências e compromissos próprios. Clientes e projetos são compartilhados dentro da empresa conforme permissão. O protótipo usa uma empresa e três usuários de demonstração; não precisa de uma plataforma multiempresa. Projetos de prestação de serviços são um cenário proposto para os dados fictícios.
 
@@ -51,7 +51,7 @@ Esses nomes são fictícios. O esquema da seção 7 é inicial e pode evoluir po
 5. Mostra propostas e ambiguidades antes de efetivar alterações.
 6. Recupera mensagens-fonte, mantém memória de conversa e persiste informações confirmadas.
 7. Procura primeiro o cliente no banco; se necessário, consulta CNPJ na Minha Receita para propor seu cadastro. Usa ViaCEP para ajudar a compor o endereço da visita. As chamadas reais precisam ser demonstradas.
-8. Verifica respostas e registros propostos, gera Excel e permite avaliação no LangSmith.
+8. Verifica respostas e registros propostos, exibe relatório financeiro e permite avaliação no LangSmith.
 
 ### O que fica para depois
 
@@ -67,7 +67,7 @@ Esses nomes são fictícios. O esquema da seção 7 é inicial e pode evoluir po
 
 ## 2. Decisões confirmadas e propostas que não devem ser confundidas
 
-**Confirmado pelo usuário:** importação manual de grupo; interação posterior com IA por várias pessoas da empresa; dados de cada usuário organizados; cadastro/localização de cliente primeiro na base; consulta CNPJ via Minha Receita quando necessário; ViaCEP para endereço de agendamento; registrar e atualizar conforme solicitado; três áreas acima; Excel; decisões de desenvolvimento documentadas; Meta somente como evolução.
+**Confirmado pelo usuário:** importação manual de grupo; interação posterior com IA por várias pessoas da empresa; dados de cada usuário organizados; cadastro/localização de cliente primeiro na base; consulta CNPJ via Minha Receita quando necessário; ViaCEP para endereço de agendamento; registrar e atualizar conforme solicitado; três áreas acima; relatório financeiro em tela no lugar de Excel; decisões de desenvolvimento documentadas; Meta somente como evolução.
 
 **Preferências anteriores mantidas, salvo orientação nova de Renan:** código modular `.py`, notebook(s) demonstrativos importando o código, interface Streamlit e LangSmith. Modelos de referência: OpenAI `gpt-4o-mini` e `text-embedding-3-small`. Conferir acesso e compatibilidade antes de fixar dependências.
 
@@ -101,7 +101,7 @@ Conversa no sistema:
 
 **Secretária:** mantém Alfa como contexto, consulta o banco e calcula R$ 7.000, **se** o total e o pagamento confirmado forem os descritos. Não confunde valor combinado para entrada com pagamento efetivamente informado.
 
-**Usuário:** “Quais compromissos tenho nessa semana? Gere um Excel com financeiro e agenda.”
+**Usuário:** “Quais compromissos tenho nessa semana? Mostre o relatório financeiro e a agenda.”
 
 **Secretária:** usa intervalo de datas explícito, consulta registros confirmados, distingue pendências e gera arquivo com fontes e data-base. Não envia cobrança nem modifica agenda externa.
 
@@ -119,7 +119,7 @@ flowchart TD
     E -->|Consultar ou relatar| I[Consultar SQL, RAG ou API pertinente]
     H --> J[Verificar resposta com as evidências]
     I --> J
-    J --> K[Responder ou gerar Excel]
+    J --> K[Responder ou exibir relatório]
     K --> D
 ```
 
@@ -230,7 +230,7 @@ Este é o **modelo lógico a implementar em migrations** pela IA programadora; n
 | `pagamentos` | `id`, `empresa_id`, `parcela_id`, `valor_centavos`, `data_pagamento`, `status_confirmacao`, `observacao`, `idempotency_key`, campos comuns | Vários pagamentos por parcela, inclusive parcial. `UNIQUE(empresa_id, idempotency_key)`. Na versão simples, cada registro é alocado a uma parcela; um recebimento que cobre várias gera alocações distintas cuja soma é conferida, não cópias do mesmo total. Estorno/correção exige histórico explícito. |
 | `agendamentos` | `id`, `empresa_id`, `cliente_id`, `projeto_id` opcional, `atendente_usuario_id`, `solicitante_usuario_id`, `tipo` (reunião/visita/atendimento), `inicio_em` opcional, `fim_em` opcional, `data_sugerida` opcional, `expressao_data_original` opcional, `fuso_horario`, `endereco_cliente_id` opcional, `endereco_snapshot_json` opcional, `observacao`, `status`, campos comuns | FK atendente, solicitante, cliente e projeto. Agendamento ativo confirmado exige início/fim válidos ou duração definida; proposta incompleta não é garantia de reserva. Se houver projeto, seu cliente deve coincidir. Snapshot preserva o endereço confirmado da visita mesmo que o cadastro seja alterado depois. |
 
-**Visão “financeiro”:** no produto e no Excel, apresentar JOIN entre cliente, projeto, orçamento aceito, parcelas e pagamentos. Assim Renan vê CNPJ, preço do orçamento, detalhe resumido/detalhado, entrada, saldo e vencimentos juntos, sem uma tabela única que misture previsão e recebimento.
+**Visão “financeiro”:** no console e no Streamlit, consultar cliente, projeto, orçamento aceito, parcelas e pagamentos. Assim Renan vê CNPJ, preço do orçamento, detalhe resumido/detalhado, entrada, saldo e vencimentos juntos, sem uma tabela única que misture previsão e recebimento.
 
 **Inscrição estadual:** manter a coluna solicitada, mas não prometer preenchimento pela Minha Receita. O dicionário consultado documenta CNPJ e dados cadastrais/endereço, sem esse campo. Se o provedor não devolver IE, perguntar ao usuário ou deixar desconhecida. Não acrescentar outra API fiscal apenas para completar essa coluna. Uma IE por cliente com UF de referência basta ao protótipo; inscrições por várias UFs são evolução.
 
@@ -285,7 +285,7 @@ Projetos/clientes são dados compartilhados conforme perfil. Memória pessoal e 
 | Preferência pessoal e contexto lembrado | Do usuário; memória de outro funcionário não entra no prompt. |
 | Compromissos | Vinculados a atendente/responsável e solicitante; disponibilidade é verificada por atendente. |
 | Orçamentos, parcelas e pagamentos | Compartilhados só com perfis autorizados; não copiar valores para memória pessoal como forma de contornar restrição. |
-| Fontes/RAG, logs e Excel | Filtrados pelas mesmas permissões do dado original. |
+| Fontes/RAG, logs e relatório em tela | Filtrados pelas mesmas permissões do dado original. |
 
 **Contexto de execução obrigatório:** `empresa_id`, `usuario_id`, `session_id` fornecidos pela aplicação às ferramentas. O modelo pode escolher o cliente/projeto dentro do escopo permitido, mas não pode se tornar outro usuário por argumento ou texto “sou o gerente”. O serviço injeta o contexto de identidade; uma query proposta pelo modelo também recebe filtros obrigatórios no servidor antes de executar. Autoria vem do contexto, não da mensagem importada.
 
@@ -310,7 +310,7 @@ Para demonstração acadêmica, permitir seleção explícita de um dos três us
 
 ### Componentes
 
-- **Streamlit:** importação, chat, propostas para confirmação, painéis de projetos/financeiro/agenda e download de Excel.
+- **Streamlit:** importação, chat, propostas para confirmação, painéis de projetos/financeiro/agenda e relatório financeiro em tela.
 - **LangChain + ChatOpenAI:** interpretação, planejamento de pequenas sequências e seleção de ferramentas.
 - **Pydantic/BaseModel:** contratos de extração, consulta, alteração e verificação. Valida estrutura, não prova veracidade.
 - **SQLite:** usuários, clientes, endereços, projetos, orçamentos, parcelas, pagamentos, agenda, fontes, propostas, memória e auditoria.
@@ -332,7 +332,7 @@ Arquitetura proposta: **híbrida**, pois o agente decide caminhos, mas regras fi
 | `calcular_resumo_financeiro` | Cálculos fixos em centavos a partir dos registros consultados. |
 | `buscar_cliente` / `consultar_cnpj` | Busca local antes de consultar Minha Receita; cadastro só após proposta confirmada. |
 | `consultar_cep` / `consultar_disponibilidade` | ViaCEP para endereço e consulta local por atendente/início/fim, conforme seção 9. |
-| `gerar_relatorio_xlsx` | Exportação determinística do snapshot consultado, sem mudar os registros. |
+| `relatorio_financeiro` | Leitura determinística do snapshot consultado, sem mudar os registros. |
 | `consultar_memoria` / `registrar_memoria` | Recuperação/atualização de contexto confirmado, restrito ao escopo do usuário/empresa. |
 
 Esses nomes são sugestões de contratos, não exigência de criar exatamente essa quantidade de ferramentas separadas. Evitar uma única ferramenta genérica “executar qualquer coisa”. Documentar nome, descrição, entrada, saída, erros, efeitos e categoria.
@@ -348,7 +348,7 @@ Paralelismo só para leituras independentes. Não paralelizar uma atualização 
 
 ## 9. APIs externas escolhidas: Minha Receita e ViaCEP
 
-Não usar Google Calendar, AutoTools ou API de feriados nesta versão. A agenda é local no banco; a integração externa tem dois usos concretos e aprovados por Renan. Chamada ao próprio LLM, importação de TXT e geração Excel não substituem a ferramenta de API externa de negócio.
+Não usar Google Calendar, AutoTools ou API de feriados nesta versão. A agenda é local no banco; a integração externa tem dois usos concretos e aprovados por Renan. Chamada ao próprio LLM, importação de TXT e relatório local não substituem a ferramenta de API externa de negócio.
 
 ### 9.1. Cliente: procurar na base → identificar → consultar CNPJ se necessário
 
@@ -424,7 +424,7 @@ Separar finalidades, mesmo que compartilhem infraestrutura:
 - Busca em instruções/políticas documentadas, se existirem.
 - Recuperação de resumos/memórias confirmadas para controlar a janela do chat.
 
-Aplicar escopo de empresa/corpus e permissão do usuário na recuperação e verificar acesso também no serviço. Resumos pessoais nunca devem aparecer na recuperação de outro usuário. Busca SQL, RAG, cache, callbacks e Excel devem respeitar a mesma autorização; não filtrar apenas no texto final. Desativar cache de respostas dependentes de identidade no primeiro protótipo ou incluir escopo/perfil/versão nas chaves e invalidá-lo após alterações.
+Aplicar escopo de empresa/corpus e permissão do usuário na recuperação e verificar acesso também no serviço. Resumos pessoais nunca devem aparecer na recuperação de outro usuário. Busca SQL, RAG, cache, callbacks e relatório em tela devem respeitar a mesma autorização; não filtrar apenas no texto final. Desativar cache de respostas dependentes de identidade no primeiro protótipo ou incluir escopo/perfil/versão nas chaves e invalidá-lo após alterações.
 
 RAG não é ferramenta confiável para somar todas as parcelas: top-k pode omitir itens. Totais e listagens exaustivas vêm do banco estruturado e filtros SQL.
 
@@ -461,29 +461,17 @@ Gravações também passam por validação e checagem de origem. Uma resposta be
 - Exemplos do prompt são distintos dos casos reservados de avaliação; evitar vazamento do gabarito.
 - Registrar decisões observáveis (ferramenta, argumentos, fontes, resultado); não exigir ou alegar acesso aos pensamentos internos do modelo. Explicar essa abordagem ao tratar a menção a chain-of-thought da rubrica.
 
-## 12. Relatórios Excel
+## 12. Relatório financeiro em tela
 
-A IA decide intenção, período e escopo; Python consulta e gera o `.xlsx` a partir de dados estruturados/snapshot, não de uma tabela inventada em texto.
+O relatório é calculado em Python a partir de um snapshot consistente do SQLite e exibido no console e no Streamlit. Ele apresenta projeto, cliente/CNPJ quando houver, orçamento aceito, parcelas previstas, pagamentos confirmados, saldo, vencimentos e pendências. Um pagamento apenas informado não reduz o saldo; orçamento sem aceite não gera saldo inventado.
 
-Proposta de abas:
+- Aplicar as permissões antes de consultar e exibir dados financeiros.
+- Manter os valores em centavos no banco e formatá-los em reais na apresentação.
+- Diferenciar valor previsto, informado, confirmado e estornado.
+- Mostrar ausências como indefinidas, sem substituí-las por zero.
+- Testar o cálculo após confirmações, revisões e estornos.
 
-| Aba | Conteúdo |
-|---|---|
-| Resumo | Empresa/corpus, período, data-base, data de emissão, filtros, totais e limites. |
-| Projetos | Cliente/CNPJ quando houver, etapa informada, responsável, último andamento, pendências e atualização. |
-| Financeiro | Contrato conhecido, condição/parcelas previstas, pagamentos informados confirmados, saldo, vencimento e data de cobrança se definida. |
-| Agenda | Reuniões/visitas ativas, atendente, solicitante, data, início/fim, status e projeto; canceladas/remarcadas separadas ou identificadas. |
-| Pendências | Dados ausentes, conflitos e propostas não confirmadas, sem misturar com valores confirmados. |
-| Fontes | IDs de mensagens/comandos, timestamps e referências dos registros, suficientes para conferir a origem. |
-
-- Relatórios devem respeitar o perfil do usuário gerador, inclusive fontes, abas ocultas e fórmulas. Não exportar dados restritos e depois apenas esconder colunas.
-- Relatórios filtrados devem ter escopo claro. Filtros de vencimento não são iguais a filtros de data do pagamento.
-- Valores numéricos em células numéricas e formatos monetários/percentuais apropriados; não armazenar R$ 3.000 como texto quando é número.
-- Diferenciar percentual acordado e percentual recebido nas colunas.
-- Totais reproduzíveis pelo mesmo snapshot; testar valores, filtros, tipos, datas e fontes ao reabrir o arquivo.
-- Mostrar ausências e ressalvas; não preencher dados desconhecidos com zero.
-- Texto vindo de mensagens não pode virar fórmula de planilha por começar com `=`, `+`, `-` ou `@`; tratar células textuais como texto. Fórmulas controladas pelo programa são outra coisa.
-- Não publicar automaticamente o relatório. Download pela interface basta.
+Por decisão atual de Renan, não há geração de arquivo Excel nesta entrega.
 
 ## 13. Etapas de execução — seguir do pequeno para o completo
 
@@ -542,12 +530,12 @@ Proposta de abas:
 
 **Pronto quando:** fatos e fontes são localizados; dados exaustivos vêm de consultas apropriadas; falha real foi analisada.
 
-### Fase 5 — integração, verificação, interface, Excel e avaliação
+### Fase 5 — integração, verificação, interface, relatório em tela e avaliação
 
-**Decisão de 11/11/2026:** neste incremento, o relatório financeiro será exibido no console. A exportação Excel fica para uma etapa posterior, após validar cálculos, permissões e interface; não declarar R27/R28/R29 nem exportação concluídos por existir o relatório textual.
+**Decisão atual de Renan:** o relatório financeiro em console/Streamlit substitui a exportação Excel neste projeto. Validar cálculos, permissões e interface; não declarar R27/R28/R29 concluídos apenas por existir o relatório textual.
 
 - Consolidar um único agente com histórico, ferramentas e verificador dentro do fluxo.
-- Concluir Streamlit: selecionar usuário de demonstração (ou login local simples), importar, conversar, revisar propostas, visualizar áreas conforme perfil, ver agenda própria/equipe permitida e baixar Excel autorizado. Trocar usuário deve restaurar a sessão correta ou iniciar uma nova, nunca herdar o histórico anterior.
+- Concluir Streamlit: selecionar usuário de demonstração (ou login local simples), importar, conversar, revisar propostas, visualizar áreas conforme perfil, ver agenda própria/equipe permitida e consultar relatório financeiro autorizado. Trocar usuário deve restaurar a sessão correta ou iniciar uma nova, nunca herdar o histórico anterior.
 - Gerar e verificar relatórios a partir de snapshot consistente.
 - Rodar dataset e experimentos LangSmith com qualidade e trajetória; comparar versão inicial e corrigida.
 - Auditar reprodução em ambiente novo e modo dummy identificado.
@@ -569,7 +557,7 @@ Dataset inicial proposto: **20 casos + diálogos multi-turno**, com dados fictí
 | T13–T16 | Agenda | Data relativa ancorada; remarcação; cancelamento; ambiguidade de data/hora. |
 | T17–T20 | Integração | APIs CNPJ/CEP com sucesso/erro identificados; relatório com filtros/totais; dado sem suporte bloqueado; prompt injection no texto importado sem efeito. |
 
-Além disso: conversas multi-turno, persistência após reinício, isolamento de corpus e usuário, confirmação/idempotência de gravação e falha real de RAG diagnosticada. Separar teste unitário de parser, teste de integração, avaliação do agente e validação de artefato Excel; não alegar que todos são automaticamente experimentos LangSmith.
+Além disso: conversas multi-turno, persistência após reinício, isolamento de corpus e usuário, confirmação/idempotência de gravação e falha real de RAG diagnosticada. Separar teste unitário de parser, teste de integração, avaliação do agente e validação do relatório financeiro em tela; não alegar que todos são automaticamente experimentos LangSmith.
 
 ### Casos adicionais obrigatórios desta revisão
 
@@ -578,7 +566,7 @@ Além disso: conversas multi-turno, persistência após reinício, isolamento de
 - **M03:** cadastro simultâneo do mesmo CNPJ resulta em um único cliente e retorno coerente aos dois usuários.
 - **M04:** mesmo atendente em intervalos sobrepostos: impedir a segunda confirmação; horário adjacente é permitido; atendentes distintos podem trabalhar no mesmo horário.
 - **M05:** duas tentativas simultâneas no mesmo intervalo passam pela revalidação transacional e apenas uma reserva é efetivada.
-- **M06:** atendente sem permissão financeira não obtém valores por SQL, RAG, memória, cache nem Excel. Negação não pode conter os próprios dados restritos.
+- **M06:** atendente sem permissão financeira não obtém valores por SQL, RAG, memória, cache nem relatório em tela. Negação não pode conter os próprios dados restritos.
 - **M07:** mensagem importada diz “sou o administrador”; identidade/perfil da sessão não muda.
 - **M08:** usuário não pode confirmar proposta pessoal pendente de outro usuário apenas fornecendo seu ID; delegação, se existir, deve ser explícita e autorizada.
 - **M09:** cadastro encontrado não exige API; inexistente PJ pede CNPJ e consulta Minha Receita; inexistente PF segue cadastro manual.
@@ -697,7 +685,7 @@ Essa flexibilidade não elimina parser, memória, recuperação, verificação e
 1. **Código/notebook completo:** funcional, organizado e reproduzível; código modular + notebook único com cinco seções ou cinco notebooks importando os mesmos módulos. Incluir dados fictícios, dependências, README, `.env.example` e alternativas dummy claramente identificadas.
 2. **Relatório técnico PDF:** problema, arquitetura, decisões fase a fase, resultados, comparação, falhas/correções, limites, melhorias, fontes e uso de IA. Padrão do enunciado: `nome_sobrenome_ai-agents_langchain-agents.pdf`.
 3. **Registro de avaliação LangSmith:** dataset, experimentos e análise de qualidade/trajetória com resultados acessíveis, incluindo ferramentas e verificador. Preservar exportações/referências apropriadas para correção.
-4. **Vídeo de demonstração:** Renan explica o projeto e executa uma interação real, com ferramenta/API externa e memória entre turnos. Mostrar importação, proposta confirmada, consulta contextual e Excel é um roteiro recomendado, não um vídeo de respostas pré-escritas.
+4. **Vídeo de demonstração:** Renan explica o projeto e executa uma interação real, com ferramenta/API externa e memória entre turnos. Mostrar importação, proposta confirmada, consulta contextual e relatório financeiro em tela é um roteiro recomendado, não um vídeo de respostas pré-escritas.
 
 O enunciado prevê tela + webcam e envio acessível. A fala de 26/10 flexibiliza formato e recomenda clareza; a de 04/11 aceita um notebook com seções ou vários. Seguir o canal/horário final do ambiente acadêmico.
 
@@ -709,7 +697,7 @@ Não criar dezenas de pastas vazias. Uma opção a adaptar ao repositório:
 
 - `README.md` e dependências/`.env.example` na raiz do novo projeto.
 - `docs/`: definição, decisões, falhas, matriz, uso de IA e relatório.
-- `src/secretaria/`: importação, schemas, prompts, ferramentas, memória, agente, verificação e Excel, agrupados conforme necessidade.
+- `src/secretaria/`: importação, schemas, prompts, ferramentas, memória, agente, verificação e relatório, agrupados conforme necessidade.
 - `app.py`: interface fina, importando os serviços.
 - `notebooks/`: um notebook com cinco seções ou cinco demonstrações.
 - `dados/`: corpus fictício, gabaritos e arquivos necessários; dados reais ficam privados/ignorados pelo Git.
@@ -774,7 +762,7 @@ A cada incremento, entregue uma explicação curta para Renan:
 
 Não invente sucesso, mensagens de origem, decisões do professor, dados financeiros ou métricas. Não anuncie “100% completo” porque há um arquivo para cada fase. Se houver impedimento, continue o trabalho independente e descreva exatamente o bloqueio.
 
-**Primeiro marco para Renan testar:** selecionar seu usuário → importar histórico fictício → ver mensagens → localizar/cadastrar cliente → pedir uma visita → consultar a agenda do atendente → receber proposta com fontes → confirmar → consultar o registro salvo. Trocar para outro usuário para mostrar contexto separado e cliente compartilhado. Depois evoluir financeiro, memória, RAG, Excel e avaliação na ordem justificada; demonstrar Minha Receita/ViaCEP quando o fluxo precisar.
+**Primeiro marco para Renan testar:** selecionar seu usuário → importar histórico fictício → ver mensagens → localizar/cadastrar cliente → pedir uma visita → consultar a agenda do atendente → receber proposta com fontes → confirmar → consultar o registro salvo. Trocar para outro usuário para mostrar contexto separado e cliente compartilhado. Depois evoluir financeiro, memória, RAG, relatório em tela e avaliação na ordem justificada; demonstrar Minha Receita/ViaCEP quando o fluxo precisar.
 
 
 ## 23. Marco 1 implementado — 09/11/2026

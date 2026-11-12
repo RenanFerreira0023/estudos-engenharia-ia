@@ -1,5 +1,11 @@
 # Decisões iniciais — Secretária IA
 
+## D-010 — Relatório em tela substitui Excel
+
+- Decisão posterior de Renan: retirar exportação Excel do escopo deste projeto e usar o relatório financeiro no console e no Streamlit.
+- Consequência: validar cálculos, permissões, revisões e estornos no relatório existente. Menções a Excel em registros históricos anteriores não indicam tarefa pendente.
+- Estado: código do relatório implementado; bateria manual de testes ainda em execução.
+
 ## D-001 — Novo projeto isolado
 
 - Data: 09/11/2026.

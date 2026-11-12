@@ -1,7 +1,5 @@
 """ChatPromptTemplate + modelo + PydanticOutputParser; versões LCEL e @chain."""
 import json
-import os
-from pathlib import Path
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import chain
@@ -78,16 +76,10 @@ def criar_chain(modelo,estilo='lcel'):
     return imperativa
 
 def criar_modelo(arquivo_env=None):
-    from dotenv import dotenv_values
     from langchain_openai import ChatOpenAI
-    # CONFIGURAÇÃO: ambiente ou arquivo explícito/local; não procura segredos em outros projetos.
-    chave=os.environ.get('OPENAI_API_KEY')
-    if chave is None:
-        local=Path(arquivo_env) if arquivo_env is not None else Path(__file__).resolve().parents[2]/'.env'
-        valores=dotenv_values(local,encoding='utf-8') if local.is_file() else {}
-        chave=valores.get('OPENAI_API_KEY')
-    if not isinstance(chave,str) or not chave.strip():
-        raise ValueError('Configure OPENAI_API_KEY no ambiente ou .env deste projeto; opção fixture não precisa de chave.')
+    from .agente_agenda import obter_chave_api
+    # A extração e o chat consultam o mesmo ambiente, arquivo explícito e .env do repositório.
+    chave=obter_chave_api(arquivo_env)
     # SCHEMA NA GERAÇÃO: fornecedor restringe tipos/áreas; parser local mantém limites e validações.
     schema=esquema_fornecedor()
     return ChatOpenAI(model='gpt-4o-mini',api_key=chave.strip(),temperature=0,max_retries=0,

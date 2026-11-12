@@ -4,7 +4,7 @@ A pergunta em linguagem natural vira um `PlanoConsultaMensagens` tipado: contage
 
 Exemplo com o corpus fictício: “Quantas mensagens de Bruno mencionam orçamento e Alfa?” produz `tipo=contagem`, `autor=Bruno`, `termos=[orçamento, Alfa]`. A consulta de fixture retorna **1** mensagem, a M0004. Isso é uma contagem dos textos que satisfazem os filtros, não um valor financeiro. A lista é limitada a 50 itens; `COUNT(*)` é a operação exaustiva.
 
-No menu 9, o agente dispõe de `listar_corpora_acessiveis` e `consultar_mensagens_estruturado`. O planejamento com OpenAI exige chave configurada. O [notebook 11](../notebooks/11_text_to_query_mensagens.ipynb) mostra o mesmo fluxo sem API por um plano fixture identificado. O teste local cobre contagem, lista, autorização entre usuários, fuso e tentativa de inserir SQL em um termo.
+No menu 9, o agente dispõe de `listar_corpora_acessiveis` e `consultar_mensagens_estruturado`. O planejamento com OpenAI exige chave configurada. O [notebook 11](../notebooks/incrementos/11_text_to_query_mensagens.ipynb) mostra o mesmo fluxo sem API por um plano fixture identificado. O teste local cobre contagem, lista, autorização entre usuários, fuso e tentativa de inserir SQL em um termo.
 
 Esta consulta lê mensagens importadas. Não confirma pagamentos, não calcula saldo e não altera registros operacionais.
 

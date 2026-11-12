@@ -2,7 +2,7 @@
 
 ### Interface e avaliação em desenvolvimento
 
-Execute `python -m streamlit run app.py` nesta pasta para testar conversa, fontes, revisão, agenda e financeiro na interface local. `python avaliar.py --modo fixture` mostra seis casos manuais identificados; `--modo api` executa o agente real em banco temporário, e `--langsmith` publica somente casos fictícios se houver credenciais. A resposta do agente passa por verificação antes de ser salva. [Guia e limites](docs/fase5_interface_verificacao_avaliacao.md) · [Bateria de testes](docs/roteiro_testes_incremento_1a4.md). A exportação Excel, a execução real de avaliação no LangSmith, o PDF e o vídeo continuam pendentes.
+Execute `python -m streamlit run app.py` nesta pasta para testar conversa, fontes, revisão, agenda e financeiro na interface local. `python avaliar.py --modo fixture` mostra seis casos manuais identificados; `--modo api` executa o agente real em banco temporário, e `--langsmith` publica somente casos fictícios se houver credenciais. A resposta do agente passa por verificação antes de ser salva. [Guia e limites](docs/fase5_interface_verificacao_avaliacao.md) · [Bateria de testes](docs/roteiro_testes_incremento_1a4.md). O relatório financeiro em tela substitui a exportação Excel neste projeto. A execução real de avaliação no LangSmith, o PDF e o vídeo continuam pendentes.
 
 [Revisão do enunciado e da aula 08](docs/revisao_enunciado_aula08.md): aderência, lacunas, quatro entregáveis e prioridades para concluir a disciplina.
 
@@ -10,38 +10,38 @@ Execute `python -m streamlit run app.py` nesta pasta para testar conversa, fonte
 
 ### Financeiro no console e no Streamlit
 
-O menu **12 Financeiro** registra orçamento proposto/aceito, parcelas previstas e pagamento informado/confirmado. A opção financeira 1 exibe o [relatório simples no terminal](docs/financeiro_console.md); a ferramenta `consultar_financeiro_projeto` permite ao agente ler saldo somente para perfis autorizados. Excel foi adiado por decisão do usuário.
-O [notebook 13](notebooks/13_financeiro_confirmado.ipynb) executa o ciclo em banco temporário com dados fictícios e mostra como o saldo muda somente após confirmar o pagamento.
+O menu **12 Financeiro** registra orçamento proposto/aceito, parcelas previstas e pagamento informado/confirmado. A opção financeira 1 exibe o [relatório simples no terminal](docs/financeiro_console.md); a ferramenta `consultar_financeiro_projeto` permite ao agente ler saldo somente para perfis autorizados. O relatório também aparece na interface; exportação Excel está fora do escopo atual.
+O [notebook 13](notebooks/incrementos/13_financeiro_confirmado.ipynb) executa o ciclo em banco temporário com dados fictícios e mostra como o saldo muda somente após confirmar o pagamento.
 
 ### Consulta estruturada de mensagens — fase 4
 
-O [notebook 11](notebooks/11_text_to_query_mensagens.ipynb) demonstra pergunta, plano tipado de fixture, SQL parametrizado e resultado. No menu 9, o agente pode usar `consultar_mensagens_estruturado` para contagens e listas filtradas. [Limites e teste](docs/consulta_estruturada_fase4.md).
+O [notebook 11](notebooks/incrementos/11_text_to_query_mensagens.ipynb) demonstra pergunta, plano tipado de fixture, SQL parametrizado e resultado. No menu 9, o agente pode usar `consultar_mensagens_estruturado` para contagens e listas filtradas. [Limites e teste](docs/consulta_estruturada_fase4.md).
 
-O [notebook 12](notebooks/12_diagnostico_ranking_rag.ipynb) reproduz o diagnóstico de uma falha real de ranking com a evidência salva: a mensagem que apenas pergunta pelo saldo do Gama ficou acima da mensagem que explica por que ele não é calculável. O reteste colocou a explicação em primeiro lugar, preservando os escores originais.
+O [notebook 12](notebooks/incrementos/12_diagnostico_ranking_rag.ipynb) reproduz o diagnóstico de uma falha real de ranking com a evidência salva: a mensagem que apenas pergunta pelo saldo do Gama ficou acima da mensagem que explica por que ele não é calculável. O reteste colocou a explicação em primeiro lugar, preservando os escores originais.
 
 ### Índice de fontes — início da fase 4
 
-O [notebook 10](notebooks/10_indice_fontes_faiss.ipynb) prepara um índice FAISS com mensagens fictícias e vetores de fixture. A busca posterior carrega esse índice, verifica versão do corpus e autorização, e retorna o trecho original com ID de fonte. O menu 11 prepara o índice do corpus escolhido com confirmação antes da API; no menu 9, `buscar_mensagens_fonte` usa somente o índice existente. Renan observou a preparação real de 40 mensagens. Na [primeira tentativa](evidencias/fase4_falha_busca_fonte_manual.json), o agente deixou de buscar a fonte; no reteste chamou a ferramenta, recebeu M0004 em primeiro lugar e citou corretamente o orçamento de Alfa. [Decisões e limites](docs/indice_fontes_fase4.md).
+O [notebook 10](notebooks/incrementos/10_indice_fontes_faiss.ipynb) prepara um índice FAISS com mensagens fictícias e vetores de fixture. A busca posterior carrega esse índice, verifica versão do corpus e autorização, e retorna o trecho original com ID de fonte. O menu 11 prepara o índice do corpus escolhido com confirmação antes da API; no menu 9, `buscar_mensagens_fonte` usa somente o índice existente. Renan observou a preparação real de 40 mensagens. Na [primeira tentativa](evidencias/fase4_falha_busca_fonte_manual.json), o agente deixou de buscar a fonte; no reteste chamou a ferramenta, recebeu M0004 em primeiro lugar e citou corretamente o orçamento de Alfa. [Decisões e limites](docs/indice_fontes_fase4.md).
 
 ### Recuperação vetorial da memória — fase 3
 
-Após seis turnos, quando a pergunta depende do contexto antigo, o menu 9 filtra recortes no SQLite por empresa, usuário e sessão; só então cria um índice FAISS temporário e usa embeddings OpenAI para escolher até dois. O [notebook 09](notebooks/09_recuperacao_vetorial_memoria.ipynb) executa o mesmo método com vetores de fixture, sem API. [Reteste real](evidencias/fase3_faiss_reteste_manual.json) recuperou Alfa; o filtro posterior para evitar recuperação numa saudação ainda precisa de reteste real. Se a API falhar, o terminal sinaliza fallback para a busca lexical. O FAISS das mensagens importadas com fontes continua reservado à fase 4.
+Após seis turnos, quando a pergunta depende do contexto antigo, o menu 9 filtra recortes no SQLite por empresa, usuário e sessão; só então cria um índice FAISS temporário e usa embeddings OpenAI para escolher até dois. O [notebook 09](notebooks/incrementos/09_recuperacao_vetorial_memoria.ipynb) executa o mesmo método com vetores de fixture, sem API. [Reteste real](evidencias/fase3_faiss_reteste_manual.json) recuperou Alfa; o filtro posterior para evitar recuperação numa saudação ainda precisa de reteste real. Se a API falhar, o terminal sinaliza fallback para a busca lexical. O FAISS das mensagens importadas com fontes continua reservado à fase 4.
 
 ### Preferências confirmadas — fase 3
 
-No menu 9, `/lembrar estilo=detalhado` grava uma preferência pessoal explícita; `/memorias` mostra o valor atual e `/esquecer-memoria estilo` o remove. O valor persiste após `/nova` e reinício, mas não passa a outro usuário. O [notebook 08](notebooks/08_preferencias_confirmadas.ipynb) demonstra isso sem API; o [guia](docs/memoria_fase3.md) compara LangMem e Mem0. A fase 3 ainda depende do reteste real dos embeddings após a janela.
+No menu 9, `/lembrar estilo=detalhado` grava uma preferência pessoal explícita; `/memorias` mostra o valor atual e `/esquecer-memoria estilo` o remove. O valor persiste após `/nova` e reinício, mas não passa a outro usuário. O [notebook 08](notebooks/incrementos/08_preferencias_confirmadas.ipynb) demonstra isso sem API; o [guia](docs/memoria_fase3.md) compara LangMem e Mem0. A fase 3 ainda depende do reteste real dos embeddings após a janela.
 
 ### Recortes antigos — complemento da fase 3
 
-Quando a conversa passa de seis turnos, o SQLite v8 guarda um recorte extrativo da fala do usuário que saiu da janela. Perguntas relacionadas recuperam até dois recortes da mesma sessão; o agente recebe esses textos como contexto **não confirmado**. O [notebook 07](notebooks/07_resumos_recuperacao.ipynb) e o [guia de memória](docs/memoria_fase3.md) explicam o fluxo e seus limites. Um [teste real](evidencias/fase3_falha_lexical_cleinte.json) mostrou que `cleinte` impedia recuperar `cliente`; após a correção, o agente retomou a sessão, recuperou o turno 9 e respondeu `Alfa`. Essa busca usa palavras, não FAISS nem embeddings.
+Quando a conversa passa de seis turnos, o SQLite v8 guarda um recorte extrativo da fala do usuário que saiu da janela. Perguntas relacionadas recuperam até dois recortes da mesma sessão; o agente recebe esses textos como contexto **não confirmado**. O [notebook 07](notebooks/incrementos/07_resumos_recuperacao.ipynb) e o [guia de memória](docs/memoria_fase3.md) explicam o fluxo e seus limites. Um [teste real](evidencias/fase3_falha_lexical_cleinte.json) mostrou que `cleinte` impedia recuperar `cliente`; após a correção, o agente retomou a sessão, recuperou o turno 9 e respondeu `Alfa`. Essa busca usa palavras, não FAISS nem embeddings.
 
 ### Orquestração observável — complemento da fase 2
 
-O [notebook 05b](notebooks/05b_orquestracao_agente.ipynb) mostra o prompt PTCF, exemplos few-shot, roteamento `visita`/`cliente`/`geral` e callback sem API. O [guia de orquestração](docs/fase2_orquestracao.md) compara a chain fixa, `create_agent` e um grafo LangGraph explícito, e explica as adaptações às classes antigas da rubrica. No menu 9, cada resposta agora exibe rota sugerida e quantidade de eventos; os metadados do callback são guardados em `dados/privados/rastros_agente.jsonl`, sem copiar pergunta, argumentos ou resposta. [Um turno real com cliente Alfa](evidencias/fase2_roteamento_callback_manual.json) confirmou rota, ferramenta e seis eventos; FAISS e avaliação permanecem pendentes.
+O [notebook 05b](notebooks/incrementos/05b_orquestracao_agente.ipynb) mostra o prompt PTCF, exemplos few-shot, roteamento `visita`/`cliente`/`geral` e callback sem API. O [guia de orquestração](docs/fase2_orquestracao.md) compara a chain fixa, `create_agent` e um grafo LangGraph explícito, e explica as adaptações às classes antigas da rubrica. No menu 9, cada resposta agora exibe rota sugerida e quantidade de eventos; os metadados do callback são guardados em `dados/privados/rastros_agente.jsonl`, sem copiar pergunta, argumentos ou resposta. [Um turno real com cliente Alfa](evidencias/fase2_roteamento_callback_manual.json) confirmou rota, ferramenta e seis eventos; FAISS e avaliação permanecem pendentes.
 
 ### Memória conversacional — início da fase 3
 
-No menu **9**, o agente retoma a última conversa ativa do mesmo usuário após fechar e reabrir o programa. Cada pergunta e resposta concluída é gravada como um turno; as seis interações mais recentes são enviadas ao próximo `invoke`. `/voltar` mantém a conversa e `/nova` começa uma conversa vazia. A sessão antiga permanece no banco para auditoria, mas não entra no contexto da nova. Ana, Bruno e Carla têm históricos separados. O [notebook 06](notebooks/06_memoria_conversacional.ipynb) demonstra persistência, janela e isolamento com respostas locais escritas para teste, sem atribuí-las a um LLM.
+No menu **9**, o agente retoma a última conversa ativa do mesmo usuário após fechar e reabrir o programa. Cada pergunta e resposta concluída é gravada como um turno; as seis interações mais recentes são enviadas ao próximo `invoke`. `/voltar` mantém a conversa e `/nova` começa uma conversa vazia. A sessão antiga permanece no banco para auditoria, mas não entra no contexto da nova. Ana, Bruno e Carla têm históricos separados. O [notebook 06](notebooks/incrementos/06_memoria_conversacional.ipynb) demonstra persistência, janela e isolamento com respostas locais escritas para teste, sem atribuí-las a um LLM.
 
 **Teste com API da etapa inicial:** Renan confirmou que, após `/nova`, o agente pediu o cliente sem reutilizar o histórico anterior. Informou Alfa, encerrou o programa, reabriu com o mesmo usuário e banco, viu o mesmo ID de sessão e recebeu `Alfa Serviços` ao perguntar qual cliente mencionara. O registro está em [execuções e falhas](docs/execucoes_e_falhas.md). Para reproduzir, diga `Estou falando do cliente Alfa.`, saia com `/voltar`, encerre com `0`, reabra com o mesmo `--usuario` e `--banco`, entre no menu 9 e pergunte `Qual cliente mencionei?`. As etapas posteriores acrescentaram recortes e recuperação vetorial; a interface atual usa o mesmo SQLite e o mesmo serviço de memória.
 
@@ -49,13 +49,13 @@ No menu **9**, o agente retoma a última conversa ativa do mesmo usuário após 
 
 Após importar os dados fictícios (**1**), gerar propostas (**4**) e aceitar interpretações na fila (**6**), use **10 Aplicar interpretação ao projeto**. Para uma interpretação da área `projeto`, o sistema mostra prévia e fontes e pede confirmação separada para criar o projeto. O ID de cliente é opcional; sem ele, o vínculo com cliente fica pendente, sem inferir pelo texto. Para uma interpretação financeira ou de agenda, informe explicitamente o ID de um projeto existente com o mesmo nome; o sistema grava uma **anotação com fontes**, não um pagamento ou agendamento. Repetir a confirmação devolve o mesmo registro.
 
-O [notebook 05](notebooks/05_projetos_fontes.ipynb) demonstra o fluxo com dados fictícios e fixture local, inclusive persistência após reabrir o SQLite. As fontes são FKs para as mensagens importadas e só podem ser lidas por usuário autorizado ao corpus. Ainda falta testar a opção 10 manualmente e implementar os registros financeiros operacionais.
+O [notebook 05](notebooks/incrementos/05_projetos_fontes.ipynb) demonstra o fluxo com dados fictícios e fixture local, inclusive persistência após reabrir o SQLite. As fontes são FKs para as mensagens importadas e só podem ser lidas por usuário autorizado ao corpus. Ainda falta testar a opção 10 manualmente e implementar os registros financeiros operacionais.
 
 ### Cadastro PJ pelo agente
 
 Na opção **9**, peça: `Cadastre o CNPJ 33683111000280 se ainda não estiver no banco.` A ferramenta consulta o banco antes da API. Para CNPJ novo, a consulta externa salva um registro de revisão e o agente pode criar uma proposta pendente; **não cria cliente**. Confira razão social, CNPJ e nome fantasia mostrados. Para gravar, digite `/confirmar-cliente ID` usando o ID da proposta. Repetir o comando devolve o mesmo cliente; uma proposta de outro usuário ou expirada é recusada. `/confirmar ID` continua reservado para visitas.
 
-O [notebook 04](notebooks/04_cadastro_pj_agente.ipynb) demonstra consulta, proposta, confirmação, persistência e auditoria com fixture local identificada; não afirma chamada real à API ou ao LLM. O menu 7 continua disponível para cadastro guiado. A [trajetória real do agente](evidencias/fase2_cadastro_pj_reteste_manual.json) foi observada manualmente; o retorno da ferramenta reportou chamada à API externa.
+O [notebook 04](notebooks/incrementos/04_cadastro_pj_agente.ipynb) demonstra consulta, proposta, confirmação, persistência e auditoria com fixture local identificada; não afirma chamada real à API ou ao LLM. O menu 7 continua disponível para cadastro guiado. A [trajetória real do agente](evidencias/fase2_cadastro_pj_reteste_manual.json) foi observada manualmente; o retorno da ferramenta reportou chamada à API externa.
 
 ## Fluxo de visitas — fase 2 em andamento
 
@@ -75,14 +75,14 @@ Protótipo acadêmico para organizar conversas. Autopeças foi descontinuado e p
 Gere uma análise na opção 4 ou 5 e entre na **opção 6** para aceitar, corrigir ou rejeitar interpretações.
 A decisão e seu comentário permanecem no SQLite ao reabrir o programa; fontes e histórico são preservados.
 Aceitar aqui ainda não cria pagamentos ou compromissos.
-[Roteiro e limites](docs/revisao_persistente.md) · [Notebook 03](notebooks/03_revisao_persistente.ipynb).
+[Roteiro e limites](docs/revisao_persistente.md) · [Notebook 03](notebooks/incrementos/03_revisao_persistente.ipynb).
 Validação atual: 72 testes locais; seis células do notebook executadas, sem nova chamada de API.
 O banco existente migra automaticamente de v1 para v2, preservando fontes.
 
 ## Marco 1 implementado
 
 TXT/ZIP -> parser local -> fontes e mensagens no SQLite -> consulta e reimportação.
-São 40 mensagens fictícias, gabarito, terminal interativo e [notebook executado](./notebooks/01_importacao_sqlite.ipynb).
+São 40 mensagens fictícias, gabarito, terminal interativo e [notebook executado](./notebooks/incrementos/01_importacao_sqlite.ipynb).
 Marco 1 isolado continua sem API; o marco 2 abaixo acrescenta uma chain opcional. Ainda não há agente com ferramentas.
 
 ## Como testar
@@ -110,12 +110,24 @@ Ana é a administradora fictícia padrão. --usuario bruno ou --usuario carla se
 sem autenticação real. Use outro --corpus ao trocar usuário: o corpus bruto é privado do importador, com acesso
 do administrador. Permissões completas sobre financeiro, RAG e relatórios ainda não estão implementadas.
 
-## Notebook para o professor
+## Notebooks para o professor
 
     python -m pip install -r requirements-notebook.txt
 
-Abra notebooks/01_importacao_sqlite.ipynb no VS Code/Jupyter, escolha o kernel do ambiente e execute todas as células.
-O notebook localiza o projeto sem caminho pessoal, cria banco temporário, importa TXT, reabre o banco,
+A entrega usa **cinco notebooks, um por fase**, na pasta `notebooks/`. Cada um começa com o problema da fase, as decisões, os links para as evidências reais e o aviso do que é fixture. Todos rodam sem chave de API, com bancos temporários e dados fictícios:
+
+| Fase | Notebook |
+| --- | --- |
+| 1 · Chain e extração estruturada | [fase1_chain_extracao.ipynb](notebooks/fase1_chain_extracao.ipynb) |
+| 2 · Agente com ferramentas e gravação confiável | [fase2_agente_ferramentas.ipynb](notebooks/fase2_agente_ferramentas.ipynb) |
+| 3 · Memória | [fase3_memoria.ipynb](notebooks/fase3_memoria.ipynb) |
+| 4 · RAG com fontes e consulta estruturada | [fase4_rag_consulta.ipynb](notebooks/fase4_rag_consulta.ipynb) |
+| 5 · Financeiro, verificação e avaliação | [fase5_financeiro_verificacao_avaliacao.ipynb](notebooks/fase5_financeiro_verificacao_avaliacao.ipynb) |
+
+A pasta `notebooks/incrementos/` guarda os 15 notebooks criados ao longo do desenvolvimento, um por incremento. Eles são o histórico de onde vieram as células dos notebooks de fase e continuam executáveis.
+
+Abra um notebook de fase no VS Code/Jupyter, escolha o kernel do ambiente e execute todas as células.
+O notebook da fase 1 localiza o projeto sem caminho pessoal, cria banco temporário, importa TXT, reabre o banco,
 reimporta e testa ZIP. Esperado: 40 mensagens, zero novas na repetição e duas ocorrências legítimas idênticas.
 
 Usa os mesmos módulos do terminal. Banco temporário não comprova conservação após reiniciar o runtime.
@@ -156,9 +168,7 @@ o comportamento do importador; não é avaliação de resistência de um agente 
 _chat.txt e dados/privados são ignorados no Git. O original contém dados internos/credencial: não enviar
 a modelos externos nem publicar no Git, LangSmith ou ZIP de entrega. Notebook/demonstração usam corpus fictício.
 
-Marco 2 acrescenta a chain de propostas descrita abaixo. Próximo incremento: revisão/confirmacao e gravação operacional. Cadastro de
-clientes/projetos/agenda/financeiro, memória, FAISS, Minha Receita, ViaCEP, Streamlit, Excel, verificador e
-avaliação continuam planejados. Nomes do arquivo não são identidades autenticadas.
+Marco 2 acrescentou a chain de propostas descrita abaixo. Este trecho registra o estado daquela etapa; o estado atual está no início do README. Nomes do arquivo não são identidades autenticadas.
 
 ## Marco 2 — analisar a demonstração
 
@@ -190,10 +200,10 @@ Não houve confirmação de projetos/pagamentos/agendamentos no banco: a saída 
 Artefatos ficam em dados/privados/analises. Cobertura completa significa lotes concluídos,
 não acerto de todas as interpretações nem extração de todos os fatos possíveis.
 
-[Notebook 02](./notebooks/02_extracao_estruturada.ipynb) usa o mesmo código e é offline por padrão.
+[Notebook 02](./notebooks/incrementos/02_extracao_estruturada.ipynb) usa o mesmo código e é offline por padrão.
 requirements-notebook.txt inclui agora as dependências de IA para rodar os dois notebooks sem chave.
 [Contrato, dados e limites](./docs/primeira_chain.md). 40 testes locais passaram; notebooks 01/02
-executaram sem erro. APIs de negócio, FAISS, agente, Streamlit, Excel e LangSmith continuam planejados.
+executaram sem erro. Naquele marco, APIs de negócio, FAISS, agente, Streamlit e LangSmith ainda estavam planejados; o estado atual está no início do README.
 
 
 ## Fechamento da validação do marco 2

@@ -1,5 +1,7 @@
 # Revisão do projeto perante o enunciado e a aula 08
 
+> Revisão histórica do plano inicial. Decisão posterior de Renan substituiu Excel pelo relatório financeiro em tela; consulte o plano e a matriz atuais para o escopo vigente.
+
 **Data da revisão:** 11/11/2026. **Fontes:** enunciado obrigatório enviado por Renan nesta conversa; [apostila da aula 08](../../aula%2004-11/apostila_agentes_cognitivos_aula_08.html); [plano](../PLANO_PROJETO_SECRETARIA_IA.md), [matriz](matriz_requisitos.md) e código do Projeto final 2. A apostila é um resumo da aula, não uma nova rubrica oficial.
 
 ## Conclusão

@@ -105,7 +105,7 @@ def criar_ferramentas_agenda(caminho_banco, ctx, arquivo_env=None):
                 arquivo_indice, arquivo_manifesto = indice._arquivos(corpus_id)
                 if not arquivo_indice.is_file() or not arquivo_manifesto.is_file():
                     return {'status':'indice_pendente',
-                            'mensagem':'Prepare este corpus pela opção 11 antes de buscar fontes.'}
+                            'mensagem':'Índice de fontes pendente: prepare este corpus antes de buscar fontes.'}
                 try:
                     chave = obter_chave_api(arquivo_env)
                 except ValueError:
@@ -214,8 +214,26 @@ def criar_ferramentas_agenda(caminho_banco, ctx, arquivo_env=None):
             consultar_cnpj_minha_receita,propor_cadastro_cliente,propor_visita]
 
 
-def montar_prompt_agenda(usuario_id):
-    """Prompt versionável: regras do domínio e exemplos sem depender da API."""
+CANAIS_CONFIRMACAO = {
+    'terminal': {'visita': 'o comando /confirmar ID no terminal',
+                 'cliente': 'o comando /confirmar-cliente ID no terminal',
+                 'indice': 'a opção 11 do menu'},
+    'web': {'visita': 'o botão "Confirmar visita no banco" da aba Agenda, informando o ID',
+            'cliente': 'o botão "Confirmar cadastro PJ proposto" da aba Agenda, informando o ID',
+            'indice': 'o botão "Preparar índice de fontes" da aba Fontes'},
+}
+
+
+def montar_prompt_agenda(usuario_id, canal='terminal'):
+    """Prompt versionável: regras do domínio e exemplos sem depender da API.
+
+    `canal` define onde a confirmação humana acontece (terminal ou Streamlit), para o
+    agente não indicar um comando que não existe na interface em uso."""
+    if canal not in CANAIS_CONFIRMACAO:
+        raise ValueError(f'Canal desconhecido: {canal}')
+    acao = CANAIS_CONFIRMACAO[canal]
+    sem_comandos = (' Nesta interface não existem comandos com barra para confirmar; não invente comandos.'
+                    if canal == 'web' else '')
     # SYSTEM_PROMPT / PTCF: Pessoa, Tarefa, Contexto e Formato organizam as instruções.
     # FEW-SHOT: exemplos curtos mostram a distinção entre consultar, propor e confirmar.
     return f'''[PESSOA]
@@ -231,16 +249,16 @@ Para pergunta sobre cadastro de cliente identificado por nome ou CNPJ, chame bus
 Responda ao pedido atual. Não aplique a resposta do exemplo "qual cliente mencionei?" a uma pergunta sem relação com cliente, como uma saudação ou pergunta casual.
 Projeto e cliente são entidades diferentes. Quando o usuário falar de projeto ou perguntar pelo saldo "dele" após mencionar um projeto, use consultar_projeto; não use buscar_cliente como substituto. Se mudar explicitamente de Alfa para Beta, o referente atual passa a ser Beta. Se consultar_projeto não encontrar o projeto, diga isso. Não calcule saldo a partir de orçamento, entrada combinada ou pagamento apenas informado; se não houver registros financeiros operacionais confirmados, diga que o saldo não está disponível.
 Para saldo, orçamento aceito, parcelas ou recebimento de um projeto operacional, use consultar_financeiro_projeto. Ela aplica permissão no banco e só conta pagamentos confirmados. Se retornar acesso_negado, informe apenas que o perfil não tem acesso, sem revelar valores. Se não houver orçamento aceito, diga que saldo é indefinido. Anotações do chat e propostas de orçamento não são recebimentos.
-Quando o usuário perguntar "onde foi dito", "qual mensagem" ou "quem falou" sobre a conversa importada, a tarefa é localizar FONTE. Primeiro use listar_corpora_acessiveis e depois buscar_mensagens_fonte no corpus autorizado. Essa regra tem prioridade sobre consultar_projeto: um texto pode citar Alfa mesmo sem projeto operacional cadastrado. Cite o ID da mensagem e o trecho retornado. Se o índice estiver pendente ou desatualizado, peça a preparação pela opção 11; não diga que a informação não existe. Não use essa busca top-k para calcular saldo, somar pagamentos ou listar todas as parcelas.
+Quando o usuário perguntar "onde foi dito", "qual mensagem" ou "quem falou" sobre a conversa importada, a tarefa é localizar FONTE. Primeiro use listar_corpora_acessiveis e depois buscar_mensagens_fonte no corpus autorizado. Essa regra tem prioridade sobre consultar_projeto: um texto pode citar Alfa mesmo sem projeto operacional cadastrado. Cite o ID da mensagem e o trecho retornado. Se o índice estiver pendente ou desatualizado, peça a preparação por {acao['indice']}; não diga que a informação não existe. Não use essa busca top-k para calcular saldo, somar pagamentos ou listar todas as parcelas.
 Quando o usuário perguntar quantas mensagens existem ou pedir lista filtrada de mensagens importadas, use listar_corpora_acessiveis e consultar_mensagens_estruturado. A contagem é exata para os filtros aceitos; a lista tem limite. Não use busca top-k para contagem. Se o plano retornar nao_suportada, explique o limite; nunca transforme orçamento ou pagamento informado em saldo recebido.
 Mesmo se o usuário abreviar "mensagens" como "msg" ou "msng", perguntas iniciadas por "quantas" exigem a ferramenta consultar_mensagens_estruturado. Não informe nenhum número de mensagens com base em buscar_mensagens_fonte: o top-k pode omitir outras mensagens. Se quiser citar uma mensagem após a contagem, faça outra consulta de lista estruturada.
 Só consulte Minha Receita para CNPJ que não existe no banco. A ferramenta de CNPJ verifica isso novamente e devolve status ja_cadastrado ou nao_cadastrado. Responda "cadastrado" apenas quando o banco local confirmar.
-Se o usuário pedir cadastro de um CNPJ novo, consulte-o e chame propor_cadastro_cliente com o consulta_id retornado. Mostre razão social, CNPJ, nome fantasia e proposta_id. A consulta e a proposta não criam cliente. Oriente o usuário a confirmar com /confirmar-cliente ID; você não tem ferramenta de confirmação.
+Se o usuário pedir cadastro de um CNPJ novo, consulte-o e chame propor_cadastro_cliente com o consulta_id retornado. Mostre razão social, CNPJ, nome fantasia e proposta_id. A consulta e a proposta não criam cliente. Oriente o usuário a confirmar por {acao['cliente']}; você não tem ferramenta de confirmação.{sem_comandos}
 Se o pedido não citar outro atendente, use {usuario_id}; não peça seu ID. Consulte disponibilidade antes de propor. Peça duração, tipo/local e endereço completo.
 Quando a consulta retornar sem_conflito_registrado=true, diga "não há compromisso registrado nesse intervalo"; não afirme disponibilidade garantida.
 Para endereço novo com CEP, consulte ViaCEP; ele não traz número. Use o número que o usuário informou antes ou depois da consulta. "s/n" significa sem número e é um valor válido quando confirmado pelo usuário; não peça o número novamente nesse caso. Inclua o CEP consultado na proposta.
-Nunca chame propor_visita sem dados completos. Não diga que proposta é reserva.
-Não confirme agendamento: confirmação explícita ocorre no terminal por ID, fora do modelo.
+Nunca chame propor_visita sem dados completos. Quando cliente, data absoluta, horário, duração, tipo/local e endereço estiverem completos e a disponibilidade já tiver sido consultada sem conflito, chame propor_visita no mesmo turno; não pergunte "posso prosseguir?". A proposta fica pendente e não é reserva; não diga que proposta é reserva.
+Não confirme agendamento: a confirmação explícita é feita pelo usuário, fora do modelo, por {acao['visita']}.{sem_comandos}
 Não invente pagamentos, horário de expediente ou dados de outra pessoa.
 [EXEMPLOS]
 Usuário: "Qual cliente mencionei?" sem cliente na conversa atual.
@@ -274,7 +292,7 @@ def obter_chave_api(arquivo_env=None):
     return chave
 
 
-def criar_agente_agenda(banco, ctx, arquivo_env=None):
+def criar_agente_agenda(banco, ctx, arquivo_env=None, canal='terminal'):
     from langchain.agents import create_agent
     from langchain_openai import ChatOpenAI
 
@@ -283,6 +301,6 @@ def criar_agente_agenda(banco, ctx, arquivo_env=None):
     # CHATOPENAI + CREATE_AGENT: o modelo decide quando chamar @tool.
     # Serviços Python validam identidade, escopo e gravação; o prompt não concede permissões.
     modelo = ChatOpenAI(model='gpt-4o-mini',api_key=chave,temperature=0,max_retries=0,timeout=45)
-    sistema = montar_prompt_agenda(ctx.usuario_id)
+    sistema = montar_prompt_agenda(ctx.usuario_id, canal)
     return create_agent(modelo,criar_ferramentas_agenda(banco.caminho,ctx,arquivo_env),
                         system_prompt=sistema)

@@ -23,7 +23,7 @@ Na raiz do repositório:
 
 Não é necessário gastar uma chamada de API para testar: opção 4 exercita o mesmo serviço.
 Análises antigas em JSON não são automaticamente importadas na fila; gere uma análise com esta versão.
-O notebook [03_revisao_persistente](../notebooks/03_revisao_persistente.ipynb) usa banco temporário e
+O notebook [03_revisao_persistente](../notebooks/incrementos/03_revisao_persistente.ipynb) usa banco temporário e
 demonstra correção, decisão, versão obsoleta, isolamento e reabertura, sem LLM.
 
 ## Estados e efeitos

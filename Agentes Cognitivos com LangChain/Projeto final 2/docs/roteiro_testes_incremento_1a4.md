@@ -70,4 +70,4 @@ Abra o experimento no LangSmith e compare, por caso, trajetória exata, nota sem
 python -m unittest discover -s tests -q
 ```
 
-O relatório atual é textual no console e na interface. Excel, PDF final e vídeo ainda não fazem parte deste incremento.
+O relatório textual no console e na interface substitui Excel nesta entrega. PDF final e vídeo ainda são etapas posteriores.

@@ -156,6 +156,46 @@ with aba_fontes:
 
 with aba_revisao:
     st.subheader('Interpretações pendentes')
+    with abrir() as banco:
+        corpora_para_analise = [dict(r) for r in banco.con.execute(
+            'SELECT id,nome FROM corpora WHERE empresa_id=? AND criado_por=? ORDER BY id',
+            (ctx.empresa_id, ctx.usuario_id))]
+    corpora_privados = [c for c in corpora_para_analise if c['nome'] != 'Demonstração fictícia']
+    if corpora_privados:
+        with st.form('analisar_corpus_privado'):
+            corpus_real = st.selectbox('Conversa privada para análise por IA', corpora_privados,
+                                       format_func=lambda c: f"#{c['id']} {c['nome']}")
+            autoriza_analise = st.checkbox(
+                'Autorizo enviar as mensagens deste corpus à OpenAI para análise em lotes')
+            iniciar_analise = st.form_submit_button('Analisar conversa privada com IA')
+        if iniciar_analise:
+            if not autoriza_analise:
+                st.error('Confirme o envio para iniciar a análise.')
+            else:
+                try:
+                    from secretaria.chain_extracao import criar_modelo
+                    from secretaria.extracao import analisar_snapshot
+                    from secretaria.apresentacao import salvar_analise
+                    with abrir() as banco, st.spinner('Analisando mensagens em lotes...'):
+                        snapshot = banco.snapshot_analise(ctx, corpus_real['id'])
+                        analise = analisar_snapshot(snapshot, criar_modelo(), 'api_real')
+                        destino = salvar_analise(analise, RAIZ / 'dados/privados/analises')
+                        fila_nova = FilaRevisao(banco).registrar_resultado(ctx, analise)
+                    lotes_ok = sum(l['status'] == 'ok' for l in analise['lotes'])
+                    lotes_parciais = sum(l['status'] == 'parcial' for l in analise['lotes'])
+                    lotes_erro = sum(l['status'] == 'erro' for l in analise['lotes'])
+                    st.success(
+                        f"Análise {analise['status']}: {lotes_ok} lotes completos, "
+                        f"{lotes_parciais} parciais e {lotes_erro} com erro; "
+                        f"{fila_nova['novas']} propostas novas para revisão.")
+                    st.caption(
+                        f"Mensagens em lotes totalmente válidos: "
+                        f"{analise['mensagens_em_lotes_concluidos']}/{analise['mensagens_no_snapshot']}. "
+                        f"Propostas rejeitadas por fonte: "
+                        f"{analise['propostas_rejeitadas_por_fonte']}.")
+                    st.caption(f'Resultado local: {destino.name}')
+                except Exception as erro:
+                    exibir_erro(erro)
     if st.button('Gerar propostas da demonstração fictícia, sem LLM'):
         try:
             from secretaria.extracao import analisar_demonstracao

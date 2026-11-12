@@ -181,7 +181,7 @@ class Agenda:
         return {'proposta_id':proposta_id,'estado':'pendente','cnpj':dados['cnpj'],
                 'razao_social':dados['razao_social'],'nome_fantasia':dados.get('nome_fantasia') or '',
                 'origem':dados['origem'],
-                'aviso':f'Cliente ainda não cadastrado. Para gravar, digite /confirmar-cliente {proposta_id}.'}
+                'aviso':f'Cliente ainda não cadastrado. Para gravar, o usuário precisa confirmar a proposta {proposta_id} explicitamente.'}
 
     def confirmar_cadastro_cliente(self, ctx, proposta_id, agora=None):
         """Confirma uma vez, sob transação, com rechecagem de CNPJ e auditoria."""
