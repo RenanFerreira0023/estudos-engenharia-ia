@@ -33,6 +33,20 @@ class AgendaTest(unittest.TestCase):
         return self.agenda.propor_visita(ctx or self.ana,self.cliente,inicio or self.inicio,
             fim or self.fim,self.endereco,atendente,agora=self.agora)
 
+    def test_proposta_repetida_reutiliza_pendente_e_informa_prazo(self):
+        # Regressão do teste real no Streamlit: o mesmo pedido gerou as propostas #2 e #3 iguais.
+        p = self.proposta()
+        self.assertFalse(p['reutilizada'])
+        self.assertIn('até 10/11/2026 09:30', p['aviso'])
+        q = self.proposta()
+        self.assertEqual(q['proposta_id'], p['proposta_id'])
+        self.assertTrue(q['reutilizada'])
+        total = self.banco.con.execute('SELECT COUNT(*) FROM propostas_visita').fetchone()[0]
+        self.assertEqual(total, 1)
+        depois_do_prazo = self.agenda.propor_visita(self.ana, self.cliente, self.inicio, self.fim,
+            self.endereco, agora=self.agora + timedelta(minutes=31))
+        self.assertNotEqual(depois_do_prazo['proposta_id'], p['proposta_id'])
+
     def test_confirmacao_idempotente_e_auditoria(self):
         p = self.proposta()
         self.assertEqual(self.agenda.listar_agenda(self.ana),[])

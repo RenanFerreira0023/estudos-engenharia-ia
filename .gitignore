@@ -222,3 +222,6 @@ __marimo__/
 # Secretária IA: backup real e dados locais privados (não publicar)
 /Agentes Cognitivos com LangChain/Projeto final 2/_chat.txt
 /Agentes Cognitivos com LangChain/Projeto final 2/dados/privados/
+
+# Banco/dados criados ao rodar a Secretária IA a partir da raiz do repositório (não publicar)
+/dados/

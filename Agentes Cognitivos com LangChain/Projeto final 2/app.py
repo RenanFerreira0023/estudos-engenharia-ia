@@ -8,6 +8,8 @@ import tempfile
 from uuid import uuid4
 from zoneinfo import ZoneInfo
 
+FUSO_TELA = ZoneInfo('America/Sao_Paulo')
+
 import streamlit as st
 
 RAIZ = Path(__file__).resolve().parent
@@ -284,7 +286,14 @@ with aba_revisao:
 with aba_agenda:
     st.subheader('Minha agenda')
     with abrir() as banco:
-        st.dataframe(Agenda(banco).listar_agenda(ctx), hide_index=True)
+        # Banco guarda UTC; a tela mostra o horário de São Paulo para não parecer outro horário.
+        agenda_local = [{**item,
+                         'inicio': datetime.fromisoformat(item['inicio_em']).astimezone(FUSO_TELA).strftime('%d/%m/%Y %H:%M'),
+                         'fim': datetime.fromisoformat(item['fim_em']).astimezone(FUSO_TELA).strftime('%d/%m/%Y %H:%M')}
+                        for item in Agenda(banco).listar_agenda(ctx)]
+        st.dataframe(agenda_local, hide_index=True,
+                     column_order=['id', 'cliente', 'inicio', 'fim', 'status'])
+        st.caption('Horários de São Paulo.')
         clientes = [dict(r) for r in banco.con.execute(
             'SELECT id,nome FROM clientes WHERE empresa_id=? ORDER BY nome', (ctx.empresa_id,))]
     with st.form('confirmar_cliente'):

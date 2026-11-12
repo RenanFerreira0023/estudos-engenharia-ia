@@ -266,17 +266,39 @@ class Agenda:
         agora = _instante(agora) if agora else agora_utc()
         if inicio <= agora:
             raise ValueError('Agendamento deve ser futuro.')
+        endereco_json = json.dumps(endereco,ensure_ascii=False)
         with self.banco.transacao():
+            # IDEMPOTÊNCIA: o mesmo pedido repetido (ou reenviado ao agente) devolve a proposta pendente
+            # ainda válida, em vez de criar duplicatas para o mesmo cliente, horário e endereço.
+            for r in self.banco.con.execute('''SELECT id,expira_em FROM propostas_visita
+                    WHERE empresa_id=? AND solicitante_id=? AND cliente_id=? AND atendente_id=?
+                    AND inicio_em=? AND fim_em=? AND endereco_json=? AND estado='pendente' ORDER BY id DESC''',
+                    (ctx.empresa_id,ctx.usuario_id,cliente_id,atendente_id,inicio.isoformat(),fim.isoformat(),
+                     endereco_json)).fetchall():
+                if _instante(r['expira_em']) > agora:
+                    return self._resposta_proposta(r['id'],cliente['nome'],atendente_id,inicio,fim,endereco,
+                                                   _instante(r['expira_em']),reutilizada=True)
             if self._conflita(ctx.empresa_id,atendente_id,inicio,fim):
                 raise ValueError('Atendente tem compromisso registrado nesse intervalo.')
             cur = self.banco.con.execute('''INSERT INTO propostas_visita
                 (empresa_id,solicitante_id,cliente_id,atendente_id,inicio_em,fim_em,endereco_json,estado,criada_em,expira_em)
                 VALUES (?,?,?,?,?,?,?,'pendente',?,?)''',
                 (ctx.empresa_id,ctx.usuario_id,cliente_id,atendente_id,inicio.isoformat(),fim.isoformat(),
-                 json.dumps(endereco,ensure_ascii=False),agora.isoformat(),(agora+timedelta(minutes=30)).isoformat()))
-        return {'proposta_id':cur.lastrowid,'cliente':cliente['nome'],'atendente':atendente_id,
+                 endereco_json,agora.isoformat(),(agora+timedelta(minutes=30)).isoformat()))
+        return self._resposta_proposta(cur.lastrowid,cliente['nome'],atendente_id,inicio,fim,endereco,
+                                       agora+timedelta(minutes=30))
+
+    @staticmethod
+    def _resposta_proposta(proposta_id, cliente, atendente_id, inicio, fim, endereco, expira, reutilizada=False):
+        limite = expira.astimezone(FUSO)
+        aviso = (f'Ainda não há reserva. A proposta {proposta_id} precisa ser confirmada explicitamente '
+                 f'até {limite:%d/%m/%Y %H:%M} (horário de São Paulo); depois disso expira.')
+        if reutilizada:
+            aviso = f'Já existia esta proposta pendente; nenhuma nova foi criada. {aviso}'
+        return {'proposta_id':proposta_id,'cliente':cliente,'atendente':atendente_id,
                 'inicio':inicio.astimezone(FUSO).isoformat(),'fim':fim.astimezone(FUSO).isoformat(),
-                'endereco':endereco,'estado':'pendente','aviso':'Ainda não há reserva. Confirme a proposta pelo ID.'}
+                'endereco':endereco,'estado':'pendente','expira_em':limite.isoformat(),
+                'reutilizada':reutilizada,'aviso':aviso}
 
     def confirmar_visita(self, ctx, proposta_id, agora=None):
         self.banco._usuario(ctx)

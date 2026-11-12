@@ -1,0 +1,21 @@
+{
+  "tipo": "teste_manual_real",
+  "data": "2026-11-11",
+  "executor": "Renan",
+  "interface": "Streamlit (app.py), usuário de demonstração ana",
+  "banco": "dados/privados/teste_conversa_real.sqlite3 (fora do Git)",
+  "sessao_id": "46d1c5761c5d4aeab570c1e04ba3a79c (conversa nova, sem histórico anterior)",
+  "pedido": "Agende uma visita para o Cliente Teste em 20/11/2026 das 14h às 15h, visita técnica, na Rua Exemplo, 100, Curitiba/PR.",
+  "trajetoria_observada": ["buscar_cliente", "consultar_disponibilidade", "propor_visita"],
+  "eventos_callback": 14,
+  "verificacao": "corrigida (o juiz reprovou a primeira resposta; a reescrita aprovada é a exibida)",
+  "resposta_exibida": "A visita técnica para o Cliente Teste foi proposta para o dia 20/11/2026, das 14h às 15h, na Rua Exemplo, 100, Curitiba/PR. A proposta ID 3 está pendente e precisa ser confirmada até 11/11/2026 às 23h33 (horário de São Paulo). Após esse horário, a proposta expirará.",
+  "estado_do_banco_apos_pedido": "Nenhuma proposta nova; a #3 (pendente, idêntica, ainda válida) foi reutilizada pela regra de idempotência.",
+  "confirmacao": {"acao": "aba Agenda, ID 3, botão 'Confirmar visita no banco'", "retorno": {"agendamento_id": 1, "estado": "confirmada"}, "minha_agenda": "agendamento 1, Cliente Teste, 2026-11-20T17:00:00+00:00 a 18:00:00+00:00 (14h-15h em São Paulo), confirmado"},
+  "comparacao_com_tentativas_anteriores": "Antes: o agente ofereceu 'posso prosseguir?' (proposta #1), indicou o comando inexistente /confirmar-visita e criou a #3 duplicada ao receber '/confirmar-visita 2'. Agora: proposta direta, prazo informado, sem comando inexistente, sem duplicata.",
+  "falhas_restantes": [
+    "A resposta não indicou onde confirmar e não disse que a proposta já existia; provável perda na reescrita do verificador (a resposta original não é armazenada). Corrigido depois com orientação montada em Python a partir do retorno da ferramenta; reteste pendente.",
+    "A tabela 'Minha agenda' mostrava horários em UTC; corrigido para horário de São Paulo; reteste visual pendente."
+  ],
+  "limites": "Um caso, um usuário. Não comprova o comportamento para outros pedidos nem substitui a avaliação sistemática."
+}
