@@ -154,3 +154,17 @@ Correção: `buscar_cliente` agora devolve `termo_necessario` para termo vazio, 
 **Validação local:** `test_comando_com_barra_no_web_nao_vai_ao_agente` e `test_proposta_repetida_reutiliza_pendente_e_informa_prazo`; suíte completa com 138 testes passando; notebook da fase 2 reexecutado. **Reteste real pendente** em conversa nova, com o Streamlit reiniciado.
 
 **Reteste real (11/11/2026, conversa nova `46d1c576…`):** trajetória `buscar_cliente → consultar_disponibilidade → propor_visita`; a proposta #3 pendente foi reutilizada (sem duplicata), o prazo foi informado e não houve comando inexistente. A confirmação pela aba Agenda criou o agendamento 1, exibido em "Minha agenda". Restaram duas falhas: a resposta (com verificação "corrigida") não indicou onde confirmar nem que a proposta já existia, e a agenda mostrava UTC. Correções: `orientacao_confirmacao` acrescenta, em Python, o botão, o ID, o prazo e o aviso de reutilização a partir do retorno da ferramenta; a tabela mostra horário de São Paulo. 139 testes passando. [Evidência](../evidencias/fase5_streamlit_visita_reteste_manual.json).
+
+# Contagem com ferramenta errada, barrada pelo verificador — Streamlit, 12/11/2026
+
+**Teste manual de Renan (banco padrão, só corpus fictício, usuário ana):** na mesma conversa em que acabara de perguntar "Onde foi dito o orçamento do projeto Alfa?" (respondida corretamente com `buscar_mensagens_fonte`, mensagem 4 de Bruno), Renan perguntou "Quantas mensagens do Bruno mencionam orçamento e Alfa?". O roteador classificou como `consulta`, mas o agente chamou `listar_corpora_acessiveis → buscar_mensagens_fonte` (busca por semelhança, que não conta), provavelmente repetindo o padrão do turno anterior no histórico. A regra determinística do verificador ("rota `consulta` exige `consultar_mensagens_estruturado`") reprovou a resposta, e o usuário recebeu a resposta segura com verificação `limitacao`. Nenhum número sem prova foi exibido.
+
+**Reteste na hora, em conversa nova:** a mesma pergunta seguiu `listar_corpora_acessiveis` (2×) → `consultar_mensagens_estruturado` e respondeu 1 mensagem, verificação aprovada, igual à avaliação no LangSmith (inclusive a chamada duplicada e "Existem 1").
+
+**Leitura:** o histórico multi-turno pode desviar a escolha de ferramenta, caso que a avaliação de um turno não cobre. A falha foi contida pela regra em Python, não pelo modelo. Melhoria possível: incluir no dataset casos multi-turno (fonte seguida de contagem). Prints: `evidencias/prints/08b_verificador_bloqueou.png` e `08_chat_contagem.png`.
+
+# Tabelas desatualizadas logo após a ação — Streamlit, 12/11/2026
+
+**Falha observada (teste manual de Renan):** o saldo do Financeiro e a tabela "Minha agenda" só refletiam a ação (pagamento confirmado, estorno, visita confirmada) na interação seguinte. O banco estava correto (agendamento 6 confirmado, conferido em leitura); a tela é que desenhava o relatório antes de executar o botão, que fica mais abaixo no script do Streamlit.
+
+**Correção:** nas duas abas, um `st.container()` reserva o lugar no topo e é preenchido no fim do script, depois dos formulários. Validação: `AppTest` sem exceções, 141 testes passando e reteste na tela (visita 6, 18/11/2026 10:00–11:00, exibida em horário de São Paulo). Prints: `evidencias/prints/05_agenda_confirmada.png` e `05b_minha_agenda.png`.

@@ -285,15 +285,9 @@ with aba_revisao:
 
 with aba_agenda:
     st.subheader('Minha agenda')
+    # A tabela fica no topo, mas é preenchida no fim: assim já mostra a visita recém-confirmada.
+    area_agenda = st.container()
     with abrir() as banco:
-        # Banco guarda UTC; a tela mostra o horário de São Paulo para não parecer outro horário.
-        agenda_local = [{**item,
-                         'inicio': datetime.fromisoformat(item['inicio_em']).astimezone(FUSO_TELA).strftime('%d/%m/%Y %H:%M'),
-                         'fim': datetime.fromisoformat(item['fim_em']).astimezone(FUSO_TELA).strftime('%d/%m/%Y %H:%M')}
-                        for item in Agenda(banco).listar_agenda(ctx)]
-        st.dataframe(agenda_local, hide_index=True,
-                     column_order=['id', 'cliente', 'inicio', 'fim', 'status'])
-        st.caption('Horários de São Paulo.')
         clientes = [dict(r) for r in banco.con.execute(
             'SELECT id,nome FROM clientes WHERE empresa_id=? ORDER BY nome', (ctx.empresa_id,))]
     with st.form('confirmar_cliente'):
@@ -360,19 +354,21 @@ with aba_agenda:
                 st.success(resultado)
             except (ValueError, PermissionError) as erro:
                 exibir_erro(erro)
+    with area_agenda, abrir() as banco:
+        # Banco guarda UTC; a tela mostra o horário de São Paulo para não parecer outro horário.
+        agenda_local = [{**item,
+                         'inicio': datetime.fromisoformat(item['inicio_em']).astimezone(FUSO_TELA).strftime('%d/%m/%Y %H:%M'),
+                         'fim': datetime.fromisoformat(item['fim_em']).astimezone(FUSO_TELA).strftime('%d/%m/%Y %H:%M')}
+                        for item in Agenda(banco).listar_agenda(ctx)]
+        st.dataframe(agenda_local, hide_index=True,
+                     column_order=['id', 'cliente', 'inicio', 'fim', 'status'])
+        st.caption('Horários de São Paulo.')
 
 with aba_financeiro:
     st.subheader('Financeiro operacional')
+    # O relatório fica no topo, mas é preenchido no fim: assim mostra o saldo já com a ação do botão.
+    area_relatorio = st.container()
     try:
-        with abrir() as banco:
-            relatorio = Financeiro(banco).relatorio(ctx)
-        for projeto in relatorio['projetos']:
-            with st.expander(f"#{projeto['projeto_id']} {projeto['projeto']} • saldo {moeda(projeto['saldo_centavos'])}"):
-                st.write('Orçamento aceito:', moeda(projeto['valor_aceito_centavos']))
-                st.write('Recebido confirmado:', moeda(projeto['recebido_confirmado_centavos']))
-                st.dataframe(projeto['parcelas'], hide_index=True)
-        if not relatorio['projetos']:
-            st.info('Sem projetos operacionais; aplique uma interpretação aceita no terminal (opção 10).')
         with st.form('propor_orcamento'):
             projeto_id = st.number_input('ID do projeto', min_value=1, step=1)
             valor = st.text_input('Valor do orçamento, ex.: 10000,00')
@@ -440,3 +436,16 @@ with aba_financeiro:
                 st.success(resultado)
     except (ValueError, PermissionError) as erro:
         exibir_erro(erro)
+    with area_relatorio:
+        try:
+            with abrir() as banco:
+                relatorio = Financeiro(banco).relatorio(ctx)
+            for projeto in relatorio['projetos']:
+                with st.expander(f"#{projeto['projeto_id']} {projeto['projeto']} • saldo {moeda(projeto['saldo_centavos'])}"):
+                    st.write('Orçamento aceito:', moeda(projeto['valor_aceito_centavos']))
+                    st.write('Recebido confirmado:', moeda(projeto['recebido_confirmado_centavos']))
+                    st.dataframe(projeto['parcelas'], hide_index=True)
+            if not relatorio['projetos']:
+                st.info('Sem projetos operacionais; aplique uma interpretação aceita na aba Revisão.')
+        except (ValueError, PermissionError) as erro:
+            exibir_erro(erro)

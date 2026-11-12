@@ -1,0 +1,42 @@
+{
+  "tipo": "teste_manual_real",
+  "data": "2026-11-12",
+  "executor": "Renan",
+  "interface": "Streamlit (app.py), usuária de demonstração ana",
+  "banco": "dados/privados/secretaria.sqlite3 (somente corpus 'Demonstração fictícia', 40 mensagens; fora do Git)",
+  "passos_e_resultados": [
+    {
+      "passo": "Importar demonstração fictícia e gerar propostas sem LLM (fixture)",
+      "resultado": "propostas pendentes com fontes (ex.: mensagem 4)"
+    },
+    {
+      "passo": "Aceitar proposta #1 (projeto Alfa), conferir prévia e confirmar gravação",
+      "resultado": {
+        "estado": "confirmada",
+        "projeto_id": 1,
+        "anotacao_id": 1,
+        "fontes_vinculadas": 1
+      }
+    },
+    {
+      "passo": "Propor e aceitar orçamento de R$ 10.000,00 com entrada de 30%; parcelas Entrada R$ 3.000 e Restante R$ 7.000",
+      "resultado": "saldo R$ 10.000,00; recebido confirmado R$ 0,00"
+    },
+    {
+      "passo": "Informar pagamento de R$ 1.000,00 na Entrada ('Cliente disse que pagou')",
+      "resultado": "saldo continua R$ 10.000,00; recebido confirmado R$ 0,00"
+    },
+    {
+      "passo": "Confirmar pagamento 1 com conferência explícita",
+      "resultado": "saldo R$ 9.000,00; recebido confirmado R$ 1.000,00"
+    },
+    {
+      "passo": "Estornar pagamento 1 com motivo 'Valor lançado errado'",
+      "resultado": "saldo volta a R$ 10.000,00; pagamento preservado e estorno em reversoes_pagamento"
+    }
+  ],
+  "conferencia_no_banco_somente_leitura": "orcamentos #1 aceito (1000000 centavos, 30%); pagamentos #1 preservado; reversoes_pagamento com tipo estorno, motivo, usuário e instante; auditoria_financeiro registra propor, aceitar, definir_parcelas e operações de pagamento.",
+  "falha_de_usabilidade_observada": "O saldo no topo da aba Financeiro é calculado antes de processar o botão; após cada ação foi preciso recarregar (tecla R) para ver o valor novo. Não altera os dados, só a exibição. Corrigido em 12/11/2026: o relatório agora é preenchido depois de processar a ação (container no topo); app abre sem erro em teste automatizado.",
+  "limites": "Um projeto e um pagamento; usuária ana. Permissão negada verificada na tela com carla.",
+  "permissao_carla": "Usuária carla, aba Financeiro: 'Operação não concluída: Perfil sem acesso ao financeiro.' Print evidencias/prints/13_permissao_carla.png."
+}

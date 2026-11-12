@@ -42,7 +42,7 @@ Notebooks de entrega: [fase 1](../notebooks/fase1_chain_extracao.ipynb) · [fase
 
 - Usuários de demonstração (ana, bruno, carla) testam permissões; **não há autenticação**.
 - A avaliação usa 4 casos fictícios de um turno. Fluxos de memória, propostas e financeiro foram comprovados por testes automatizados, notebooks e testes manuais, não pelo dataset.
-- O teste manual do financeiro pela interface será registrado antes da gravação do vídeo.
+- O financeiro foi testado manualmente pela interface em 12/11/2026 (orçamento, pagamento informado, confirmação, estorno e permissão negada a carla): [evidência](../evidencias/fase5_financeiro_streamlit_manual.json).
 - Verificação "aprovada" não prova que a resposta está certa (ver R24).
 
 Histórico do desenvolvimento: [andamento das fases](andamento_fases.md), [execuções e falhas](execucoes_e_falhas.md).
