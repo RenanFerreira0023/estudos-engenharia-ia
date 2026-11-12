@@ -1,12 +1,37 @@
 # Secretária IA — Projeto final 2
 
-### Interface e avaliação em desenvolvimento
+Secretária com IA para uma equipe de trabalho: lê o backup de uma conversa de WhatsApp, propõe registros (projetos, valores, visitas, clientes) com a mensagem de origem e **só grava depois de confirmação humana explícita**. Projeto final da disciplina de agentes com LangChain, organizado em cinco fases.
 
-Execute `python -m streamlit run app.py` nesta pasta para testar conversa, fontes, revisão, agenda e financeiro na interface local. `python avaliar.py --modo fixture` mostra seis casos manuais identificados; `--modo api` executa o agente real em banco temporário, e `--langsmith` publica somente casos fictícios se houver credenciais. A resposta do agente passa por verificação antes de ser salva. [Guia e limites](docs/fase5_interface_verificacao_avaliacao.md) · [Bateria de testes](docs/roteiro_testes_incremento_1a4.md). O relatório financeiro em tela substitui a exportação Excel neste projeto. A execução real de avaliação no LangSmith, o PDF e o vídeo continuam pendentes.
+## Comece por aqui
 
-[Revisão do enunciado e da aula 08](docs/revisao_enunciado_aula08.md): aderência, lacunas, quatro entregáveis e prioridades para concluir a disciplina.
+| O quê | Onde |
+| --- | --- |
+| Notebooks de entrega, um por fase (rodam sem chave de API) | [notebooks/](notebooks/), seção [Notebooks para o professor](#notebooks-para-o-professor) |
+| Requisitos da rubrica com evidências | [docs/matriz_requisitos.md](docs/matriz_requisitos.md) |
+| Avaliação real com LangSmith e análise | [docs/avaliacao_resultados.md](docs/avaliacao_resultados.md) |
+| Falhas reais encontradas e como foram corrigidas | [docs/execucoes_e_falhas.md](docs/execucoes_e_falhas.md) |
+| Decisões de projeto | [docs/decisoes.md](docs/decisoes.md) |
 
-> **Estado atual:** importação com fontes, extração de propostas, revisão persistente, visitas, cadastro PJ por proposta e vínculo de projetos com mensagens-fonte estão implementados. O agente consulta clientes, projetos, disponibilidade, ViaCEP e Minha Receita; confirmações ocorrem no terminal. A memória por sessão usa janela curta e recortes antigos recuperados por FAISS/embeddings, com fallback lexical; preferências confirmadas são guardadas por usuário no SQLite. O índice FAISS de mensagens com fontes da fase 4 tem preparação explícita no menu 11 e ferramenta de consulta no agente. A consulta estruturada de mensagens usa plano tipado e SQL parametrizado. As seções de marcos abaixo documentam o estado de cada etapa quando foi construída.
+## Como executar
+
+Nesta pasta, com o ambiente virtual ativo e `OPENAI_API_KEY` no `.env` (deste projeto ou da raiz do repositório):
+
+```powershell
+python -m pip install -r requirements-ia.txt
+python -m streamlit run app.py          # interface: Conversa, Fontes, Revisão, Agenda, Financeiro
+python executar.py                      # menu de terminal
+python -m unittest discover -s tests -q # 141 testes locais, sem API
+python avaliar.py --modo fixture        # avaliação com fixtures identificadas, sem API
+python avaliar.py --modo api --langsmith  # avaliação real; exige LANGSMITH_API_KEY; só dados fictícios
+```
+
+No Streamlit, o agente **só propõe**: confirmar visita ou cadastro PJ é feito pelos botões da aba Agenda; comandos com barra são do terminal e, no chat web, não são enviados ao modelo. A escolha de usuário (ana, bruno, carla) é demonstração de permissões, não autenticação. O relatório financeiro em tela substitui a exportação Excel neste projeto.
+
+## Estado na entrega
+
+Agente único (`create_agent`) com 11 ferramentas: SQLite (clientes, projetos, agenda, financeiro, mensagens), RAG com FAISS e fonte citada, consulta estruturada com SQL parametrizado, ViaCEP e Minha Receita. Memória por usuário e sessão (janela, recortes antigos com FAISS, preferências confirmadas). Verificação das respostas antes de exibir. Interface Streamlit. Avaliação real em 4 execuções: respostas 16/16, trajetória exata 12/16. Pendentes da entrega: relatório PDF e vídeo.
+
+As seções abaixo registram cada marco do desenvolvimento como estava quando foi construído; números de testes e pendências citados nelas são históricos.
 
 ### Financeiro no console e no Streamlit
 
