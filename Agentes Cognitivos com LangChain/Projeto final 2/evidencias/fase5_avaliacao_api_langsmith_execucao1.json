@@ -1,0 +1,130 @@
+{
+  "tipo": "avaliacao_real_api_langsmith",
+  "data_utc": "2026-11-12T02:36:36Z",
+  "comando": "python avaliar.py --modo api --langsmith",
+  "experimento_langsmith": "secretaria-ia-6c1261ec (dataset secretaria-ia-fixtures-20261112T023636)",
+  "dados": "Somente casos fictícios (dados/ficticios), banco temporário por caso; nenhum corpus privado enviado.",
+  "modelo_agente_e_juiz": "gpt-4o-mini, temperature=0",
+  "resumo": {
+    "casos_do_agente": 4,
+    "trajetoria_exata": "3/4",
+    "resposta_semantica": "4/4"
+  },
+  "revisor_humano": "Claude (assistente), revisão a confirmar por Renan",
+  "limites": [
+    "Uma única execução de 4 casos: sem média, mediana ou desvio entre execuções.",
+    "O juiz real ainda não havia sido testado contra a fixture negativa \"Posso consultar...\" nesta execução; teste acrescentado depois.",
+    "Casos simples e de um turno; não cobrem memória multi-turno nem propostas."
+  ],
+  "resultados": [
+    {
+      "id": "fonte",
+      "origem": "execucao_api",
+      "pergunta": "Onde foi dito o orçamento do projeto Alfa?",
+      "resposta": "O orçamento do projeto Alfa foi mencionado na seguinte mensagem:\n\n- **Autor:** Bruno\n- **Data:** 09 de novembro de 2026\n- **Texto:** \"Orçamento Alfa: R$ 10.000,00. Entrada combinada de 30%; restante em 20/11/2026.\"\n- **Mensagem ID:** 4\n\nSe precisar de mais informações, estou à disposição!",
+      "ferramentas_esperadas": [
+        "listar_corpora_acessiveis",
+        "buscar_mensagens_fonte"
+      ],
+      "ferramentas_observadas": [
+        "listar_corpora_acessiveis",
+        "buscar_mensagens_fonte"
+      ],
+      "nota_ferramentas": 1,
+      "nota_resposta": 1,
+      "parecer": {
+        "nota": 1,
+        "parecer": {
+          "nota": 1,
+          "responde_pergunta": true,
+          "cobre_referencia": true,
+          "sem_contradicao": true,
+          "somente_oferece_consulta": false,
+          "justificativa": "A candidata responde à pergunta ao mencionar o orçamento do projeto Alfa e fornece detalhes sobre a mensagem de Bruno, que inclui o valor proposto. Não há contradição com a referência, que também menciona o orçamento proposto de R$ 10.000,00."
+        },
+        "justificativa": "A candidata responde à pergunta ao mencionar o orçamento do projeto Alfa e fornece detalhes sobre a mensagem de Bruno, que inclui o valor proposto. Não há contradição com a referência, que também menciona o orçamento proposto de R$ 10.000,00."
+      },
+      "comentario_humano": "Correto: cita a mensagem 4 (M0004), autor Bruno e o texto original; trajetória exata. Ressalva: não repete que orçamento proposto não comprova recebimento, presente na referência; o juiz deu cobre_referencia=true. Leniência aceitável, pois a resposta não afirma pagamento, mas mostra que o juiz não exige o aviso."
+    },
+    {
+      "id": "cliente",
+      "origem": "execucao_api",
+      "pergunta": "O cliente Alfa está cadastrado?",
+      "resposta": "O cliente \"Alfa Serviços\" está cadastrado como pessoa física (PF). Se precisar de mais informações, é só avisar!",
+      "ferramentas_esperadas": [
+        "buscar_cliente"
+      ],
+      "ferramentas_observadas": [
+        "buscar_cliente"
+      ],
+      "nota_ferramentas": 1,
+      "nota_resposta": 1,
+      "parecer": {
+        "nota": 1,
+        "parecer": {
+          "nota": 1,
+          "responde_pergunta": true,
+          "cobre_referencia": true,
+          "sem_contradicao": true,
+          "somente_oferece_consulta": false,
+          "justificativa": "A candidata responde à pergunta afirmando que o cliente 'Alfa Serviços' está cadastrado, o que cobre a informação da referência. Não há contradição e a resposta é direta."
+        },
+        "justificativa": "A candidata responde à pergunta afirmando que o cliente 'Alfa Serviços' está cadastrado, o que cobre a informação da referência. Não há contradição e a resposta é direta."
+      },
+      "comentario_humano": "Correto: buscar_cliente chamada uma vez; o cadastro PF foi criado no banco temporário da avaliação."
+    },
+    {
+      "id": "contagem",
+      "origem": "execucao_api",
+      "pergunta": "Quantas mensagens do Bruno mencionam orçamento e Alfa no corpus fictício?",
+      "resposta": "Existem 1 mensagem do Bruno que menciona \"orçamento\" e \"Alfa\" no corpus \"Demonstração fictícia\".",
+      "ferramentas_esperadas": [
+        "listar_corpora_acessiveis",
+        "consultar_mensagens_estruturado"
+      ],
+      "ferramentas_observadas": [
+        "listar_corpora_acessiveis",
+        "listar_corpora_acessiveis",
+        "consultar_mensagens_estruturado"
+      ],
+      "nota_ferramentas": 0,
+      "nota_resposta": 1,
+      "parecer": {
+        "nota": 1,
+        "parecer": {
+          "nota": 1,
+          "responde_pergunta": true,
+          "cobre_referencia": true,
+          "sem_contradicao": true,
+          "somente_oferece_consulta": false,
+          "justificativa": "A candidata responde diretamente à pergunta, afirmando que existe 1 mensagem que menciona \"orçamento\" e \"Alfa\", o que está de acordo com a referência que indica que uma mensagem atende aos filtros."
+        },
+        "justificativa": "A candidata responde diretamente à pergunta, afirmando que existe 1 mensagem que menciona \"orçamento\" e \"Alfa\", o que está de acordo com a referência que indica que uma mensagem atende aos filtros."
+      },
+      "comentario_humano": "Resposta correta (1 mensagem, conforme SQL validado). Trajetória exata falhou por chamar listar_corpora_acessiveis duas vezes seguidas: chamada redundante, sem efeito no resultado. A métrica exata (como na aula 08) penaliza repetição; por isso foi acrescentada a métrica complementar sem repetição. Erro de concordância: \"Existem 1 mensagem\"."
+    },
+    {
+      "id": "saudacao",
+      "origem": "execucao_api",
+      "pergunta": "Olá!",
+      "resposta": "Olá! Como posso ajudar você hoje?",
+      "ferramentas_esperadas": [],
+      "ferramentas_observadas": [],
+      "nota_ferramentas": 1,
+      "nota_resposta": 1,
+      "parecer": {
+        "nota": 1,
+        "parecer": {
+          "nota": 1,
+          "responde_pergunta": true,
+          "cobre_referencia": true,
+          "sem_contradicao": true,
+          "somente_oferece_consulta": false,
+          "justificativa": "A candidata responde à pergunta de forma adequada, cobre os fatos da referência e não contradiz a fonte, mantendo a essência da saudação e a disposição para ajudar."
+        },
+        "justificativa": "A candidata responde à pergunta de forma adequada, cobre os fatos da referência e não contradiz a fonte, mantendo a essência da saudação e a disposição para ajudar."
+      },
+      "comentario_humano": "Correto: nenhuma ferramenta chamada, como esperado."
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "tipo": "avaliacao_real_api_langsmith",
+  "data_utc": "2026-11-12T02:40:12Z",
+  "comando": "python avaliar.py --modo api --langsmith",
+  "experimento_langsmith": "secretaria-ia-d535a39c (dataset secretaria-ia-fixtures-20261112T024012)",
+  "dados": "Somente casos fictícios; banco temporário por caso.",
+  "modelo_agente_e_juiz": "gpt-4o-mini, temperature=0",
+  "resumo": {
+    "casos_do_agente": 4,
+    "trajetoria_exata": "3/4",
+    "trajetoria_sem_repeticao": "4/4",
+    "resposta_semantica": "4/4",
+    "teste_do_juiz": "2/2 notas finais corretas; 1 falso positivo na nota bruta do juiz, bloqueado pela regra de composição"
+  },
+  "revisor_humano": "Claude (assistente), revisão a confirmar por Renan",
+  "resultados": [
+    {
+      "id": "fonte",
+      "origem": "execucao_api",
+      "pergunta": "Onde foi dito o orçamento do projeto Alfa?",
+      "resposta": "O orçamento do projeto Alfa foi mencionado na mensagem de Bruno, datada de 09 de novembro de 2026, às 11:03 UTC. O trecho é: \"Orçamento Alfa: R$ 10.000,00. Entrada combinada de 30%; restante em 20/11/2026.\" (Mensagem ID: 4).",
+      "ferramentas_esperadas": [
+        "listar_corpora_acessiveis",
+        "buscar_mensagens_fonte"
+      ],
+      "ferramentas_observadas": [
+        "listar_corpora_acessiveis",
+        "buscar_mensagens_fonte"
+      ],
+      "nota_ferramentas": 1,
+      "nota_ferramentas_sem_repeticao": 1,
+      "nota_resposta": 1,
+      "parecer": {
+        "nota": 1,
+        "parecer": {
+          "nota": 1,
+          "responde_pergunta": true,
+          "cobre_referencia": true,
+          "sem_contradicao": true,
+          "somente_oferece_consulta": false,
+          "justificativa": "A candidata responde à pergunta ao mencionar que o orçamento foi citado na mensagem de Bruno e fornece detalhes sobre o valor e as condições de pagamento, que estão em conformidade com a referência."
+        },
+        "justificativa": "A candidata responde à pergunta ao mencionar que o orçamento foi citado na mensagem de Bruno e fornece detalhes sobre o valor e as condições de pagamento, que estão em conformidade com a referência."
+      },
+      "comentario_humano": "Correto: mensagem 4 de Bruno com o texto original; trajetória exata. Novamente sem o aviso de que orçamento proposto não comprova recebimento; juiz leniente nesse ponto."
+    },
+    {
+      "id": "contagem",
+      "origem": "execucao_api",
+      "pergunta": "Quantas mensagens do Bruno mencionam orçamento e Alfa no corpus fictício?",
+      "resposta": "Existem 1 mensagem do Bruno que menciona \"orçamento\" e \"Alfa\" no corpus \"Demonstração fictícia\".",
+      "ferramentas_esperadas": [
+        "listar_corpora_acessiveis",
+        "consultar_mensagens_estruturado"
+      ],
+      "ferramentas_observadas": [
+        "listar_corpora_acessiveis",
+        "listar_corpora_acessiveis",
+        "consultar_mensagens_estruturado"
+      ],
+      "nota_ferramentas": 0,
+      "nota_ferramentas_sem_repeticao": 1,
+      "nota_resposta": 1,
+      "parecer": {
+        "nota": 1,
+        "parecer": {
+          "nota": 1,
+          "responde_pergunta": true,
+          "cobre_referencia": true,
+          "sem_contradicao": true,
+          "somente_oferece_consulta": false,
+          "justificativa": "A candidata responde diretamente à pergunta, afirmando que existe 1 mensagem que menciona \"orçamento\" e \"Alfa\", o que está de acordo com a referência que indica que uma mensagem atende aos filtros."
+        },
+        "justificativa": "A candidata responde diretamente à pergunta, afirmando que existe 1 mensagem que menciona \"orçamento\" e \"Alfa\", o que está de acordo com a referência que indica que uma mensagem atende aos filtros."
+      },
+      "comentario_humano": "Mesma falha da execução 1: listar_corpora_acessiveis chamada duas vezes seguidas; resposta correta. Com temperature=0, comportamento sistemático. Métrica sem repetição = 1."
+    },
+    {
+      "id": "cliente",
+      "origem": "execucao_api",
+      "pergunta": "O cliente Alfa está cadastrado?",
+      "resposta": "O cliente \"Alfa Serviços\" está cadastrado como pessoa física (PF). Se precisar de mais informações, é só avisar!",
+      "ferramentas_esperadas": [
+        "buscar_cliente"
+      ],
+      "ferramentas_observadas": [
+        "buscar_cliente"
+      ],
+      "nota_ferramentas": 1,
+      "nota_ferramentas_sem_repeticao": 1,
+      "nota_resposta": 1,
+      "parecer": {
+        "nota": 1,
+        "parecer": {
+          "nota": 1,
+          "responde_pergunta": true,
+          "cobre_referencia": true,
+          "sem_contradicao": true,
+          "somente_oferece_consulta": false,
+          "justificativa": "A candidata responde diretamente à pergunta afirmando que o cliente 'Alfa Serviços' está cadastrado, o que cobre a informação da referência. Não há contradições e a resposta é clara."
+        },
+        "justificativa": "A candidata responde diretamente à pergunta afirmando que o cliente 'Alfa Serviços' está cadastrado, o que cobre a informação da referência. Não há contradições e a resposta é clara."
+      },
+      "comentario_humano": "Correto; igual à execução 1."
+    },
+    {
+      "id": "saudacao",
+      "origem": "execucao_api",
+      "pergunta": "Olá!",
+      "resposta": "Olá! Como posso ajudar você hoje?",
+      "ferramentas_esperadas": [],
+      "ferramentas_observadas": [],
+      "nota_ferramentas": 1,
+      "nota_ferramentas_sem_repeticao": 1,
+      "nota_resposta": 1,
+      "parecer": {
+        "nota": 1,
+        "parecer": {
+          "nota": 1,
+          "responde_pergunta": true,
+          "cobre_referencia": true,
+          "sem_contradicao": true,
+          "somente_oferece_consulta": false,
+          "justificativa": "A candidata responde à pergunta de forma adequada, cobre os fatos da referência e não contradiz a fonte, mantendo a essência da saudação e a disposição para ajudar."
+        },
+        "justificativa": "A candidata responde à pergunta de forma adequada, cobre os fatos da referência e não contradiz a fonte, mantendo a essência da saudação e a disposição para ajudar."
+      },
+      "comentario_humano": "Correto; igual à execução 1."
+    },
+    {
+      "id": "proposta_visita",
+      "origem": "teste_do_juiz_fixture",
+      "pergunta": "A visita proposta já está confirmada?",
+      "resposta": "Não. A proposta está pendente; ainda precisa ser confirmada pelo ID.",
+      "ferramentas_esperadas": [],
+      "ferramentas_observadas": [],
+      "nota_ferramentas": 1,
+      "nota_ferramentas_sem_repeticao": 1,
+      "nota_resposta": 1,
+      "parecer": {
+        "nota": 1,
+        "parecer": {
+          "nota": 1,
+          "responde_pergunta": true,
+          "cobre_referencia": true,
+          "sem_contradicao": true,
+          "somente_oferece_consulta": false,
+          "justificativa": "A candidata responde diretamente à pergunta, afirmando que a proposta está pendente e, portanto, não é uma reserva confirmada, o que está em conformidade com a referência."
+        },
+        "justificativa": "A candidata responde diretamente à pergunta, afirmando que a proposta está pendente e, portanto, não é uma reserva confirmada, o que está em conformidade com a referência."
+      },
+      "comentario_humano": "Teste do juiz (resposta fixa, sem agente): aprovação correta."
+    },
+    {
+      "id": "oferta_consulta",
+      "origem": "teste_do_juiz_fixture",
+      "pergunta": "Onde foi dito o orçamento do projeto Alfa?",
+      "resposta": "Posso consultar as mensagens para você.",
+      "ferramentas_esperadas": [
+        "listar_corpora_acessiveis",
+        "buscar_mensagens_fonte"
+      ],
+      "ferramentas_observadas": [],
+      "nota_ferramentas": 0,
+      "nota_ferramentas_sem_repeticao": 0,
+      "nota_resposta": 0,
+      "parecer": {
+        "nota": 0,
+        "parecer": {
+          "nota": 1,
+          "responde_pergunta": false,
+          "cobre_referencia": false,
+          "sem_contradicao": true,
+          "somente_oferece_consulta": true,
+          "justificativa": "A candidata não responde à pergunta sobre onde foi dito o orçamento do projeto Alfa e apenas oferece consultar as mensagens, o que não atende à solicitação."
+        },
+        "justificativa": "A candidata não responde à pergunta sobre onde foi dito o orçamento do projeto Alfa e apenas oferece consultar as mensagens, o que não atende à solicitação."
+      },
+      "comentario_humano": "FALSO POSITIVO DO JUIZ CONTIDO: o LLM juiz devolveu nota=1, mas marcou responde_pergunta=false e somente_oferece_consulta=true. A regra em Python exige todos os critérios e produziu nota final 0. Evidência de que a nota bruta do juiz não é confiável sozinha (mesmo fenômeno mostrado na aula 08)."
+    }
+  ]
+}
