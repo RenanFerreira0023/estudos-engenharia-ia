@@ -29,7 +29,21 @@ No Streamlit, o agente **só propõe**: confirmar visita ou cadastro PJ é feito
 
 ## Estado na entrega
 
-Agente único (`create_agent`) com 11 ferramentas: SQLite (clientes, projetos, agenda, financeiro, mensagens), RAG com FAISS e fonte citada, consulta estruturada com SQL parametrizado, ViaCEP e Minha Receita. Memória por usuário e sessão (janela, recortes antigos com FAISS, preferências confirmadas). Verificação das respostas antes de exibir. Interface Streamlit. Avaliação real em 4 execuções: respostas 16/16, trajetória exata 12/16. Pendentes da entrega: relatório PDF e vídeo.
+Agente único (`create_agent`) com 11 ferramentas: SQLite (clientes, projetos, agenda, financeiro, mensagens), RAG com FAISS e fonte citada, consulta estruturada com SQL parametrizado, ViaCEP e Minha Receita. Memória por usuário e sessão (janela, recortes antigos com FAISS, preferências confirmadas). Verificação das respostas antes de exibir. Interface Streamlit. Avaliação real em 4 execuções: respostas 16/16, trajetória exata 12/16. Relatório técnico: [renan_ferreira_ai-agents_langchain-agents.pdf](renan_ferreira_ai-agents_langchain-agents.pdf). O vídeo de demonstração é enviado à parte.
+
+## Primeiro uso no Streamlit (5 minutos)
+
+Com o `.env` preenchido, rode `python -m streamlit run app.py` e siga, como usuária **ana**:
+
+1. **Fontes** → *Importar demonstração fictícia* (40 mensagens) → *Preparar índice de fontes*.
+2. **Conversa** → `Onde foi dito o orçamento do projeto Alfa?` — cita a mensagem de origem (RAG com FAISS). A linha cinza abaixo da resposta mostra rota, ferramentas, verificação e recortes antigos usados.
+3. `Quantas mensagens falam de orçamento?` — contagem exata por consulta estruturada, sem embeddings.
+4. `Cadastre o CNPJ 33683111000280 se ainda não estiver no banco.` — consulta a Minha Receita e cria uma **proposta**; confirme na aba **Agenda** com o ID informado.
+5. `Agende uma visita a esse cliente em 20/11/2026 às 10h, CEP 01310-100, número 1000.` — consulta o ViaCEP e propõe; confirme na **Agenda**. Uma segunda visita no mesmo horário é recusada.
+6. `Qual cliente mencionei?` — memória da conversa. Troque para **bruno** na barra lateral: ele não vê a conversa nem as mensagens importadas pela Ana.
+7. **Revisão** e **Financeiro** — propostas extraídas das mensagens aguardando decisão humana, e saldo que só muda com pagamento confirmado (carla não tem permissão).
+
+Sem chave de API, use os [notebooks](notebooks/) e `python avaliar.py --modo fixture`.
 
 As seções abaixo registram cada marco do desenvolvimento como estava quando foi construído; números de testes e pendências citados nelas são históricos.
 

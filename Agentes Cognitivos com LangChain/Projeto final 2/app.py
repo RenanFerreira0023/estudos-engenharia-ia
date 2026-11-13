@@ -89,7 +89,8 @@ with aba_chat:
                 st.caption('Rota: ' + resultado['rota'] + ' | Ferramentas: '
                            + (', '.join(resultado['ferramentas']) or 'nenhuma')
                            + ' | Eventos: ' + str(resultado['eventos'])
-                           + ' | Verificação: ' + resultado['verificacao']['estado'])
+                           + ' | Verificação: ' + resultado['verificacao']['estado']
+                           + ' | Recortes antigos: ' + str(resultado.get('recortes_antigos', 0)))
             except Exception as erro:
                 exibir_erro(erro)
     st.caption('Confirmar visita ou cliente exige ação explícita na aba Agenda. O agente só propõe.')
