@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Secretária IA — Relatório</title>
+<style>
+  @page { size: A4; margin: 18mm 17mm 18mm 17mm; }
+  :root { --tinta:#1d2430; --suave:#5a6474; --linha:#d6dbe3; --fundo:#f4f6f9; --destaque:#1f5fa8; }
+  body { font-family: "Segoe UI", Calibri, Arial, sans-serif; color: var(--tinta); background:#fff;
+         font-size: 10.5pt; line-height: 1.5; margin: 0; }
+  h1 { font-size: 22pt; margin: 0 0 4px; }
+  h2 { font-size: 14pt; margin: 22px 0 8px; padding-bottom: 4px; border-bottom: 2px solid var(--destaque);
+       break-after: avoid; }
+  h3 { font-size: 11.5pt; margin: 14px 0 6px; break-after: avoid; }
+  p { margin: 6px 0; text-align: justify; }
+  ul, ol { margin: 6px 0 6px 20px; padding: 0; }
+  li { margin: 2px 0; }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 9pt; background: var(--fundo);
+         padding: 0 3px; border-radius: 3px; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 9.5pt; break-inside: avoid; }
+  th, td { border: 1px solid var(--linha); padding: 4px 6px; text-align: left; vertical-align: top; }
+  th { background: var(--fundo); }
+  .capa { border-left: 6px solid var(--destaque); padding: 6px 0 6px 14px; margin-bottom: 18px; }
+  .capa .sub { color: var(--suave); font-size: 11pt; }
+  .meta { color: var(--suave); font-size: 9.5pt; margin-top: 8px; }
+  .caixa { background: var(--fundo); border: 1px solid var(--linha); border-radius: 6px; padding: 8px 12px;
+           margin: 10px 0; break-inside: avoid; }
+  figure { margin: 10px 0 14px; break-inside: avoid; text-align: center; }
+  figure img { max-width: 100%; max-height: 105mm; border: 1px solid var(--linha); }
+  figcaption { font-size: 9pt; color: var(--suave); margin-top: 4px; }
+  .quebra { break-before: page; }
+  svg text { font-family: "Segoe UI", Calibri, Arial, sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="capa">
+  <h1>Secretária IA</h1>
+  <div class="sub">Agente com LangChain que organiza informações de uma conversa de equipe e só grava com confirmação humana</div>
+  <div class="meta">Renan Dutra Ferreira · Projeto final — Agentes Cognitivos com LangChain · Novembro de 2026<br>
+  Código, notebooks e evidências: pasta <code>Projeto final 2</code></div>
+</div>
+
+<h2>1. Problema e objetivo</h2>
+<p>Em equipes pequenas, decisões importantes ficam espalhadas em conversas de WhatsApp: orçamento de um projeto, pagamento
+combinado, visita a um cliente. Encontrar essa informação depois exige reler a conversa, e registrar à mão gera erros.</p>
+<p>A <b>Secretária IA</b> lê o backup de uma conversa, responde perguntas citando a mensagem de origem, consulta dados da
+empresa (clientes, agenda, financeiro) e <b>propõe</b> registros, como uma visita ou um cadastro de cliente. Nenhum registro
+definitivo é gravado pelo modelo: a confirmação é sempre uma ação explícita do usuário, executada em Python.</p>
+<p>Toda a demonstração usa um <b>corpus fictício</b> de 40 mensagens (três funcionários: ana, bruno e carla; três projetos:
+Alfa, Beta e Gama) com gabarito. O backup real, que contém dados internos, ficou fora do Git e nunca foi enviado a APIs
+externas nem ao LangSmith.</p>
+
+<h2>2. Arquitetura</h2>
+<p>O agente é <b>híbrido</b>: o modelo de linguagem interpreta o pedido e escolhe as ferramentas; regras em Python controlam o
+que não pode depender de interpretação, como parsing, dinheiro, datas, permissões e gravações.</p>
+
+<figure>
+<svg viewBox="0 0 720 300" width="100%" role="img" aria-label="Fluxo de um pedido na Secretária IA">
+  <defs><marker id="seta" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="#5a6474"/></marker></defs>
+  <g font-size="12" fill="#1d2430">
+    <rect x="10" y="20" width="120" height="50" rx="6" fill="#eef3fa" stroke="#1f5fa8"/>
+    <text x="70" y="42" text-anchor="middle">Usuário</text><text x="70" y="58" text-anchor="middle" font-size="10">Streamlit / terminal</text>
+    <rect x="160" y="20" width="120" height="50" rx="6" fill="#f4f6f9" stroke="#5a6474"/>
+    <text x="220" y="42" text-anchor="middle">Roteador</text><text x="220" y="58" text-anchor="middle" font-size="10">RunnableLambda</text>
+    <rect x="310" y="10" width="170" height="70" rx="6" fill="#eef3fa" stroke="#1f5fa8" stroke-width="2"/>
+    <text x="395" y="34" text-anchor="middle" font-weight="bold">Agente (create_agent)</text>
+    <text x="395" y="51" text-anchor="middle" font-size="10">gpt-4o-mini · ReAct</text>
+    <text x="395" y="66" text-anchor="middle" font-size="10">prompt PTCF + few-shot</text>
+    <rect x="510" y="20" width="200" height="50" rx="6" fill="#f4f6f9" stroke="#5a6474"/>
+    <text x="610" y="42" text-anchor="middle">Verificador</text><text x="610" y="58" text-anchor="middle" font-size="10">regras em Python + juiz LLM</text>
+
+    <rect x="160" y="130" width="130" height="62" rx="6" fill="#fff" stroke="#5a6474"/>
+    <text x="225" y="152" text-anchor="middle">Memória</text>
+    <text x="225" y="168" text-anchor="middle" font-size="10">janela de 6 turnos</text>
+    <text x="225" y="182" text-anchor="middle" font-size="10">recortes + FAISS</text>
+    <rect x="305" y="130" width="130" height="62" rx="6" fill="#fff" stroke="#5a6474"/>
+    <text x="370" y="152" text-anchor="middle">RAG de fontes</text>
+    <text x="370" y="168" text-anchor="middle" font-size="10">FAISS + embeddings</text>
+    <text x="370" y="182" text-anchor="middle" font-size="10">cita ID da mensagem</text>
+    <rect x="450" y="130" width="130" height="62" rx="6" fill="#fff" stroke="#5a6474"/>
+    <text x="515" y="152" text-anchor="middle">SQLite</text>
+    <text x="515" y="168" text-anchor="middle" font-size="10">clientes, agenda,</text>
+    <text x="515" y="182" text-anchor="middle" font-size="10">financeiro, text-to-query</text>
+    <rect x="595" y="130" width="115" height="62" rx="6" fill="#fff" stroke="#5a6474"/>
+    <text x="652" y="152" text-anchor="middle">APIs externas</text>
+    <text x="652" y="168" text-anchor="middle" font-size="10">ViaCEP</text>
+    <text x="652" y="182" text-anchor="middle" font-size="10">Minha Receita</text>
+
+    <rect x="300" y="235" width="270" height="52" rx="6" fill="#fff5e6" stroke="#b36b00" stroke-width="2"/>
+    <text x="435" y="256" text-anchor="middle" font-weight="bold">Confirmação humana (Python)</text>
+    <text x="435" y="273" text-anchor="middle" font-size="10">botão na tela ou comando no terminal → grava no banco</text>
+    <rect x="10" y="235" width="250" height="52" rx="6" fill="#f4f6f9" stroke="#5a6474"/>
+    <text x="135" y="256" text-anchor="middle">Observabilidade</text>
+    <text x="135" y="273" text-anchor="middle" font-size="10">callback RastroAgente · LangSmith</text>
+  </g>
+  <g stroke="#5a6474" stroke-width="1.5" fill="none" marker-end="url(#seta)">
+    <line x1="130" y1="45" x2="158" y2="45"/><line x1="280" y1="45" x2="308" y2="45"/>
+    <line x1="480" y1="45" x2="508" y2="45"/>
+    <line x1="350" y1="80" x2="235" y2="128"/><line x1="380" y1="80" x2="372" y2="128"/>
+    <line x1="410" y1="80" x2="505" y2="128"/><line x1="440" y1="80" x2="640" y2="128"/>
+    <line x1="515" y1="192" x2="470" y2="233"/>
+  </g>
+  <text x="560" y="222" font-size="10" fill="#5a6474">proposta → usuário confirma</text>
+</svg>
+<figcaption>Figura 1 — Caminho de um pedido. O agente só consulta e propõe; gravar exige ação do usuário.</figcaption>
+</figure>
+
+<p>O agente tem <b>11 ferramentas</b>:</p>
+<table>
+<tr><th>Tipo</th><th>Ferramentas</th></tr>
+<tr><td>Consulta ao SQLite</td><td><code>buscar_cliente</code>, <code>consultar_projeto</code>, <code>consultar_financeiro_projeto</code>, <code>consultar_disponibilidade</code></td></tr>
+<tr><td>Mensagens da conversa</td><td><code>listar_corpora_acessiveis</code>, <code>buscar_mensagens_fonte</code> (RAG), <code>consultar_mensagens_estruturado</code> (text-to-query)</td></tr>
+<tr><td>APIs externas</td><td><code>consultar_cep_viacep</code>, <code>consultar_cnpj_minha_receita</code></td></tr>
+<tr><td>Propostas (sem gravar)</td><td><code>propor_visita</code>, <code>propor_cadastro_cliente</code></td></tr>
+</table>
+
+<h2>3. Desenvolvimento por fase</h2>
+<p>Cada fase tem um notebook executável, sem chave de API e com dados fictícios: <code>notebooks/fase1_…</code> a <code>fase5_…</code>.</p>
+
+<h3>Fase 1 — Chain de extração</h3>
+<p>Uma chain LCEL <code>ChatPromptTemplate | modelo | PydanticOutputParser</code> lê as mensagens em lotes e extrai
+projeto, valores, datas e tipo de ato (pergunta, previsão, relato, confirmação), sempre com a mensagem de origem. A mesma
+sequência foi escrita com <code>@chain</code> para comparar o estilo declarativo com o imperativo. São demonstrados
+<code>invoke</code>, <code>batch</code> e <code>stream</code>. O <code>stream</code> devolve o objeto completo, não tokens, porque uma
+saída estruturada só tem valor depois de validada. Saída inválida ou fonte inexistente faz o lote falhar de forma explícita,
+sem declarar cobertura completa.</p>
+
+<h3>Fase 2 — Agente com ferramentas</h3>
+<p>O atendimento usa <code>create_agent</code> do LangChain 1.x, que monta um grafo LangGraph e executa o ciclo ReAct
+(modelo → ferramenta → observação → modelo). O prompt segue PTCF (pessoa, tarefa, contexto, formato) com exemplos
+<i>few-shot</i>. Antes do agente, um roteador (<code>RunnableLambda</code>) classifica o pedido em visita, cliente, projeto, fonte,
+consulta ou geral; a rota é uma dica, não um bloqueio. O callback <code>RastroAgente</code> registra eventos de modelo e
+ferramenta sem copiar conteúdo privado. Foram comparados três orquestradores: chain fixa, <code>create_agent</code> e grafo
+LangGraph escrito à mão. O <code>create_agent</code> foi escolhido porque a ordem das consultas varia conforme o pedido, e
+um grafo próprio não traria ganho para um agente desse tamanho.</p>
+
+<h3>Fase 3 — Memória</h3>
+<p>A memória segue a divisão do CoALA:</p>
+<ul>
+<li><b>curta</b>: janela com os 6 turnos mais recentes, guardados no SQLite e enviados ao <code>invoke</code>;</li>
+<li><b>episódica</b>: turnos que saem da janela viram recortes. Os recortes do mesmo usuário e da mesma sessão são filtrados no SQLite e, entre eles, o FAISS com embeddings (<code>text-embedding-3-small</code>) escolhe os relevantes;</li>
+<li><b>semântica</b>: os registros do banco;</li>
+<li><b>procedural</b>: as regras do prompt;</li>
+<li><b>preferências</b>: só são salvas quando o usuário confirma.</li>
+</ul>
+<p>A conversa é retomada depois de reiniciar o programa, e cada usuário tem histórico separado. LangMem e Mem0 foram comparados.
+O SQLite foi mantido por ser local e auditável.</p>
+
+<h3>Fase 4 — RAG e consulta estruturada</h3>
+<p>As mensagens são indexadas uma vez no FAISS, somente depois de o usuário autorizar o envio à OpenAI. A busca carrega o
+índice existente, confere a versão do corpus e devolve o trecho com o ID da mensagem.</p>
+<p>Para contagens e listas, uma busca por semelhança não serve, porque o top-k não é um inventário. Por isso existe o
+<i>text-to-query</i>: o modelo gera um plano tipado e o Python o valida e executa um <code>SELECT</code> parametrizado.</p>
+<p>Uma falha real de ranking foi diagnosticada e corrigida: no projeto Gama, uma mensagem que só perguntava pelo saldo ficava
+acima da que explicava por que ele não era calculável.</p>
+
+<h3>Fase 5 — Financeiro, verificação, interface e avaliação</h3>
+<p><b>Financeiro.</b> Registra orçamento proposto e aceito, parcelas, pagamento informado e confirmado, e estorno com
+auditoria. O saldo só muda com pagamento <b>confirmado</b>, e um perfil sem permissão não acessa o financeiro.</p>
+<p><b>Verificação.</b> Antes de exibir uma resposta, o verificador aplica regras fixas: uma contagem precisa da consulta
+estruturada, e um valor em reais precisa aparecer no relatório financeiro. Depois, um juiz LLM confere se as afirmações são
+sustentadas pelas ferramentas. Ele tem uma tentativa de reparo; se ela falhar, a resposta vira uma mensagem segura.</p>
+<p><b>Interface.</b> O Streamlit tem as abas Conversa, Fontes, Revisão, Agenda e Financeiro, com o mesmo agente e o mesmo
+banco do terminal.</p>
+<p><b>Avaliação.</b> Feita com o LangSmith (seção 5).</p>
+
+<h2>4. Decisões principais</h2>
+<div class="caixa"><b>Confirmação fora do modelo.</b> O agente não tem nenhuma ferramenta que confirme ou grave registros
+definitivos. Ele cria propostas, que expiram em 30 minutos e são idempotentes: o mesmo pedido reutiliza a proposta
+pendente. A confirmação é um botão na aba Agenda ou um comando no terminal, executado em Python com nova checagem de
+conflito e permissão. O motivo é segurança: nos testes, o modelo chegou a <b>afirmar</b> que um cadastro tinha sido
+confirmado sem que nada tivesse sido gravado (seção 6). Com a confirmação fora do modelo, uma alucinação dessas não altera o
+banco. Confirmar por frase no chat ("pode confirmar") ficou como melhoria futura.</div>
+<p><b>Classes antigas da rubrica.</b> Na aula 08, o professor orientou que as funções antigas não são exigidas, desde que a
+escolha seja justificada e o conceito apareça funcionando. As equivalências usadas:</p>
+<table>
+<tr><th>Citado no enunciado</th><th>Usado no projeto</th></tr>
+<tr><td><code>initialize_agent</code>, <code>AgentExecutor</code>, <code>create_openai_tools_agent</code></td><td><code>create_agent</code> com function calling da OpenAI</td></tr>
+<tr><td><code>RouterChain</code></td><td><code>roteador_pedido</code> (<code>RunnableLambda</code>) antes do agente</td></tr>
+<tr><td><code>ConversationBufferMemory</code>, <code>RunnableWithMessageHistory</code></td><td>Histórico por usuário e sessão no SQLite, passado em <code>messages</code> ao <code>invoke</code></td></tr>
+</table>
+<p><b>Dados.</b> O projeto usa demonstração fictícia com gabarito e mantém o backup real privado. No LangSmith só entram
+casos fictícios.</p>
+<p><b>Sem autenticação.</b> A escolha entre ana, bruno e carla serve para testar permissões; não é login.</p>
+
+<h2>5. Avaliação com LangSmith</h2>
+<p>O script <code>avaliar.py --modo api --langsmith</code> rodou 4 vezes sobre um dataset fixo de 4 casos fictícios. O agente
+e o juiz usam <code>gpt-4o-mini</code> com <code>temperature=0</code>. As métricas foram:</p>
+<ul>
+<li><b>Trajetória exata</b>: a lista de ferramentas chamadas precisa ser idêntica à esperada. É o mesmo critério da aula.</li>
+<li><b>Trajetória sem repetição</b>: igual à anterior, mas ignora chamadas repetidas em sequência. Serve para separar uma ferramenta errada de uma chamada redundante.</li>
+<li><b>Resposta semântica</b>: o juiz LLM avalia critérios separados, e a nota final só é 1 se <b>todos</b> forem favoráveis. Essa regra é aplicada no código.</li>
+<li><b>Teste do juiz</b>: o próprio juiz recebe a resposta "Posso consultar as mensagens para você.", que deve tirar nota 0.</li>
+</ul>
+<table>
+<tr><th>Caso</th><th>Trajetória esperada</th><th>Exata</th><th>Sem repetição</th><th>Resposta</th></tr>
+<tr><td>saudação</td><td>nenhuma</td><td>4/4</td><td>4/4</td><td>4/4</td></tr>
+<tr><td>cliente</td><td><code>buscar_cliente</code></td><td>4/4</td><td>4/4</td><td>4/4</td></tr>
+<tr><td>fonte</td><td><code>listar_corpora_acessiveis → buscar_mensagens_fonte</code></td><td>4/4</td><td>4/4</td><td>4/4</td></tr>
+<tr><td>contagem</td><td><code>listar_corpora_acessiveis → consultar_mensagens_estruturado</code></td><td><b>0/4</b></td><td>4/4</td><td>4/4</td></tr>
+<tr><th>Total</th><th></th><th>12/16 (75%)</th><th>16/16</th><th>16/16</th></tr>
+</table>
+<h3>Análise</h3>
+<ol>
+<li><b>Resposta certa, com uma chamada a mais.</b> No caso de contagem, o agente chamou <code>listar_corpora_acessiveis</code>
+duas vezes antes da consulta. A resposta (1 mensagem) estava correta. O trace mostra que as duas chamadas saíram do
+<b>mesmo passo</b> do modelo, como chamadas paralelas redundantes. O problema é de eficiência, não de escolha errada:
+a métrica exata o penaliza e a sem repetição não.</li>
+<li><b>Falso positivo do juiz, contido pelo código.</b> Diante de "Posso consultar as mensagens para você.", o juiz deu nota 1,
+embora tenha marcado <code>responde_pergunta: false</code>. A nota final ficou 0 porque o código só aprova quando todos os
+critérios estão favoráveis. A nota única de um juiz LLM não é confiável sozinha.</li>
+<li><b>Juiz tolerante.</b> No caso fonte, a referência avisa que orçamento proposto não comprova recebimento. As respostas
+não repetiram o aviso e mesmo assim foram aprovadas.</li>
+</ol>
+<p>Com <code>temperature=0</code>, as quatro execuções deram o mesmo resultado (desvio padrão 0).</p>
+
+<figure><img src="../evidencias/prints/01_langsmith_tabela.png" alt="Experimento no LangSmith">
+<figcaption>Figura 2 — Experimento no LangSmith: a linha 2 (contagem) tira 0 na trajetória exata e 1 nas demais métricas. A média "1.00" do cabeçalho foi exibida antes de todas as notas chegarem; vale o valor por linha.</figcaption></figure>
+<figure><img src="../evidencias/prints/02_langsmith_trace_contagem.png" alt="Trace do caso de contagem">
+<figcaption>Figura 3 — Trace do caso de contagem: duas chamadas a <code>listar_corpora_acessiveis</code> no mesmo passo do modelo.</figcaption></figure>
+
+<h2>6. Falhas reais e correções</h2>
+<p>Os testes manuais com a API real revelaram falhas que os testes automatizados não pegavam. As principais:</p>
+<table>
+<tr><th>Falha observada</th><th>Causa</th><th>Correção</th></tr>
+<tr><td>Chain de extração cobriu só parte das mensagens nas primeiras chamadas reais</td><td>Lotes com saída fora do contrato</td><td>Contratos por área, JSON Schema na geração e falha explícita do lote</td></tr>
+<tr><td>Pergunta "onde foi dito o orçamento do Alfa?" respondida sem buscar na conversa</td><td>Rota de projeto tinha prioridade; prompt não exigia a busca</td><td>Rota <i>fonte</i> com prioridade e regra no prompt; reteste citou a mensagem 4</td></tr>
+<tr><td>Erro de digitação ("cleinte") impedia recuperar um turno antigo</td><td>Busca por palavras exatas</td><td>Aceitar palavras muito parecidas; depois, FAISS com embeddings para escolher recortes</td></tr>
+<tr><td>No Streamlit, o agente mandou digitar <code>/confirmar-visita</code>, comando que não existe</td><td>Prompt único escrito para o terminal</td><td>Prompt por canal; no chat web, texto com "/" não vai ao modelo</td></tr>
+<tr><td>O agente <b>disse</b> que confirmou um cadastro, mas nada foi gravado</td><td>O comando com barra foi ao LLM, que inventou a confirmação</td><td>Bloqueio de comandos com barra; reforça a decisão de confirmar fora do modelo</td></tr>
+<tr><td>Proposta de visita duplicada</td><td>Pedido repetido criava proposta nova</td><td><code>propor_visita</code> idempotente, com prazo informado</td></tr>
+<tr><td>A resposta reescrita pelo verificador perdia a orientação de onde confirmar</td><td>Texto dependia do modelo</td><td>Orientação acrescentada em Python a partir do retorno da ferramenta</td></tr>
+<tr><td>Contagem respondida com a ferramenta errada, numa conversa que vinha de uma pergunta sobre fonte</td><td>O histórico influenciou a escolha</td><td><b>Bloqueada pelo verificador</b>, que deu resposta segura; em conversa nova, acertou</td></tr>
+<tr><td>Agenda em UTC; saldo e agenda desatualizados logo após a ação</td><td>Exibição</td><td>Horário de São Paulo; tabelas preenchidas depois dos botões</td></tr>
+</table>
+<p>O registro completo, com datas e retestes, está em <code>docs/execucoes_e_falhas.md</code>.</p>
+
+<h2 class="quebra">7. Evidências na interface</h2>
+<figure><img src="../evidencias/prints/04_chat_visita.png" alt="Pedido de visita">
+<figcaption>Figura 4 — Pedido de visita: <code>buscar_cliente</code>, <code>consultar_disponibilidade</code> e <code>propor_visita</code>. A proposta 6 aparece com prazo e com a orientação de onde confirmar.</figcaption></figure>
+<figure><img src="../evidencias/prints/05_agenda_confirmada.png" alt="Visita confirmada">
+<figcaption>Figura 5 — Confirmação pelo botão da aba Agenda: agendamento 6 gravado.</figcaption></figure>
+<figure><img src="../evidencias/prints/05b_minha_agenda.png" alt="Minha agenda">
+<figcaption>Figura 6 — A visita aparece em "Minha agenda", no horário de São Paulo.</figcaption></figure>
+<figure><img src="../evidencias/prints/06_comando_barra.png" alt="Comando com barra">
+<figcaption>Figura 7 — Comando com barra no chat web: resposta local, sem passar pelo modelo e sem gravar nada.</figcaption></figure>
+<figure><img src="../evidencias/prints/07_chat_fonte.png" alt="Busca de fonte">
+<figcaption>Figura 8 — RAG: a resposta cita a mensagem 4 de Bruno com o orçamento do Alfa.</figcaption></figure>
+<figure><img src="../evidencias/prints/08_chat_contagem.png" alt="Contagem">
+<figcaption>Figura 9 — Text-to-query: contagem pela consulta estruturada, com a chamada duplicada vista na avaliação.</figcaption></figure>
+<figure><img src="../evidencias/prints/08b_verificador_bloqueou.png" alt="Verificador bloqueou">
+<figcaption>Figura 10 — Verificador em ação: contagem feita sem consulta estruturada foi barrada e virou resposta segura.</figcaption></figure>
+<figure><img src="../evidencias/prints/09_memoria.png" alt="Memória">
+<figcaption>Figura 11 — Memória curta: o cliente mencionado é lembrado sem nova chamada de ferramenta.</figcaption></figure>
+<figure><img src="../evidencias/prints/11_financeiro_confirmado.png" alt="Pagamento confirmado">
+<figcaption>Figura 12 — Financeiro: saldo de R$ 9.000,00 após confirmar o pagamento de R$ 1.000,00.</figcaption></figure>
+<figure><img src="../evidencias/prints/12_financeiro_estorno.png" alt="Estorno">
+<figcaption>Figura 13 — Estorno: o saldo volta a R$ 10.000,00, e o pagamento original fica preservado na auditoria.</figcaption></figure>
+<figure><img src="../evidencias/prints/13_permissao_carla.png" alt="Permissão negada">
+<figcaption>Figura 14 — Permissão: a usuária carla não acessa o financeiro.</figcaption></figure>
+<figure><img src="../evidencias/prints/14_testes.png" alt="Testes">
+<figcaption>Figura 15 — 141 testes automatizados passando, sem chamar APIs.</figcaption></figure>
+
+<h2>8. Limites e melhorias</h2>
+<h3>Limites</h3>
+<ul>
+<li>A avaliação tem 4 casos de um turno e não cobre memória multi-turno, propostas nem financeiro. Esses fluxos foram testados manualmente e por testes automatizados. O caso da Figura 10 mostra que o multi-turno pode mudar a escolha de ferramenta.</li>
+<li>Uma verificação "aprovada" não prova que a resposta está certa: o juiz já aprovou uma resposta com um comando inexistente.</li>
+<li>Não há autenticação; os usuários são de demonstração.</li>
+<li>O <code>stream</code> da chain não emite tokens.</li>
+</ul>
+<h3>Melhorias</h3>
+<ul>
+<li>Evitar a chamada paralela duplicada (<code>parallel_tool_calls=False</code> ou ajuste no prompt) e medir de novo.</li>
+<li>Ampliar o dataset com casos multi-turno, por exemplo uma pergunta de fonte seguida de uma de contagem, e com propostas.</li>
+<li>Fazer o juiz cobrar avisos de negócio, como "orçamento não é recebimento".</li>
+<li>Confirmar por frase no chat, mantendo a gravação em Python, com resumo e uma segunda confirmação.</li>
+<li>Autenticação real antes de qualquer uso com dados reais.</li>
+</ul>
+
+<h2>9. Como executar e uso de IA</h2>
+<p>As instruções estão no <code>README.md</code>. Os notebooks e os testes rodam sem chave. O Streamlit
+(<code>python -m streamlit run app.py</code>) e a avaliação precisam de <code>OPENAI_API_KEY</code> no <code>.env</code>, a partir de
+<code>.env.example</code>. A instalação foi verificada em um ambiente limpo. A matriz em <code>docs/matriz_requisitos.md</code>
+liga cada item da rubrica (R01–R29) à sua evidência.</p>
+<p><b>Uso de IA no desenvolvimento:</b> assistentes de código (Codex e Claude Code) ajudaram a planejar, escrever código,
+testes e documentação. As decisões de escopo e de segurança, os testes manuais com a API real e a revisão dos resultados
+foram feitos por mim, e o histórico está registrado em <code>docs/uso_de_ia.md</code> e
+<code>docs/execucoes_e_falhas.md</code>.</p>
+
+</body>
+</html>
