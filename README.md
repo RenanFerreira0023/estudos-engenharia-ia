@@ -260,9 +260,9 @@ Recordar o veículo fornecido pelo cliente na mesma conversa e pedir essa inform
 
 **Fluxo:** pergunta → histórico da sessão → agente → nova resposta → histórico. Isso não comprova memória após reiniciar.
 
-### [Aula 16-11 (LangGraph) — Primeiro grafo, checkpoints e estado](./Arquiteturas%20Multiagentes%20com%20LangGraph/aula%2016-11/)
+### [Aula 16-11 (LangGraph) — Primeiro grafo, checkpoints, estado e router](./Arquiteturas%20Multiagentes%20com%20LangGraph/aula%2016-11/)
 
-#### [A recepção lembra de cada conversa](./Arquiteturas%20Multiagentes%20com%20LangGraph/aula%2016-11/desafio1_recepcao.py)
+#### [A recepção lembra de cada conversa](./Arquiteturas%20Multiagentes%20com%20LangGraph/aula%2016-11/Desafio%201%20-%20A%20recepcao%20lembra%20de%20cada%20conversa/)
 
 Manter separados os históricos de Ana e Bruno, cada um com seu veículo, e
 inserir manualmente um fato só na sessão correta.
@@ -277,6 +277,23 @@ inserir manualmente um fato só na sessão correta.
   identificado; a memória some ao reiniciar o processo.
 
 **Fluxo:** mensagem + histórico da thread → `atendimento` → resposta nova → snapshot.
+
+#### [A secretária consulta o manual certo](./Arquiteturas%20Multiagentes%20com%20LangGraph/aula%2016-11/Desafio%202%20-%20A%20secretaria%20consulta%20o%20manual%20certo/)
+
+Responder uma pergunta de um único domínio consultando só a base correspondente
+(agenda ou financeiro) e mostrar a rota e os documentos usados.
+
+- **Contratos e estado:** `input_schema`/`output_schema` expõem só pergunta,
+  documentos e resposta; o domínio fica no estado interno.
+- **Classificação validada:** `RouteDecision` com `Literal` e
+  `with_structured_output` aceita apenas `agenda` ou `financeiro`.
+- **Duas bases:** `InMemoryVectorStore` + `as_retriever(k=1)`, com metadados de
+  base e ID para conferir a origem de cada documento.
+- **Aresta condicional:** `add_conditional_edges` usa `escolher_rota`, que lança
+  erro para rótulo desconhecido em vez de cair na outra rota; `stream` registra
+  os nós. Modo simulado identificado; `--real` usa embeddings e LLM.
+
+**Fluxo:** pergunta → classificar → buscar_agenda ou buscar_financeiro → responder → documentos + resposta.
 
 ## Conceitos para revisar
 
@@ -299,6 +316,7 @@ inserir manualmente um fato só na sessão correta.
 | Avaliação de resposta e trajetória | Comparação exata de consultas e LLM juiz com critérios explícitos; fixtures avaliam o juiz sem inventar falhas do agente. | Atendente e política, aula 04-11. |
 | Auditoria numérica e lógica | Valores são comparados com tolerância em Python; conclusões e cobertura são avaliadas separadamente contra fontes independentes. | Auditor de frete, aula 28-10. |
 | Grafo de estado e checkpoints | `StateGraph` com reducer `add_messages`; `MemorySaver`/`thread_id` separam conversas e `update_state` corrige o snapshot sem chamar o modelo. | Recepção, aula 16-11 (LangGraph). |
+| Router com arestas condicionais | Classificação com `Literal` escolhe um nó por `add_conditional_edges`; cada rota consulta só a própria base e converge para a resposta. | Secretária, aula 16-11 (LangGraph). |
 
 ## Observações
 

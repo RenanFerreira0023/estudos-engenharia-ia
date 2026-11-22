@@ -6,9 +6,9 @@ diferentes; cada conversa (thread_id) precisa lembrar só o próprio veículo.
 Fluxo:  START -> atendimento -> END
 
 Como rodar (a partir da raiz do repositório, com a .venv):
-    python "Arquiteturas Multiagentes com LangGraph/aula 16-11/desafio1_recepcao.py"          # modelo simulado
-    python "Arquiteturas Multiagentes com LangGraph/aula 16-11/desafio1_recepcao.py" --real   # gpt-4o-mini (usa OPENAI_API_KEY)
-    python "Arquiteturas Multiagentes com LangGraph/aula 16-11/desafio1_recepcao.py" --chat   # você conversa (pode somar --real)
+    python "Arquiteturas Multiagentes com LangGraph/aula 16-11/Desafio 1 - A recepcao lembra de cada conversa/recepcao.py"          # modelo simulado
+    python "Arquiteturas Multiagentes com LangGraph/aula 16-11/Desafio 1 - A recepcao lembra de cada conversa/recepcao.py" --real   # gpt-4o-mini (usa OPENAI_API_KEY)
+    python "Arquiteturas Multiagentes com LangGraph/aula 16-11/Desafio 1 - A recepcao lembra de cada conversa/recepcao.py" --chat   # você conversa (pode somar --real)
 
 Limite do modo simulado: o "modelo" só procura texto no histórico com regra fixa.
 Ele prova que o histórico está organizado por sessão, NÃO prova compreensão de uma LLM.

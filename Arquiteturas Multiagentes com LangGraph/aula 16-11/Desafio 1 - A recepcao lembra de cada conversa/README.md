@@ -1,6 +1,6 @@
 # Desafio 1 · A recepção lembra de cada conversa
 
-Código: [desafio1_recepcao.py](desafio1_recepcao.py)
+Código: [recepcao.py](recepcao.py)
 
 ## Desenho do fluxo
 

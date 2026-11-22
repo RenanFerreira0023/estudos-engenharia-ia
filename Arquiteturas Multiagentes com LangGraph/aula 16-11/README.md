@@ -1,33 +1,34 @@
-# Aula 16-11 — Primeiro grafo, checkpoints e estado
+# Aula 16-11 — Primeiro grafo, checkpoints, estado e router
 
 Material: [apostila da aula](./apostila_langgraph_aula_01%20(1).html).
 
 ## Exercícios
 
-- [Desafio 1 · A recepção lembra de cada conversa](./desafio1_recepcao.py):
+- [Desafio 1 · A recepção lembra de cada conversa](./Desafio%201%20-%20A%20recepcao%20lembra%20de%20cada%20conversa/):
   chat de oficina em que Ana e Bruno acompanham veículos diferentes. Cada
   `thread_id` guarda o próprio histórico; `update_state` grava um fato só na
-  sessão da Ana, sem chamar o modelo. [Desenho do fluxo e registro dos testes](./desafio1_registro.md).
+  sessão da Ana, sem chamar o modelo. Teste automático e modo `--chat`.
+
+- [Desafio 2 · A secretária consulta o manual certo](./Desafio%202%20-%20A%20secretaria%20consulta%20o%20manual%20certo/):
+  router que classifica a pergunta como agenda ou financeiro, consulta só a
+  base correspondente e responde com os documentos, registrando a rota com
+  `stream`. Rótulo inválido é rejeitado em vez de virar outra rota.
 
 ## Conceitos praticados
 
-`TypedDict` + `Annotated[list, add_messages]` definem o estado; o reducer
-acrescenta a resposta ao histórico. `StateGraph` liga `START → atendimento → END`.
-`MemorySaver` + `thread_id` separam as conversas no mesmo grafo; `get_state`
-lê o snapshot e `update_state` corrige o contexto sem nova resposta.
+- **Estado e reducer:** `TypedDict` + `Annotated[list, add_messages]`; o nó
+  devolve só a atualização e o reducer acrescenta ao histórico.
+- **Checkpoints:** `MemorySaver` + `thread_id` separam conversas no mesmo grafo;
+  `get_state` lê o snapshot e `update_state` corrige sem nova resposta.
+- **Contratos:** `input_schema`/`output_schema` separam a entrada e a saída
+  públicas do estado interno.
+- **Router:** `RouteDecision` (`Literal`) + `with_structured_output` classifica;
+  `add_conditional_edges` escolhe o nó; `InMemoryVectorStore` guarda cada base.
 
-**Fluxo:** mensagem + histórico da thread → nó `atendimento` → resposta nova → histórico.
+**Fluxos:**
 
-## Como rodar
+- Desafio 1: `START → atendimento → END`, com histórico por thread.
+- Desafio 2: `START → classificar → (buscar_agenda | buscar_financeiro) → responder → END`.
 
-Da raiz do repositório, com a `.venv`:
-
-```powershell
-.venv\Scripts\python "Arquiteturas Multiagentes com LangGraph\aula 16-11\desafio1_recepcao.py"           # teste automático (8 verificações)
-.venv\Scripts\python "Arquiteturas Multiagentes com LangGraph\aula 16-11\desafio1_recepcao.py" --chat    # você conversa
-```
-
-No `--chat`: `/sessao NOME`, `/fato TEXTO`, `/estado`, `/sair`.
-`--real` usa `gpt-4o-mini` com a `OPENAI_API_KEY` do `.env` da raiz; sem ele,
-roda um modelo simulado por regras. O simulado testa a organização do histórico,
-não a compreensão de uma LLM. `MemorySaver` fica só na RAM: reiniciar apaga tudo.
+Os dois rodam em modo simulado por padrão (sem API) e aceitam `--real`
+(OpenAI, `.env` da raiz). Comandos e evidências estão no README de cada desafio.
