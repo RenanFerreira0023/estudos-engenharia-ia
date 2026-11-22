@@ -260,6 +260,24 @@ Recordar o veículo fornecido pelo cliente na mesma conversa e pedir essa inform
 
 **Fluxo:** pergunta → histórico da sessão → agente → nova resposta → histórico. Isso não comprova memória após reiniciar.
 
+### [Aula 16-11 (LangGraph) — Primeiro grafo, checkpoints e estado](./Arquiteturas%20Multiagentes%20com%20LangGraph/aula%2016-11/)
+
+#### [A recepção lembra de cada conversa](./Arquiteturas%20Multiagentes%20com%20LangGraph/aula%2016-11/desafio1_recepcao.py)
+
+Manter separados os históricos de Ana e Bruno, cada um com seu veículo, e
+inserir manualmente um fato só na sessão correta.
+
+- **Estado com reducer:** `TypedDict` e `Annotated[list, add_messages]`; o nó
+  devolve só a resposta nova e o reducer a acrescenta ao histórico.
+- **Grafo mínimo:** `StateGraph` com um nó `atendimento` entre `START` e `END`.
+- **Checkpoints por conversa:** `MemorySaver` e `thread_id` retomam cada sessão
+  no mesmo grafo compilado, sem misturar históricos.
+- **Inspeção e correção:** `get_state` lê o snapshot; `update_state` grava o fato
+  sem chamar o modelo. Teste automático e modo `--chat` com modelo simulado
+  identificado; a memória some ao reiniciar o processo.
+
+**Fluxo:** mensagem + histórico da thread → `atendimento` → resposta nova → snapshot.
+
 ## Conceitos para revisar
 
 | Conceito | Significado neste repositório | Onde começar |
@@ -280,10 +298,7 @@ Recordar o veículo fornecido pelo cliente na mesma conversa e pedir essa inform
 | Duas fontes com memória | Ferramentas distintas fornecem produtos e políticas; a conversa identifica o produto, e uma nova leitura atualiza seu saldo. | Atendimento, aula 28-10. |
 | Avaliação de resposta e trajetória | Comparação exata de consultas e LLM juiz com critérios explícitos; fixtures avaliam o juiz sem inventar falhas do agente. | Atendente e política, aula 04-11. |
 | Auditoria numérica e lógica | Valores são comparados com tolerância em Python; conclusões e cobertura são avaliadas separadamente contra fontes independentes. | Auditor de frete, aula 28-10. |
-
-A pasta [Arquiteturas Multiagentes com LangGraph](./Arquiteturas%20Multiagentes%20com%20LangGraph/)
-ainda não contém exercícios. Os conceitos acima correspondem aos projetos já
-implementados em Agentes Cognitivos com LangChain.
+| Grafo de estado e checkpoints | `StateGraph` com reducer `add_messages`; `MemorySaver`/`thread_id` separam conversas e `update_state` corrige o snapshot sem chamar o modelo. | Recepção, aula 16-11 (LangGraph). |
 
 ## Observações
 
