@@ -1,0 +1,777 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LangGraph · Aula 2 · Caderno do Renan</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:#f4f6fa;color:#273247;font:16px/1.75 system-ui,-apple-system,Segoe UI,sans-serif}aside{position:fixed;width:280px;inset:0 auto 0 0;background:#111d32;color:#dae4f5;padding:30px 22px;overflow:auto}.brand{font-weight:800;font-size:20px;color:white}.brand span{color:#5ce0ca}.sub{font-size:12px;color:#98aac6;margin:8px 0 25px}nav a{display:block;color:#b9c8df;text-decoration:none;font-size:13px;line-height:1.5;padding:9px 10px;border-radius:8px;margin-bottom:3px}nav a:hover,nav a.active{background:#233750;color:#7cebd7}main{margin-left:280px;padding:42px clamp(24px,5vw,85px);max-width:1420px}.hero{background:linear-gradient(120deg,#12263f,#234b63);padding:45px;border-radius:24px;color:white;position:relative;overflow:hidden}.eyebrow{font-size:12px;letter-spacing:2px;color:#80ebd6;font-weight:800}h1{font-size:clamp(30px,4vw,48px);line-height:1.15;max-width:680px;margin:18px 0} .hero p{color:#c9d9ea;max-width:650px}.chips{display:flex;flex-wrap:wrap;gap:8px}.chips span,.badge{font-size:11px;font-weight:700;letter-spacing:.5px;padding:6px 12px;border-radius:30px;background:#ffffff14;color:#c5f8ed}.toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:24px 0;flex-wrap:wrap}button{cursor:pointer;border:1px solid #d8e0eb;border-radius:10px;background:white;color:#263b54;padding:10px 16px;font:600 13px system-ui}button:hover{border-color:#0a937f}.reading{font-size:13px;color:#6a778c}.paper{background:white;border:1px solid #e4e9f1;padding:clamp(24px,4vw,52px);border-radius:20px;box-shadow:0 8px 32px #10213a05}h2{font-size:26px;color:#183550;margin:45px 0 20px;border-top:1px solid #e4eaf2;padding-top:30px}h2:first-of-type{border:0;margin-top:12px;padding:0}h3{font-size:21px;line-height:1.4;margin:35px 0 12px;color:#1a4456}p{margin:12px 0 18px}.time{font-size:12px;color:#738498;margin-top:-5px}.callout{border-left:4px solid #0d9b86;background:#edf9f6;border-radius:0 10px 10px 0;padding:16px 20px}.tablewrap{overflow-x:auto;margin:22px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.6}th{background:#edf3f8;text-align:left;color:#21425c}th,td{padding:14px;border-bottom:1px solid #e4eaf1;vertical-align:top}tbody tr:nth-child(even){background:#fafbfd}li{padding:4px 0}code{font-family:Consolas,monospace;font-size:.9em;background:#eef2f7;padding:2px 5px;border-radius:4px}pre{background:#142238;color:#d8e9f6;padding:22px;border-radius:0 0 12px 12px;overflow:auto;line-height:1.65;margin-top:0;font-size:14px}pre code{background:none;padding:0}.codehead{background:#20334d;color:#85e7d4;font-size:12px;padding:10px 22px;border-radius:12px 12px 0 0}.badge{display:inline-block;background:#e6f5ef;color:#08785e;margin-bottom:8px}.answer{margin:26px 0;padding:22px;background:#f5f7fb;border-radius:12px}.answer label{display:block;font-weight:700;color:#26475e;margin-bottom:12px}textarea{width:100%;min-height:260px;resize:vertical;border:1px solid #d3dce8;border-radius:8px;padding:16px;font:14px/1.7 Consolas,monospace;background:white;color:#23354d}textarea:focus{outline:2px solid #37b8a2}.progress{position:fixed;top:0;left:280px;height:4px;background:#21b99e;width:0;z-index:20}footer{text-align:center;color:#7b899b;font-size:12px;margin:25px}.dark{background:#101a2b;color:#d2ddec}.dark .paper{background:#17243a;border-color:#2b3b52}.dark h2,.dark h3{color:#8de2d4}.dark th{background:#263a52;color:#cce7f0}.dark td,.dark th{border-color:#304158}.dark tbody tr:nth-child(even){background:#1b2b43}.dark .callout{background:#173e3b}.dark .answer{background:#20314b}.dark .answer label{color:#b9e4df}.dark textarea{background:#132035;color:#dbe6f4;border-color:#40516a}.dark code{background:#2a3b54}.dark pre code{background:none}@media(max-width:1000px){aside{width:220px}main{margin-left:220px;padding:24px}.progress{left:220px}.hero{padding:30px}}@media(max-width:720px){aside{position:relative;width:auto;padding:20px}nav{display:none}aside.open nav{display:block;max-height:45vh;overflow:auto}.sub{margin-bottom:0}main{margin:0;padding:16px}.hero{padding:25px;border-radius:16px}.paper{padding:22px}.progress{left:0}.brand{cursor:pointer}h2{font-size:23px}h3{font-size:19px}}@media print{aside,.toolbar,.progress,.answer,footer{display:none}main{margin:0;padding:0;max-width:none}.hero{background:none;color:#183550;padding:0}.hero p,.eyebrow{color:#334}.chips{display:none}.paper{border:0;padding:0;box-shadow:none}body{font-size:11pt;background:white}h2,h3{break-after:avoid}table,pre,.callout{break-inside:avoid}h2{margin-top:20px}a{color:inherit}}</style><style id="quiz-style">.quiz-panel{margin:32px 0}.quiz-score{position:sticky;top:8px;z-index:5;display:flex;gap:14px;align-items:center;justify-content:space-between;padding:16px 20px;background:#133b4d;color:white;border-radius:12px;flex-wrap:wrap}.quiz-score strong{font-size:25px;color:#81ecd4}.quiz-card{padding:22px 0;border-bottom:1px solid #dfe7ee}.quiz-card h3{margin:0 0 14px;font-size:17px}.quiz-options{display:grid;gap:9px}.quiz-option{width:100%;text-align:left;line-height:1.6;padding:12px 15px;font-weight:400;white-space:normal}.quiz-option:disabled{cursor:default;opacity:1}.quiz-option.quiz-right{background:#e1f5e9;border:2px solid #22824d;color:#15492b}.quiz-option.quiz-wrong{background:#fce7e7;border:2px solid #bc4141;color:#792424}.quiz-feedback{padding:12px 15px;border-radius:8px;background:#edf3f8;margin-top:12px}.dark .quiz-option{background:#21334c;color:#dce7f5;border-color:#42546b}.dark .quiz-option.quiz-right{background:#174835;color:#c5f6d7;border-color:#55bb83}.dark .quiz-option.quiz-wrong{background:#562e38;color:#ffe0e0;border-color:#da7a86}.dark .quiz-feedback{background:#253b54}@media print{.quiz-score{position:static}.quiz-option{border:1px solid #ccc}.quiz-card{break-inside:avoid}}</style><style id="syntax-colors">pre code .syn-key{color:#c7a3ff}pre code .syn-fn{color:#ffe08a}pre code .syn-str{color:#a8e7b4}pre code .syn-comment{color:#9dafc5;font-style:italic}pre code .syn-num{color:#8edcf7}pre code .syn-class{color:#7ee3d5}</style><style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #49483e }
+.highlight { background: #272822; color: #F8F8F2 }
+.highlight .c { color: #959077 } /* Comment */
+.highlight .err { color: #ED007E; background-color: #1E0010 } /* Error */
+.highlight .esc { color: #F8F8F2 } /* Escape */
+.highlight .g { color: #F8F8F2 } /* Generic */
+.highlight .k { color: #66D9EF } /* Keyword */
+.highlight .l { color: #AE81FF } /* Literal */
+.highlight .n { color: #F8F8F2 } /* Name */
+.highlight .o { color: #FF4689 } /* Operator */
+.highlight .x { color: #F8F8F2 } /* Other */
+.highlight .p { color: #F8F8F2 } /* Punctuation */
+.highlight .ch { color: #959077 } /* Comment.Hashbang */
+.highlight .cm { color: #959077 } /* Comment.Multiline */
+.highlight .cp { color: #959077 } /* Comment.Preproc */
+.highlight .cpf { color: #959077 } /* Comment.PreprocFile */
+.highlight .c1 { color: #959077 } /* Comment.Single */
+.highlight .cs { color: #959077 } /* Comment.Special */
+.highlight .gd { color: #FF4689 } /* Generic.Deleted */
+.highlight .ge { color: #F8F8F2; font-style: italic } /* Generic.Emph */
+.highlight .ges { color: #F8F8F2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #FF4689 } /* Generic.Error */
+.highlight .gh { color: #F8F8F2 } /* Generic.Heading */
+.highlight .gi { color: #A6E22E } /* Generic.Inserted */
+.highlight .go { color: #66D9EF } /* Generic.Output */
+.highlight .gp { color: #FF4689; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { color: #F8F8F2; font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #959077 } /* Generic.Subheading */
+.highlight .gt { color: #66D9EF } /* Generic.Traceback */
+.highlight .kc { color: #66D9EF } /* Keyword.Constant */
+.highlight .kd { color: #66D9EF } /* Keyword.Declaration */
+.highlight .kn { color: #FF4689 } /* Keyword.Namespace */
+.highlight .kp { color: #66D9EF } /* Keyword.Pseudo */
+.highlight .kr { color: #66D9EF } /* Keyword.Reserved */
+.highlight .kt { color: #66D9EF } /* Keyword.Type */
+.highlight .ld { color: #E6DB74 } /* Literal.Date */
+.highlight .m { color: #AE81FF } /* Literal.Number */
+.highlight .s { color: #E6DB74 } /* Literal.String */
+.highlight .na { color: #A6E22E } /* Name.Attribute */
+.highlight .nb { color: #A6E22E } /* Name.Builtin */
+.highlight .nc { color: #A6E22E } /* Name.Class */
+.highlight .no { color: #66D9EF } /* Name.Constant */
+.highlight .nd { color: #A6E22E } /* Name.Decorator */
+.highlight .ni { color: #F8F8F2 } /* Name.Entity */
+.highlight .ne { color: #A6E22E } /* Name.Exception */
+.highlight .nf { color: #A6E22E } /* Name.Function */
+.highlight .nl { color: #F8F8F2 } /* Name.Label */
+.highlight .nn { color: #F8F8F2 } /* Name.Namespace */
+.highlight .nx { color: #A6E22E } /* Name.Other */
+.highlight .py { color: #F8F8F2 } /* Name.Property */
+.highlight .nt { color: #FF4689 } /* Name.Tag */
+.highlight .nv { color: #F8F8F2 } /* Name.Variable */
+.highlight .ow { color: #FF4689 } /* Operator.Word */
+.highlight .pm { color: #F8F8F2 } /* Punctuation.Marker */
+.highlight .w { color: #F8F8F2 } /* Text.Whitespace */
+.highlight .mb { color: #AE81FF } /* Literal.Number.Bin */
+.highlight .mf { color: #AE81FF } /* Literal.Number.Float */
+.highlight .mh { color: #AE81FF } /* Literal.Number.Hex */
+.highlight .mi { color: #AE81FF } /* Literal.Number.Integer */
+.highlight .mo { color: #AE81FF } /* Literal.Number.Oct */
+.highlight .sa { color: #E6DB74 } /* Literal.String.Affix */
+.highlight .sb { color: #E6DB74 } /* Literal.String.Backtick */
+.highlight .sc { color: #E6DB74 } /* Literal.String.Char */
+.highlight .dl { color: #E6DB74 } /* Literal.String.Delimiter */
+.highlight .sd { color: #E6DB74 } /* Literal.String.Doc */
+.highlight .s2 { color: #E6DB74 } /* Literal.String.Double */
+.highlight .se { color: #AE81FF } /* Literal.String.Escape */
+.highlight .sh { color: #E6DB74 } /* Literal.String.Heredoc */
+.highlight .si { color: #E6DB74 } /* Literal.String.Interpol */
+.highlight .sx { color: #E6DB74 } /* Literal.String.Other */
+.highlight .sr { color: #E6DB74 } /* Literal.String.Regex */
+.highlight .s1 { color: #E6DB74 } /* Literal.String.Single */
+.highlight .ss { color: #E6DB74 } /* Literal.String.Symbol */
+.highlight .bp { color: #A6E22E } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #A6E22E } /* Name.Function.Magic */
+.highlight .vc { color: #F8F8F2 } /* Name.Variable.Class */
+.highlight .vg { color: #F8F8F2 } /* Name.Variable.Global */
+.highlight .vi { color: #F8F8F2 } /* Name.Variable.Instance */
+.highlight .vm { color: #F8F8F2 } /* Name.Variable.Magic */
+.highlight .il { color: #AE81FF } /* Literal.Number.Integer.Long */.highlight{background:transparent}.highlight pre{margin:0}.flow{display:grid;gap:12px;padding:20px;border:1px solid #b7d6d3;border-radius:14px;text-align:center}.flow .node{background:#e8f5f2;border:1px solid #64af9f;padding:13px;border-radius:10px;color:#174e44}.branches{display:grid;grid-template-columns:1fr 1fr;gap:18px}.arrow{color:#087f70;font-weight:800}.dark .node{background:#214a47;color:#d9f5ef}.kicker{color:#08866f;font-weight:800}details{margin:15px 0}summary{cursor:pointer;font-weight:700}.mini{font-size:13px;color:#6a778c}button:focus-visible,a:focus-visible{outline:3px solid #19af92;outline-offset:3px}.quiz-card small{display:block;color:#56736e}.dark .mini,.dark .time,.dark .reading,.dark .quiz-card small{color:#a4bbcc}pre{white-space:pre;max-width:100%}@media print{.quiz-feedback[hidden]{display:none}.highlight pre{white-space:pre-wrap}.hero{color:#16364b}}@media(max-width:450px){.branches{grid-template-columns:1fr}}</style><style id="graph-svg">.gfig{margin:22px 0;padding:18px;border:1px solid #b7d6d3;border-radius:14px;background:#fbfdfd}.gfig svg{display:block;max-width:100%;height:auto;margin:0 auto}.gfig figcaption{font-size:13px;color:#56736e;margin-top:10px;text-align:center}.gsv .n{fill:#e8f5f2;stroke:#64af9f;stroke-width:1.5}.gsv .t{fill:#e9e6fb;stroke:#8c80d6;stroke-width:1.5}.gsv .tx{fill:#174e44;font:600 14px system-ui,sans-serif}.gsv .sub{fill:#4e6a66;font:italic 11.5px system-ui,sans-serif}.gsv .e{stroke:#087f70;stroke-width:1.8;fill:none}.gsv .c{stroke-dasharray:6 5}.gsv .lb{fill:#08786a;font:600 11.5px system-ui,sans-serif}.gsv .ah{fill:#087f70}.legend{font-size:12.5px;color:#56736e;text-align:center;margin-top:4px}pre.out{background:#0f1a2b;color:#cfe3d9;border-radius:0 0 12px 12px;white-space:pre-wrap;font-size:13px}.dark .gfig{background:#17243a;border-color:#2f5753}.dark .gsv .n{fill:#214a47;stroke:#5fb3a2}.dark .gsv .t{fill:#2e2a55;stroke:#9d92e6}.dark .gsv .tx{fill:#d9f5ef}.dark .gsv .sub{fill:#a9cfc7}.dark .gsv .e{stroke:#5fd6bf}.dark .gsv .ah{fill:#5fd6bf}.dark .gsv .lb{fill:#7fe3cf}.dark .gfig figcaption,.dark .legend{color:#a4bbcc}</style></head><body><div class="progress" id="progress"></div><aside><button class="brand" id="menu" style="background:transparent;border:0;text-align:left">Professor <span>IA</span></button><div class="sub">CADERNO DO RENAN · NOVO BLOCO<br>LangGraph · Aula 02 · 18/11/2026<br>Toque no título para abrir o menu no celular.</div><nav><a href="#autonomia">1. O que faz um agente ser autônomo</a><a href="#react">2. ReAct: do prompt em texto ao tool calling</a><a href="#montar">3. Montando o ReAct no LangGraph</a><a href="#coolidge">4. Executando: o 30º presidente</a><a href="#portugues">5. A pergunta em português e quando usar LangGraph</a><a href="#first">6. First Model: fixar a primeira ferramenta</a><a href="#retrieval">7. Tool Retrieval: escolher ferramentas por busca</a><a href="#reflection">8. Reflection: gerar, criticar e refinar</a><a href="#umagente">9. Ainda é um único agente</a><a href="#plan">10. Plan-and-Execute: planejar antes de agir</a><a href="#sintese">11. Síntese das arquiteturas</a><a href="#lembrar">O que preciso lembrar</a><a href="#quiz">Quiz · 12 questões</a><a href="#desafios">Dois desafios em Python</a><a href="#fontes">Fonte e limites</a></nav></aside><main><header class="hero"><div class="eyebrow">ARQUITETURAS MULTIAGENTES COM LANGGRAPH</div><h1>Agora, deixe o<br>agente decidir.</h1><p>Aula 02 · Agentes ReAct e otimização. Cinco formas de organizar raciocínio, ferramentas e revisão em um grafo, ainda com um único agente.</p><div class="chips"><span>REACT</span><span>FIRST MODEL</span><span>TOOL RETRIEVAL</span><span>REFLECTION</span><span>PLAN-AND-EXECUTE</span></div></header><div class="toolbar"><span class="reading">Estude a explicação → responda ao quiz → pratique em Python</span><div><button id="theme" aria-pressed="false">Alternar tema</button> <button id="print">Imprimir / PDF</button></div></div><article class="paper">
+
+<section id="autonomia"><h2>1. O que faz um agente ser autônomo</h2><p class="time">Vídeo · 08:35–13:55</p>
+<p>Na Aula 1 você viu a <strong>chain</strong> (passos fixos) e o <strong>router</strong> (o modelo escolhe uma rota). Agora o foco é <strong>autonomia</strong>. O professor parte da definição do livro <em>Artificial Intelligence: A Modern Approach</em> (Russell e Norvig): agente é algo que <strong>age</strong>. Para isso, ele precisa de três coisas:</p>
+<div class="tablewrap"><table><thead><tr><th>Requisito</th><th>O que significa</th></tr></thead><tbody><tr><td><strong>Capacidade de decisão</strong></td><td>Escolher o que fazer diante de um objetivo.</td></tr><tr><td><strong>Acesso a múltiplas opções</strong></td><td>Sem alternativas não existe decisão. O agente precisa de um catálogo de ações (ferramentas).</td></tr><tr><td><strong>Interação com o ambiente</strong></td><td>Perceber ou mudar algo fora do modelo: APIs, bancos, buscas, calculadoras.</td></tr></tbody></table></div>
+<p>O que separa o agente moderno das arquiteturas anteriores é o <strong>laço controlado pela LLM</strong>. O modelo não só toma uma decisão prevista: ele também define <em>quais</em> decisões tomar e quando parar. No grafo, esse laço fica visível.</p>
+<p>Roteiro da aula: ReAct, First Model (otimizar latência), pré-seleção dinâmica de ferramentas, Reflection e Plan-and-Execute.</p></section>
+
+<section id="react"><h2>2. ReAct: do prompt em texto ao tool calling nativo</h2><p class="time">Vídeo · 13:55–20:45</p>
+<p><strong>ReAct</strong> vem de <em>Reasoning + Acting</em> (raciocínio e ação). Ele junta dois mecanismos:</p>
+<ul><li><strong>Chain of Thought:</strong> quebrar um problema em etapas intermediárias de raciocínio.</li><li><strong>Tool calling:</strong> o modelo pede a execução de funções externas.</li></ul>
+<h3>Como era antes (GPT-3.5 turbo)</h3>
+<p>O desenvolvedor descrevia as ferramentas em texto no prompt e exigia uma saída em CSV, por exemplo <code>search,30th president of the United States</code>. A temperatura ficava baixa, porque não se quer criatividade na chamada de ferramentas. O código interceptava essa string, executava a busca e colava o resultado no prompt para uma nova chamada. Isso se repetia até o modelo emitir a resposta final.</p>
+<h3>Como é hoje (desde o GPT-4o)</h3>
+<p>Os modelos atuais passaram por fine-tuning para chamar ferramentas de forma estruturada. Não é mais preciso pedir CSV:</p>
+<ul><li>Os schemas JSON das ferramentas são ligados ao modelo com <code>.bind_tools(tools)</code>.</li><li>Quando decide agir, o modelo devolve uma <code>AIMessage</code> com a propriedade <code>tool_calls</code>: <code>name</code>, <code>args</code> (dicionário) e um <code>id</code> de rastreio.</li></ul>
+<p>O LangGraph orquestra o laço com dois componentes prontos de <code>langgraph.prebuilt</code>:</p>
+<div class="tablewrap"><table><thead><tr><th>Componente</th><th>O que faz</th></tr></thead><tbody><tr><td><code>ToolNode</code></td><td>Nó especializado. Lê a última <code>AIMessage</code> do estado, executa as ferramentas pedidas (em paralelo, se houver mais de uma), captura erros e os transforma em mensagens que a LLM entende para se corrigir. Devolve <code>ToolMessage</code> ligadas a cada <code>tool_call_id</code>.</td></tr><tr><td><code>tools_condition</code></td><td>Função de roteamento condicional. Se a última <code>AIMessage</code> tem <code>tool_calls</code>, manda para o nó <code>"tools"</code>. Se não tem (o modelo respondeu em texto), manda para <code>END</code>.</td></tr></tbody></table></div></section>
+
+<section id="montar"><h2>3. Montando o ReAct no LangGraph</h2><p class="time">Vídeo · 20:45–27:15</p>
+<h3>3.1 · As ferramentas</h3>
+<p>O professor cria duas ferramentas. A <code>calculator</code> recebe uma expressão em texto e a calcula de forma segura. A busca usa a Wikipedia no lugar do DuckDuckGo do livro, porque o DuckDuckGo dá muitos problemas no Colab.</p>
+<div class="codehead">20:53–23:24 · Trecho do notebook do professor (Aula 2.ipynb, célula de ferramentas); imports omitidos</div><div class="highlight"><pre><span></span><span class="nd">@tool</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculator</span><span class="p">(</span><span class="n">expression</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculadora matemática segura para expressões aritméticas.</span>
+
+<span class="sd">    Use esta ferramenta sempre que precisar calcular somas, subtrações, multiplicações,</span>
+<span class="sd">    divisões ou potências exatas.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        expression: Expressão matemática válida em sintaxe Python (ex: &#39;1933 - 1872&#39;).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">allowed_operators</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">ast</span><span class="o">.</span><span class="n">Add</span><span class="p">:</span> <span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Sub</span><span class="p">:</span> <span class="n">operator</span><span class="o">.</span><span class="n">sub</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Mult</span><span class="p">:</span> <span class="n">operator</span><span class="o">.</span><span class="n">mul</span><span class="p">,</span>
+        <span class="n">ast</span><span class="o">.</span><span class="n">Div</span><span class="p">:</span> <span class="n">operator</span><span class="o">.</span><span class="n">truediv</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Pow</span><span class="p">:</span> <span class="n">operator</span><span class="o">.</span><span class="n">pow</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">USub</span><span class="p">:</span> <span class="n">operator</span><span class="o">.</span><span class="n">neg</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_eval</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Constant</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">BinOp</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">allowed_operators</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">op</span><span class="p">)](</span><span class="n">_eval</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">),</span> <span class="n">_eval</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">UnaryOp</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">allowed_operators</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">op</span><span class="p">)](</span><span class="n">_eval</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">operand</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Operação não suportada: </span><span class="si">{</span><span class="n">ast</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">node</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">parsed</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">expression</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;eval&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">_eval</span><span class="p">(</span><span class="n">parsed</span><span class="o">.</span><span class="n">body</span><span class="p">))</span>
+
+<span class="c1"># Trocando DuckDuckGo pela Wikipedia (muito mais estável no Colab)</span>
+<span class="n">api_wrapper</span> <span class="o">=</span> <span class="n">WikipediaAPIWrapper</span><span class="p">(</span><span class="n">top_k_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">doc_content_chars_max</span><span class="o">=</span><span class="mi">1500</span><span class="p">)</span>
+<span class="n">search</span> <span class="o">=</span> <span class="n">WikipediaQueryRun</span><span class="p">(</span><span class="n">api_wrapper</span><span class="o">=</span><span class="n">api_wrapper</span><span class="p">)</span>
+
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[</span><span class="n">search</span><span class="p">,</span> <span class="n">calculator</span><span class="p">]</span>
+</pre></div>
+
+<p><code>@tool</code> transforma a função em ferramenta: o nome, os tipos dos parâmetros e a docstring viram o schema que o modelo lê. <code>_eval</code> percorre a árvore da expressão (<code>ast.parse</code>) e só aceita os operadores do dicionário. Qualquer outra coisa gera erro. <code>WikipediaAPIWrapper</code> busca o termo e devolve os 2 primeiros resultados (<code>top_k_results=2</code>), com até 1500 caracteres. <code>WikipediaQueryRun</code> é a ferramenta que o agente chama, com o nome <code>wikipedia</code>. As classes vêm do <code>langchain-community</code>, por isso aparece um aviso de depreciação.</p>
+<h3>3.2 · Modelo, estado e nó de raciocínio</h3>
+<div class="codehead">23:43–25:02 · Trecho do notebook do professor; comentários de numeração omitidos</div><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span><span class="o">.</span><span class="n">bind_tools</span><span class="p">(</span><span class="n">tools</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ReActState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">messages</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">BaseMessage</span><span class="p">],</span> <span class="n">add_messages</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">model_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">ReActState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">res</span><span class="p">]}</span>
+</pre></div>
+
+<p>O modelo é o <code>gpt-4o-mini</code> com temperatura baixa (0.1) e já recebe as ferramentas com <code>bind_tools</code>. O estado <code>ReActState</code> tem só <code>messages</code>, com o reducer <code>add_messages</code> que você viu na Aula 1. O nó <code>model_node</code> envia todo o histórico ao modelo e devolve a nova mensagem: ou uma resposta em texto, ou uma <code>AIMessage</code> com <code>tool_calls</code>.</p>
+<h3>3.3 · O grafo</h3>
+<div class="codehead">25:05–27:09 · Trecho do professor conferido no vídeo (aprox. 26:55)</div><div class="highlight"><pre><span></span><span class="n">react_builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">ReActState</span><span class="p">)</span>
+<span class="n">react_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">model_node</span><span class="p">)</span>
+<span class="n">react_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">,</span> <span class="n">ToolNode</span><span class="p">(</span><span class="n">tools</span><span class="p">))</span>
+
+<span class="n">react_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">)</span>
+<span class="n">react_builder</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">tools_condition</span><span class="p">)</span>
+<span class="n">react_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">)</span>
+
+<span class="n">react_graph</span> <span class="o">=</span> <span class="n">react_builder</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">react_graph</span><span class="o">.</span><span class="n">get_graph</span><span class="p">()</span><span class="o">.</span><span class="n">draw_mermaid_png</span><span class="p">()))</span>
+</pre></div>
+
+<p>São dois nós: <code>"model"</code> (raciocínio) e <code>"tools"</code> (o <code>ToolNode</code> com as duas ferramentas). <code>add_conditional_edges("model", tools_condition)</code> faz a escolha entre ferramentas e fim. A aresta <code>tools → model</code> é fixa: toda vez que uma ferramenta roda, o resultado volta para o modelo pensar de novo.</p>
+<figure class="gfig"><svg class="gsv" viewBox="0 0 440 300" width="440" role="img" aria-label="Grafo ReAct: start para model; model vai para tools se houver tool_calls ou para end; tools volta para model"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs><path class="e" d="M220,48 L220,90" marker-end="url(#ah)"/><path class="e c" d="M195,132 L195,165 L80,165 L80,213" marker-end="url(#ah)"/><text class="lb" x="115" y="158" text-anchor="middle">sem tool_calls</text><path class="e c" d="M245,132 L300,132 L300,188" marker-end="url(#ah)"/><text class="lb" x="340" y="150" text-anchor="middle">tem tool_calls</text><path class="e" d="M380,190 L380,112 L282,112" marker-end="url(#ah)"/><text class="lb" x="405" y="108" text-anchor="middle">volta</text><rect class="t" x="160" y="12" width="120" height="36" rx="18.0"/><text class="tx" x="220.0" y="35.0" text-anchor="middle">__start__</text><rect class="n" x="160" y="92" width="120" height="40" rx="9"/><text class="tx" x="220.0" y="117.0" text-anchor="middle">model</text><rect class="t" x="20" y="215" width="120" height="36" rx="18.0"/><text class="tx" x="80.0" y="238.0" text-anchor="middle">__end__</text><rect class="n" x="260" y="190" width="160" height="66" rx="9"/><text class="tx" x="340.0" y="212" text-anchor="middle">tools</text><text class="sub" x="340.0" y="232" text-anchor="middle">wikipedia, calculator</text></svg><figcaption>Desenho conferido no vídeo · aprox. 26:55 · recriado a partir do grafo exibido com draw_mermaid_png</figcaption><div class="legend">Linha contínua = aresta fixa · linha tracejada = aresta condicional</div></figure>
+<p><strong>Como percorrer:</strong> a pergunta entra em <code>model</code>. Se o modelo pedir ferramenta, o fluxo vai para <code>tools</code>, que executa e volta para <code>model</code>. Esse laço se repete até o modelo responder em texto, sem <code>tool_calls</code>. Aí o fluxo vai para <code>__end__</code>.</p></section>
+
+<section id="coolidge"><h2>4. Executando: o 30º presidente dos EUA</h2><p class="time">Vídeo · 27:19–36:30</p>
+<p>A pergunta vem do livro: <em>quantos anos tinha o 30º presidente dos Estados Unidos quando morreu?</em> O professor explica por que ela é boa para testar: mistura um número de ordem (30º) com uma idade, o que pode confundir o modelo e revelar alucinação. Modelos atuais raramente caem nisso, mas vale testar.</p>
+<div class="codehead">29:33–30:36 · Trecho do professor (primeira execução, em inglês)</div><div class="highlight"><pre><span></span><span class="n">user_input</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="n">HumanMessage</span><span class="p">(</span>
+            <span class="n">content</span><span class="o">=</span><span class="s2">&quot;How old was the 30th president of the United States when he died? &quot;</span>
+                    <span class="s2">&quot;First search for his birth and death years, then use the calculator tool to compute the difference.&quot;</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">step_idx</span><span class="p">,</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">react_graph</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="n">user_input</span><span class="p">),</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">node_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">node_output</span> <span class="o">=</span> <span class="n">chunk</span><span class="p">[</span><span class="n">node_name</span><span class="p">]</span>
+    <span class="n">last_msg</span> <span class="o">=</span> <span class="n">node_output</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;=== Passo </span><span class="si">{</span><span class="n">step_idx</span><span class="si">}</span><span class="s2"> | Nó Executado: [</span><span class="si">{</span><span class="n">node_name</span><span class="si">}</span><span class="s2">] ===&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">last_msg</span><span class="p">,</span> <span class="s2">&quot;tool_calls&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">last_msg</span><span class="o">.</span><span class="n">tool_calls</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">tc</span> <span class="ow">in</span> <span class="n">last_msg</span><span class="o">.</span><span class="n">tool_calls</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  -&gt; Decisão do LLM (Tool Call): </span><span class="si">{</span><span class="n">tc</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">tc</span><span class="p">[</span><span class="s1">&#39;args&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">) [id: </span><span class="si">{</span><span class="n">tc</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">last_msg</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;tool&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  -&gt; Retorno da Ferramenta [</span><span class="si">{</span><span class="n">last_msg</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">]: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">last_msg</span><span class="o">.</span><span class="n">content</span><span class="p">)[:</span><span class="mi">300</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  -&gt; Resposta Final do Agente:</span><span class="se">\n</span><span class="si">{</span><span class="n">last_msg</span><span class="o">.</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+
+<p><code>stream</code> devolve um <code>chunk</code> por nó executado. A chave do chunk é o nome do nó. O laço pega a última mensagem e mostra uma de três coisas: a decisão de chamar ferramenta (<code>tool_calls</code>), o retorno da ferramenta (<code>type == "tool"</code>) ou a resposta final.</p>
+<div class="codehead">Saída mostrada na aula · aprox. 30:41–33:35 (ids encurtados)</div><pre class="out">=== Passo 1 | Nó Executado: [model] ===
+  -> Decisão do LLM (Tool Call): wikipedia({'query': '30th president of the United States'})
+=== Passo 2 | Nó Executado: [tools] ===
+  -> Retorno da Ferramenta [wikipedia]: Page: Calvin Coolidge ... July 4, 1872 – January 5, 1933 ...
+=== Passo 3 | Nó Executado: [model] ===
+  -> Decisão do LLM (Tool Call): calculator({'expression': '1933 - 1872'})
+=== Passo 4 | Nó Executado: [tools] ===
+  -> Retorno da Ferramenta [calculator]: 61...
+=== Passo 5 | Nó Executado: [model] ===
+  -> Resposta Final do Agente:
+Calvin Coolidge ... was born on July 4, 1872, and died on January 5, 1933. He was 61 years old when he died.</pre>
+<p>Repare na alternância <code>model → tools → model → tools → model</code>. O professor destaca a vantagem: em vez de escrever cadeias exatas de código, você cria nós condicionais e uma caixa de ferramentas, e o modelo toma as decisões úteis até chegar ao fim.</p>
+<p class="callout"><strong>Pergunta do Pedro (35:40):</strong> dá para limitar o agente a, por exemplo, três buscas? Sim. Dá para fazer via prompt ou na definição da ferramenta, mas há formas mais elegantes que serão vistas adiante. Um exemplo já aparece nesta aula: o <code>max_iterations</code> do Reflection (seção 8).</p></section>
+
+<section id="portugues"><h2>5. A pergunta em português e quando usar LangGraph</h2><p class="time">Vídeo · 36:36–40:30</p>
+<p>O professor repetiu a pergunta em português. A busca com <code>'30º presidente dos Estados Unidos'</code> voltou com a página <strong>Presidency of Emílio Médici</strong>, um presidente do Brasil. O modelo recebeu esse retorno, percebeu que não era o que procurava e chamou a Wikipedia de novo com <code>'Calvin Coolidge'</code>. Depois usou a calculadora e respondeu 61 anos.</p>
+<div class="codehead">Saída mostrada na aula · aprox. 36:50–40:15 (conferida no vídeo em 46:25; ids omitidos)</div><pre class="out">Passo 1 [model] -> wikipedia({'query': '30º presidente dos Estados Unidos'})
+Passo 2 [tools] -> Page: Presidency of Emílio Médici ...
+Passo 3 [model] -> wikipedia({'query': 'Calvin Coolidge'})
+Passo 4 [tools] -> Page: Calvin Coolidge ...
+Passo 5 [model] -> calculator({'expression': '1933 - 1872'})
+Passo 6 [tools] -> 61...
+Passo 7 [model] -> Calvin Coolidge, o 30º presidente dos Estados Unidos, nasceu em 4 de julho de 1872 e morreu em 5 de janeiro de 1933. Ele tinha 61 anos quando faleceu.</pre>
+<p>O ponto para analisar nos seus agentes: o laço ReAct permite que o modelo veja o resultado errado e corrija a rota.</p>
+<h3>LangChain puro ou LangGraph?</h3>
+<p>Respondendo ao Eduardo, o professor reforça: quase tudo isto dá para fazer em LangChain puro, com mais restrições e mais trabalho. Para um agente que executa uma série bem definida de tarefas, <strong>use LangChain puro</strong>. O LangGraph vale quando você quer expandir para múltiplos agentes, modularizar blocos para crescer e auditar a execução nó a nó. Aplicar uma solução robusta demais a um problema simples é desperdício.</p></section>
+
+<section id="first"><h2>6. First Model: fixar a primeira ferramenta</h2><p class="time">Vídeo · 40:30–53:30</p>
+<p>No ReAct padrão, toda interação começa no modelo, porque ele é o "cérebro" que escolhe a ferramenta. Mas em alguns sistemas a primeira etapa é sempre a mesma, como uma busca obrigatória. Deixar o modelo pensar nisso, mesmo que ele acerte, custa:</p>
+<ul><li><strong>Latência e tokens:</strong> toda chamada de LLM custa, mesmo quando só serve para gerar o JSON da busca.</li><li><strong>Confiabilidade:</strong> fixar a etapa elimina o risco de alucinação nessa decisão.</li></ul>
+<h3>6.1 · A injeção sintética da ToolCall</h3>
+<p>O <code>ToolNode</code> espera encontrar no estado uma <code>AIMessage</code> com <code>tool_calls</code>. Então o professor cria um nó Python, <code>first_model</code>, que <strong>não chama LLM nenhuma</strong>: pega a pergunta do usuário e monta essa mensagem na mão.</p>
+<div class="codehead">43:20–44:22 · Trecho do notebook do professor; docstring e comentário omitidos</div><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">uuid</span><span class="w"> </span><span class="kn">import</span> <span class="n">uuid4</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">AIMessage</span><span class="p">,</span> <span class="n">ToolCall</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">first_model</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">ReActState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="n">user_query</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span>
+
+    <span class="n">forced_search_call</span> <span class="o">=</span> <span class="n">ToolCall</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">search</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">user_query</span><span class="p">},</span>
+        <span class="nb">id</span><span class="o">=</span><span class="n">uuid4</span><span class="p">()</span><span class="o">.</span><span class="n">hex</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="n">AIMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">tool_calls</span><span class="o">=</span><span class="p">[</span><span class="n">forced_search_call</span><span class="p">])</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+</pre></div>
+
+<p><code>state["messages"][-1].content</code> é a última mensagem (a pergunta). <code>ToolCall</code> recebe o nome oficial da ferramenta (<code>search.name</code>, que é <code>wikipedia</code>), os argumentos e um id único gerado por <code>uuid4().hex</code>. O nó retorna uma <code>AIMessage</code> vazia de texto, só com essa chamada. O professor ressalta que isso <strong>não é gambiarra</strong>: é um padrão aceito, melhor do que reestruturar todo o código.</p>
+<p class="callout"><strong>Atenção ao comentário do código:</strong> o professor avisa (43:06 e 44:04) que o comentário original citava <code>duckduckgo_search</code>, mas a ferramenta agora é a Wikipedia. Por isso o comentário foi omitido aqui.</p>
+<h3>6.2 · O grafo com a primeira ferramenta fixa</h3>
+<div class="codehead">44:56–46:15 · Trecho do professor conferido no vídeo (aprox. 46:05)</div><div class="highlight"><pre><span></span><span class="n">forced_builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">ReActState</span><span class="p">)</span>
+<span class="n">forced_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;first_model&quot;</span><span class="p">,</span> <span class="n">first_model</span><span class="p">)</span>
+<span class="n">forced_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">model_node</span><span class="p">)</span>
+<span class="n">forced_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">,</span> <span class="n">ToolNode</span><span class="p">(</span><span class="n">tools</span><span class="p">))</span>
+
+<span class="c1"># O fluxo inicia no nó determinístico &#39;first_model&#39; e vai direto para &#39;tools&#39;</span>
+<span class="n">forced_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;first_model&quot;</span><span class="p">)</span>
+<span class="n">forced_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;first_model&quot;</span><span class="p">,</span> <span class="s2">&quot;tools&quot;</span><span class="p">)</span>
+
+<span class="c1"># A partir da execução da primeira ferramenta, entra no loop ReAct normal</span>
+<span class="n">forced_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">)</span>
+<span class="n">forced_builder</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">tools_condition</span><span class="p">)</span>
+
+<span class="n">forced_graph</span> <span class="o">=</span> <span class="n">forced_builder</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+</pre></div>
+
+<figure class="gfig"><svg class="gsv" viewBox="0 0 420 420" width="420" role="img" aria-label="Grafo First Model: start, first_model, tools, model; model volta a tools ou termina"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs><path class="e" d="M210,48 L210,78" marker-end="url(#ah)"/><path class="e" d="M210,120 L210,158" marker-end="url(#ah)"/><text class="lb" x="290" y="145" text-anchor="middle">ToolCall pronta, sem LLM</text><path class="e" d="M180,226 L180,278" marker-end="url(#ah)"/><text class="lb" x="130" y="256" text-anchor="middle">resultado</text><path class="e c" d="M240,280 L240,228" marker-end="url(#ah)"/><text class="lb" x="305" y="256" text-anchor="middle">tem tool_calls</text><path class="e c" d="M210,320 L210,366" marker-end="url(#ah)"/><text class="lb" x="275" y="348" text-anchor="middle">sem tool_calls</text><rect class="t" x="150" y="12" width="120" height="36" rx="18.0"/><text class="tx" x="210.0" y="35.0" text-anchor="middle">__start__</text><rect class="n" x="140" y="80" width="140" height="40" rx="9"/><text class="tx" x="210.0" y="105.0" text-anchor="middle">first_model</text><rect class="n" x="130" y="160" width="160" height="66" rx="9"/><text class="tx" x="210.0" y="182" text-anchor="middle">tools</text><text class="sub" x="210.0" y="202" text-anchor="middle">wikipedia, calculator</text><rect class="n" x="140" y="280" width="140" height="40" rx="9"/><text class="tx" x="210.0" y="305.0" text-anchor="middle">model</text><rect class="t" x="150" y="368" width="120" height="36" rx="18.0"/><text class="tx" x="210.0" y="391.0" text-anchor="middle">__end__</text></svg><figcaption>Desenho conferido no vídeo · aprox. 46:05–46:40 · recriado a partir do grafo exibido</figcaption><div class="legend">Linha contínua = aresta fixa · linha tracejada = aresta condicional</div></figure>
+<p><strong>Como percorrer:</strong> <code>__start__ → first_model → tools</code> é um caminho fixo, sem LLM. Depois da primeira ferramenta, o fluxo entra no laço ReAct normal: <code>tools → model</code>, e <code>model</code> decide entre chamar mais ferramentas ou terminar.</p>
+<h3>6.3 · Medindo a latência</h3>
+<div class="codehead">Saída mostrada na aula · conferida no vídeo aprox. 46:40–47:20</div><pre class="out">[    2.2 ms] Passo 1 | Nó: first_model
+   -> ToolCall disparada: wikipedia
+[  670.6 ms] Passo 2 | Nó: tools
+   -> Resultado da ferramenta (wikipedia): No good Wikipedia Search Result was found...
+[ 2475.3 ms] Passo 3 | Nó: model
+   -> ToolCall disparada: wikipedia
+[ 5229.5 ms] Passo 4 | Nó: tools
+   -> Resultado da ferramenta (wikipedia): Page: Calvin Coolidge ...
+[ 6921.2 ms] Passo 5 | Nó: model
+   -> ToolCall disparada: calculator
+[ 6923.7 ms] Passo 6 | Nó: tools
+   -> Resultado da ferramenta (calculator): 61...
+[ 8678.2 ms] Passo 7 | Nó: model
+   -> Resposta Final: ... Ele tinha 61 anos quando faleceu.</pre>
+<p>O passo 1 levou 2.2 ms, praticamente zero, porque não houve chamada de LLM. Compare com os passos de <code>model</code>, que levam segundos.</p>
+<p class="callout"><strong>Observação sobre esta saída:</strong> como a pergunta inteira foi usada como termo de busca, a Wikipedia não achou resultado no passo 2. O modelo então fez uma busca própria no passo 3. Ou seja, fixar a etapa só ajuda de verdade quando a entrada já serve como parâmetro da ferramenta. O professor não comentou esse detalhe na aula; ele aparece no log.</p>
+<h3>6.4 · Quando usar</h3>
+<p>Exemplo do professor: o usuário digita o nome de um cliente e você vai buscá-lo no CRM. Não faz sentido o modelo ler o nome para decidir o que buscar. Essa etapa pode ser determinística, e o agente segue com o que ela extraiu.</p>
+<p class="callout"><strong>Sua pergunta (50:48):</strong> o First Model é um "etiquetamento" determinístico para direcionar a LLM? Resposta do professor: é por aí. A ação precisa ser executada sempre, mas você não precisa de uma LLM para decidir <em>como</em> usar a ferramenta. Quando dá para transformar a entrada em saída sem invocar o modelo, faça isso. Usar o modelo até quando ele não precisa decidir é desperdício, e evitar isso mostra profissionalismo na arquitetura.</p></section>
+
+<section id="retrieval"><h2>7. Tool Retrieval: escolher ferramentas por busca semântica</h2><p class="time">Vídeo · 53:33–1:08:44</p>
+<h3>7.1 · O problema: muitas ferramentas</h3>
+<p>Quando um agente cresce para 15, 30 ou 100 ferramentas (ERP, CRM, RH, financeiro, SQL, busca web), mandar todas no <code>bind_tools</code> causa três problemas:</p>
+<ol><li><strong>Queda na acurácia de seleção:</strong> o modelo confunde ferramentas com descrições parecidas, escolhe a errada ou alucina argumentos.</li><li><strong>Inflação de tokens:</strong> cada ferramenta ligada injeta seu JSON Schema completo no prompt oculto, em todas as chamadas.</li><li><strong>Mais latência:</strong> prompts maiores demoram mais para processar.</li></ol>
+<p class="callout"><strong>Parêntese do professor (55:16):</strong> ter muitas ferramentas em um único agente já é sinal de que talvez seja hora de dividir o sistema em vários agentes especializados. Nenhum agente precisa ser um Leonardo da Vinci que faz tudo. Esse é o assunto das próximas aulas.</p>
+<h3>7.2 · A solução: RAG sobre o catálogo de ferramentas</h3>
+<p>É a mesma ideia do RAG que você já viu, mas no lugar de documentos de regras entram as <strong>descrições das ferramentas</strong>. Antes do laço ReAct, um nó <code>select_tools</code> faz uma busca semântica e grava só as ferramentas mais relevantes no estado. O nó do modelo então faz o <code>bind_tools</code> só com elas.</p>
+<div class="codehead">1:01:20–1:02:08 · Recorte do catálogo do professor: 2 das 6 ferramentas novas; as outras 4 seguem o mesmo formato</div><div class="highlight"><pre><span></span><span class="nd">@tool</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_stock_price</span><span class="p">(</span><span class="n">ticker</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Consulta a cotação atual de uma ação na bolsa de valores (ex: PETR4, AAPL, MSFT).&quot;&quot;&quot;</span>
+    <span class="n">prices</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;PETR4&quot;</span><span class="p">:</span> <span class="s2">&quot;R$ 38.45&quot;</span><span class="p">,</span> <span class="s2">&quot;AAPL&quot;</span><span class="p">:</span> <span class="s2">&quot;US$ 228.10&quot;</span><span class="p">,</span> <span class="s2">&quot;MSFT&quot;</span><span class="p">:</span> <span class="s2">&quot;US$ 445.00&quot;</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">prices</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="s2">&quot;Ticker não encontrado na base de cotações.&quot;</span><span class="p">)</span>
+
+<span class="nd">@tool</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_currency</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">from_currency</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">to_currency</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converte valores monetários entre moedas internacionais (USD, BRL, EUR) usando a taxa de câmbio comercial.&quot;&quot;&quot;</span>
+    <span class="n">rates_to_brl</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;USD&quot;</span><span class="p">:</span> <span class="mf">5.80</span><span class="p">,</span> <span class="s2">&quot;EUR&quot;</span><span class="p">:</span> <span class="mf">6.15</span><span class="p">,</span> <span class="s2">&quot;BRL&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">}</span>
+    <span class="n">in_brl</span> <span class="o">=</span> <span class="n">amount</span> <span class="o">*</span> <span class="n">rates_to_brl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">from_currency</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">converted</span> <span class="o">=</span> <span class="n">in_brl</span> <span class="o">/</span> <span class="n">rates_to_brl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">to_currency</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">amount</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">from_currency</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> equivale a </span><span class="si">{</span><span class="n">converted</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">to_currency</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># ... mais 4 ferramentas no mesmo formato (RH, TI, estoque, frete)</span>
+
+<span class="n">enterprise_tools</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">search</span><span class="p">,</span>
+    <span class="n">calculator</span><span class="p">,</span>
+    <span class="n">get_stock_price</span><span class="p">,</span>
+    <span class="n">convert_currency</span><span class="p">,</span>
+    <span class="n">query_hr_vacation_balance</span><span class="p">,</span>
+    <span class="n">open_it_support_ticket</span><span class="p">,</span>
+    <span class="n">check_warehouse_inventory</span><span class="p">,</span>
+    <span class="n">calculate_shipping_freight</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+
+<p>As ferramentas são <strong>simuladas</strong>: cotações e câmbio estão fixos em dicionários (por exemplo, AAPL = US$ 228,10 e USD = 5,80). O catálogo final tem 8 ferramentas: as 2 do começo e 6 corporativas (cotação, câmbio, férias no RH, chamado de TI, estoque e frete).</p>
+<div class="codehead">Aprox. 1:01:26 · Trecho do notebook do professor (indexação)</div><div class="highlight"><pre><span></span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">OpenAIEmbeddings</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;text-embedding-3-small&quot;</span><span class="p">)</span>
+<span class="n">tool_documents</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Document</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">name</span><span class="p">})</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">enterprise_tools</span>
+<span class="p">]</span>
+
+<span class="n">tools_vector_store</span> <span class="o">=</span> <span class="n">InMemoryVectorStore</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">tool_documents</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">)</span>
+<span class="c1"># Configuramos k=2 para enviar apenas as 2 ferramentas mais aderentes ao LLM</span>
+<span class="n">tools_retriever</span> <span class="o">=</span> <span class="n">tools_vector_store</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+</pre></div>
+
+<p>Cada ferramenta vira um <code>Document</code>: o conteúdo é a descrição (<code>t.description</code>) e o nome vai em <code>metadata</code>. <code>InMemoryVectorStore</code> guarda os vetores na memória. <code>as_retriever(search_kwargs={"k": 2})</code> devolve as 2 descrições mais parecidas com a pergunta.</p>
+<div class="codehead">1:02:16–1:04:07 · Trecho do notebook do professor; docstrings omitidas</div><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ToolRetrievalState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">messages</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">BaseMessage</span><span class="p">],</span> <span class="n">add_messages</span><span class="p">]</span>
+    <span class="n">selected_tools</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+
+<span class="n">base_llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">select_tools</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">ToolRetrievalState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="n">user_query</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span>
+    <span class="n">matched_docs</span> <span class="o">=</span> <span class="n">tools_retriever</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">user_query</span><span class="p">)</span>
+    <span class="n">selected_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">matched_docs</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;selected_tools&quot;</span><span class="p">:</span> <span class="n">selected_names</span><span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">dynamic_model_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">ToolRetrievalState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="n">filtered_tools</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">enterprise_tools</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;selected_tools&quot;</span><span class="p">]</span>
+    <span class="p">]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">base_llm</span><span class="o">.</span><span class="n">bind_tools</span><span class="p">(</span><span class="n">filtered_tools</span><span class="p">)</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">res</span><span class="p">]}</span>
+</pre></div>
+
+<p>O estado ganha o campo <code>selected_tools</code>. <code>select_tools</code> busca no retriever com a pergunta e devolve só os nomes. <code>dynamic_model_node</code> filtra a lista completa pelos nomes selecionados e faz o <code>bind_tools</code> a cada chamada. O professor reforça: todos os nós recebem o <strong>estado</strong> como parâmetro, e é dele que tiram tudo o que precisam.</p>
+<div class="codehead">1:04:11–1:04:50 · Trecho do professor conferido no vídeo (aprox. 1:04:50)</div><div class="highlight"><pre><span></span><span class="n">rag_tools_builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">ToolRetrievalState</span><span class="p">)</span>
+<span class="n">rag_tools_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;select_tools&quot;</span><span class="p">,</span> <span class="n">select_tools</span><span class="p">)</span>
+<span class="n">rag_tools_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">dynamic_model_node</span><span class="p">)</span>
+<span class="n">rag_tools_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">,</span> <span class="n">ToolNode</span><span class="p">(</span><span class="n">enterprise_tools</span><span class="p">))</span>
+
+<span class="n">rag_tools_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;select_tools&quot;</span><span class="p">)</span>
+<span class="n">rag_tools_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;select_tools&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">)</span>
+<span class="n">rag_tools_builder</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">tools_condition</span><span class="p">)</span>
+<span class="n">rag_tools_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">)</span>
+
+<span class="n">rag_tools_graph</span> <span class="o">=</span> <span class="n">rag_tools_builder</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+</pre></div>
+
+<figure class="gfig"><svg class="gsv" viewBox="0 0 470 420" width="470" role="img" aria-label="Grafo Tool Retrieval: start, select_tools, model; model vai para tools ou end; tools volta para model"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs><path class="e" d="M230,48 L230,76" marker-end="url(#ah)"/><path class="e" d="M230,118 L230,148" marker-end="url(#ah)"/><text class="lb" x="300" y="138" text-anchor="middle">k = 2 nomes</text><path class="e c" d="M200,190 L200,222 L75,222 L75,283" marker-end="url(#ah)"/><text class="lb" x="120" y="215" text-anchor="middle">sem tool_calls</text><path class="e c" d="M260,190 L320,190 L320,238" marker-end="url(#ah)"/><text class="lb" x="370" y="210" text-anchor="middle">tem tool_calls</text><path class="e" d="M430,240 L430,170 L302,170" marker-end="url(#ah)"/><text class="lb" x="450" y="165" text-anchor="middle">volta</text><rect class="t" x="170" y="12" width="120" height="36" rx="18.0"/><text class="tx" x="230.0" y="35.0" text-anchor="middle">__start__</text><rect class="n" x="160" y="78" width="140" height="40" rx="9"/><text class="tx" x="230.0" y="103.0" text-anchor="middle">select_tools</text><rect class="n" x="160" y="150" width="140" height="40" rx="9"/><text class="tx" x="230.0" y="175.0" text-anchor="middle">model</text><rect class="t" x="15" y="285" width="120" height="36" rx="18.0"/><text class="tx" x="75.0" y="308.0" text-anchor="middle">__end__</text><rect class="n" x="250" y="240" width="210" height="170" rx="9"/><text class="tx" x="355.0" y="262" text-anchor="middle">tools</text><text class="sub" x="355.0" y="282" text-anchor="middle">wikipedia, calculator,</text><text class="sub" x="355.0" y="297" text-anchor="middle">get_stock_price,</text><text class="sub" x="355.0" y="312" text-anchor="middle">convert_currency,</text><text class="sub" x="355.0" y="327" text-anchor="middle">query_hr_vacation_balance,</text><text class="sub" x="355.0" y="342" text-anchor="middle">open_it_support_ticket,</text><text class="sub" x="355.0" y="357" text-anchor="middle">check_warehouse_inventory,</text><text class="sub" x="355.0" y="372" text-anchor="middle">calculate_shipping_freight</text><text class="sub" x="355.0" y="387" text-anchor="middle">(8 no ToolNode)</text></svg><figcaption>Desenho conferido no vídeo · aprox. 1:04:50 · recriado a partir do grafo exibido</figcaption><div class="legend">Linha contínua = aresta fixa · linha tracejada = aresta condicional</div></figure>
+<p><strong>Como percorrer:</strong> igual ao ReAct, com um nó a mais na frente. <code>select_tools</code> escolhe 2 nomes, <code>model</code> enxerga só essas 2 ferramentas e o laço com <code>tools</code> continua normalmente. Repare que o <code>ToolNode</code> recebe as 8 ferramentas: ele pode executar qualquer uma, mas o modelo só sabe da existência das selecionadas.</p>
+<h3>7.3 · Executando</h3>
+<div class="codehead">Saída mostrada na aula · aprox. 1:05:16–1:08:02</div><pre class="out">[select_tools] Ferramentas pré-selecionadas (de 8 totais): ['get_stock_price', 'convert_currency']
+
+[model] Solicitação de ToolCalls: ['get_stock_price', 'convert_currency']
+[tools] Resultado (get_stock_price): US$ 228.10
+[tools] Resultado (convert_currency): Error invoking tool 'convert_currency' ... amount: Field required
+ Please fix the error and try again.
+[model] Solicitação de ToolCalls: ['get_stock_price', 'convert_currency']
+[tools] Resultado (get_stock_price): US$ 228.10
+[tools] Resultado (convert_currency): 228.1 USD equivale a 1322.98 BRL
+
+[model] Resposta Final:
+O preço atual da ação AAPL é de US$ 228,10 ... 228,1 USD equivale a 1322,98 BRL.</pre>
+<p>A pergunta foi "Qual é o preço atual da ação AAPL em dólares e quanto isso vale convertido para Reais?". A seleção acertou as 2 ferramentas. Houve um erro de argumento na conversão: o <code>ToolNode</code> transformou a exceção em mensagem e o modelo corrigiu na chamada seguinte. É o laço ReAct funcionando.</p>
+<p class="callout"><strong>Ressalva do professor:</strong> com poucas ferramentas, montar um banco vetorial pode dar mais trabalho do que benefício. Mas é importante conhecer o padrão.</p></section>
+
+<section id="reflection"><h2>8. Reflection: gerar, criticar e refinar</h2><p class="time">Vídeo · 1:08:44–1:25:28</p>
+<p>O Reflection estende o ReAct com um ciclo explícito de <strong>avaliação e autocrítica</strong>. Pedir um texto técnico, um código ou um relatório em uma única passada costuma dar um resultado genérico. Aqui o trabalho é dividido em três nós:</p>
+<div class="tablewrap"><table><thead><tr><th>Nó</th><th>Papel</th></tr></thead><tbody><tr><td><code>generate</code> (autor)</td><td>Escreve o primeiro rascunho ou reescreve o anterior incorporando a crítica.</td></tr><tr><td><code>reflect</code> (crítico)</td><td>Avalia o rascunho por critérios definidos e dá nota, lacunas e veredito.</td></tr><tr><td><code>finalize</code> (finalizador)</td><td>Consolida a versão aprovada quando a condição de parada é atingida.</td></tr></tbody></table></div>
+<p class="mini">No notebook, o nome usado é <em>Reflexion</em>; na fala, o professor diz "reflection". É o mesmo padrão.</p>
+<h3>8.1 · O contrato do crítico, o estado e as duas LLMs</h3>
+<div class="codehead">1:12:27–1:15:00 · Trecho do notebook do professor; comentários omitidos</div><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ReflectionCritique</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Avaliação estruturada de qualidade do rascunho gerado.&quot;&quot;&quot;</span>
+    <span class="n">clarity_and_depth_score</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Nota de 1 a 10 avaliando precisão técnica, clareza e profundidade do texto.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">missing_elements</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Lista de conceitos técnicos, exemplos concretos ou métricas que faltaram no rascunho.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">actionable_feedback</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Instruções diretas e específicas do que o autor deve reescrever ou adicionar na próxima versão.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">is_approved</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;True apenas se a nota for &gt;= 9 e não houver lacunas importantes; False caso precise de nova revisão.&quot;</span>
+    <span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ReflexionState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">topic</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">current_draft</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">reflection_feedback</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">score</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">is_approved</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">iteration</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">max_iterations</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">final_content</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">history_log</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">]</span>
+
+<span class="n">author_llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">critic_llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span><span class="o">.</span><span class="n">with_structured_output</span><span class="p">(</span><span class="n">ReflectionCritique</span><span class="p">)</span>
+</pre></div>
+
+<p><code>ReflectionCritique</code> é um <code>BaseModel</code> do Pydantic, como nas aulas de LangChain: cada campo tem uma <code>description</code> que orienta o modelo. O estado guarda tópico, rascunho, feedback, nota, aprovação, contador de iterações, limite, conteúdo final e um log. O <code>history_log</code> usa <code>operator.add</code> como reducer, então cada nó só acrescenta linhas.</p>
+<p>São duas LLMs: o <strong>autor</strong> com temperatura 0.5 (um pouco maior, para não repetir sempre a mesma resposta) e o <strong>crítico</strong> com temperatura 0.1 e <code>with_structured_output</code>, que devolve um objeto <code>ReflectionCritique</code> em vez de texto. O <code>max_iterations</code> é uma forma simples e comum de limitar o laço (respondendo à pergunta do Pedro).</p>
+<p class="callout"><strong>Pergunta do Eduardo (1:18:39):</strong> o crítico poderia ser outra LLM, talvez mais capaz? Sim, e esse é o padrão ouro da indústria: escolher o modelo conforme a demanda de cada etapa.</p>
+<h3>8.2 · O nó autor</h3>
+<div class="codehead">1:15:00–1:17:36 · Trecho do notebook do professor; docstring omitida</div><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">generate_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">ReflexionState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="n">iteration</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;iteration&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">iteration</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Primeira iteração: solicitamos um rascunho inicial curto para vermos a evolução</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">SystemMessage</span><span class="p">(</span>
+                <span class="n">content</span><span class="o">=</span><span class="s2">&quot;Você é um redator técnico. Escreva uma primeira versão curta (1 parágrafo simples) &quot;</span>
+                        <span class="s2">&quot;sobre o tópico solicitado, sem entrar ainda em detalhes profundos de arquitetura.&quot;</span>
+            <span class="p">),</span>
+            <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Tópico: </span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;topic&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Iterações subsequentes: incorpora o feedback rigoroso do nó &#39;reflect&#39;</span>
+        <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">SystemMessage</span><span class="p">(</span>
+                <span class="n">content</span><span class="o">=</span><span class="s2">&quot;Você é um autor sênior de engenharia de IA. Reescreva e expanda o rascunho anterior &quot;</span>
+                        <span class="s2">&quot;incorporando integralmente todas as críticas e elementos faltantes apontados pelo revisor.&quot;</span>
+            <span class="p">),</span>
+            <span class="n">HumanMessage</span><span class="p">(</span>
+                <span class="n">content</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Tópico Original: </span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;topic&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;Rascunho Anterior:</span><span class="se">\n</span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;current_draft&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;Crítica do Revisor:</span><span class="se">\n</span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;reflection_feedback&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">author_llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="n">log_entry</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;[Iteração </span><span class="si">{</span><span class="n">iteration</span><span class="si">}</span><span class="s2"> - Generate] Rascunho produzido (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="si">}</span><span class="s2"> caracteres).&quot;</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;current_draft&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
+        <span class="s2">&quot;iteration&quot;</span><span class="p">:</span> <span class="n">iteration</span><span class="p">,</span>
+        <span class="s2">&quot;history_log&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">log_entry</span><span class="p">],</span>
+    <span class="p">}</span>
+</pre></div>
+
+<p>Na iteração 1, o prompt pede de propósito um texto curto e raso, para dar para ver a evolução. Nas seguintes, o prompt muda para "autor sênior" e inclui o tópico, o rascunho anterior e a crítica. Tudo isso só está disponível porque esses campos foram definidos no estado. O nó devolve o rascunho, o número da iteração e uma linha de log.</p>
+<h3>8.3 · O nó crítico</h3>
+<div class="codehead">1:17:36–1:19:51 · Trecho do notebook do professor; docstring omitida</div><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">reflect_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">ReflexionState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">SystemMessage</span><span class="p">(</span>
+            <span class="n">content</span><span class="o">=</span><span class="s2">&quot;Você é um editor técnico rigoroso de um livro de Arquitetura de Agentes. &quot;</span>
+                    <span class="s2">&quot;Avalie o rascunho. Para ser aprovado (nota &gt;= 9), o texto DEVE conter: &quot;</span>
+                    <span class="s2">&quot;(1) explicação clara do conceito, (2) um exemplo concreto de caso de uso em produção &quot;</span>
+                    <span class="s2">&quot;e (3) análise explícita de trade-offs de latência vs. confiabilidade. &quot;</span>
+                    <span class="s2">&quot;Se faltar qualquer um desses itens, reprove (is_approved=False) e exija a correção.&quot;</span>
+        <span class="p">),</span>
+        <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Tópico: </span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;topic&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">Rascunho Atual:</span><span class="se">\n</span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;current_draft&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="n">critique</span><span class="p">:</span> <span class="n">ReflectionCritique</span> <span class="o">=</span> <span class="n">critic_llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="n">formatted_feedback</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Nota: </span><span class="si">{</span><span class="n">critique</span><span class="o">.</span><span class="n">clarity_and_depth_score</span><span class="si">}</span><span class="s2">/10 | Aprovado: </span><span class="si">{</span><span class="n">critique</span><span class="o">.</span><span class="n">is_approved</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Lacunas: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">critique</span><span class="o">.</span><span class="n">missing_elements</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Direcionamento: </span><span class="si">{</span><span class="n">critique</span><span class="o">.</span><span class="n">actionable_feedback</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="n">log_entry</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;[Iteração </span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;iteration&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> - Reflect] Nota: </span><span class="si">{</span><span class="n">critique</span><span class="o">.</span><span class="n">clarity_and_depth_score</span><span class="si">}</span><span class="s2">/10 (Aprovado=</span><span class="si">{</span><span class="n">critique</span><span class="o">.</span><span class="n">is_approved</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;reflection_feedback&quot;</span><span class="p">:</span> <span class="n">formatted_feedback</span><span class="p">,</span>
+        <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">critique</span><span class="o">.</span><span class="n">clarity_and_depth_score</span><span class="p">,</span>
+        <span class="s2">&quot;is_approved&quot;</span><span class="p">:</span> <span class="n">critique</span><span class="o">.</span><span class="n">is_approved</span><span class="p">,</span>
+        <span class="s2">&quot;history_log&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">log_entry</span><span class="p">],</span>
+    <span class="p">}</span>
+</pre></div>
+
+<p>O prompt define o que é aprovação: nota ≥ 9 e três itens obrigatórios (conceito claro, exemplo concreto em produção e análise de trade-offs de latência vs. confiabilidade). O resultado <code>critique</code> já é um objeto com campos. O nó monta um feedback em texto e grava nota e aprovação no estado. O professor compara o <code>is_approved</code> a um interruptor no "cérebro" do grafo.</p>
+<h3>8.4 · Finalização e decisão de continuar</h3>
+<div class="codehead">1:19:51–1:20:32 · Trecho do notebook do professor; docstrings omitidas</div><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">finalize_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">ReflexionState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;# Documento Finalizado (Iterações: </span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;iteration&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> | Nota Final: </span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/10)</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;final_content&quot;</span><span class="p">:</span> <span class="n">header</span> <span class="o">+</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;current_draft&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;history_log&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;[Finalize] Conteúdo consolidado e entregue.&quot;</span><span class="p">],</span>
+    <span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">should_continue</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">ReflexionState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;generate&quot;</span><span class="p">,</span> <span class="s2">&quot;finalize&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;is_approved&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;iteration&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;max_iterations&quot;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="s2">&quot;finalize&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;generate&quot;</span>
+</pre></div>
+
+<p><code>should_continue</code> é a função da aresta condicional, um padrão muito comum em projetos LangGraph. Ela manda para <code>"finalize"</code> se o texto foi aprovado <strong>ou</strong> se o limite de iterações chegou. Caso contrário, volta para <code>"generate"</code>. O tipo <code>Literal["generate", "finalize"]</code> deixa claro quais destinos existem.</p>
+<h3>8.5 · O grafo</h3>
+<div class="codehead">1:20:38–1:22:00 · Trecho do professor conferido no vídeo (aprox. 1:22:05)</div><div class="highlight"><pre><span></span><span class="n">reflexion_builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">ReflexionState</span><span class="p">)</span>
+<span class="n">reflexion_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;generate&quot;</span><span class="p">,</span> <span class="n">generate_node</span><span class="p">)</span>
+<span class="n">reflexion_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;reflect&quot;</span><span class="p">,</span> <span class="n">reflect_node</span><span class="p">)</span>
+<span class="n">reflexion_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;finalize&quot;</span><span class="p">,</span> <span class="n">finalize_node</span><span class="p">)</span>
+
+<span class="n">reflexion_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;generate&quot;</span><span class="p">)</span>
+<span class="n">reflexion_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;generate&quot;</span><span class="p">,</span> <span class="s2">&quot;reflect&quot;</span><span class="p">)</span>
+<span class="n">reflexion_builder</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;reflect&quot;</span><span class="p">,</span> <span class="n">should_continue</span><span class="p">)</span>
+<span class="n">reflexion_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;finalize&quot;</span><span class="p">,</span> <span class="n">END</span><span class="p">)</span>
+
+<span class="n">reflexion_graph</span> <span class="o">=</span> <span class="n">reflexion_builder</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+</pre></div>
+
+<figure class="gfig"><svg class="gsv" viewBox="0 0 380 380" width="380" role="img" aria-label="Grafo Reflection: generate, reflect; reflect volta a generate ou segue a finalize; finalize termina"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs><path class="e" d="M190,48 L190,78" marker-end="url(#ah)"/><path class="e" d="M170,120 L170,163" marker-end="url(#ah)"/><text class="lb" x="110" y="147" text-anchor="middle">rascunho</text><path class="e c" d="M210,165 L210,122" marker-end="url(#ah)"/><text class="lb" x="292" y="147" text-anchor="middle">reprovado (há tentativas)</text><path class="e c" d="M190,205 L190,248" marker-end="url(#ah)"/><text class="lb" x="285" y="232" text-anchor="middle">aprovado ou limite</text><path class="e" d="M190,290 L190,328" marker-end="url(#ah)"/><rect class="t" x="130" y="12" width="120" height="36" rx="18.0"/><text class="tx" x="190.0" y="35.0" text-anchor="middle">__start__</text><rect class="n" x="120" y="80" width="140" height="40" rx="9"/><text class="tx" x="190.0" y="105.0" text-anchor="middle">generate</text><rect class="n" x="120" y="165" width="140" height="40" rx="9"/><text class="tx" x="190.0" y="190.0" text-anchor="middle">reflect</text><rect class="n" x="120" y="250" width="140" height="40" rx="9"/><text class="tx" x="190.0" y="275.0" text-anchor="middle">finalize</text><rect class="t" x="130" y="330" width="120" height="36" rx="18.0"/><text class="tx" x="190.0" y="353.0" text-anchor="middle">__end__</text></svg><figcaption>Desenho conferido no vídeo · aprox. 1:22:05 · recriado a partir do grafo exibido</figcaption><div class="legend">Linha contínua = aresta fixa · linha tracejada = aresta condicional</div></figure>
+<p><strong>Como percorrer:</strong> <code>generate</code> escreve, <code>reflect</code> avalia. Se reprovou e ainda há tentativas, volta para <code>generate</code> com a crítica. Se aprovou (ou bateu o limite), segue para <code>finalize</code> e termina.</p>
+<h3>8.6 · Executando</h3>
+<div class="codehead">1:23:17–1:23:52 · Entrada usada pelo professor</div><div class="highlight"><pre><span></span><span class="n">reflexion_input</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;O papel dos Checkpointers e Reducers na tolerância a falhas em sistemas Multiagentes com LangGraph&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;iteration&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;max_iterations&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;is_approved&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;history_log&quot;</span><span class="p">:</span> <span class="p">[],</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="codehead">Resumo da saída mostrada na aula · aprox. 1:23:52–1:25:16</div><pre class="out">[GENERATE - Iteração 1] 1 parágrafo genérico sobre checkpointers e reducers.
+
+[REFLECT] Nota: 7/10 | Aprovado: False
+Lacunas: exemplo concreto de caso de uso em produção, análise explícita de trade-offs de latência vs. confiabilidade
+Direcionamento: adicione um exemplo concreto (ex.: monitoramento ambiental) e discuta como a frequência dos checkpoints afeta latência e confiabilidade.
+
+[GENERATE - Iteração 2] Texto expandido com o exemplo de monitoramento ambiental e a análise de trade-offs.
+
+[REFLECT] Nota: 9/10 | Aprovado: True
+
+[FINALIZE] Conteúdo consolidado e entregue.</pre>
+<p>A crítica estruturada forçou o autor a subir o nível do texto em uma rodada. O tópico usado, aliás, é sugestão de estudo do professor para a próxima aula.</p></section>
+
+<section id="umagente"><h2>9. Ainda é um único agente</h2><p class="time">Vídeo · 1:25:28–1:27:57</p>
+<p>O Pablo perguntou onde entram os múltiplos agentes, já que até aqui parece haver um único agente com várias ferramentas. A resposta do professor: <strong>é exatamente isso</strong>. Até agora a aula traduz conceitos de agente único para grafos. Múltiplos agentes começam na próxima aula. Ele pediu desculpas por não ter avisado isso no início.</p></section>
+
+<section id="plan"><h2>10. Plan-and-Execute: planejar antes de agir</h2><p class="time">Vídeo · 1:27:57–1:44:21</p>
+<h3>10.1 · Os limites do ReAct em tarefas longas</h3>
+<p>O ReAct planeja só um passo à frente em cada iteração (raciocínio "míope"). Em tarefas com 5 ou 10 etapas dependentes, isso causa:</p>
+<ol><li><strong>Custo e latência:</strong> cada chamada simples de ferramenta invoca a LLM principal com todo o histórico.</li><li><strong>Desvio de objetivo:</strong> com resultados longos no meio do caminho, o agente perde de vista o pedido original.</li><li><strong>Falta de visão global:</strong> o agente não confere se mapeou todos os subproblemas antes de sair executando.</li></ol>
+<h3>10.2 · Três componentes</h3>
+<p>Inspirada no paper <em>Plan-and-Solve Prompting</em> (Wang e outros) e em arquiteturas clássicas de robótica, a arquitetura separa estratégia de execução:</p>
+<div class="tablewrap"><table><thead><tr><th>Componente</th><th>O que faz</th></tr></thead><tbody><tr><td><code>planner</code></td><td>Recebe o objetivo e gera um plano com várias etapas.</td></tr><tr><td><code>executor</code></td><td>Pega só a primeira etapa pendente e a executa com as ferramentas.</td></tr><tr><td><code>replanner</code></td><td>Compara o que foi feito com o objetivo. Se terminou, escreve a resposta final. Se não, atualiza as etapas que faltam.</td></tr></tbody></table></div>
+<h3>10.3 · Contratos, estado e modelos</h3>
+<div class="codehead">1:31:31–1:33:15 · Trecho do notebook do professor; comentários de numeração omitidos</div><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">PlanSchema</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plano ordenado de etapas para resolver o objetivo do usuário.&quot;&quot;&quot;</span>
+    <span class="n">steps</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Lista sequencial de etapas claras e atômicas. Cada etapa deve ser uma ação verificável.&quot;</span>
+    <span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ReplanDecision</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decisão do Monitor/Replanner após inspecionar o progresso das etapas executadas.&quot;&quot;&quot;</span>
+    <span class="n">is_complete</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;True se todas as informações necessárias para responder ao objetivo original já foram obtidas em past_steps; False caso ainda existam etapas pendentes.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">updated_remaining_steps</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Se is_complete=False, lista atualizada apenas com as etapas que AINDA faltam ser executadas. Se is_complete=True, retorne lista vazia [].&quot;</span>
+    <span class="p">)</span>
+    <span class="n">final_response</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Se is_complete=True, redija aqui a resposta final completa e consolidada para o usuário com todos os números calculados.&quot;</span>
+    <span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PlanExecuteState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">objective</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">plan</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">past_steps</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span> <span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">]</span>
+    <span class="n">final_response</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="n">planner_llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">with_structured_output</span><span class="p">(</span><span class="n">PlanSchema</span><span class="p">)</span>
+<span class="n">replanner_llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">with_structured_output</span><span class="p">(</span><span class="n">ReplanDecision</span><span class="p">)</span>
+</pre></div>
+
+<p>Os dois schemas Pydantic são <strong>contratos determinísticos</strong>: o planner sempre devolve uma lista <code>steps</code> e o replanner sempre devolve <code>is_complete</code>, <code>updated_remaining_steps</code> e, se terminou, <code>final_response</code>. O estado guarda o objetivo, o plano (o que falta), os passos já feitos e a resposta final. <code>past_steps</code> usa <code>operator.add</code>, então cada execução só acrescenta a tupla <code>(etapa, resultado)</code>.</p>
+<p>Os dois usam o mesmo modelo, mas o professor reforça: vale adaptar o modelo a cada função, consultando benchmarks e a opinião da comunidade.</p>
+<h3>10.4 · O executor é um ReAct dentro do grafo</h3>
+<div class="codehead">1:34:05–1:35:34 · Trecho do notebook do professor; comentários omitidos</div><div class="highlight"><pre><span></span><span class="n">executor_tools</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_stock_price</span><span class="p">,</span> <span class="n">convert_currency</span><span class="p">,</span> <span class="n">check_warehouse_inventory</span><span class="p">,</span> <span class="n">calculate_shipping_freight</span><span class="p">,</span> <span class="n">calculator</span><span class="p">]</span>
+<span class="n">executor_llm_bound</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">bind_tools</span><span class="p">(</span><span class="n">executor_tools</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SubExecutorState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">messages</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">BaseMessage</span><span class="p">],</span> <span class="n">add_messages</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sub_model_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">SubExecutorState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">executor_llm_bound</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">])]}</span>
+
+<span class="n">sub_builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">SubExecutorState</span><span class="p">)</span>
+<span class="n">sub_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">sub_model_node</span><span class="p">)</span>
+<span class="n">sub_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">,</span> <span class="n">ToolNode</span><span class="p">(</span><span class="n">executor_tools</span><span class="p">))</span>
+<span class="n">sub_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">)</span>
+<span class="n">sub_builder</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">tools_condition</span><span class="p">)</span>
+<span class="n">sub_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">)</span>
+
+<span class="n">task_executor_agent</span> <span class="o">=</span> <span class="n">sub_builder</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+</pre></div>
+
+<p>É o mesmo ReAct da seção 3, agora com 5 ferramentas (cotação, câmbio, estoque, frete e calculadora), compilado como <code>task_executor_agent</code>. O notebook explica num aviso que isso substitui o antigo <code>create_react_agent</code>, que gera avisos de depreciação e esconde a estrutura do grafo.</p>
+<h3>10.5 · Os nós principais</h3>
+<div class="codehead">1:35:34–1:37:29 · Trecho do notebook do professor; docstrings e um comentário omitidos</div><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">planner_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">PlanExecuteState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="n">sys_prompt</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;Você é um planejador estratégico corporativo. Dado um objetivo complexo do usuário, &quot;</span>
+        <span class="s2">&quot;decomponha-o em uma lista enxuta de etapas sequenciais (3 a 4 etapas). &quot;</span>
+        <span class="s2">&quot;Não adicione etapas supérfluas; cada etapa será executada por um agente com acesso a ferramentas &quot;</span>
+        <span class="s2">&quot;de cotação de ações, câmbio de moedas, estoque de galpão, cálculo de frete e calculadora.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">plan_result</span><span class="p">:</span> <span class="n">PlanSchema</span> <span class="o">=</span> <span class="n">planner_llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">([</span>
+        <span class="n">SystemMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">sys_prompt</span><span class="p">),</span>
+        <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Objetivo: </span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="p">])</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;plan&quot;</span><span class="p">:</span> <span class="n">plan_result</span><span class="o">.</span><span class="n">steps</span><span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">executor_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">PlanExecuteState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="n">current_step</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;plan&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">past_context</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;- Etapa concluída: </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2"> =&gt; Resultado: </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;past_steps&quot;</span><span class="p">,</span> <span class="p">[])])</span>
+
+    <span class="n">execution_prompt</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Objetivo Global: </span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Contexto de Etapas Anteriores:</span><span class="se">\n</span><span class="si">{</span><span class="n">past_context</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">past_context</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Nenhuma etapa executada ainda.&#39;</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;SUA TAREFA ATUAL: Execute APENAS a seguinte etapa e retorne o resultado exato obtido: &#39;</span><span class="si">{</span><span class="n">current_step</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">agent_res</span> <span class="o">=</span> <span class="n">task_executor_agent</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">execution_prompt</span><span class="p">)]})</span>
+    <span class="n">step_output</span> <span class="o">=</span> <span class="n">agent_res</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">content</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;past_steps&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="n">current_step</span><span class="p">,</span> <span class="n">step_output</span><span class="p">)]</span>
+    <span class="p">}</span>
+</pre></div>
+
+<p><code>planner_node</code> pede de 3 a 4 etapas, sem etapas supérfluas, e recebe um <code>PlanSchema</code>. <code>executor_node</code> pega <code>state["plan"][0]</code>, monta um prompt com o objetivo global e o que já foi feito, e chama o subgrafo. O resultado da etapa é a última mensagem do subgrafo, guardada em <code>past_steps</code>.</p>
+<div class="codehead">1:37:32–1:38:38 · Trecho do notebook do professor; docstrings omitidas</div><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">replanner_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">PlanExecuteState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="n">past_formatted</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;past_steps&quot;</span><span class="p">]])</span>
+    <span class="n">remaining_if_not_updated</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;plan&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
+
+    <span class="n">replan_prompt</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Objetivo Original do Usuário:</span><span class="se">\n</span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Plano Original:</span><span class="se">\n</span><span class="si">{</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;plan&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Etapas Já Executadas e Seus Resultados (past_steps):</span><span class="se">\n</span><span class="si">{</span><span class="n">past_formatted</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Etapas que restavam na fila:</span><span class="se">\n</span><span class="si">{</span><span class="n">remaining_if_not_updated</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;Avalie: se todas as informações pedidas no Objetivo Original já constam nos resultados acima, &quot;</span>
+        <span class="s2">&quot;marque is_complete=True e escreva a final_response detalhada. &quot;</span>
+        <span class="s2">&quot;Caso contrário, marque is_complete=False e forneça updated_remaining_steps apenas com o que ainda falta fazer.&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">decision</span><span class="p">:</span> <span class="n">ReplanDecision</span> <span class="o">=</span> <span class="n">replanner_llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">([</span>
+        <span class="n">SystemMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;Você é o Monitor/Replanner de uma arquitetura Plan-and-Execute.&quot;</span><span class="p">),</span>
+        <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">replan_prompt</span><span class="p">)</span>
+    <span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">decision</span><span class="o">.</span><span class="n">is_complete</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;final_response&quot;</span><span class="p">:</span> <span class="n">decision</span><span class="o">.</span><span class="n">final_response</span><span class="p">,</span> <span class="s2">&quot;plan&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;plan&quot;</span><span class="p">:</span> <span class="n">decision</span><span class="o">.</span><span class="n">updated_remaining_steps</span><span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">should_continue_plan</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">PlanExecuteState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;executor&quot;</span><span class="p">,</span> <span class="s2">&quot;__end__&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;final_response&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;plan&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;__end__&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;executor&quot;</span>
+</pre></div>
+
+<p>O replanner recebe o objetivo original, o plano, as etapas feitas e as que restavam. Se tudo o que foi pedido já está nos resultados, ele devolve a <code>final_response</code> e esvazia o plano. Senão, devolve só as etapas que faltam. <code>should_continue_plan</code> encerra (<code>"__end__"</code>) quando há resposta final ou o plano ficou vazio; senão volta ao executor.</p>
+<h3>10.6 · O grafo</h3>
+<div class="codehead">1:38:38–1:39:07 · Trecho do professor conferido no vídeo (aprox. 1:39:07)</div><div class="highlight"><pre><span></span><span class="n">plan_exec_builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">PlanExecuteState</span><span class="p">)</span>
+<span class="n">plan_exec_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;planner&quot;</span><span class="p">,</span> <span class="n">planner_node</span><span class="p">)</span>
+<span class="n">plan_exec_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;executor&quot;</span><span class="p">,</span> <span class="n">executor_node</span><span class="p">)</span>
+<span class="n">plan_exec_builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;replanner&quot;</span><span class="p">,</span> <span class="n">replanner_node</span><span class="p">)</span>
+
+<span class="n">plan_exec_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;planner&quot;</span><span class="p">)</span>
+<span class="n">plan_exec_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;planner&quot;</span><span class="p">,</span> <span class="s2">&quot;executor&quot;</span><span class="p">)</span>
+<span class="n">plan_exec_builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;executor&quot;</span><span class="p">,</span> <span class="s2">&quot;replanner&quot;</span><span class="p">)</span>
+<span class="n">plan_exec_builder</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;replanner&quot;</span><span class="p">,</span> <span class="n">should_continue_plan</span><span class="p">)</span>
+
+<span class="n">plan_execute_graph</span> <span class="o">=</span> <span class="n">plan_exec_builder</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+</pre></div>
+
+<figure class="gfig"><svg class="gsv" viewBox="0 0 380 390" width="380" role="img" aria-label="Grafo Plan-and-Execute: planner, executor, replanner; replanner volta ao executor ou termina"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs><path class="e" d="M190,48 L190,78" marker-end="url(#ah)"/><path class="e" d="M190,120 L190,163" marker-end="url(#ah)"/><text class="lb" x="240" y="147" text-anchor="middle">plano</text><path class="e" d="M170,205 L170,248" marker-end="url(#ah)"/><text class="lb" x="95" y="232" text-anchor="middle">past_steps</text><path class="e c" d="M210,250 L210,207" marker-end="url(#ah)"/><text class="lb" x="300" y="232" text-anchor="middle">ainda há etapas</text><path class="e c" d="M190,290 L190,336" marker-end="url(#ah)"/><text class="lb" x="270" y="318" text-anchor="middle">concluído</text><rect class="t" x="130" y="12" width="120" height="36" rx="18.0"/><text class="tx" x="190.0" y="35.0" text-anchor="middle">__start__</text><rect class="n" x="120" y="80" width="140" height="40" rx="9"/><text class="tx" x="190.0" y="105.0" text-anchor="middle">planner</text><rect class="n" x="120" y="165" width="140" height="40" rx="9"/><text class="tx" x="190.0" y="190.0" text-anchor="middle">executor</text><rect class="n" x="120" y="250" width="140" height="40" rx="9"/><text class="tx" x="190.0" y="275.0" text-anchor="middle">replanner</text><rect class="t" x="130" y="338" width="120" height="36" rx="18.0"/><text class="tx" x="190.0" y="361.0" text-anchor="middle">__end__</text></svg><figcaption>Desenho conferido no vídeo · aprox. 1:39:07 · recriado a partir do grafo exibido</figcaption><div class="legend">Linha contínua = aresta fixa · linha tracejada = aresta condicional</div></figure>
+<p><strong>Como percorrer:</strong> o <code>planner</code> roda uma vez e grava objetivo e plano no estado. O <code>executor</code> faz uma etapa (com seu próprio laço ReAct por dentro). O <code>replanner</code> confere quanto falta para o objetivo: volta para o executor enquanto houver etapas e termina quando concluir.</p>
+<h3>10.7 · Executando um pedido composto</h3>
+<div class="codehead">1:41:31–1:42:04 · Entrada usada pelo professor</div><div class="highlight"><pre><span></span><span class="n">complex_objective</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;objective&quot;</span><span class="p">:</span> <span class="p">(</span>
+        <span class="s2">&quot;Preciso de um relatório operacional em 3 partes: &quot;</span>
+        <span class="s2">&quot;(1) Verifique quantas unidades do SKU &#39;PUMP-88&#39; temos em estoque no galpão; &quot;</span>
+        <span class="s2">&quot;(2) Calcule o valor do frete para enviar 12 kg desse item para o CEP &#39;41810-000&#39;; &quot;</span>
+        <span class="s2">&quot;(3) Consulte a cotação da ação &#39;AAPL&#39; em USD, converta esse valor de 1 ação para BRL &quot;</span>
+        <span class="s2">&quot;e some com o custo do frete usando a calculadora para me dar o custo total combinado em Reais.&quot;</span>
+    <span class="p">),</span>
+    <span class="s2">&quot;plan&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;past_steps&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;final_response&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="codehead">Saída mostrada na aula · aprox. 1:42:04–1:44:21 (textos encurtados)</div><pre class="out">[PLANNER: Plano Inicial Gerado]
+  Etapa 1: Verificar a quantidade de unidades do SKU 'PUMP-88' em estoque no galpão.
+  Etapa 2: Calcular o valor do frete para enviar 12 kg do SKU 'PUMP-88' para o CEP '41810-000'.
+  Etapa 3: Consultar a cotação da ação 'AAPL' em USD e converter esse valor para BRL.
+  Etapa 4: Somar o custo do frete em BRL com o valor da ação 'AAPL' em BRL ...
+
+---> [EXECUTOR] Etapa 1 · Resultado: 340 unidades.
+     [REPLANNER] Etapas restantes na fila (3)
+---> [EXECUTOR] Etapa 2 · Resultado: R$ 79,00, prazo estimado de 5 dias úteis.
+     [REPLANNER] Etapas restantes na fila (2)
+---> [EXECUTOR] Etapa 3 · Resultado: US$ 228,10, que equivale a R$ 1.322,98.
+
+[REPLANNER: Objetivo Concluído!]
+Estoque: 340 unidades · Frete: R$ 79,00 · Custo total combinado: R$ 1.401,98.</pre>
+<p>O planner criou 4 etapas, mas o replanner encerrou depois da 3ª, porque a soma já podia ser feita com os dados obtidos. É o monitoramento em ação. Confira as contas: frete = 25 + 12 × 4,5 = R$ 79,00; ação = 228,10 × 5,80 = R$ 1.322,98; total = R$ 1.401,98. Todos os valores vêm das ferramentas simuladas.</p>
+<p class="callout"><strong>Visão do professor:</strong> é a estrutura mais complexa do curso até agora e a mais próxima de uma aplicação real. Junta tool calling, o próprio ReAct e um plano auditável. É o que os chats atuais fazem quando mostram "pesquisando" ou "raciocinando" em etapas, e reduz muito, mas não zera, o risco de alucinação.</p></section>
+
+<section id="sintese"><h2>11. Síntese das arquiteturas</h2><p class="time">Vídeo · 1:47:43–1:48:48</p>
+<p>O professor deixou esta tabela no notebook. Ele avisa que não é uma comparação de "qual é melhor": várias técnicas podem conviver no mesmo sistema.</p>
+<div class="tablewrap"><table><thead><tr><th>Arquitetura</th><th>Controle</th><th>Latência / custo</th><th>Quando usar</th></tr></thead><tbody>
+<tr><td><strong>ReAct</strong></td><td>Laço livre entre <code>model</code> e <code>ToolNode</code> via <code>tools_condition</code></td><td>Médio (1 chamada de LLM por passo)</td><td>Perguntas abertas, sem saber antes quais ferramentas serão usadas.</td></tr>
+<tr><td><strong>First Model</strong></td><td>Nó inicial injeta uma <code>ToolCall</code> sintética</td><td>Baixo (economiza a 1ª inferência)</td><td>Quando a 1ª ação é obrigatória pela regra de negócio.</td></tr>
+<tr><td><strong>Tool Retrieval</strong></td><td><code>select_tools</code> filtra top-k por embeddings</td><td>Reduz muito os tokens do prompt</td><td>Agentes com dezenas de ferramentas (&gt;10).</td></tr>
+<tr><td><strong>Reflection</strong></td><td>Laço <code>generate</code> ↔ <code>reflect</code> com nota no estado</td><td>Alto (várias passadas de texto)</td><td>Conteúdo técnico, código ou relatórios em que qualidade vale mais que tempo.</td></tr>
+<tr><td><strong>Plan-and-Execute</strong></td><td><code>planner</code> → <code>executor</code> → <code>replanner</code></td><td>Otimizado para tarefas longas</td><td>Fluxos de várias etapas que precisam de visão global.</td></tr>
+</tbody></table></div></section>
+
+<section id="lembrar"><h2>O que preciso lembrar</h2><p class="time">Vídeo · Revisão da aula</p><ul>
+<li>Agente autônomo = decide, tem opções e age no ambiente, num laço que a própria LLM controla.</li>
+<li><code>bind_tools</code> liga os schemas; o modelo devolve <code>tool_calls</code>; o <code>ToolNode</code> executa; <code>tools_condition</code> decide entre <code>tools</code> e <code>END</code>.</li>
+<li>No ReAct, a aresta <code>tools → model</code> é fixa: todo resultado volta para o modelo pensar.</li>
+<li>Se uma etapa é sempre igual, fixe-a sem LLM (First Model). Usar LLM sem necessidade é desperdício.</li>
+<li>Muitas ferramentas: busque as top-k por descrição (Tool Retrieval) ou pense em dividir em vários agentes.</li>
+<li>Reflection = autor + crítico com saída estruturada + limite de iterações.</li>
+<li>Plan-and-Execute guarda objetivo e plano no estado; o replanner evita o desvio de objetivo.</li>
+<li>Tudo nesta aula ainda é um único agente. Para tarefas simples e bem definidas, LangChain puro continua valendo.</li>
+</ul></section>
+
+<section id="quiz" class="quiz-panel"><h2>Quiz · conceitos e casos de uso</h2><p>6 perguntas básicas e 6 situações práticas. Clique em uma das cinco opções. A correção aparece após a escolha; cada questão aceita uma resposta por tentativa.</p><div class="quiz-score"><span>Acertos: <strong id="quiz-points" aria-live="polite">0/12</strong></span><span id="quiz-count" aria-live="polite">0/12 respondidas</span><button id="quiz-reset">Reiniciar quiz</button></div><div id="quiz-questions"></div><noscript>Ative JavaScript para responder ao quiz.</noscript></section>
+
+<section id="desafios"><h2>Dois desafios práticos em Python</h2><p>Cenários complementares inventados para praticar esta aula, usando uma autopeças fictícia. Não são exemplos do professor. Você pode usar IA para escrever o código, mas deve conseguir explicar o estado, as ligações e os resultados. Os trechos acima dependem dos imports e da configuração do notebook. Não coloque chaves no HTML nem nas respostas.</p>
+<h3>Desafio 1 · O balcão consulta o catálogo antes de pensar</h3><p><strong>Cenário:</strong> no balcão de uma autopeças fictícia, toda pergunta começa obrigatoriamente por uma consulta ao catálogo. Exemplo de pergunta: “Pastilha de freio dianteira para Onix 2019 1.0. Quanto ficam 2 jogos?”.</p><p><strong>Problema pontual:</strong> comparar o ReAct padrão com a versão First Model, que dispara a consulta sem chamar a LLM.</p><p><strong>Dados fictícios:</strong> um dicionário com 3 ou 4 peças, por exemplo <code>"pastilha onix 2019 1.0": "PF-221 · R$ 189,90 · 12 em estoque"</code>.</p>
+<div class="tablewrap"><table><thead><tr><th>Use</th><th>Para quê</th></tr></thead><tbody><tr><td><code>@tool</code> com docstring</td><td>Criar <code>buscar_catalogo(termo)</code> e reaproveitar a <code>calculator</code> da aula.</td></tr><tr><td><code>bind_tools</code> + <code>model_node</code></td><td>Deixar o modelo decidir as chamadas no laço.</td></tr><tr><td><code>ToolNode</code> + <code>tools_condition</code></td><td>Executar ferramentas e decidir entre continuar ou terminar.</td></tr><tr><td><code>AIMessage</code> + <code>ToolCall</code> + <code>uuid4</code></td><td>Montar a chamada fixa no nó <code>first_model</code>.</td></tr><tr><td><code>stream</code> + <code>time.perf_counter</code></td><td>Registrar os passos e o tempo de cada um.</td></tr></tbody></table></div>
+<ol><li>Crie as duas ferramentas e confira a docstring de cada uma: é ela que o modelo lê.</li><li>Monte o grafo ReAct (<code>model</code>, <code>tools</code>, aresta condicional e volta fixa) e desenhe-o.</li><li>Rode a pergunta com <code>stream</code> e anote quantas vezes o nó <code>model</code> rodou.</li><li>Crie o grafo com <code>first_model</code>. Pense no argumento: a pergunta inteira serve como termo de busca no seu dicionário? Se não, extraia o termo de forma determinística (por exemplo, palavras-chave simples) e explique a escolha.</li><li>Rode a mesma pergunta medindo o tempo de cada passo.</li><li>Compare as duas execuções em uma pequena tabela.</li></ol>
+<p><strong>Confira:</strong> no grafo First Model, o passo 1 é <code>first_model</code> e leva poucos milissegundos; a ferramenta da primeira busca é sempre <code>buscar_catalogo</code>; a conta final (2 × R$ 189,90 = R$ 379,80) sai da calculadora, não da cabeça do modelo.</p><p><strong>Entregue:</strong> código, os dois desenhos de grafo, a tabela comparativa e um parágrafo explicando quando a etapa fixa ajuda e quando atrapalha (lembre do “No good Wikipedia Search Result” da aula). Se não executar a API, diga isso e não invente saídas.</p>
+<div class="answer"><label for="d1">Seu raciocínio e evidências · desafio 1</label><textarea id="d1" placeholder="Desenhos dos grafos, papel de cada nó, tempos medidos, comparação e dúvidas."></textarea></div>
+<h3>Desafio 2 · Orçamento em etapas com replanejamento</h3><p><strong>Cenário:</strong> um cliente pede: “Verifique se há 4 velas de ignição VL-30 em estoque, calcule o frete de 2 kg para o CEP 41810-000 e me diga o total com as velas a R$ 32,50 cada.”</p><p><strong>Problema pontual:</strong> montar um Plan-and-Execute pequeno que resolva esse pedido em etapas e pare com segurança.</p><p><strong>Dados fictícios:</strong> estoque <code>{"VL-30": 18, "PF-221": 12}</code>; frete com a mesma fórmula da aula, <code>25 + kg × 4,5</code>.</p>
+<div class="tablewrap"><table><thead><tr><th>Use</th><th>Para quê</th></tr></thead><tbody><tr><td><code>PlanSchema</code> e <code>ReplanDecision</code> (Pydantic)</td><td>Contratos de saída do planner e do replanner.</td></tr><tr><td><code>with_structured_output</code></td><td>Receber objetos em vez de texto livre.</td></tr><tr><td>Subgrafo ReAct como executor</td><td>Executar uma etapa por vez com <code>consultar_estoque</code>, <code>calcular_frete</code> e <code>calculator</code>.</td></tr><tr><td><code>past_steps</code> com <code>operator.add</code></td><td>Acumular <code>(etapa, resultado)</code> sem apagar o histórico.</td></tr><tr><td>Função de aresta condicional</td><td>Voltar ao executor ou encerrar.</td></tr></tbody></table></div>
+<ol><li>Desenhe o grafo <code>planner → executor → replanner</code> com a volta condicional.</li><li>Crie as três ferramentas e o subgrafo executor.</li><li>Defina os schemas e o estado. <em>Adaptação didática:</em> acrescente um campo de limite de rodadas, usando a mesma ideia do <code>max_iterations</code> do Reflection.</li><li>Implemente os três nós, olhando o que cada um lê e grava no estado.</li><li>Escreva a função de continuação considerando resposta final, plano vazio e o limite de rodadas.</li><li>Rode o pedido e imprima o plano, cada etapa executada e a decisão do replanner.</li><li>Rode de novo pedindo um SKU que não existe (por exemplo <code>VL-99</code>).</li></ol>
+<p><strong>Confira:</strong> o plano tem 3 ou 4 etapas; <code>past_steps</code> cresce uma tupla por rodada; o total bate com a conta manual (4 × 32,50 + 34,00 = R$ 164,00); com o SKU inexistente, a resposta final diz que não há o item e não inventa estoque; o grafo nunca passa do limite de rodadas.</p><p><strong>Entregue:</strong> código, desenho, log da execução e uma explicação de por que o replanner pode encerrar antes de cumprir todas as etapas do plano inicial.</p>
+<div class="answer"><label for="d2">Seu raciocínio e evidências · desafio 2</label><textarea id="d2" placeholder="Estado escolhido, plano gerado, decisões do replanner, testes e dúvidas."></textarea></div><p class="mini">As respostas podem ser salvas neste navegador quando ele permitir armazenamento local. Elas não são sincronizadas e podem ser apagadas pelo navegador. Baixe uma cópia para guardar.</p><button id="download">Baixar minhas respostas (.txt)</button><span id="save-status" role="status"></span></section>
+
+<section id="fontes"><h2>Fonte e limites do material</h2><p>Base: vídeo e VTT de Arquiteturas Multiagentes com LangGraph, aula de 18/11/2026 (Agentes ReAct e otimização), professor Gabriel Caldas, cerca de 1h51, e o notebook <em>Aula 2.ipynb</em> compartilhado pelo professor. A transcrição foi lida inteira. Os códigos foram copiados do notebook, que é o mesmo exibido na aula. Os cinco grafos e algumas telas foram conferidos em pontos específicos do vídeo (26:55, 46:05–47:20, 55:00, 1:04:50, 1:22:05 e 1:39:07). Não houve visualização contínua de todos os minutos.</p><p>Os horários são aproximados. Erros evidentes da legenda (por exemplo, “Ling Graphic”, “Bindtools”, “tunel”) foram corrigidos. Algumas saídas foram encurtadas e isso está indicado. Os códigos não foram executados nesta preparação. Cotações, câmbio, estoque e frete do notebook são valores simulados. Os desafios são prática complementar, não soluções atribuídas ao professor.</p></section></article><footer>Caderno do Renan · LangGraph · Aula 2 · estudo, prática e conferência</footer></main><script>const questions=[["Conceito", "No ReAct montado na aula, qual é o papel do ToolNode?", ["Decidir qual ferramenta o modelo deve chamar em seguida.", "Executar as tool_calls pedidas e devolver ToolMessages.", "Converter a pergunta do usuário em um JSON Schema completo.", "Encerrar o grafo assim que a resposta final estiver pronta.", "Guardar o histórico da conversa em memória persistente."], 1, "O ToolNode lê a última AIMessage, executa as ferramentas pedidas (até em paralelo) e devolve ToolMessages ligadas ao tool_call_id. Quem decide é o modelo."], ["Conceito", "O que tools_condition verifica para escolher o próximo nó?", ["Se o estado já possui uma chave chamada selected_tools.", "Se a ferramenta anterior terminou sem nenhuma exceção.", "Se a temperatura do modelo está abaixo do limite.", "Se a última AIMessage tem tool_calls pendentes.", "Se o usuário enviou mais de uma pergunta na mensagem."], 3, "Com tool_calls pendentes, o fluxo vai para \"tools\". Sem elas, o modelo já respondeu em texto e o fluxo vai para END."], ["Conceito", "O que bind_tools faz com as ferramentas passadas a ele?", ["Vincula os esquemas JSON delas à chamada do modelo.", "Executa todas as ferramentas antes de chamar o modelo.", "Cria um nó novo no grafo para cada ferramenta da lista.", "Indexa as descrições delas em um banco de vetores.", "Remove do prompt as ferramentas que não foram usadas."], 0, "bind_tools anexa o schema de cada ferramenta à chamada. É isso que permite ao modelo devolver tool_calls estruturadas, sem pedir CSV no prompt."], ["Conceito", "No padrão First Model, o que o nó first_model faz?", ["Chama um modelo menor para escolher a primeira busca.", "Pede ao usuário para confirmar a ferramenta antes de agir.", "Executa a busca e grava o resultado direto na resposta.", "Pula o nó de ferramentas e segue direto para o modelo.", "Monta uma AIMessage com ToolCall fixa, sem chamar a LLM."], 4, "first_model é Python puro. Ele cria a AIMessage com a ToolCall de busca, e o ToolNode executa essa chamada como se tivesse vindo do modelo."], ["Conceito", "Na Tool Retrieval da aula, o que é guardado no vector store?", ["As respostas anteriores dadas pelo agente aos usuários.", "O código-fonte completo de cada uma das ferramentas.", "As descrições das ferramentas, com o nome no metadado.", "Os resultados de cada execução das ferramentas do catálogo.", "As mensagens de erro geradas pelo ToolNode na execução."], 2, "Cada Document recebe t.description como conteúdo e o nome da ferramenta em metadata, que depois vira a lista selected_tools."], ["Conceito", "No Reflection, qual é o papel do nó reflect?", ["Gerar o primeiro rascunho curto sobre o tópico pedido.", "Formatar o texto aprovado e entregar o documento final.", "Contar as iterações e encerrar quando chegar ao limite.", "Avaliar o rascunho com nota, lacunas e aprovação.", "Buscar na Wikipedia exemplos para completar o texto."], 3, "reflect usa o critic_llm com saída estruturada (ReflectionCritique) e devolve nota, lacunas, direcionamento e is_approved."], ["Caso", "Antes de qualquer raciocínio, um agente sempre precisa buscar o cliente no CRM pelo nome digitado. O que a aula sugere?", ["Fixar essa primeira chamada com um nó determinístico.", "Deixar o modelo decidir a consulta a cada pergunta.", "Criar um vector store só com os nomes dos clientes.", "Adicionar um nó reflect para revisar o nome buscado.", "Usar um planner para dividir a consulta em etapas."], 0, "Se a primeira etapa é obrigatória e não precisa de LLM para definir os parâmetros, fixá-la economiza latência e tokens e evita alucinação. Foi o exemplo do CRM dado pelo professor."], ["Caso", "Um agente com 40 ferramentas passou a escolher a ferramenta errada e ficou lento. Qual padrão da aula ataca esse problema?", ["First Model, fixando a primeira ferramenta da lista.", "Reflection, pedindo ao crítico que aprove a escolha.", "Temperatura maior no modelo que escolhe a ferramenta.", "Plan-and-Execute, com um plano para cada ferramenta.", "Tool Retrieval, ligando só as ferramentas mais relevantes."], 4, "Muitas ferramentas derrubam a acurácia, inflam os tokens e aumentam a latência. A busca semântica liga só as top-k ferramentas em cada chamada."], ["Caso", "A equipe precisa gerar um relatório técnico em que a qualidade importa mais que a demora. Qual arquitetura combina melhor?", ["ReAct padrão, com uma única passada do modelo.", "Reflection, com ciclos de geração e de crítica.", "First Model, fixando a busca antes do modelo.", "Tool Retrieval, escolhendo duas ferramentas por vez.", "Router, escolhendo uma base antes de responder."], 1, "Na síntese do professor, o Reflection tem custo alto (várias passadas), mas serve quando a qualidade se sobrepõe à latência."], ["Caso", "Um pedido tem quatro etapas dependentes (estoque, frete, cotação e soma) e o agente ReAct se perde no meio. O que a aula indica?", ["Ligar todas as ferramentas com bind_tools de uma vez.", "Trocar a calculadora por uma busca na Wikipedia.", "Plan-and-Execute, com plano, executor e replanejador.", "Reflection, com um crítico avaliando cada número.", "Tool Retrieval, filtrando duas ferramentas por etapa."], 2, "O ReAct planeja só um passo à frente e pode sofrer desvio de objetivo. O Plan-and-Execute guarda o objetivo e o plano no estado e o replanner confere o progresso."], ["Caso", "Na pergunta em português, a busca devolveu a página de Emílio Médici. O que o agente fez em seguida no exemplo?", ["Encerrou e respondeu com a idade do presidente Médici.", "Chamou a calculadora com as datas da presidência errada.", "Pediu ao usuário para reescrever a pergunta em inglês.", "Disparou um erro e parou a execução do grafo inteiro.", "Percebeu o engano e buscou de novo por Calvin Coolidge."], 4, "O retorno voltou ao model, que notou que não era o 30º presidente dos EUA e fez uma nova tool_call. É o laço ReAct se corrigindo."], ["Caso", "No Reflection, você usou max_iterations=3 e o crítico nunca aprova o texto. O que acontece?", ["Depois da 3ª iteração, o fluxo segue para finalize.", "O grafo continua até o crítico finalmente dar nota 9.", "O grafo para com erro porque is_approved ficou falso.", "O autor passa a usar o prompt da primeira iteração.", "O crítico é trocado pelo autor na próxima passada."], 0, "should_continue retorna \"finalize\" quando is_approved é verdadeiro OU iteration >= max_iterations. É o teto que evita loop infinito."]];let selected=[];
+function answer(i,j){if(selected[i]!==undefined)return;selected[i]=j;const q=questions[i],card=document.getElementById('q'+i);card.querySelectorAll('button').forEach((b,k)=>{b.disabled=true;b.setAttribute('aria-pressed',k===j?'true':'false');if(k===q[3])b.classList.add('quiz-right');else if(k===j)b.classList.add('quiz-wrong')});const f=card.querySelector('.quiz-feedback');f.hidden=false;f.textContent=(j===q[3]?'Acertou! ':'Reveja: ')+String.fromCharCode(65+q[3])+'. '+q[4];updateScore()}
+function updateScore(){document.getElementById('quiz-points').textContent=selected.reduce((n,v,i)=>n+(v===questions[i][3]?1:0),0)+'/'+questions.length;document.getElementById('quiz-count').textContent=selected.filter(v=>v!==undefined).length+'/'+questions.length+' respondidas'}
+function render(){selected=[];const root=document.getElementById('quiz-questions');root.replaceChildren();questions.forEach((q,i)=>{const card=document.createElement('article');card.className='quiz-card';card.id='q'+i;const s=document.createElement('small');s.textContent=(i+1)+' / '+questions.length+' · '+q[0];card.appendChild(s);const h=document.createElement('h3');h.textContent=q[1];card.appendChild(h);const opts=document.createElement('div');opts.className='quiz-options';q[2].forEach((v,j)=>{const b=document.createElement('button');b.className='quiz-option';b.type='button';b.textContent=String.fromCharCode(65+j)+'. '+v;b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>answer(i,j));opts.appendChild(b)});card.appendChild(opts);const f=document.createElement('div');f.className='quiz-feedback';f.hidden=true;f.setAttribute('role','status');card.appendChild(f);root.appendChild(card)});updateScore()}
+document.getElementById('quiz-reset').addEventListener('click',render);render();
+document.getElementById('theme').addEventListener('click',()=>{document.body.classList.toggle('dark');document.getElementById('theme').setAttribute('aria-pressed',String(document.body.classList.contains('dark')))});
+document.getElementById('print').addEventListener('click',()=>window.print());document.getElementById('menu').addEventListener('click',()=>{document.querySelector('aside').classList.toggle('open')});
+window.addEventListener('scroll',()=>{const h=document.documentElement;const p=h.scrollHeight-h.clientHeight;document.getElementById('progress').style.width=(p>0?h.scrollTop/p*100:0)+'%'});
+for(const id of ['d1','d2']){const area=document.getElementById(id);try{area.value=localStorage.getItem('renan-langgraph-aula2-'+id)||''}catch(e){}area.addEventListener('input',()=>{try{localStorage.setItem('renan-langgraph-aula2-'+id,area.value);document.getElementById('save-status').textContent=' Rascunho salvo neste navegador.'}catch(e){document.getElementById('save-status').textContent=' Armazenamento indisponível; baixe suas respostas.'}})}
+document.getElementById('download').addEventListener('click',()=>{const text='LangGraph · Aula 2 — Respostas de Renan\n\nDesafio 1\n'+document.getElementById('d1').value+'\n\nDesafio 2\n'+document.getElementById('d2').value;const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='respostas_langgraph_aula_02.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
+</script></body></html>

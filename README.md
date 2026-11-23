@@ -295,6 +295,25 @@ Responder uma pergunta de um único domínio consultando só a base corresponden
 
 **Fluxo:** pergunta → classificar → buscar_agenda ou buscar_financeiro → responder → documentos + resposta.
 
+### [Aula 18-11 (LangGraph) — ReAct e First Model](./Arquiteturas%20Multiagentes%20com%20LangGraph/aula%2018-11/)
+
+#### [O balcão consulta o catálogo antes de pensar](./Arquiteturas%20Multiagentes%20com%20LangGraph/aula%2018-11/Desafio%201%20-%20O%20balcao%20consulta%20o%20catalogo%20antes%20de%20pensar/)
+
+Comparar o ReAct padrão com o First Model, em que a consulta obrigatória ao
+catálogo é disparada sem chamar a LLM.
+
+- **Ferramentas:** `buscar_catalogo` (dicionário fictício) e a `calculator` da
+  aula, com `@tool`; a docstring é o que o modelo lê.
+- **Laço ReAct:** `bind_tools`, `model_node`, `ToolNode` e `tools_condition`,
+  com volta fixa `tools → model`.
+- **First Model:** nó Python monta `AIMessage` + `ToolCall` (`uuid4`); o termo
+  é extraído de forma determinística, porque a pergunta inteira não é chave
+  do dicionário.
+- **Medição:** `stream` + `time.perf_counter` registram cada passo; a tabela
+  compara passos, chamadas ao modelo e tempo. A conta vem da `calculator`.
+
+**Fluxo:** pergunta → (model ou first_model) → buscar_catalogo → model → calculator → model → resposta.
+
 ## Conceitos para revisar
 
 | Conceito | Significado neste repositório | Onde começar |
@@ -317,6 +336,7 @@ Responder uma pergunta de um único domínio consultando só a base corresponden
 | Auditoria numérica e lógica | Valores são comparados com tolerância em Python; conclusões e cobertura são avaliadas separadamente contra fontes independentes. | Auditor de frete, aula 28-10. |
 | Grafo de estado e checkpoints | `StateGraph` com reducer `add_messages`; `MemorySaver`/`thread_id` separam conversas e `update_state` corrige o snapshot sem chamar o modelo. | Recepção, aula 16-11 (LangGraph). |
 | Router com arestas condicionais | Classificação com `Literal` escolhe um nó por `add_conditional_edges`; cada rota consulta só a própria base e converge para a resposta. | Secretária, aula 16-11 (LangGraph). |
+| ReAct e First Model | Laço model ⇄ tools decidido pela LLM; um nó Python pode fixar a primeira ferramenta sem chamar o modelo, economizando uma chamada. | Balcão, aula 18-11 (LangGraph). |
 
 ## Observações
 
