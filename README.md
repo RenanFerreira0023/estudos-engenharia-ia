@@ -314,6 +314,20 @@ catálogo é disparada sem chamar a LLM.
 
 **Fluxo:** pergunta → (model ou first_model) → buscar_catalogo → model → calculator → model → resposta.
 
+#### [Orçamento em etapas com replanejamento](./Arquiteturas%20Multiagentes%20com%20LangGraph/aula%2018-11/Desafio%202%20-%20Orcamento%20em%20etapas%20com%20replanejamento/)
+
+Resolver estoque, frete e total de um pedido em etapas, com parada segura.
+
+- **Contratos:** `PlanSchema` e `ReplanDecision` com `with_structured_output`.
+- **Executor:** subgrafo ReAct com `consultar_estoque`, `calcular_frete` e
+  `calculator`, uma etapa por vez.
+- **Estado:** `past_steps` com `operator.add` acumula `(etapa, resultado)`;
+  `rodada`/`max_rodadas` é a adaptação do `max_iterations` do Reflection.
+- **Parada:** a aresta condicional encerra com resposta final, plano vazio ou
+  limite; SKU inexistente conclui sem inventar estoque.
+
+**Fluxo:** pedido → planner → executor ⇄ replanner → resposta (ou parada pelo limite).
+
 ## Conceitos para revisar
 
 | Conceito | Significado neste repositório | Onde começar |
@@ -337,6 +351,7 @@ catálogo é disparada sem chamar a LLM.
 | Grafo de estado e checkpoints | `StateGraph` com reducer `add_messages`; `MemorySaver`/`thread_id` separam conversas e `update_state` corrige o snapshot sem chamar o modelo. | Recepção, aula 16-11 (LangGraph). |
 | Router com arestas condicionais | Classificação com `Literal` escolhe um nó por `add_conditional_edges`; cada rota consulta só a própria base e converge para a resposta. | Secretária, aula 16-11 (LangGraph). |
 | ReAct e First Model | Laço model ⇄ tools decidido pela LLM; um nó Python pode fixar a primeira ferramenta sem chamar o modelo, economizando uma chamada. | Balcão, aula 18-11 (LangGraph). |
+| Plan-and-Execute | Planner gera etapas, executor ReAct resolve uma por vez e replanner decide continuar ou concluir; o estado limita as rodadas. | Orçamento, aula 18-11 (LangGraph). |
 
 ## Observações
 
